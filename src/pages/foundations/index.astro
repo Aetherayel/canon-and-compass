@@ -4,28 +4,29 @@ import PageLayout from "@layouts/PageLayout.astro";
 import TopLayout from "@layouts/TopLayout.astro";
 import BottomLayout from "@layouts/BottomLayout.astro";
 import SearchCollection from "@components/SearchCollection";
-import { BLOG } from "@consts";
+import { FOUNDATIONS } from "@consts";
+import type { CollectionEntry } from "astro:content";
 
-const posts = (await getCollection("blog"))
-  .filter((post) => !post.data.draft)
+const foundations = (await getCollection("foundations"))
+  .filter((foundation) => !foundation.data.draft)
   .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
 
-const tags = [...new Set(posts.flatMap((post) => post.data.tags))].sort(
-  (a, b) => a.localeCompare(b),
-);
+const tags = [
+  ...new Set(foundations.flatMap((foundation) => foundation.data.tags)),
+].sort((a, b) => a.localeCompare(b));
 
 const estimated_initial_size =
-  28 + posts.length * 158 + (posts.length - 1) * 12;
+  28 + foundations.length * 158 + (foundations.length - 1) * 12;
 ---
 
-<PageLayout title={BLOG.TITLE} description={BLOG.DESCRIPTION}>
+<PageLayout title={FOUNDATIONS.TITLE} description={FOUNDATIONS.DESCRIPTION}>
   <TopLayout>
     <div class="animate">
       <h1 class="text-3xl font-semibold text-black dark:text-white mt-2">
-        {BLOG.TITLE}
+        {FOUNDATIONS.TITLE}
       </h1>
       <div class="mt-1">
-        {BLOG.DESCRIPTION}
+        {FOUNDATIONS.DESCRIPTION}
       </div>
     </div>
   </TopLayout>
@@ -37,9 +38,9 @@ const estimated_initial_size =
     >
       <SearchCollection
         client:load
-        entry_name={"posts"}
+        entry_name={"foundations"}
         tags={tags}
-        data={posts}
+        data={foundations}
       />
     </div>
   </BottomLayout>

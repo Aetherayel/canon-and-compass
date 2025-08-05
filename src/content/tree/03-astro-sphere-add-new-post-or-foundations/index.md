@@ -1,6 +1,6 @@
 ---
-title: "Astro Sphere: Adding a new post or project."
-summary: "Adding a new article (blog post or project) is pretty easy."
+title: "Astro Sphere: Adding a new post or foundation."
+summary: "Adding a new article (tree post or foundation) is pretty easy."
 date: "Mar 14 2024"
 draft: false
 tags:
@@ -15,19 +15,19 @@ Create a folder in the respective collection you wish to create content. The nam
 ```text
 creating the following
 
-/content/blog/my-new-post/index.md
+/content/tree/my-new-post/index.md
 
 will be published to
 
-https://yourdomain.com/blog/my-new-post
+https://yourdomain.com/tree/my-new-post
 
 ```
 
 ### Frontmatter
 
-Front matter is in yaml if you are familiar with the format. All posts and projects require frontmatter at the top of the document to be imported. All frontmatter must be inside triple dashes, similar to Astro format. See example below.
+Front matter is in yaml if you are familiar with the format. All posts and foundations require frontmatter at the top of the document to be imported. All frontmatter must be inside triple dashes, similar to Astro format. See example below.
 
-### Blog Collection
+### Tree Collection
 
 | Field   | Type    | Req? | Description                                                   |
 | :------ | :------ | :--- | :------------------------------------------------------------ |
@@ -37,12 +37,12 @@ Front matter is in yaml if you are familiar with the format. All posts and proje
 | tags    | array   | yes  | Post topic. Array of strings. Used in filtering.              |
 | draft   | boolean | no   | Hides the post from collections. Unpublished entry.           |
 
-Example blog post frontmatter
+Example tree post frontmatter
 
 ```yaml
 ---
-title: "Astro Sphere: Adding a new post or project."
-summary: "Adding a new article (blog post or project) is pretty easy."
+title: "Astro Sphere: Adding a new post or foundation."
+summary: "Adding a new article (tree post or foundation) is pretty easy."
 date: "Mar 18 2024"
 draft: false
 tags:
@@ -52,7 +52,7 @@ tags:
 ---
 ```
 
-### Projects Collection (extends Blog Collection)
+### Foundations Collection (extends Tree Collection)
 
 | Field   | Type    | Req? | Description                                                   |
 | :------ | :------ | :--- | :------------------------------------------------------------ |
@@ -61,15 +61,15 @@ tags:
 | date    | string  | yes  | Any string date that javascript can convert. Used in sorting  |
 | tags    | array   | yes  | Post topic. Array of strings. Used in filtering.              |
 | draft   | boolean | no   | Hides the post from collections. Unpublished entry.           |
-| demoUrl | string  | no   | A link to the deployed project, if applicable.                |
+| demoUrl | string  | no   | A link to the deployed foundation, if applicable.              |
 | repoUrl | string  | no   | A link to the repository, if applicable.                      |
 
-Example project frontmatter
+Example foundation frontmatter
 
 ```yaml
 ---
 title: "Astro Sphere"
-summary: "Astro Sphere, a portfolio and blog for designers and developers."
+summary: "Astro Sphere, a portfolio and tree for designers and developers."
 date: "Mar 18 2024"
 draft: false
 tags:

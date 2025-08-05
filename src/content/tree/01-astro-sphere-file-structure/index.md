@@ -30,9 +30,9 @@ A one line summary of what each file and directory is for:
 ├── src/ // Everything that will be built for the website
 │   ├── components/ // All astro and SolidJs components
 │   ├── content/ // Contains all static markdown to be compiled
-│   │   |  blog/ // Contains all blog post markdown
-│   │   |  projects/ // Contains all projects markdown
-│   │   |  work/ // Contains all work page markdown
+│   │   |  tree/ // Contains all tree post markdown
+│   │   |  foundations/ // Contains all foundations markdown
+│   │   |  symptoms/ // Contains all symptoms page markdown
 │   │   |  legal/ // Contains all legal docs markdown
 │   │   └── config.ts // Contains the collection config for Astro
 │   ├── layouts/ // Reused layouts across the website

@@ -50,10 +50,10 @@ Itatur? Quiatae cullecum rem ent aut odis in re eossequodi nonsequ idebis ne sap
 Relative image in the /public folder
 
 ```markdown
-![blog placeholder](/open-graph.jpg)
+![tree placeholder](/open-graph.jpg)
 ```
 
-![blog placeholder](/open-graph.jpg)
+![tree placeholder](/open-graph.jpg)
 
 Relative Image in the same folder as the markdown
 

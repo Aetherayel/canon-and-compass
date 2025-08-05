@@ -7,13 +7,13 @@ import { SITE, SOCIALS } from "@consts"
 import TwinklingStars from "@components/TwinklingStars.astro"
 import MeteorShower from "@components/MeteorShower.astro"
 
-const posts = (await getCollection("blog"))
+const posts = (await getCollection("tree"))
   .filter(post => !post.data.draft)
   .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
   .slice(0,3)
 
-const projects = (await getCollection("projects"))
-  .filter(project => !project.data.draft)
+const foundations = (await getCollection("foundations"))
+  .filter(foundation => !foundation.data.draft)
   .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
   .slice(0,3)
 
@@ -89,11 +89,11 @@ const stack = [
             Currently designing products for humans.
           </p>
           <div id="ctaButtons" class='animated flex flex-wrap gap-4 justify-center mt-5'>
-            <a href='/blog' class='py-2 px-4 rounded truncate text-xs md:text-sm lg:text-base bg-black dark:bg-white text-white dark:text-black hover:opacity-75 blend'>
-              Read my blog
+            <a href='/tree' class='py-2 px-4 rounded truncate text-xs md:text-sm lg:text-base bg-black dark:bg-white text-white dark:text-black hover:opacity-75 blend'>
+              Read my tree
             </a>
-            <a href='/work' class='py-2 px-4 truncate rounded text-xs md:text-sm lg:text-base border border-black/25 dark:border-white/25 hover:bg-black/5 hover:dark:bg-white/15 blend'>
-              View my work
+            <a href='/symptoms' class='py-2 px-4 truncate rounded text-xs md:text-sm lg:text-base border border-black/25 dark:border-white/25 hover:bg-black/5 hover:dark:bg-white/15 blend'>
+              View my symptoms
             </a>
           </div>
         </div>
@@ -108,22 +108,22 @@ const stack = [
       <section class="animate">
         <article>
           <p>I am a <b><i>software engineer</i></b>, <b><i>ui/ux designer</i></b>, <b><i>product planner</i></b>, <b><i>mentor</i></b>, <b><i>student</i></b>, <b><i>minimalist</i></b>, <b><i>eternal optimist</i></b>, <b><i>crypto enthusiast</i></b> and <b><i>sarcasm connoisseur</i></b>.</p>
-          <p>I love to both build and break things. I am motivated by challenging projects with self-guided research and dynamic problem solving. My true passion is crafting creative front end designs with unique takes on color, typography and motion.</p>
+          <p>I love to both build and break things. I am motivated by challenging foundations with self-guided research and dynamic problem solving. My true passion is crafting creative front end designs with unique takes on color, typography and motion.</p>
           <p>During my career</p>
           <p>I have built products ranging from marketing and ecommerce websites to complex enterprise apps with focus on delivering fast, elegant code along with delightful user interfaces.</p>
           <p>Now</p>
-          <p>I currently work as a software engineer at StreamlineFS, where I do product planning, design and development.</p>
+          <p>I currently symptoms as a software engineer at StreamlineFS, where I do product planning, design and development.</p>
         </article>
       </section>
 
-      <!-- Blog Preview Section -->
+      <!-- Tree Preview Section -->
       <section class="animate">
         <div class="space-y-4">
           <div class="flex justify-between">
             <p class="font-semibold text-black dark:text-white">
               Recent posts
             </p>
-            <a href="/blog" class="w-fit col-span-3 group flex gap-1 items-center underline decoration-[.5px] decoration-black/25 dark:decoration-white/50 hover:decoration-black dark:hover:decoration-white text-black dark:text-white underline-offset-2 blend">
+            <a href="/tree" class="w-fit col-span-3 group flex gap-1 items-center underline decoration-[.5px] decoration-black/25 dark:decoration-white/50 hover:decoration-black dark:hover:decoration-white text-black dark:text-white underline-offset-2 blend">
               <span class="text-black/75 dark:text-white/75 group-hover:text-black group-hover:dark:text-white blend">
                 All posts
               </span>
@@ -165,23 +165,23 @@ const stack = [
         </div>
       </section>
 
-      <!-- Project Preview Section -->
+      <!-- Foundations Preview Section -->
       <section class="animate">
         <div class="space-y-4">
           <div class="flex justify-between">
             <p class="font-semibold text-black dark:text-white">
-              Recent projects
+              Recent foundations
             </p>
-            <a href="/projects" class="w-fit col-span-3 group flex gap-1 items-center underline decoration-[.5px] decoration-black/25 dark:decoration-white/50 hover:decoration-black dark:hover:decoration-white text-black dark:text-white underline-offset-2 blend">
+            <a href="/foundations" class="w-fit col-span-3 group flex gap-1 items-center underline decoration-[.5px] decoration-black/25 dark:decoration-white/50 hover:decoration-black dark:hover:decoration-white text-black dark:text-white underline-offset-2 blend">
               <span class="text-black/75 dark:text-white/75 group-hover:text-black group-hover:dark:text-white blend">
-                All projects
+                All foundations
               </span>
             </a>
           </div>
           <ul class="space-y-4">
-            {projects.map((project) => (
+            {foundations.map((foundation) => (
               <li>
-                <ArrowCard entry={project} />
+                <ArrowCard entry={foundation} />
               </li>
             ))}
           </ul>
