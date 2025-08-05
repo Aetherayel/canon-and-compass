@@ -1,6 +1,6 @@
 ![Astro Sphere Lighthouse Score](_astrosphere.jpg)
 
-Astro Sphere is a static, minimalist, lightweight, lightning fast portfolio and blog theme based on my personal website.
+Astro Sphere is a static, minimalist, lightweight, lightning fast portfolio and tree theme based on my personal website.
 
 It is primarily Astro, Tailwind and Typescript, with a very small amount of SolidJS for stateful components.
 
@@ -23,7 +23,7 @@ It is primarily Astro, Tailwind and Typescript, with a very small amount of Soli
 - ✅ Auto generated RSS Feed
 - ✅ Markdown support
 - ✅ MDX Support (components in your markdown)
-- ✅ Searchable content (posts and projects)
+ - ✅ Searchable content (tree and foundations)
 - ✅ Code Blocks - copy to clipboard
 
 ## 💯 Lighthouse score
@@ -37,7 +37,7 @@ Rendered in ~40ms on localhost
 
 ## 📄 Configuration
 
-The blog posts on the demo serve as the documentation and configuration.
+The tree posts on the demo serve as the documentation and configuration.
 
 ## 💻 Commands
 

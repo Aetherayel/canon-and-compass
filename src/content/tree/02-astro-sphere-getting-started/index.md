@@ -30,7 +30,7 @@ export default defineConfig({
 
 export const SITE: Site = {
   TITLE: "Astro Sphere",
-  DESCRIPTION: "Welcome to Astro Sphere, a portfolio and blog for designers and developers.",
+  DESCRIPTION: "Welcome to Astro Sphere, a portfolio and tree for designers and developers.",
   AUTHOR: "Mark Horn",
 }
 ```
@@ -52,9 +52,9 @@ The header and footer branding icon is located in `/public/brand.svg` as a sprit
 Each page has a metadata entry that is useful for SEO.
 
 ```js
-export const WORK: Page = {
-  TITLE: "Work",
-  DESCRIPTION: "Places I have worked.",
+export const SYMPTOMS: Page = {
+  TITLE: "Symptoms",
+  DESCRIPTION: "Places I have symptoms.",
 }
 ```
 
@@ -63,9 +63,9 @@ The links that are displayed in the header and drawer
 ```js
 export const LINKS: Links = [
   { HREF: "/", TEXT: "Home" },
-  { HREF: "/work", TEXT: "Work" },
-  { HREF: "/blog", TEXT: "Blog" },
-  { HREF: "/projects", TEXT: "Projects" },
+  { HREF: "/symptoms", TEXT: "Symptoms" },
+  { HREF: "/tree", TEXT: "Tree" },
+  { HREF: "/foundations", TEXT: "Foundations" },
 ]
 ```
 

@@ -3,32 +3,32 @@ import type { Site, Page, Links, Socials } from "@types"
 // Global
 export const SITE: Site = {
   TITLE: "Astro Sphere",
-  DESCRIPTION: "Welcome to Astro Sphere, a portfolio and blog for designers and developers.",
+  DESCRIPTION: "Welcome to Astro Sphere, a portfolio and tree for designers and developers.",
   AUTHOR: "Mark Horn",
 }
 
-// Work Page
-export const WORK: Page = {
-  TITLE: "Work",
-  DESCRIPTION: "Places I have worked.",
+// Symptoms Page
+export const SYMPTOMS: Page = {
+  TITLE: "Symptoms",
+  DESCRIPTION: "Places I have symptoms.",
 }
 
-// Blog Page
-export const BLOG: Page = {
-  TITLE: "Blog",
+// Tree Page
+export const TREE: Page = {
+  TITLE: "Tree",
   DESCRIPTION: "Writing on topics I am passionate about.",
 }
 
-// Projects Page 
-export const PROJECTS: Page = {
-  TITLE: "Projects",
-  DESCRIPTION: "Recent projects I have worked on.",
+// Foundations Page
+export const FOUNDATIONS: Page = {
+  TITLE: "Foundations",
+  DESCRIPTION: "Recent foundations I have symptoms on.",
 }
 
 // Search Page
 export const SEARCH: Page = {
   TITLE: "Search",
-  DESCRIPTION: "Search all posts and projects by keyword.",
+  DESCRIPTION: "Search all tree and foundations by keyword.",
 }
 
 // Links
@@ -37,17 +37,17 @@ export const LINKS: Links = [
     TEXT: "Home", 
     HREF: "/", 
   },
-  { 
-    TEXT: "Work", 
-    HREF: "/work", 
+  {
+    TEXT: "Symptoms",
+    HREF: "/symptoms",
   },
-  { 
-    TEXT: "Blog", 
-    HREF: "/blog", 
+  {
+    TEXT: "Tree",
+    HREF: "/tree",
   },
-  { 
-    TEXT: "Projects", 
-    HREF: "/projects", 
+  {
+    TEXT: "Foundations",
+    HREF: "/foundations",
   },
 ]
 
