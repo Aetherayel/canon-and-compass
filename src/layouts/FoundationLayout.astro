@@ -1,0 +1,26 @@
+---
+import PageLayout from "@layouts/PageLayout.astro"
+import TopLayout from "@layouts/TopLayout.astro"
+import BottomLayout from "@layouts/BottomLayout.astro"
+
+const { title, description } = Astro.props
+---
+
+<PageLayout title={title} description={description}>
+  <TopLayout>
+    <div class="animate">
+      <h1 class="text-3xl font-semibold text-black dark:text-white mt-2">
+        {title}
+      </h1>
+      <div class="mt-1">
+        {description}
+      </div>
+    </div>
+  </TopLayout>
+  <BottomLayout>
+    <div class="animate prose dark:prose-invert">
+      <slot />
+    </div>
+  </BottomLayout>
+</PageLayout>
+
