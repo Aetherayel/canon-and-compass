@@ -42,4 +42,13 @@ const legal = defineCollection({
   }),
 })
 
-export const collections = { symptoms, tree, foundations, legal }
+const treeShifts = defineCollection({
+  type: "content",
+  schema: z.object({
+    title: z.string(),
+    description: z.string(),
+  }),
+})
+
+export const collections = { symptoms, tree, foundations, legal, "tree-shifts": treeShifts }
+

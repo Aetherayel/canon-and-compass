@@ -1,0 +1,10 @@
+---
+import { getEntryBySlug } from "astro:content"
+
+const entry = await getEntryBySlug("tree-shifts", "index")
+if (!entry) return Astro.redirect("/")
+const { Content } = await entry.render()
+---
+
+<Content />
+
