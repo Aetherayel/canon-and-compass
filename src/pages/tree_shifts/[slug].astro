@@ -1,0 +1,12 @@
+---
+import Layout from '../../layouts/FoundationLayout.astro'
+import { getEntryBySlug } from 'astro:content'
+
+const { slug } = Astro.params
+const entry = await getEntryBySlug('tree-shifts', slug!)
+if (!entry) return Astro.redirect('/tree-shifts')
+const { Content, data } = await entry.render()
+---
+<Layout title={data.title} description={data.description}>
+  <Content />
+</Layout>
