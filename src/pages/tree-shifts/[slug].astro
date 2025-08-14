@@ -8,7 +8,7 @@ import ArticleBottomLayout from "@layouts/ArticleBottomLayout.astro"
 
 // Create the static foundations pages
 export async function getStaticPaths() {
-        const treeShifts = await getCollection("tree_shifts")
+        const treeShifts = await getCollection("tree-shifts")
         return treeShifts.map((treeShifts) => ({
                 params: { slug: treeShifts.slug },
                 props: treeShifts,
@@ -16,7 +16,7 @@ export async function getStaticPaths() {
 }
 
 // Get the requested foundation
-type Props = CollectionEntry<"tree_shifts">
+type Props = CollectionEntry<"tree-shifts">
 const treeShifts = Astro.props
 const { title, summary } = treeShifts.data
 ---
