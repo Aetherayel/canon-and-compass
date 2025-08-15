@@ -10,25 +10,49 @@ export const SITE: Site = {
 // Symptoms Page
 export const SYMPTOMS: Page = {
   TITLE: "Symptoms",
-  DESCRIPTION: "Places I have symptoms.",
+  DESCRIPTION: "Trace the fruit you are seeing in your life to it's root.",
 }
 
 // Tree Page
 export const TREE: Page = {
   TITLE: "Tree",
-  DESCRIPTION: "Writing on topics I am passionate about.",
+  DESCRIPTION: "Scriptural frameworks showing how a biblical principle leads to good fruit.",
+}
+
+// Tree Shifts Page
+export const TREESHIFTS: Page = {
+  TITLE: "Tree Shifts",
+  DESCRIPTION: "Journey down the path of a cultural fruit into the true biblical alternative",
 }
 
 // Foundations Page
 export const FOUNDATIONS: Page = {
   TITLE: "Foundations",
-  DESCRIPTION: "Recent foundations I have symptoms on.",
+  DESCRIPTION: "The core writings of Canon & Compass.",
+}
+
+// Canon Notes Page
+export const CANONNOTES: Page = {
+  TITLE: "Canon Notes",
+  DESCRIPTION: "Devotional series or standalone reflections.",
+}
+
+// Compass Points Page
+export const COMPASSPOINTS: Page = {
+  TITLE: "Compass Points",
+  DESCRIPTION: "Cultural commentaries backed by a biblical worldview.",
+}
+
+// Pillars Page
+export const PILLARS: Page = {
+  TITLE: "Pillars",
+  DESCRIPTION: "Longform essays digging into the philosophical and theological truth of Scripture.",
 }
 
 // Search Page
 export const SEARCH: Page = {
   TITLE: "Search",
-  DESCRIPTION: "Search all tree and foundations by keyword.",
+  DESCRIPTION: "Search all trees and foundations by keyword.",
 }
 
 // Links
@@ -42,40 +66,56 @@ export const LINKS: Links = [
     HREF: "/symptoms",
   },
   {
-    TEXT: "Tree",
+    TEXT: "Tree Shifts",
+    HREF: "/tree-shifts",
+  },
+  {
+    TEXT: "Trees",
     HREF: "/tree",
   },
   {
     TEXT: "Foundations",
     HREF: "/foundations",
   },
+  {
+    TEXT: "Canon Notes",
+    HREF: "/foundations/canon-notes",
+  },
+  {
+    TEXT: "Compass Points",
+    HREF: "/foundations/compass-points",
+  },
+  {
+    TEXT: "Pillars",
+    HREF: "/foundations/pillars",
+  },
 ]
 
-// Socials
-export const SOCIALS: Socials = [
-  { 
-    NAME: "Email",
-    ICON: "email", 
-    TEXT: "markhorn.dev@gmail.com",
-    HREF: "mailto:markhorn.dev@gmail.com",
-  },
-  { 
-    NAME: "Github",
-    ICON: "github",
-    TEXT: "markhorn-dev",
-    HREF: "https://github.com/markhorn-dev/astro-sphere"
-  },
-  { 
-    NAME: "LinkedIn",
-    ICON: "linkedin",
-    TEXT: "markhorn-dev",
-    HREF: "https://www.linkedin.com/in/markhorn-dev/",
-  },
-  { 
-    NAME: "Twitter",
-    ICON: "twitter-x",
-    TEXT: "markhorn_dev",
-    HREF: "https://twitter.com/markhorn_dev",
-  },
-]
+// // Socials
+// export const SOCIALS: Socials = [
+//   { 
+//     NAME: "Email",
+//     ICON: "email", 
+//     TEXT: "markhorn.dev@gmail.com",
+//     HREF: "mailto:markhorn.dev@gmail.com",
+//   },
+//   { 
+//     NAME: "Github",
+//     ICON: "github",
+//     TEXT: "markhorn-dev",
+//     HREF: "https://github.com/markhorn-dev/astro-sphere"
+//   },
+//   { 
+//     NAME: "LinkedIn",
+//     ICON: "linkedin",
+//     TEXT: "markhorn-dev",
+//     HREF: "https://www.linkedin.com/in/markhorn-dev/",
+//   },
+//   { 
+//     NAME: "Twitter",
+//     ICON: "twitter-x",
+//     TEXT: "markhorn_dev",
+//     HREF: "https://twitter.com/markhorn_dev",
+//   },
+// ]
 
