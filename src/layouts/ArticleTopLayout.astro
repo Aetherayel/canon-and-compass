@@ -3,12 +3,14 @@ import type { CollectionEntry } from "astro:content"
 import { formatDate, readingTime } from "@lib/utils"
 
 type Props = {
-  entry: CollectionEntry<"foundations"> | CollectionEntry<"tree">
+  entry: CollectionEntry<"foundations"> | CollectionEntry<"tree"> | CollectionEntry<"tree-shifts">
 }
 
 const { entry } = Astro.props
 const { collection, data, body } = entry
-const { title, summary, date } = data
+const { title } = data
+const summary = "summary" in data ? data.summary : data.description
+const date = "date" in data ? data.date : undefined
 
 const demoUrl = collection === "foundations" ? data.demoUrl : null
 const repoUrl = collection === "foundations" ? data.repoUrl : null
@@ -25,12 +27,14 @@ const repoUrl = collection === "foundations" ? data.repoUrl : null
     </div>
   </a>
   <div class="flex flex-wrap text-sm uppercase mt-12 gap-3 opacity-75">
+    {date && (
     <div class="flex items-center gap-2">
       <svg class="size-5 stroke-current">
         <use href="/ui.svg#calendar"/>
       </svg>
       {formatDate(date)}
     </div>
+    )}
     <div class="flex items-center gap-2">
       <svg class="size-5 stroke-current">
         <use href="/ui.svg#book-open"/>
