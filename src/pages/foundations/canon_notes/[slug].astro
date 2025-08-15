@@ -8,15 +8,15 @@ import ArticleBottomLayout from "@layouts/ArticleBottomLayout.astro"
 
 // Create the static foundations pages
 export async function getStaticPaths() {
-        const canonNotes = await getCollection("foundations/canon_notes")
-        return canonNotes.map((canonNotes) => ({
-                params: { slug: canonNotes.slug },
-                props: canonNotes,
+        const canonNotes = (await getCollection("foundations")).filter((entry) => entry.slug.startsWith("canon_notes/"))
+        return canonNotes.map((note) => ({
+                params: { slug: note.slug.replace("canon_notes/", "") },
+                props: note,
         }))
 }
 
 // Get the requested foundation
-type Props = CollectionEntry<"foundations/canon_notes">
+type Props = CollectionEntry<"foundations">
 const canonNotes = Astro.props
 const { title, summary } = canonNotes.data
 ---
