@@ -8,9 +8,11 @@ type Context = {
 
 export async function GET(context: Context) {
         const posts = await getCollection("tree")
-  const foundations = await getCollection("foundations")
+    const canonNotes = await getCollection("canon_notes")
+    const compassPoints = await getCollection("compass_points")
+    const pillars = await getCollection("pillars")
 
-  const items = [...posts, ...foundations]
+    const items = [...posts, ...canonNotes, ...compassPoints, ...pillars]
 
   items.sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime())
 
@@ -22,9 +24,9 @@ export async function GET(context: Context) {
       title: item.data.title,
       description: item.data.summary,
       pubDate: item.data.date,
-      link: item.slug.startsWith("tree")
-        ? `/tree/${item.slug}/`
-        : `/foundations/${item.slug}/`,
+        link: item.collection === "tree"
+          ? `/tree/${item.slug}/`
+          : `/${item.collection}/${item.slug}/`,
     })),
   })
 }

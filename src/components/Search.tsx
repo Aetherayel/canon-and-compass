@@ -4,13 +4,19 @@ import Fuse from "fuse.js"
 import ArrowCard from "@components/ArrowCard"
 import SearchBar from "@components/SearchBar"
 
+type Entry =
+  | CollectionEntry<"tree">
+  | CollectionEntry<"canon_notes">
+  | CollectionEntry<"compass_points">
+  | CollectionEntry<"pillars">
+
 type Props = {
-  data: CollectionEntry<"tree">[]
+  data: Entry[]
 }
 
 export default function Search({ data }: Props) {
   const [query, setQuery] = createSignal("")
-  const [results, setResults] = createSignal<CollectionEntry<"tree">[]>([])
+  const [results, setResults] = createSignal<Entry[]>([])
 
   const fuse = new Fuse(data, {
     keys: ["slug", "data.title", "data.summary", "data.tags"],

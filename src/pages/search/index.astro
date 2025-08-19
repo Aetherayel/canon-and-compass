@@ -8,11 +8,24 @@ import { SEARCH } from "@consts";
 
 const posts = (await getCollection("tree")).filter((post) => !post.data.draft);
 
-const foundations = (await getCollection("foundations")).filter(
+const canonNotes = (await getCollection("canon_notes")).filter(
   (post) => !post.data.draft,
 );
 
-const data = [...posts, ...foundations] as CollectionEntry<"tree">[];
+const compassPoints = (await getCollection("compass_points")).filter(
+  (post) => !post.data.draft,
+);
+
+const pillars = (await getCollection("pillars")).filter(
+  (post) => !post.data.draft,
+);
+
+const data = [...posts, ...canonNotes, ...compassPoints, ...pillars] as CollectionEntry<
+  | "tree"
+  | "canon_notes"
+  | "compass_points"
+  | "pillars"
+>[];
 ---
 
 <PageLayout title={SEARCH.TITLE} description={SEARCH.DESCRIPTION}>

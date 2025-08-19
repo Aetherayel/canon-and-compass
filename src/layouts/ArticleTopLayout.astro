@@ -3,7 +3,12 @@ import type { CollectionEntry } from "astro:content"
 import { formatDate, readingTime } from "@lib/utils"
 
 type Props = {
-  entry: CollectionEntry<"foundations"> | CollectionEntry<"tree"> | CollectionEntry<"tree-shifts">
+  entry:
+    | CollectionEntry<"tree">
+    | CollectionEntry<"tree-shifts">
+    | CollectionEntry<"canon_notes">
+    | CollectionEntry<"compass_points">
+    | CollectionEntry<"pillars">
 }
 
 const { entry } = Astro.props
@@ -12,8 +17,10 @@ const { title } = data
 const summary = "summary" in data ? data.summary : data.description
 const date = "date" in data ? data.date : undefined
 
-const demoUrl = collection === "foundations" ? data.demoUrl : null
-const repoUrl = collection === "foundations" ? data.repoUrl : null
+const demoUrl =
+  collection !== "tree" && collection !== "tree-shifts" ? data.demoUrl : null
+const repoUrl =
+  collection !== "tree" && collection !== "tree-shifts" ? data.repoUrl : null
 ---
 
 <div>

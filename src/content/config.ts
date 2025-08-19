@@ -21,7 +21,33 @@ const tree = defineCollection({
   }),
 })
 
-const foundations = defineCollection({
+const canonNotes = defineCollection({
+  type: "content",
+  schema: z.object({
+    title: z.string(),
+    summary: z.string(),
+    date: z.coerce.date(),
+    tags: z.array(z.string()),
+    draft: z.boolean().optional(),
+    demoUrl: z.string().optional(),
+    repoUrl: z.string().optional(),
+  }),
+})
+
+const compassPoints = defineCollection({
+  type: "content",
+  schema: z.object({
+    title: z.string(),
+    summary: z.string(),
+    date: z.coerce.date(),
+    tags: z.array(z.string()),
+    draft: z.boolean().optional(),
+    demoUrl: z.string().optional(),
+    repoUrl: z.string().optional(),
+  }),
+})
+
+const pillars = defineCollection({
   type: "content",
   schema: z.object({
     title: z.string(),
@@ -50,5 +76,13 @@ const treeShifts = defineCollection({
   }),
 })
 
-export const collections = { symptoms, tree, foundations, legal, "tree-shifts": treeShifts }
+export const collections = {
+  symptoms,
+  tree,
+  canon_notes: canonNotes,
+  compass_points: compassPoints,
+  pillars,
+  legal,
+  "tree-shifts": treeShifts,
+}
 

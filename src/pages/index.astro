@@ -12,8 +12,19 @@ const posts = (await getCollection("tree"))
   .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
   .slice(0,3)
 
-const foundations = (await getCollection("foundations"))
-  .filter(foundation => !foundation.data.draft)
+const canonNotes = (await getCollection("canon_notes"))
+  .filter(note => !note.data.draft)
+  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
+
+const compassPoints = (await getCollection("compass_points"))
+  .filter(point => !point.data.draft)
+  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
+
+const pillars = (await getCollection("pillars"))
+  .filter(pillar => !pillar.data.draft)
+  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
+
+const foundations = [...canonNotes, ...compassPoints, ...pillars]
   .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
   .slice(0,3)
 

@@ -1,0 +1,46 @@
+---
+import { getCollection } from "astro:content";
+import PageLayout from "@layouts/PageLayout.astro";
+import TopLayout from "@layouts/TopLayout.astro";
+import BottomLayout from "@layouts/BottomLayout.astro";
+import SearchCollection from "@components/SearchCollection";
+import { PILLARS } from "@consts";
+
+const pillars = (await getCollection("pillars"))
+  .filter((pillar) => !pillar.data.draft)
+  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+
+const tags = [
+  ...new Set(pillars.flatMap((pillar) => pillar.data.tags)),
+].sort((a, b) => a.localeCompare(b));
+
+const estimated_initial_size =
+  28 + pillars.length * 158 + (pillars.length - 1) * 12;
+---
+
+<PageLayout title={PILLARS.TITLE} description={PILLARS.DESCRIPTION}>
+  <TopLayout>
+    <div class="animate">
+      <h1 class="text-3xl font-semibold text-black dark:text-white mt-2">
+        {PILLARS.TITLE}
+      </h1>
+      <div class="mt-1">
+        {PILLARS.DESCRIPTION}
+      </div>
+    </div>
+  </TopLayout>
+  <BottomLayout>
+    <div
+      id="search-collection-wrapper"
+      class="animate"
+      style={{ minHeight: `${estimated_initial_size}px` }}
+    >
+      <SearchCollection
+        client:load
+        entry_name={"pillars"}
+        tags={tags}
+        data={pillars}
+      />
+    </div>
+  </BottomLayout>
+</PageLayout>
