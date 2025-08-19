@@ -23,7 +23,7 @@ It is primarily Astro, Tailwind and Typescript, with a very small amount of Soli
 - ✅ Auto generated RSS Feed
 - ✅ Markdown support
 - ✅ MDX Support (components in your markdown)
- - ✅ Searchable content (tree and foundations)
+- ✅ Searchable content (trees, canon notes, compass points, and pillars)
 - ✅ Code Blocks - copy to clipboard
 
 ## 💯 Lighthouse score

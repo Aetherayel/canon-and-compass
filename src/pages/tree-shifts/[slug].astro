@@ -5,7 +5,7 @@ import TopLayout from "@layouts/TopLayout.astro"
 import BottomLayout from "@layouts/BottomLayout.astro"
 import ArticleTopLayout from "@layouts/ArticleTopLayout.astro"
 
-// Create the static foundations pages
+// Create the static tree-shifts pages
 export async function getStaticPaths() {
         const treeShifts = await getCollection("tree-shifts")
         return treeShifts.map((treeShifts) => ({
@@ -14,10 +14,10 @@ export async function getStaticPaths() {
         }))
 }
 
-// Get the requested foundation
-type Props = CollectionEntry<"tree-shifts">
-const treeShifts = Astro.props
-const { title, description } = treeShifts.data
+// Get the requested tree shift
+ type Props = CollectionEntry<"tree-shifts">
+ const treeShifts = Astro.props
+ const { title, description } = treeShifts.data
 ---
 
 <PageLayout title={title} description={description}>

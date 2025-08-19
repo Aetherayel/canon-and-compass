@@ -52,7 +52,7 @@ export const PILLARS: Page = {
 // Search Page
 export const SEARCH: Page = {
   TITLE: "Search",
-  DESCRIPTION: "Search all trees and foundations by keyword.",
+  DESCRIPTION: "Search all trees, canon notes, compass points, and pillars by keyword.",
 }
 
 // Links

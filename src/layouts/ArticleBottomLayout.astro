@@ -2,7 +2,11 @@
 import { type CollectionEntry, getCollection } from "astro:content"
 
 type Props = {
-  entry: CollectionEntry<"tree"> | CollectionEntry<"foundations">
+  entry:
+    | CollectionEntry<"tree">
+    | CollectionEntry<"canon_notes">
+    | CollectionEntry<"compass_points">
+    | CollectionEntry<"pillars">
 }
 
 // Get the requested entry

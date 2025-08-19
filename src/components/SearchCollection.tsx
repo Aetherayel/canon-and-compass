@@ -8,7 +8,12 @@ import SearchBar from "@components/SearchBar"
 type Props = {
   entry_name: string
   tags: string[]
-  data: CollectionEntry<"tree">[] | CollectionEntry<'foundations'>[]
+  data: (
+    | CollectionEntry<'tree'>
+    | CollectionEntry<'canon_notes'>
+    | CollectionEntry<'compass_points'>
+    | CollectionEntry<'pillars'>
+  )[]
 }
 
 export default function SearchCollection({ entry_name, data, tags }: Props) {

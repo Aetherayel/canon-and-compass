@@ -1,22 +1,8 @@
 ---
-import { getCollection } from "astro:content";
 import PageLayout from "@layouts/PageLayout.astro";
 import TopLayout from "@layouts/TopLayout.astro";
 import BottomLayout from "@layouts/BottomLayout.astro";
-import SearchCollection from "@components/SearchCollection";
-import { FOUNDATIONS } from "@consts";
-import type { CollectionEntry } from "astro:content";
-
-const foundations = (await getCollection("foundations"))
-  .filter((foundation) => !foundation.data.draft)
-  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
-
-const tags = [
-  ...new Set(foundations.flatMap((foundation) => foundation.data.tags)),
-].sort((a, b) => a.localeCompare(b));
-
-const estimated_initial_size =
-  28 + foundations.length * 158 + (foundations.length - 1) * 12;
+import { FOUNDATIONS, CANONNOTES, COMPASSPOINTS, PILLARS } from "@consts";
 ---
 
 <PageLayout title={FOUNDATIONS.TITLE} description={FOUNDATIONS.DESCRIPTION}>
@@ -31,17 +17,115 @@ const estimated_initial_size =
     </div>
   </TopLayout>
   <BottomLayout>
-    <div
-      id="search-collection-wrapper"
-      class="animate"
-      style={{ minHeight: `${estimated_initial_size}px` }}
-    >
-      <SearchCollection
-        client:load
-        entry_name={"foundations"}
-        tags={tags}
-        data={foundations}
-      />
+    <div class="animate grid grid-cols-1 sm:grid-cols-3 gap-6">
+      <a
+        href="/canon_notes"
+        class="group p-4 gap-3 flex items-center border rounded-lg hover:bg-black/5 hover:dark:bg-white/10 border-black/15 dark:border-white/20 transition-colors duration-300 ease-in-out"
+      >
+        <div class="w-full group-hover:text-black group-hover:dark:text-white blend">
+          <div class="font-semibold mt-3 text-black dark:text-white">
+            {CANONNOTES.TITLE}
+          </div>
+          <div class="text-sm mt-1">
+            {CANONNOTES.DESCRIPTION}
+          </div>
+        </div>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="20"
+          height="20"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke-width="2.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="stroke-current group-hover:stroke-black group-hover:dark:stroke-white"
+        >
+          <line
+            x1="5"
+            y1="12"
+            x2="19"
+            y2="12"
+            class="scale-x-0 group-hover:scale-x-100 translate-x-4 group-hover:translate-x-1 transition-all duration-300 ease-in-out"
+          />
+          <polyline
+            points="12 5 19 12 12 19"
+            class="translate-x-0 group-hover:translate-x-1 transition-all duration-300 ease-in-out"
+          />
+        </svg>
+      </a>
+      <a
+        href="/compass_points"
+        class="group p-4 gap-3 flex items-center border rounded-lg hover:bg-black/5 hover:dark:bg-white/10 border-black/15 dark:border-white/20 transition-colors duration-300 ease-in-out"
+      >
+        <div class="w-full group-hover:text-black group-hover:dark:text-white blend">
+          <div class="font-semibold mt-3 text-black dark:text-white">
+            {COMPASSPOINTS.TITLE}
+          </div>
+          <div class="text-sm mt-1">
+            {COMPASSPOINTS.DESCRIPTION}
+          </div>
+        </div>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="20"
+          height="20"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke-width="2.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="stroke-current group-hover:stroke-black group-hover:dark:stroke-white"
+        >
+          <line
+            x1="5"
+            y1="12"
+            x2="19"
+            y2="12"
+            class="scale-x-0 group-hover:scale-x-100 translate-x-4 group-hover:translate-x-1 transition-all duration-300 ease-in-out"
+          />
+          <polyline
+            points="12 5 19 12 12 19"
+            class="translate-x-0 group-hover:translate-x-1 transition-all duration-300 ease-in-out"
+          />
+        </svg>
+      </a>
+      <a
+        href="/pillars"
+        class="group p-4 gap-3 flex items-center border rounded-lg hover:bg-black/5 hover:dark:bg-white/10 border-black/15 dark:border-white/20 transition-colors duration-300 ease-in-out"
+      >
+        <div class="w-full group-hover:text-black group-hover:dark:text-white blend">
+          <div class="font-semibold mt-3 text-black dark:text-white">
+            {PILLARS.TITLE}
+          </div>
+          <div class="text-sm mt-1">
+            {PILLARS.DESCRIPTION}
+          </div>
+        </div>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="20"
+          height="20"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke-width="2.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="stroke-current group-hover:stroke-black group-hover:dark:stroke-white"
+        >
+          <line
+            x1="5"
+            y1="12"
+            x2="19"
+            y2="12"
+            class="scale-x-0 group-hover:scale-x-100 translate-x-4 group-hover:translate-x-1 transition-all duration-300 ease-in-out"
+          />
+          <polyline
+            points="12 5 19 12 12 19"
+            class="translate-x-0 group-hover:translate-x-1 transition-all duration-300 ease-in-out"
+          />
+        </svg>
+      </a>
     </div>
   </BottomLayout>
 </PageLayout>
