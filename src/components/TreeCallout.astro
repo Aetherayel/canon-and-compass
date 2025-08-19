@@ -1,13 +1,166 @@
 ---
-interface Props {
-  title: string;
-  items?: string[];
-}
-const { title, items = [] }: Props = Astro.props;
+/**
+ * Props:
+ *  - title: string
+ *  - data: {
+ *      root: string,
+ *      trunk: string,
+ *      branches: string[],
+ *      leaves: string[],
+ *      fruit: string[],
+ *      scripture: string[],
+ *      redirection?: string (short truth redirect)
+ *    }
+ */
+const { title = "Truth Tree Walkthrough", data = {} } = Astro.props;
+
+const {
+  root = "Root truth goes here.",
+  trunk = "The theological trunk that supports it.",
+  branches = [],
+  leaves = [],
+  fruit = [],
+  scripture = [],
+  redirection = "Short next step or redirection."
+} = data;
 ---
-<div class="my-6 rounded-2xl border border-stone-200 bg-white p-5">
-  <h4 class="m-0 text-base font-semibold">{title}</h4>
-  <ul class="mt-3 list-disc pl-5">
-    {items.map((it) => <li class="mb-1">{it}</li>)}
-  </ul>
+<style>
+  /* Local visual niceties (keeps global.css minimal) */
+  .ttw-summary::marker { display: none; } /* hide default marker */
+  .ttw-summary {
+    cursor: pointer;
+  }
+  .ttw-arrow {
+    transition: transform .25s ease;
+  }
+  details[open] .ttw-arrow {
+    transform: rotate(90deg);
+  }
+  /* subtle reveal transition for details content */
+  .ttw-content {
+    transition: opacity .28s ease, transform .28s ease;
+    transform-origin: top center;
+  }
+  details:not([open]) .ttw-content {
+    opacity: 0;
+    transform: translateY(-6px) scale(.995);
+    height: 0; /* keep it visually compact in collapsed state */
+    overflow: hidden;
+  }
+  details[open] .ttw-content {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    height: auto;
+  }
+</style>
+
+<div class="bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 rounded-2xl p-6 space-y-4 shadow-sm">
+  <div class="flex items-start justify-between gap-4">
+    <div>
+      <h3 class="text-lg font-serif font-semibold text-slate-800 dark:text-zinc-100">{title}</h3>
+      <p class="mt-1 text-sm text-zinc-500 dark:text-zinc-400 max-w-prose">
+        Walk through the core parts of this tree. Expand each section for a short
+        explanation, reflection prompts, and scripture to anchor the truth.
+      </p>
+    </div>
+  </div>
+
+  <!-- Walkthrough -->
+  <div class="mt-4 space-y-3">
+    <!-- Root -->
+    <details class="rounded-lg" role="group">
+      <summary class="ttw-summary flex items-center gap-3 p-3 rounded-md hover:bg-zinc-50 dark:hover:bg-zinc-700">
+        <svg class="ttw-arrow w-4 h-4 text-zinc-500" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+        <div class="text-sm font-medium text-slate-800 dark:text-zinc-100"> Root — Core biblical truth</div>
+      </summary>
+      <div class="ttw-content p-4 bg-zinc-50 dark:bg-zinc-900 rounded-b-md">
+        <p class="text-sm text-zinc-700 dark:text-zinc-300">{root}</p>
+        <div class="mt-3 text-xs text-zinc-500 dark:text-zinc-400">
+          <strong>Reflect:</strong> What single phrase from this truth would you like to remember today?
+        </div>
+      </div>
+    </details>
+
+    <!-- Trunk -->
+    <details class="rounded-lg" role="group">
+      <summary class="ttw-summary flex items-center gap-3 p-3 rounded-md hover:bg-zinc-50 dark:hover:bg-zinc-700">
+        <svg class="ttw-arrow w-4 h-4 text-zinc-500" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+        <div class="text-sm font-medium text-slate-800 dark:text-zinc-100"> Trunk — Foundational belief</div>
+      </summary>
+      <div class="ttw-content p-4 bg-zinc-50 dark:bg-zinc-900 rounded-b-md">
+        <p class="text-sm text-zinc-700 dark:text-zinc-300">{trunk}</p>
+        <div class="mt-3 text-xs text-zinc-500 dark:text-zinc-400">
+          <strong>Reflect:</strong> How does this belief shape decisions you make this week?
+        </div>
+      </div>
+    </details>
+
+    <!-- Branches -->
+    <details class="rounded-lg" role="group">
+      <summary class="ttw-summary flex items-center gap-3 p-3 rounded-md hover:bg-zinc-50 dark:hover:bg-zinc-700">
+        <svg class="ttw-arrow w-4 h-4 text-zinc-500" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+        <div class="text-sm font-medium text-slate-800 dark:text-zinc-100"> Branches — Reinforcing patterns</div>
+      </summary>
+      <div class="ttw-content p-4 bg-zinc-50 dark:bg-zinc-900 rounded-b-md">
+        <ul class="list-disc list-inside text-sm text-zinc-700 dark:text-zinc-300 space-y-1">
+          {branches.length ? branches.map((b: string) => (<li>{b}</li>)) : (<li class="text-zinc-500">No branches specified.</li>)}
+        </ul>
+        <div class="mt-3 text-xs text-zinc-500 dark:text-zinc-400">
+          <strong>Try:</strong> Pick one branch and notice when it shows up in your day. Name it without judgment.
+        </div>
+      </div>
+    </details>
+
+    <!-- Leaves -->
+    <details class="rounded-lg" role="group">
+      <summary class="ttw-summary flex items-center gap-3 p-3 rounded-md hover:bg-zinc-50 dark:hover:bg-zinc-700">
+        <svg class="ttw-arrow w-4 h-4 text-zinc-500" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+        <div class="text-sm font-medium text-slate-800 dark:text-zinc-100"> Leaves — Everyday actions</div>
+      </summary>
+      <div class="ttw-content p-4 bg-zinc-50 dark:bg-zinc-900 rounded-b-md">
+        <ul class="list-disc list-inside text-sm text-zinc-700 dark:text-zinc-300 space-y-1">
+          {leaves.length ? leaves.map((l: string) => (<li>{l}</li>)) : (<li class="text-zinc-500">No leaves specified.</li>)}
+        </ul>
+        <div class="mt-3 text-xs text-zinc-500 dark:text-zinc-400">
+          <strong>Prompt:</strong> Which small change could interrupt this habit today?
+        </div>
+      </div>
+    </details>
+
+    <!-- Fruit -->
+    <details class="rounded-lg" role="group">
+      <summary class="ttw-summary flex items-center gap-3 p-3 rounded-md hover:bg-zinc-50 dark:hover:bg-zinc-700">
+        <svg class="ttw-arrow w-4 h-4 text-zinc-500" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+        <div class="text-sm font-medium text-slate-800 dark:text-zinc-100"> Fruit — Visible outcomes</div>
+      </summary>
+      <div class="ttw-content p-4 bg-zinc-50 dark:bg-zinc-900 rounded-b-md">
+        <ul class="list-disc list-inside text-sm text-zinc-700 dark:text-zinc-300 space-y-1">
+          {fruit.length ? fruit.map((f: string) => (<li>{f}</li>)) : (<li class="text-zinc-500">No fruit specified.</li>)}
+        </ul>
+        <div class="mt-3 text-xs text-zinc-500 dark:text-zinc-400">
+          <strong>Reflection:</strong> Which of these outcomes do you most want to cultivate?
+        </div>
+      </div>
+    </details>
+
+    <!-- Scripture & Redirection -->
+    <details class="rounded-lg" role="group">
+      <summary class="ttw-summary flex items-center gap-3 p-3 rounded-md hover:bg-zinc-50 dark:hover:bg-zinc-700">
+        <svg class="ttw-arrow w-4 h-4 text-zinc-500" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+        <div class="text-sm font-medium text-slate-800 dark:text-zinc-100"> Scripture & Next Step</div>
+      </summary>
+      <div class="ttw-content p-4 bg-zinc-50 dark:bg-zinc-900 rounded-b-md">
+        <div class="text-sm text-zinc-700 dark:text-zinc-300">
+          <strong>Scripture:</strong>
+          <ul class="list-disc list-inside mt-2">
+            {scripture.length ? scripture.map((s: string) => (<li>{s}</li>)) : (<li class="text-zinc-500">No scripture listed.</li>)}
+          </ul>
+        </div>
+
+        <div class="mt-3 text-sm text-zinc-600 dark:text-zinc-400">
+          <strong>Next step:</strong> {redirection}
+        </div>
+      </div>
+    </details>
+  </div>
 </div>
