@@ -1,0 +1,36 @@
+---
+import { type CollectionEntry, getCollection } from "astro:content"
+import PageLayout from "@layouts/PageLayout.astro"
+import TopLayout from "@layouts/TopLayout.astro"
+import BottomLayout from "@layouts/BottomLayout.astro"
+import ArticleTopLayout from "@layouts/ArticleTopLayout.astro"
+import ArticleBottomLayout from "@layouts/ArticleBottomLayout.astro"
+
+export async function getStaticPaths() {
+  const canonNotes = (await getCollection("foundations")).filter((entry) =>
+    entry.slug.startsWith("canon_notes/Foundations_of_Discernment/")
+  )
+  return canonNotes.map((note) => ({
+    params: { slug: note.slug.replace("canon_notes/Foundations_of_Discernment/", "") },
+    props: note,
+  }))
+}
+
+type Props = CollectionEntry<"foundations">
+const canonNotes = Astro.props
+const { title, summary } = canonNotes.data
+---
+
+<PageLayout title={title} description={summary}>
+  <TopLayout>
+    <div class="animate">
+      <ArticleTopLayout entry={canonNotes} />
+    </div>
+  </TopLayout>
+  <BottomLayout>
+    <div class="animate">
+      <ArticleBottomLayout entry={canonNotes} />
+    </div>
+  </BottomLayout>
+</PageLayout>
+
