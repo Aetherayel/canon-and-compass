@@ -8,10 +8,10 @@ import ArticleBottomLayout from "@layouts/ArticleBottomLayout.astro";
 
 export async function getStaticPaths() {
   const canonNotes = (await getCollection("canon_notes")).filter((entry) =>
-    entry.slug.startsWith("Foundations_of_Discernment/"),
+    entry.slug.startsWith("canon_notes/foundations-of-discernment/"),
   );
   return canonNotes.map((note) => ({
-    params: { slug: note.slug.replace("Foundations_of_Discernment/", "") },
+    params: { slug: note.slug.replace("canon_notes/foundations-of-discernment/", "") },
     props: note,
   }));
 }

@@ -28,9 +28,11 @@ export default function ArrowCard({ entry, pill }: Props) {
             {formatDate(entry.data.date)}
           </div>
         </div>
-        {entry.collection === "canon_notes" && (
+                {entry.collection === "canon_notes" && (
           <div class="text-sm uppercase mt-1">
-            {entry.data.series} — Day {entry.data.day}
+            {entry.data.series}
+            {entry.data.series !== "Standalone" &&
+              entry.data.day && ` — Day ${entry.data.day}`}
           </div>
         )}
         <div class="font-semibold mt-3 text-black dark:text-white line-clamp-2">
