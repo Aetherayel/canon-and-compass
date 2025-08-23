@@ -2,40 +2,46 @@
 title: "Tree Shift: Burnout → Grace-Based Rest"
 description: "Trace burnout from fruit to root, step out from Performance, and be grafted into Grace."
 date: "2025-08-22"
+treeSlug: "grace"
 ---
 
 import CTA from '../../components/CTA.astro'
-import Scripture from '../../components/Scripture.astro'
-import TreeCallout from '../../components/TreeCallout.astro'
+import FalseTreeCallout from '../../components/FalseTreeCallout.astro'
 
 # Bad Fruit: Burnout
 Burnout is more than tiredness—it’s spiritual erosion...
 
-<CTA title="Trace the tree" description="We’re not here to shame you..." buttonText="Start" href="#lie" />
+It’s the fruit of a tree rooted in Performance-Based Worth, where your value is tied to your productivity. This tree thrives on the lie that _“My value comes from what I do.”_ When you buy into this lie, you push yourself to the brink, believing that slowing down means falling behind.
 
 ---
 
 ## The Lie Vine
 **Lie:** _“My value comes from what I do.”_
 
-<TreeCallout title="How this sounds in your head" items={[
-  "If I slow down, I’ll fall behind.",
-  "Rest is for people who deserve it.",
-  "If I don’t carry it, it drops.",
-]} />
+  > If I slow down, I’ll fall behind." <br>
+  > "Rest is for people who deserve it." </br>
+  > "If I don’t carry it, it drops.
 
-<CTA title="See the tree you’re under" buttonText="Show me" href="#old-tree" />
 
 ---
 
 ## The Tree You’ve Been Under: **Performance-Based Worth**
-<TreeCallout title="Anatomy of this tree" items={[
-  "Roots: Identity must be earned",
-  "Trunk: Control + hustle = safety",
-  "Branches: Approval, comparison, fear of stillness",
-  "Fruit: Burnout, anxiety, resentment, joylessness",
-]} />
+<FalseTreeCallout
+  title="Anatomy of this tree"
+  data={{
+    root: "Identity must be earned",
+    trunk: "Control + Hustle = Safety",
+    branches: ["Approval", "Comparison", "Fear of Stillness"],
+    fruit: ["Burnout", "Anxiety", "Resentment", "Joylessness"]
+  }}
+/>
 
-<CTA title="Step out from the old tree" buttonText="I’m ready" href="#new-tree" />
 
+<CTA
+  variant="primary"
+  title="Step into the Grace Tree"
+  description="See the new roots, trunk, and fruit of a life anchored in grace."
+  buttonText="See the Good Tree"
+  href={`/tree/${frontmatter.treeSlug}`}
+/>
 ---
