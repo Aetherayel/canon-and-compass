@@ -1,20 +1,21 @@
 ---
-import { type CollectionEntry, getCollection } from "astro:content"
-import PageLayout from "@layouts/PageLayout.astro"
-import TopLayout from "@layouts/TopLayout.astro"
-import BottomLayout from "@layouts/BottomLayout.astro"
-import ArticleTopLayout from "@layouts/ArticleTopLayout.astro"
+import { type CollectionEntry, getCollection } from "astro:content";
+import PageLayout from "@layouts/PageLayout.astro";
+import TopLayout from "@layouts/TopLayout.astro";
+import BottomLayout from "@layouts/BottomLayout.astro";
+import ArticleTopLayout from "@layouts/ArticleTopLayout.astro";
+import ArticleBottomLayout from "@layouts/ArticleBottomLayout.astro";
 
-// Create the static tree-shifts pages
+
 export async function getStaticPaths() {
-        const treeShifts = await getCollection("tree-shifts")
-        return treeShifts.map((treeShifts) => ({
-                params: { slug: treeShifts.slug },
-                props: treeShifts,
-        }))
+  const treeShifts = await getCollection("tree-shifts");
+  return treeShifts.map((treeShift) => ({
+    params: { slug: treeShift.slug },
+    props: treeShift,
+  }));
 }
 
-// Get the requested tree shift
+
  type Props = CollectionEntry<"tree-shifts">
  const treeShifts = Astro.props
  const { title, description } = treeShifts.data
@@ -26,5 +27,9 @@ export async function getStaticPaths() {
       <ArticleTopLayout entry={treeShifts} />
     </div>
   </TopLayout>
-  <BottomLayout />
+  <BottomLayout>
+    <div class="animate">
+      <ArticleBottomLayout entry={treeShifts} />
+    </div>
+  </BottomLayout>
 </PageLayout>
