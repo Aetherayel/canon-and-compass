@@ -20,8 +20,6 @@ const {
   branches = [],
   leaves = [],
   fruit = [],
-  scripture = [],
-  redirection = "Short next step or redirection."
 } = data;
 ---
 <style>
@@ -59,7 +57,7 @@ const {
     <div>
       <h3 class="text-lg font-serif font-semibold text-slate-800 dark:text-zinc-100">{title}</h3>
       <p class="mt-1 text-sm text-zinc-500 dark:text-zinc-400 max-w-prose">
-        Walk through the core parts of this tree. Expand each section for a short
+        Walk through the core parts of this tree, starting with the root of truth and tracing it to the fruit it produces. Expand each section for a short
         explanation, reflection prompts, and scripture to anchor the truth.
       </p>
     </div>
@@ -139,26 +137,6 @@ const {
         </ul>
         <div class="mt-3 text-xs text-zinc-500 dark:text-zinc-400">
           <strong>Reflection:</strong> Which of these outcomes do you most want to cultivate?
-        </div>
-      </div>
-    </details>
-
-    <!-- Scripture & Redirection -->
-    <details class="rounded-lg" role="group">
-      <summary class="ttw-summary flex items-center gap-3 p-3 rounded-md hover:bg-zinc-50 dark:hover:bg-zinc-700">
-        <svg class="ttw-arrow w-4 h-4 text-zinc-500" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-        <div class="text-sm font-medium text-slate-800 dark:text-zinc-100"> Scripture & Next Step</div>
-      </summary>
-      <div class="ttw-content p-4 bg-zinc-50 dark:bg-zinc-900 rounded-b-md">
-        <div class="text-sm text-zinc-700 dark:text-zinc-300">
-          <strong>Scripture:</strong>
-          <ul class="list-disc list-inside mt-2">
-            {scripture.length ? scripture.map((s: string) => (<li>{s}</li>)) : (<li class="text-zinc-500">No scripture listed.</li>)}
-          </ul>
-        </div>
-
-        <div class="mt-3 text-sm text-zinc-600 dark:text-zinc-400">
-          <strong>Next step:</strong> {redirection}
         </div>
       </div>
     </details>

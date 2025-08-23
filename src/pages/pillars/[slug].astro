@@ -5,6 +5,7 @@ import TopLayout from "@layouts/TopLayout.astro";
 import BottomLayout from "@layouts/BottomLayout.astro";
 import ArticleTopLayout from "@layouts/ArticleTopLayout.astro";
 import ArticleBottomLayout from "@layouts/ArticleBottomLayout.astro";
+import ManualButtons from "@components/ManualButtons.astro";
 
 export async function getStaticPaths() {
   const pillars = await getCollection("pillars");
@@ -29,5 +30,11 @@ const { title, summary } = pillar.data;
     <div class="animate">
       <ArticleBottomLayout entry={pillar} />
     </div>
+    <ManualButtons
+      prevHref={pillar.data.prevHref}
+      prevLabel={pillar.data.prevLabel}
+      nextHref={pillar.data.nextHref}
+      nextLabel={pillar.data.nextLabel}
+    />
   </BottomLayout>
 </PageLayout>

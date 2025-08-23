@@ -3,25 +3,31 @@
  * Props:
  *  - title: string
  *  - data: {
- *      root: string,         // Core lie
- *      trunk: string,        // False foundational belief
- *      branches: string[],   // Reinforcing patterns
- *      leaves: string[],     // Everyday actions
- *      fruit: string[],      // Visible outcomes
- *      scripture: string[],  // Counter-scripture or truth
- *      redirection?: string  // Next step or redirect
+ *      root: string,
+ *      rootReflection?: string,
+ *      trunk: string,
+ *      trunkReflection?: string,
+ *      branches: string[],
+ *      branchesReflection?: string,
+ *      leaves: string[],
+ *      leavesReflection?: string,
+ *      fruit: string[],
+ *      fruitReflection?: string,
  *    }
  */
 const { title = "Bad Tree Walkthrough", data = {} } = Astro.props;
 
 const {
   root = "Core lie goes here.",
+  rootReflection = "Where do you notice this lie showing up in your thoughts or actions?",
   trunk = "The false belief that supports it.",
+  trunkReflection = "How does this belief affect your relationships or choices?",
   branches = [],
+  branchesReflection = "Notice when these patterns show up. What triggers them?",
   leaves = [],
+  leavesReflection = "What small step could interrupt this habit today?",
   fruit = [],
-  scripture = [],
-  redirection = "Short next step or redirection."
+  fruitReflection = "Which of these outcomes do you want to change?"
 } = data;
 ---
 <style>
@@ -39,52 +45,24 @@ const {
     <div>
       <h3 class="text-lg font-serif font-semibold text-red-700 dark:text-red-300">{title}</h3>
       <p class="mt-1 text-sm text-zinc-500 dark:text-zinc-400 max-w-prose">
-        Walk through the core parts of this “bad tree.” Expand each section for a short explanation, reflection prompts, and scripture to counter the lie.
+        Walk through the core parts of this tree, following the fruit - what you are seeing - to the root lie. Expand each section for a short explanation and reflection prompts.
       </p>
     </div>
   </div>
 
   <div class="mt-4 space-y-3">
-    <!-- Root (Core Lie) -->
+    <!-- Fruit -->
     <details class="rounded-lg" role="group">
       <summary class="btw-summary flex items-center gap-3 p-3 rounded-md hover:bg-red-50 dark:hover:bg-red-900">
         <svg class="btw-arrow w-4 h-4 text-red-400" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-        <div class="text-sm font-medium text-red-700 dark:text-red-300"> Root — Core lie</div>
-      </summary>
-      <div class="btw-content p-4 bg-red-50 dark:bg-zinc-900 rounded-b-md">
-        <p class="text-sm text-red-800 dark:text-red-200">{root}</p>
-        <div class="mt-3 text-xs text-red-500 dark:text-red-400">
-          <strong>Reflect:</strong> Where do you notice this lie showing up in your thoughts or actions?
-        </div>
-      </div>
-    </details>
-
-    <!-- Trunk (False Belief) -->
-    <details class="rounded-lg" role="group">
-      <summary class="btw-summary flex items-center gap-3 p-3 rounded-md hover:bg-red-50 dark:hover:bg-red-900">
-        <svg class="btw-arrow w-4 h-4 text-red-400" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-        <div class="text-sm font-medium text-red-700 dark:text-red-300"> Trunk — False belief</div>
-      </summary>
-      <div class="btw-content p-4 bg-red-50 dark:bg-zinc-900 rounded-b-md">
-        <p class="text-sm text-red-800 dark:text-red-200">{trunk}</p>
-        <div class="mt-3 text-xs text-red-500 dark:text-red-400">
-          <strong>Reflect:</strong> How does this belief affect your relationships or choices?
-        </div>
-      </div>
-    </details>
-
-    <!-- Branches -->
-    <details class="rounded-lg" role="group">
-      <summary class="btw-summary flex items-center gap-3 p-3 rounded-md hover:bg-red-50 dark:hover:bg-red-900">
-        <svg class="btw-arrow w-4 h-4 text-red-400" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-        <div class="text-sm font-medium text-red-700 dark:text-red-300"> Branches — Reinforcing patterns</div>
+        <div class="text-sm font-medium text-red-700 dark:text-red-300"> Fruit — Visible outcomes</div>
       </summary>
       <div class="btw-content p-4 bg-red-50 dark:bg-zinc-900 rounded-b-md">
         <ul class="list-disc list-inside text-sm text-red-800 dark:text-red-200 space-y-1">
-          {branches.length ? branches.map((b: string) => (<li>{b}</li>)) : (<li class="text-red-500">No branches specified.</li>)}
+          {fruit.length ? fruit.map((f: string) => (<li>{f}</li>)) : (<li class="text-red-500">No fruit specified.</li>)}
         </ul>
         <div class="mt-3 text-xs text-red-500 dark:text-red-400">
-          <strong>Try:</strong> Notice when these patterns show up. What triggers them?
+          <strong>Reflection:</strong> {fruitReflection}
         </div>
       </div>
     </details>
@@ -100,44 +78,51 @@ const {
           {leaves.length ? leaves.map((l: string) => (<li>{l}</li>)) : (<li class="text-red-500">No leaves specified.</li>)}
         </ul>
         <div class="mt-3 text-xs text-red-500 dark:text-red-400">
-          <strong>Prompt:</strong> What small step could interrupt this habit today?
+          <strong>Prompt:</strong> {leavesReflection}
         </div>
       </div>
     </details>
 
-    <!-- Fruit -->
+    <!-- Branches -->
     <details class="rounded-lg" role="group">
       <summary class="btw-summary flex items-center gap-3 p-3 rounded-md hover:bg-red-50 dark:hover:bg-red-900">
         <svg class="btw-arrow w-4 h-4 text-red-400" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-        <div class="text-sm font-medium text-red-700 dark:text-red-300"> Fruit — Visible outcomes</div>
+        <div class="text-sm font-medium text-red-700 dark:text-red-300"> Branches — Reinforcing patterns</div>
       </summary>
       <div class="btw-content p-4 bg-red-50 dark:bg-zinc-900 rounded-b-md">
         <ul class="list-disc list-inside text-sm text-red-800 dark:text-red-200 space-y-1">
-          {fruit.length ? fruit.map((f: string) => (<li>{f}</li>)) : (<li class="text-red-500">No fruit specified.</li>)}
+          {branches.length ? branches.map((b: string) => (<li>{b}</li>)) : (<li class="text-red-500">No branches specified.</li>)}
         </ul>
         <div class="mt-3 text-xs text-red-500 dark:text-red-400">
-          <strong>Reflection:</strong> Which of these outcomes do you want to change?
+          <strong>Try:</strong> {branchesReflection}
         </div>
       </div>
     </details>
 
-    <!-- Scripture & Redirection -->
+    <!-- Trunk (False Belief) -->
     <details class="rounded-lg" role="group">
       <summary class="btw-summary flex items-center gap-3 p-3 rounded-md hover:bg-red-50 dark:hover:bg-red-900">
         <svg class="btw-arrow w-4 h-4 text-red-400" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-        <div class="text-sm font-medium text-red-700 dark:text-red-300"> Scripture & Next Step</div>
+        <div class="text-sm font-medium text-red-700 dark:text-red-300"> Trunk — False belief</div>
       </summary>
       <div class="btw-content p-4 bg-red-50 dark:bg-zinc-900 rounded-b-md">
-        <div class="text-sm text-red-800 dark:text-red-200">
-          <strong>Counter-scripture:</strong>
-          <ul class="list-disc list-inside mt-2">
-            {scripture.length ? scripture.map((s: string) => (<li>{s}</li>)) : (<li class="text-red-500">No scripture listed.</li>)}
-          </ul>
-        </div>
-        <div class="mt-3 text-sm text-red-600 dark:text-red-400">
-          <strong>Next step:</strong> {redirection}
+        <p class="text-sm text-red-800 dark:text-red-200">{trunk}</p>
+        <div class="mt-3 text-xs text-red-500 dark:text-red-400">
+          <strong>Reflect:</strong> {trunkReflection}
         </div>
       </div>
     </details>
-  </div>
-</div>
+
+    <!-- Root (Core Lie) -->
+    <details class="rounded-lg" role="group">
+      <summary class="btw-summary flex items-center gap-3 p-3 rounded-md hover:bg-red-50 dark:hover:bg-red-900">
+        <svg class="btw-arrow w-4 h-4 text-red-400" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+        <div class="text-sm font-medium text-red-700 dark:text-red-300"> Root — Core lie</div>
+      </summary>
+      <div class="btw-content p-4 bg-red-50 dark:bg-zinc-900 rounded-b-md">
+        <p class="text-sm text-red-800 dark:text-red-200">{root}</p>
+        <div class="mt-3 text-xs text-red-500 dark:text-red-400">
+          <strong>Reflect:</strong> {rootReflection}
+        </div>
+      </div>
+    </details>

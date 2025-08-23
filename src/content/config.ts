@@ -8,6 +8,10 @@ const tree = defineCollection({
     date: z.coerce.date(),
     tags: z.array(z.string()),
     draft: z.boolean().optional(),
+    prevHref: z.string().optional(),
+    prevLabel: z.string().optional(),
+    nextHref: z.string().optional(),
+    nextLabel: z.string().optional(),
   }),
 })
 
@@ -23,6 +27,10 @@ const canonNotes = defineCollection({
     draft: z.boolean().optional(),
     demoUrl: z.string().optional(),
     repoUrl: z.string().optional(),
+    prevHref: z.string().optional(),
+    prevLabel: z.string().optional(),
+    nextHref: z.string().optional(),
+    nextLabel: z.string().optional(),
   }),
 })
 
@@ -36,6 +44,10 @@ const compassPoints = defineCollection({
     draft: z.boolean().optional(),
     demoUrl: z.string().optional(),
     repoUrl: z.string().optional(),
+    prevHref: z.string().optional(),
+    prevLabel: z.string().optional(),
+    nextHref: z.string().optional(),
+    nextLabel: z.string().optional(),
   }),
 })
 
@@ -49,6 +61,10 @@ const pillars = defineCollection({
     draft: z.boolean().optional(),
     demoUrl: z.string().optional(),
     repoUrl: z.string().optional(),
+    prevHref: z.string().optional(),
+    prevLabel: z.string().optional(),
+    nextHref: z.string().optional(),
+    nextLabel: z.string().optional(),
   }),
 })
 
@@ -71,6 +87,10 @@ const treeShifts = defineCollection({
     description: z.string(),
     date: z.coerce.date(),
     draft: z.boolean().optional(),
+    prevHref: z.string().optional(),
+    prevLabel: z.string().optional(),
+    nextHref: z.string().optional(),
+    nextLabel: z.string().optional(),
   }),
 })
 
