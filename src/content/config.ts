@@ -53,7 +53,7 @@ const pillars = defineCollection({
 })
 
 const symptoms = defineCollection({
-  type: "content",
+  type: "data",
   schema: z.object({
     fruit: z.string(),
     blurb: z.string(),
