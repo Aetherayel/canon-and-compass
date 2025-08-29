@@ -4,28 +4,31 @@ import PageLayout from "@layouts/PageLayout.astro";
 import TopLayout from "@layouts/TopLayout.astro";
 import BottomLayout from "@layouts/BottomLayout.astro";
 import SearchCollection from "@components/SearchCollection";
-import { CANONNOTES } from "@consts";
+import { FOUNDATIONSOFDISCERNMENT } from "@consts";
 
-const canonNotes = (await getCollection("canon_notes"))
+const foundations = (await getCollection("foundations-of-discernment"))
   .filter((note) => !note.data.draft)
   .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
 
 const tags = [
-  ...new Set(canonNotes.flatMap((note) => note.data.tags)),
+  ...new Set(foundations.flatMap((note) => note.data.tags)),
 ].sort((a, b) => a.localeCompare(b));
 
 const estimated_initial_size =
-  28 + canonNotes.length * 158 + (canonNotes.length - 1) * 12;
+  28 + foundations.length * 158 + (foundations.length - 1) * 12;
 ---
 
-<PageLayout title={CANONNOTES.TITLE} description={CANONNOTES.DESCRIPTION}>
+<PageLayout
+  title={FOUNDATIONSOFDISCERNMENT.TITLE}
+  description={FOUNDATIONSOFDISCERNMENT.DESCRIPTION}
+>
   <TopLayout>
     <div class="animate">
       <h1 class="text-3xl font-semibold text-black dark:text-white mt-2">
-        {CANONNOTES.TITLE}
+        {FOUNDATIONSOFDISCERNMENT.TITLE}
       </h1>
       <div class="mt-1">
-        {CANONNOTES.DESCRIPTION}
+        {FOUNDATIONSOFDISCERNMENT.DESCRIPTION}
       </div>
     </div>
   </TopLayout>
@@ -39,7 +42,7 @@ const estimated_initial_size =
         client:load
         entry_name={"notes"}
         tags={tags}
-        data={canonNotes}
+        data={foundations}
       />
     </div>
   </BottomLayout>

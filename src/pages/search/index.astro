@@ -12,6 +12,10 @@ const canonNotes = (await getCollection("canon_notes")).filter(
   (post) => !post.data.draft,
 );
 
+const foundations = (await getCollection("foundations-of-discernment")).filter(
+  (post) => !post.data.draft,
+);
+
 const compassPoints = (await getCollection("compass_points")).filter(
   (post) => !post.data.draft,
 );
@@ -20,9 +24,10 @@ const pillars = (await getCollection("pillars")).filter(
   (post) => !post.data.draft,
 );
 
-const data = [...posts, ...canonNotes, ...compassPoints, ...pillars] as CollectionEntry<
+const data = [...posts, ...canonNotes, ...foundations, ...compassPoints, ...pillars] as CollectionEntry<
   | "tree"
   | "canon_notes"
+  | "foundations-of-discernment"
   | "compass_points"
   | "pillars"
 >[];

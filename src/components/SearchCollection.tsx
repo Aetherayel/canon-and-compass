@@ -13,6 +13,7 @@ type Props = {
     | CollectionEntry<'canon_notes'>
     | CollectionEntry<'compass_points'>
     | CollectionEntry<'pillars'>
+    | CollectionEntry<'foundations-of-discernment'>
   )[]
 }
 

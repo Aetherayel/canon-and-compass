@@ -7,29 +7,27 @@ import ArticleTopLayout from "@layouts/ArticleTopLayout.astro";
 import ArticleBottomLayout from "@layouts/ArticleBottomLayout.astro";
 
 export async function getStaticPaths() {
-  const canonNotes = (await getCollection("canon_notes")).filter((entry) =>
-    entry.slug.startsWith("foundations-of-discernment/"),
-  );
-  return canonNotes.map((note) => ({
-    params: { slug: note.slug.replace("foundations-of-discernment/", "") },
+  const foundations = await getCollection("foundations-of-discernment");
+  return foundations.map((note) => ({
+    params: { slug: note.slug },
     props: note,
   }));
 }
 
-type Props = CollectionEntry<"canon_notes">;
-const canonNote = Astro.props;
-const { title, summary } = canonNote.data;
+type Props = CollectionEntry<"foundations-of-discernment">;
+const foundation = Astro.props;
+const { title, summary } = foundation.data;
 ---
 
 <PageLayout title={title} description={summary}>
   <TopLayout>
     <div class="animate">
-      <ArticleTopLayout entry={canonNote} />
+      <ArticleTopLayout entry={foundation} />
     </div>
   </TopLayout>
   <BottomLayout>
     <div class="animate">
-      <ArticleBottomLayout entry={canonNote} />
+      <ArticleBottomLayout entry={foundation} />
     </div>
   </BottomLayout>
 </PageLayout>

@@ -37,6 +37,12 @@ export const CANONNOTES: Page = {
   DESCRIPTION: "Devotional series or standalone reflections.",
 }
 
+// Foundations of Discernment Page
+export const FOUNDATIONSOFDISCERNMENT: Page = {
+  TITLE: "Foundations of Discernment",
+  DESCRIPTION: "A 28-day devotional journey designed to cultivate a heart and mind shaped by God’s truth. Over four weeks, you’ll learn to bow before the Lord in awe, wrestle honestly with reality, test every spirit in action, and, finally, frame all your questions within the grand biblical narrative. Each day combines Scripture, story, reflection, guided exercises, and a simple visual aid to move from head-knowledge into Spirit-empowered living.",
+}
+
 // Compass Points Page
 export const COMPASSPOINTS: Page = {
   TITLE: "Compass Points",
