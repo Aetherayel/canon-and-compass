@@ -4,52 +4,41 @@
  *  - title: string
  *  - data: {
  *      root: string,
+ *      rootReflection?: string,
  *      trunk: string,
+ *      trunkReflection?: string,
  *      branches: string[],
+ *      branchesReflection?: string,
  *      leaves: string[],
+ *      leavesReflection?: string,
  *      fruit: string[],
- *      scripture: string[],
- *      redirection?: string (short truth redirect)
+ *      fruitReflection?: string,
  *    }
  */
 const { title = "Truth Tree Walkthrough", data = {} } = Astro.props;
 
 const {
   root = "Root truth goes here.",
+  rootReflection = "What single phrase from this truth would you like to remember today?",
   trunk = "The theological trunk that supports it.",
+  trunkReflection = "How does this belief shape decisions you make this week?",
   branches = [],
+  branchesReflection = "Pick one branch and notice when it shows up in your day.",
   leaves = [],
+  leavesReflection = "What’s one small way you could practice this truth today?",
   fruit = [],
+  fruitReflection = "Which of these outcomes do you most want to cultivate?",
 } = data;
 ---
+
 <style>
-  /* Local visual niceties (keeps global.css minimal) */
-  .ttw-summary::marker { display: none; } /* hide default marker */
-  .ttw-summary {
-    cursor: pointer;
-  }
-  .ttw-arrow {
-    transition: transform .25s ease;
-  }
-  details[open] .ttw-arrow {
-    transform: rotate(90deg);
-  }
-  /* subtle reveal transition for details content */
-  .ttw-content {
-    transition: opacity .28s ease, transform .28s ease;
-    transform-origin: top center;
-  }
-  details:not([open]) .ttw-content {
-    opacity: 0;
-    transform: translateY(-6px) scale(.995);
-    height: 0; /* keep it visually compact in collapsed state */
-    overflow: hidden;
-  }
-  details[open] .ttw-content {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-    height: auto;
-  }
+  .ttw-summary::marker { display: none; }
+  .ttw-summary { cursor: pointer; }
+  .ttw-arrow { transition: transform .25s ease; }
+  details[open] .ttw-arrow { transform: rotate(90deg); }
+  .ttw-content { transition: opacity .28s ease, transform .28s ease; transform-origin: top center; }
+  details:not([open]) .ttw-content { opacity: 0; transform: translateY(-6px) scale(.995); height: 0; overflow: hidden; }
+  details[open] .ttw-content { opacity: 1; transform: translateY(0) scale(1); height: auto; }
 </style>
 
 <div class="bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 rounded-2xl p-6 space-y-4 shadow-sm">
@@ -57,13 +46,11 @@ const {
     <div>
       <h3 class="text-lg font-serif font-semibold text-slate-800 dark:text-zinc-100">{title}</h3>
       <p class="mt-1 text-sm text-zinc-500 dark:text-zinc-400 max-w-prose">
-        Walk through the core parts of this tree, starting with the root of truth and tracing it to the fruit it produces. Expand each section for a short
-        explanation, reflection prompts, and scripture to anchor the truth.
+        Walk through the core parts of this tree, starting with the root of truth and tracing it to the fruit it produces. Expand each section for reflection prompts and Scripture to anchor the truth.
       </p>
     </div>
   </div>
 
-  <!-- Walkthrough -->
   <div class="mt-4 space-y-3">
     <!-- Root -->
     <details class="rounded-lg" role="group">
@@ -74,7 +61,7 @@ const {
       <div class="ttw-content p-4 bg-zinc-50 dark:bg-zinc-900 rounded-b-md">
         <p class="text-sm text-zinc-700 dark:text-zinc-300">{root}</p>
         <div class="mt-3 text-xs text-zinc-500 dark:text-zinc-400">
-          <strong>Reflect:</strong> What single phrase from this truth would you like to remember today?
+          <strong>Reflect:</strong> {rootReflection}
         </div>
       </div>
     </details>
@@ -88,7 +75,7 @@ const {
       <div class="ttw-content p-4 bg-zinc-50 dark:bg-zinc-900 rounded-b-md">
         <p class="text-sm text-zinc-700 dark:text-zinc-300">{trunk}</p>
         <div class="mt-3 text-xs text-zinc-500 dark:text-zinc-400">
-          <strong>Reflect:</strong> How does this belief shape decisions you make this week?
+          <strong>Reflect:</strong> {trunkReflection}
         </div>
       </div>
     </details>
@@ -104,7 +91,7 @@ const {
           {branches.length ? branches.map((b: string) => (<li>{b}</li>)) : (<li class="text-zinc-500">No branches specified.</li>)}
         </ul>
         <div class="mt-3 text-xs text-zinc-500 dark:text-zinc-400">
-          <strong>Try:</strong> Pick one branch and notice when it shows up in your day. Name it without judgment.
+          <strong>Reflect:</strong> {branchesReflection}
         </div>
       </div>
     </details>
@@ -120,7 +107,7 @@ const {
           {leaves.length ? leaves.map((l: string) => (<li>{l}</li>)) : (<li class="text-zinc-500">No leaves specified.</li>)}
         </ul>
         <div class="mt-3 text-xs text-zinc-500 dark:text-zinc-400">
-          <strong>Prompt:</strong> Which small change could interrupt this habit today?
+          <strong>Prompt:</strong> {leavesReflection}
         </div>
       </div>
     </details>
@@ -136,7 +123,7 @@ const {
           {fruit.length ? fruit.map((f: string) => (<li>{f}</li>)) : (<li class="text-zinc-500">No fruit specified.</li>)}
         </ul>
         <div class="mt-3 text-xs text-zinc-500 dark:text-zinc-400">
-          <strong>Reflection:</strong> Which of these outcomes do you most want to cultivate?
+          <strong>Reflection:</strong> {fruitReflection}
         </div>
       </div>
     </details>

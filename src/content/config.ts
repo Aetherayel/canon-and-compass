@@ -34,6 +34,25 @@ const canonNotes = defineCollection({
   }),
 })
 
+const foundationsOfDiscernment = defineCollection({
+  type: "content",
+  schema: z.object({
+    title: z.string(),
+    summary: z.string(),
+    date: z.coerce.date(),
+    series: z.string(),
+    day: z.number().optional(),
+    tags: z.array(z.string()),
+    draft: z.boolean().optional(),
+    demoUrl: z.string().optional(),
+    repoUrl: z.string().optional(),
+    prevHref: z.string().optional(),
+    prevLabel: z.string().optional(),
+    nextHref: z.string().optional(),
+    nextLabel: z.string().optional(),
+  }),
+})
+
 const compassPoints = defineCollection({
   type: "content",
   schema: z.object({
@@ -101,5 +120,6 @@ export const collections = {
   compass_points: compassPoints,
   pillars,
   "tree-shifts": treeShifts,
+  "foundations-of-discernment": foundationsOfDiscernment
 }
 
