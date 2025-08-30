@@ -1,6 +1,5 @@
 ---
 export interface Props {
-  pathwayId?: string;
   treeHref?: string;
   treeSlug?: string;
   treeLabel?: string;     // visible label for tree link
@@ -15,35 +14,20 @@ export interface Props {
   blurb?: string;         // optional helper text above links
 }
 
-import { getCollection } from 'astro:content';
+const {
+  treeHref,
+  treeSlug,
+  treeLabel = 'This a part of a larger pathway',
+  treeDesc = 'Trace the context from root to fruit.',
 
-const props = Astro.props as Props;
+  shiftHref,
+  shiftSlug,
+  shiftLabel = 'See the Symptom',
+  shiftDesc = 'See how cultural systems counterfeit this truth.',
 
-let heading = props.heading ?? 'Find This in the Tree';
-let blurb = props.blurb ?? 'If you arrived here directly, explore the Symptom or Truth Tree for more context.';
-
-let treeHref = props.treeHref;
-let treeSlug = props.treeSlug;
-let treeLabel = props.treeLabel ?? 'This a part of a larger pathway';
-let treeDesc = props.treeDesc ?? 'Explore the root, trunk, branches, leaves, and fruit in context.';
-
-let shiftHref = props.shiftHref;
-let shiftSlug = props.shiftSlug;
-let shiftLabel = props.shiftLabel ?? 'See the Symptom';
-let shiftDesc = props.shiftDesc ?? 'See how cultural systems counterfeit this truth.';
-
-// If a pathway id is provided, pull defaults from the pathway mapping
-if (props.pathwayId) {
-  const pathways = await getCollection('pathways');
-  const entry = pathways.find((p) => p.id === props.pathwayId);
-  if (entry) {
-    const p: any = entry.data;
-    treeHref = treeHref ?? p?.tree?.href ?? (p?.tree?.slug ? `/tree/${p.tree.slug}` : undefined);
-    shiftHref = shiftHref ?? p?.shift?.href ?? (p?.shift?.slug ? `/tree-shifts/${p.shift.slug}` : undefined);
-    if (props.treeLabel === undefined && p?.tree?.title) treeLabel = `See the Truth Tree: ${p.tree.title}`;
-    if (props.shiftLabel === undefined && p?.shift?.title) shiftLabel = `See the Tree Shift: ${p.shift.title}`;
-  }
-}
+  heading = 'Find This in the Tree',
+  blurb = 'If you arrived here directly, explore the Symptom or Truth Tree for more context.'
+} = Astro.props as Props;
 
 const resolvedTreeHref = treeHref ?? (treeSlug ? `/tree/${treeSlug}` : undefined);
 const resolvedShiftHref = shiftHref ?? (shiftSlug ? `/tree-shifts/${shiftSlug}` : undefined);
@@ -99,3 +83,4 @@ const resolvedShiftHref = shiftHref ?? (shiftSlug ? `/tree-shifts/${shiftSlug}` 
   <div class="mt-2 text-[10px] uppercase tracking-wide text-zinc-400 dark:text-zinc-500">Tree Context</div>
   
 </section>
+
