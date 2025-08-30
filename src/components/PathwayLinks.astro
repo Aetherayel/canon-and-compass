@@ -1,0 +1,132 @@
+---
+export interface Props {
+  id: string;                // pathway id e.g., emotional-reactivity_spirit-led-identity
+  currentType?: 'tree' | 'counterfeitTree' | 'shift' | 'canonNote' | 'compassPoint' | 'pillar';
+  currentHref?: string;      // optional explicit href to mark as current
+  showTree?: boolean;
+  showCounterfeit?: boolean;
+  showShift?: boolean;
+  showCanonNote?: boolean;
+  showCompassPoint?: boolean;
+  showPillar?: boolean;
+  heading?: string;
+  blurb?: string;
+}
+
+import { getCollection } from 'astro:content';
+
+const props = Astro.props as Props;
+const {
+  id,
+  currentType,
+  currentHref,
+  showTree = true,
+  showCounterfeit = true,
+  showShift = true,
+  showCanonNote = true,
+  showCompassPoint = true,
+  showPillar = true,
+  heading = 'Related Pathway Links',
+  blurb = 'Explore connected content across the Truth Tree ecosystem.'
+} = props;
+
+const pathways = await getCollection('pathways');
+const entry = pathways.find((p) => p.id === id);
+const data: any = entry?.data ?? {};
+
+function hrefOr(base: string, item: any) {
+  if (!item) return undefined;
+  if (item.href) return item.href;
+  if (item.slug) return `${base}/${item.slug}`;
+  return undefined;
+}
+
+type TypeKey = 'shift' | 'tree' | 'counterfeitTree' | 'canonNote' | 'compassPoint' | 'pillar';
+
+const order: Array<{key: TypeKey; label: string; base: string; show: boolean; item: any}> = [
+  { key: 'shift', label: 'Symptom', base: '/tree-shifts', show: showShift, item: data?.shift },
+  { key: 'tree', label: 'Truth Tree', base: '/tree', show: showTree, item: data?.tree },
+  { key: 'counterfeitTree', label: 'Counterfeit Tree', base: '/counterfeit-tree', show: showCounterfeit, item: data?.counterfeitTree },
+  { key: 'canonNote', label: 'Canon Note', base: '/canon_notes', show: showCanonNote, item: data?.canonNote },
+  { key: 'compassPoint', label: 'Compass Point', base: '/compass_points', show: showCompassPoint, item: data?.compassPoint },
+  { key: 'pillar', label: 'Pillar', base: '/pillars', show: showPillar, item: data?.pillar },
+];
+
+const currentPath = (() => {
+  try {
+    const p = Astro.url?.pathname ?? '';
+    return p.endsWith('/') ? p : p + '/';
+  } catch {
+    return '';
+  }
+})();
+
+const entriesList = order
+  .filter(e => e.show && e.item)
+  .map(e => {
+    const title = e.item?.title ?? (e.item?.slug ? e.item.slug.replace(/-/g, ' ') : e.label);
+    const href = hrefOr(e.base, e.item);
+    const normalizedHref = href ? (href.endsWith('/') ? href : href + '/') : undefined;
+    const isCurrent = (currentType && currentType === e.key) || (currentHref && currentHref === href) || (normalizedHref && normalizedHref === currentPath);
+    return { key: e.key, typeLabel: e.label, title, href, isCurrent };
+  });
+---
+
+<section class="mt-8 border border-black/10 dark:border-white/15 rounded-xl bg-white/60 dark:bg-zinc-900/50 backdrop-blur">
+  <style>
+    .pw-summary { cursor: pointer; list-style: none; }
+    .pw-summary::-webkit-details-marker { display: none; }
+    .pw-arrow { transition: transform .25s ease; }
+    details[open] .pw-arrow { transform: rotate(90deg); }
+    .pw-content { transition: opacity .25s ease, transform .25s ease; transform-origin: top center; }
+    details:not([open]) .pw-content { opacity: 0; transform: translateY(-6px) scale(.995); height: 0; overflow: hidden; }
+    details[open] .pw-content { opacity: 1; transform: translateY(0) scale(1); height: auto; }
+  </style>
+  <details>
+    <summary class="pw-summary flex items-center justify-between gap-3 p-4 rounded-md hover:bg-black/5 hover:dark:bg-white/10">
+      <div class="flex items-center gap-3 min-w-0">
+        <svg aria-hidden="true" class="pw-arrow w-4 h-4 text-zinc-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+        </svg>
+        <h3 class="text-base font-semibold text-slate-800 dark:text-zinc-100 truncate">{heading}</h3>
+      </div>
+      <div class="text-xs px-2 py-0.5 rounded-full bg-black/5 dark:bg-white/10 text-zinc-600 dark:text-zinc-400">{entriesList.length}</div>
+    </summary>
+
+    <div class="pw-content px-4 pb-4">
+      {blurb && <p class="text-sm text-zinc-600 dark:text-zinc-400 mb-3">{blurb}</p>}
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+        {entriesList.map((e) => (
+          e.isCurrent ? (
+            <div class="p-3.5 flex items-center justify-between gap-3 border rounded-lg bg-indigo-50/70 dark:bg-indigo-900/30 border-indigo-300/60 dark:border-indigo-500/40 cursor-default select-none">
+              <div class="min-w-0">
+                <div class="text-xs font-semibold uppercase tracking-wide text-indigo-700 dark:text-indigo-300">{e.typeLabel}</div>
+                <div class="text-sm font-medium text-indigo-900 dark:text-indigo-100 truncate">{e.title}</div>
+              </div>
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="stroke-indigo-400/60">
+                <circle cx="12" cy="12" r="2" />
+              </svg>
+            </div>
+          ) : (
+            <a href={e.href} class="group p-3.5 flex items-center justify-between gap-3 border rounded-lg hover:bg-black/5 hover:dark:bg-white/10 border-black/15 dark:border-white/20 transition-colors">
+              <div class="min-w-0">
+                <div class="text-xs font-semibold uppercase tracking-wide text-zinc-600 dark:text-zinc-400">{e.typeLabel}</div>
+                <div class="text-sm font-medium text-slate-800 dark:text-zinc-100 truncate">{e.title}</div>
+              </div>
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="stroke-current text-zinc-500 group-hover:text-black group-hover:dark:text-white">
+                <line x1="5" y1="12" x2="19" y2="12" class="scale-x-0 group-hover:scale-x-100 translate-x-4 group-hover:translate-x-1 transition-all duration-300 ease-in-out" />
+                <polyline points="12 5 19 12 12 19" class="translate-x-0 group-hover:translate-x-1 transition-all duration-300 ease-in-out" />
+              </svg>
+            </a>
+          )
+        ))}
+      </div>
+
+      {!entry && (
+        <p class="mt-2 text-xs text-amber-600 dark:text-amber-400">Unknown pathway id: {id}</p>
+      )}
+
+      <div class="mt-2 text-[10px] uppercase tracking-wide text-zinc-400 dark:text-zinc-500">Pathway Context</div>
+    </div>
+  </details>
+</section>

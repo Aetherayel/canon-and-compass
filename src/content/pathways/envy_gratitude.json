@@ -1,0 +1,29 @@
+{
+  "label": "Envy ↔ Gratitude Based Identity",
+  "tree": {
+    "title": "Gratitude Based Identity",
+    "slug": "gratitude",
+    "href": "/tree/gratitude"
+  },
+  "shift": {
+    "title": "Envy",
+    "slug": "envy",
+    "href": "/tree-shifts/envy"
+  },
+  "canonNote": {
+    "title": "Rest that Can't be Earned",
+    "slug": "rest-that-cant-be-earned",
+    "href": "/canon_notes/rest-that-cant-be-earned"
+  },
+  "compassPoint": {
+    "title": "Hustle Culture Prosperity",
+    "slug": "hustle-culture-prosperity",
+    "href": "/compass_points/hustle-culture-prosperity"
+  },
+  "pillar": {
+    "title": "Roots of Performance",
+    "slug": "roots-of-performance",
+    "href": "/pillars/roots-of-performance"
+  }
+}
+

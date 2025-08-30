@@ -5,7 +5,7 @@ import TopLayout from "@layouts/TopLayout.astro";
 import BottomLayout from "@layouts/BottomLayout.astro";
 import ArticleTopLayout from "@layouts/ArticleTopLayout.astro";
 import ArticleBottomLayout from "@layouts/ArticleBottomLayout.astro";
-
+import PathwayLinks from "@components/PathwayLinks.astro";
 
 export async function getStaticPaths() {
   const treeShifts = await getCollection("tree-shifts");
@@ -15,10 +15,13 @@ export async function getStaticPaths() {
   }));
 }
 
+type Props = CollectionEntry<"tree-shifts">
+const treeShifts = Astro.props
+const { title, description } = treeShifts.data
 
- type Props = CollectionEntry<"tree-shifts">
- const treeShifts = Astro.props
- const { title, description } = treeShifts.data
+// Resolve pathway by matching this shift's slug in the pathways map
+const pathways = await getCollection('pathways');
+const shiftPath = pathways.find((p) => (p.data as any)?.shift?.slug === treeShifts.slug)?.id as string | undefined;
 ---
 
 <PageLayout title={title} description={description}>
@@ -31,5 +34,10 @@ export async function getStaticPaths() {
     <div class="animate">
       <ArticleBottomLayout entry={treeShifts} />
     </div>
+    {shiftPath && (
+      <div class="mt-8">
+        <PathwayLinks id={shiftPath} currentType="shift" />
+      </div>
+    )}
   </BottomLayout>
 </PageLayout>

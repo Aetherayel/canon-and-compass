@@ -1,5 +1,6 @@
 ---
 import { type CollectionEntry, getCollection } from "astro:content"
+import PathwayLinks from "@components/PathwayLinks.astro";
 
 type Props = {
   entry:
@@ -23,12 +24,31 @@ const items = (await getCollection(collection))
 const index = items.findIndex(x => x.slug === entry.slug)
 const prev = items[(index - 1 + items.length) % items.length]
 const next = items[(index + 1) % items.length]
+
+// No prev/next buttons for pathway content; instead show PathwayLinks below
+let resolvedPathwayId: string | undefined;
+let resolvedCurrentType: 'compassPoint' | 'pillar' | undefined;
+if (["compass_points", "pillars"].includes(collection)) {
+  const data: any = entry.data;
+  resolvedCurrentType = collection === 'compass_points' ? 'compassPoint' : 'pillar';
+  resolvedPathwayId = data?.pathwayId;
+  if (!resolvedPathwayId) {
+    const p = await getCollection('pathways');
+    const match = p.find((x) => (x.data as any)?.[resolvedCurrentType!]?.slug === entry.slug);
+    resolvedPathwayId = match?.id as string | undefined;
+  }
+}
 ---
 
 <div>
   <article>
     <Content/>
   </article>
+  {resolvedPathwayId && resolvedCurrentType && (
+    <div class="mt-8">
+      <PathwayLinks id={resolvedPathwayId} currentType={resolvedCurrentType} />
+    </div>
+  )}
   <!-- <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
     <a href={`/${prev.collection}/${prev.slug}`} class="group p-4 gap-3 flex items-center border rounded-lg hover:bg-black/5 hover:dark:bg-white/10 border-black/15 dark:border-white/20 blend">
       <div class="order-2 w-full h-full group-hover:text-black group-hover:dark:text-white blend">

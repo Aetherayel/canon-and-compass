@@ -5,6 +5,7 @@ import TopLayout from "@layouts/TopLayout.astro"
 import BottomLayout from "@layouts/BottomLayout.astro"
 import ArticleTopLayout from "@layouts/ArticleTopLayout.astro"
 import ArticleBottomLayout from "@layouts/ArticleBottomLayout.astro"
+import PathwayLinks from "@components/PathwayLinks.astro";
 
 // Create the static tree pages
 export async function getStaticPaths() {
@@ -19,6 +20,9 @@ export async function getStaticPaths() {
 type Props = CollectionEntry<"tree">
 const post = Astro.props
 const { title, summary } = post.data
+// Resolve pathway by matching this tree's slug in the pathways map
+const pathways = await getCollection('pathways');
+const treePath = pathways.find((p) => (p.data as any)?.tree?.slug === post.slug)?.id as string | undefined;
 ---
 
 <PageLayout title={title} description={summary}>
@@ -31,5 +35,10 @@ const { title, summary } = post.data
     <div class="animate">
       <ArticleBottomLayout entry={post} />
     </div>
+    {treePath && (
+      <div class="mt-8">
+        <PathwayLinks id={treePath} currentType="tree" />
+      </div>
+    )}
   </BottomLayout>
 </PageLayout>

@@ -7,7 +7,6 @@ const tree = defineCollection({
     summary: z.string(),
     date: z.coerce.date(),
     tags: z.array(z.string()),
-    draft: z.boolean().optional(),
     prevHref: z.string().optional(),
     prevLabel: z.string().optional(),
     nextHref: z.string().optional(),
@@ -24,9 +23,7 @@ const canonNotes = defineCollection({
     series: z.string(),
     day: z.number().optional(),
     tags: z.array(z.string()),
-    draft: z.boolean().optional(),
-    demoUrl: z.string().optional(),
-    repoUrl: z.string().optional(),
+    pathwayId: z.string().optional(),
     prevHref: z.string().optional(),
     prevLabel: z.string().optional(),
     nextHref: z.string().optional(),
@@ -43,9 +40,6 @@ const foundationsOfDiscernment = defineCollection({
     series: z.string(),
     day: z.number().optional(),
     tags: z.array(z.string()),
-    draft: z.boolean().optional(),
-    demoUrl: z.string().optional(),
-    repoUrl: z.string().optional(),
     prevHref: z.string().optional(),
     prevLabel: z.string().optional(),
     nextHref: z.string().optional(),
@@ -60,9 +54,7 @@ const compassPoints = defineCollection({
     summary: z.string(),
     date: z.coerce.date(),
     tags: z.array(z.string()),
-    draft: z.boolean().optional(),
-    demoUrl: z.string().optional(),
-    repoUrl: z.string().optional(),
+    pathwayId: z.string().optional(),
     prevHref: z.string().optional(),
     prevLabel: z.string().optional(),
     nextHref: z.string().optional(),
@@ -77,9 +69,7 @@ const pillars = defineCollection({
     summary: z.string(),
     date: z.coerce.date(),
     tags: z.array(z.string()),
-    draft: z.boolean().optional(),
-    demoUrl: z.string().optional(),
-    repoUrl: z.string().optional(),
+    pathwayId: z.string().optional(),
     prevHref: z.string().optional(),
     prevLabel: z.string().optional(),
     nextHref: z.string().optional(),
@@ -94,7 +84,6 @@ const symptoms = defineCollection({
     blurb: z.string(),
     systemLabel: z.string(),
     systemHref: z.string(),
-    draft: z.boolean().optional(),
     tags: z.array(z.string()),
   }),
 });
@@ -105,13 +94,75 @@ const treeShifts = defineCollection({
     title: z.string(),
     description: z.string(),
     date: z.coerce.date(),
-    draft: z.boolean().optional(),
     prevHref: z.string().optional(),
     prevLabel: z.string().optional(),
     nextHref: z.string().optional(),
     nextLabel: z.string().optional(),
   }),
 })
+
+// Pathway map that ties together related content across systems
+const pathways = defineCollection({
+  type: "data",
+  schema: z.object({
+    // Optional human label
+    label: z.string().optional(),
+
+    // Truth Tree
+    tree: z
+      .object({
+        title: z.string().optional(),
+        slug: z.string().optional(),
+        href: z.string().optional(),
+      })
+      .optional(),
+
+    // Counterfeit/False Tree (optional placeholder for future)
+    counterfeitTree: z
+      .object({
+        title: z.string().optional(),
+        slug: z.string().optional(),
+        href: z.string().optional(),
+      })
+      .optional(),
+
+    // Symptom / Tree Shift
+    shift: z
+      .object({
+        title: z.string().optional(),
+        slug: z.string().optional(),
+        href: z.string().optional(),
+      })
+      .optional(),
+
+    // Canon Note
+    canonNote: z
+      .object({
+        title: z.string().optional(),
+        slug: z.string().optional(),
+        href: z.string().optional(),
+      })
+      .optional(),
+
+    // Compass Point
+    compassPoint: z
+      .object({
+        title: z.string().optional(),
+        slug: z.string().optional(),
+        href: z.string().optional(),
+      })
+      .optional(),
+
+    // Pillar
+    pillar: z
+      .object({
+        title: z.string().optional(),
+        slug: z.string().optional(),
+        href: z.string().optional(),
+      })
+      .optional(),
+  }),
+});
 
 export const collections = {
   symptoms,
@@ -120,6 +171,6 @@ export const collections = {
   compass_points: compassPoints,
   pillars,
   "tree-shifts": treeShifts,
-  "foundations-of-discernment": foundationsOfDiscernment
+  "foundations-of-discernment": foundationsOfDiscernment,
+  pathways,
 }
-

@@ -1,0 +1,29 @@
+{
+  "label": "Burnout ↔ Grace Based Identity",
+  "tree": {
+    "title": "Grace Based Identity",
+    "slug": "grace",
+    "href": "/tree/grace"
+  },
+  "shift": {
+    "title": "Burnout",
+    "slug": "burnout",
+    "href": "/tree-shifts/burnout"
+  },
+  "canonNote": {
+    "title": "Rest that Can't be Earned",
+    "slug": "rest-that-cant-be-earned",
+    "href": "/canon_notes/rest-that-cant-be-earned"
+  },
+  "compassPoint": {
+    "title": "Hustle Culture Prosperity",
+    "slug": "hustle-culture-prosperity",
+    "href": "/compass_points/hustle-culture-prosperity"
+  },
+  "pillar": {
+    "title": "Roots of Performance",
+    "slug": "roots-of-performance",
+    "href": "/pillars/roots-of-performance"
+  }
+}
+
