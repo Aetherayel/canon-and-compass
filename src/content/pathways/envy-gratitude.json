@@ -1,0 +1,29 @@
+{
+  "label": "Envy ↔ Gratitude Based Identity",
+  "tree": {
+    "title": "Gratitude Based Identity",
+    "slug": "gratitude",
+    "href": "/tree/gratitude"
+  },
+  "shift": {
+    "title": "Envy",
+    "slug": "envy",
+    "href": "/tree-shifts/envy"
+  },
+  "canonNote": {
+    "title": "Grace Is Abundance",
+    "slug": "grace-is-abundance",
+    "href": "/canon_notes/grace-is-abundance"
+  },
+  "compassPoint": {
+    "title": "Comparison Trap",
+    "slug": "comparison-trap",
+    "href": "/compass_points/comparison-trap"
+  },
+  "pillar": {
+    "title": "Theology of Enough",
+    "slug": "theology-of-enough",
+    "href": "/pillars/theology-of-enough"
+  }
+}
+

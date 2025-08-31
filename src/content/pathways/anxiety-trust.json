@@ -1,0 +1,29 @@
+{
+  "label": "Anxiety ↔ Trust Based Identity",
+  "tree": {
+    "title": "Trust Based Identity",
+    "slug": "trust",
+    "href": "/tree/trust"
+  },
+  "shift": {
+    "title": "Anxiety",
+    "slug": "anxiety",
+    "href": "/tree-shifts/anxiety"
+  },
+  "canonNote": {
+    "title": "Casting Cares Daily",
+    "slug": "casting-cares-daily",
+    "href": "/canon_notes/casting-cares-daily"
+  },
+  "compassPoint": {
+    "title": "Anxiety Economy",
+    "slug": "anxiety-economy",
+    "href": "/compass_points/anxiety-economy"
+  },
+  "pillar": {
+    "title": "The Sovereignty of Peace",
+    "slug": "sovereignty-of-peace",
+    "href": "/pillars/sovereignty-of-peace"
+  }
+}
+

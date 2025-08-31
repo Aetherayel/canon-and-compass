@@ -1,0 +1,29 @@
+{
+  "label": "Control ↔ Surrender Based Identity",
+  "tree": {
+    "title": "Surrender Based Identity",
+    "slug": "surrender",
+    "href": "/tree/surrender"
+  },
+  "shift": {
+    "title": "Control",
+    "slug": "control",
+    "href": "/tree-shifts/control"
+  },
+  "canonNote": {
+    "title": "Letting Go in Prayer",
+    "slug": "letting-go-in-prayer",
+    "href": "/canon_notes/letting-go-in-prayer"
+  },
+  "compassPoint": {
+    "title": "The Illusion of Safety",
+    "slug": "illusion-of-safety",
+    "href": "/compass_points/illusion-of-safety"
+  },
+  "pillar": {
+    "title": "The Idol of Control",
+    "slug": "idol-of-control",
+    "href": "/pillars/idol-of-control"
+  }
+}
+
