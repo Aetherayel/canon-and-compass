@@ -8,7 +8,14 @@ import { FOUNDATIONSOFDISCERNMENT } from "@consts";
 
 const foundations = (await getCollection("foundations-of-discernment"))
   .filter((note) => !note.data.draft)
-  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+  // Sort numerically by `day` so 2 comes after 1, not 11
+  .sort((a, b) => {
+    const da = Number((a.data as any)?.day ?? Number.POSITIVE_INFINITY);
+    const db = Number((b.data as any)?.day ?? Number.POSITIVE_INFINITY);
+    if (da !== db) return da - db;
+    // Fallback: by date (desc) if same/missing day
+    return b.data.date.getTime() - a.data.date.getTime();
+  });
 
 const tags = [
   ...new Set(foundations.flatMap((note) => note.data.tags)),
