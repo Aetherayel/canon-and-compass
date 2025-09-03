@@ -77,22 +77,17 @@ const pillars = defineCollection({
   }),
 })
 
-const symptoms = defineCollection({
-  type: "data",
-  schema: z.object({
-    fruit: z.string(),
-    blurb: z.string(),
-    systemLabel: z.string(),
-    systemHref: z.string(),
-    tags: z.array(z.string()),
-  }),
-});
-
 const treeShifts = defineCollection({
   type: "content",
   schema: z.object({
     title: z.string(),
     description: z.string(),
+    fruit: z.string(),
+    blurb: z.string(),
+    systemLabel: z.string(),
+    tags: z.array(z.string()),
+    treeSlug: z.string().optional(),
+    pathwayId: z.string().optional(),
     date: z.coerce.date(),
     prevHref: z.string().optional(),
     prevLabel: z.string().optional(),
@@ -165,7 +160,6 @@ const pathways = defineCollection({
 });
 
 export const collections = {
-  symptoms,
   tree,
   canon_notes: canonNotes,
   compass_points: compassPoints,
