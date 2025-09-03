@@ -6,10 +6,10 @@ import BottomLayout from "@layouts/BottomLayout.astro";
 import { SYMPTOMS } from "@consts";
 import SymptomArrowCard from "@components/SymptomArrowCard.astro";
 
-// Pull symptoms from the content collection
-const entries = await getCollection("symptoms");
+// Pull tree shifts and treat them as symptoms
+const entries = await getCollection("tree-shifts");
 const symptoms = entries
-  .map((e) => ({ id: e.id, ...e.data }))
+  .map((e) => ({ slug: e.slug, ...e.data }))
   .sort((a, b) => a.fruit.localeCompare(b.fruit));
 ---
 
@@ -50,7 +50,7 @@ const symptoms = entries
             fruit={it.fruit}
             blurb={it.blurb}
             tags={it.tags}
-            href={it.systemHref}
+            href={`/tree-shifts/${it.slug}`}
             pillLabel={it.systemLabel}
           />
         </li>
