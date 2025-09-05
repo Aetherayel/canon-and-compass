@@ -8,20 +8,16 @@ import TwinklingStars from "@components/TwinklingStars.astro"
 import MeteorShower from "@components/MeteorShower.astro"
 
 const posts = (await getCollection("tree"))
-  .filter(post => !post.data.draft)
   .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
   .slice(0,3)
 
 const canonNotes = (await getCollection("canon_notes"))
-  .filter(note => !note.data.draft)
   .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
 
 const compassPoints = (await getCollection("compass_points"))
-  .filter(point => !point.data.draft)
   .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
 
 const pillars = (await getCollection("pillars"))
-  .filter(pillar => !pillar.data.draft)
   .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
 
 const foundations = [...canonNotes, ...compassPoints, ...pillars]
@@ -105,7 +101,7 @@ const stack = [
           <div id="ctaButtons" class='animated flex flex-wrap gap-4 justify-center mt-5'>
             
             <a href='/symptoms' class='py-2 px-4 rounded truncate text-xs md:text-sm lg:text-base bg-black dark:bg-white text-white dark:text-black hover:opacity-75 blend'>
-              Start with a symptom
+              Start with a Symptom
             </a>
             <a href='/tree' class='py-2 px-4 truncate rounded text-xs md:text-sm lg:text-base border border-black/25 dark:border-white/25 hover:bg-black/5 hover:dark:bg-white/15 blend'>
               View the Trees
@@ -130,6 +126,149 @@ const stack = [
           <p>It’s not about louder rules or heavier burdens — it’s about seeing the world clearly, walking humbly, and growing the kind of fruit you were made for.</p>
           </article>
       </section>
+
+      <!-- How It Works Section -->
+      <section class="py-16 bg-stone-50 dark:bg-zinc-900">
+  <div class="mx-auto max-w-3xl px-6 text-center">
+    <h2 class="text-2xl font-serif font-bold text-ink dark:text-white">From Symptoms to Foundations</h2>
+    <p class="mt-3 text-sm text-zinc-600 dark:text-zinc-400">
+      Start with what you notice, trace it back to the root, re-root in truth, then keep growing with simple practices.
+    </p>
+
+    <div class="mt-10 space-y-8 text-left">
+<!-- 1 & 2) Fruit + Counterfeit Tree -->
+<div class="p-5 bg-white dark:bg-zinc-800 rounded-xl shadow-sm">
+  <h3 class="font-semibold text-ink dark:text-white">1) Symptom</h3>
+  <p class="mt-2 text-sm text-zinc-600 dark:text-zinc-400">
+    <strong>What it is:</strong> Start with the visible outcomes in your life and trace them down to the habits, patterns, beliefs, and lies
+   that keep producing them.
+  </p>
+
+  <!-- Optional dropdown with example -->
+  <details class="group mt-3">
+    <summary class="flex cursor-pointer items-center gap-2 rounded-md px-2 py-2 text-sm text-zinc-700 dark:text-zinc-300 hover:bg-stone-100 dark:hover:bg-zinc-700">
+      <svg class="h-4 w-4 text-zinc-500 transition-transform group-open:rotate-90" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+      </svg>
+      Example: Envy → Counterfeit Tree of Comparison
+    </summary>
+    <div class="mt-2 pl-6 space-y-3 text-sm text-zinc-700 dark:text-zinc-300">
+      <div>
+        <strong>Fruit (visible outcomes):</strong>
+        <div class="ml-5 mt-1 text-zinc-600 dark:text-zinc-400">
+          Bitterness, insecurity, strained relationships, restlessness.
+        </div>
+      </div>
+      <div>
+        <strong>Leaves (habits):</strong>
+        <div class="ml-5 mt-1 text-zinc-600 dark:text-zinc-400">
+          Scrolling with bitterness, withholding celebration.
+        </div>
+      </div>
+      <div>
+        <strong>Branches (patterns):</strong>
+        <div class="ml-5 mt-1 text-zinc-600 dark:text-zinc-400">
+          Resentment, competition, self-pity.
+        </div>
+      </div>
+      <div>
+        <strong>Trunk (operating belief):</strong>
+        <div class="ml-5 mt-1 text-zinc-600 dark:text-zinc-400">
+          “Comparison is how I measure my worth.”
+        </div>
+      </div>
+      <div>
+        <strong>Root (core lie):</strong>
+        <div class="ml-5 mt-1 text-zinc-600 dark:text-zinc-400">
+          “God’s goodness is limited — if they win, I lose.”
+        </div>
+      </div>
+    </div>
+  </details>
+
+        <a href="//symptoms" class="mt-4 inline-block rounded-lg border border-stone-300 px-4 py-2 text-sm font-semibold text-ink hover:bg-stone-100 dark:hover:bg-zinc-700">
+          Start with a Symptom
+        </a>
+</div>
+
+      <!-- 3) True Tree -->
+      <div class="p-5 bg-white dark:bg-zinc-800 rounded-xl shadow-sm">
+        <h3 class="font-semibold text-ink dark:text-white">2) Truth Tree</h3>
+        <p class="mt-2 text-sm text-zinc-600 dark:text-zinc-400">
+          <strong>What it is:</strong> the gospel-shaped system that replaces the lie—new root (truth), new trunk (foundation), new branches (practices), new fruit (outcomes).
+        </p>
+
+        <details class="group mt-3">
+          <summary class="flex cursor-pointer items-center gap-2 rounded-md px-2 py-2 text-sm text-zinc-700 dark:text-zinc-300 hover:bg-stone-100 dark:hover:bg-zinc-700">
+            <svg class="h-4 w-4 text-zinc-500 transition-transform group-open:rotate-90" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+            </svg>
+            Example: Gratitude-Based Identity
+          </summary>
+          <div class="mt-2 pl-6 space-y-3 text-sm text-zinc-700 dark:text-zinc-300">
+            <div>
+              <strong>Root (truth):</strong> God’s goodness is abundant.
+            </div>
+            <div>
+              <strong>Trunk (foundation):</strong> Trust in His provision, not comparison.
+            </div>
+            <div>
+              <strong>Branches (practices):</strong> celebration, contentment, generosity.
+            </div>
+            <div>
+              <strong>Fruit (outcomes):</strong> joy, peace, relational freedom.
+            </div>
+          </div>
+        </details>
+
+        <a href="/trees" class="mt-4 inline-block rounded-lg border border-stone-300 px-4 py-2 text-sm font-semibold text-ink hover:bg-stone-100 dark:hover:bg-zinc-700">
+          Browse Truth Trees
+        </a>
+      </div>
+
+<!-- 4) Foundations -->
+<div class="p-5 bg-white dark:bg-zinc-800 rounded-xl shadow-sm">
+  <h3 class="font-semibold text-ink dark:text-white">3) Foundations</h3>
+  <p class="mt-2 text-sm text-zinc-600 dark:text-zinc-400">
+    <strong>What it is:</strong> three streams that stabilize growth—devotional, cultural, and theological.
+  </p>
+
+  <!-- Neutral button-style CTAs -->
+  <div class="mt-6 flex flex-col gap-3 sm:flex-row sm:justify-around text-center">
+    <a
+      href="/foundations/canon-notes"
+      class="inline-block rounded-lg border border-stone-300 bg-white px-5 py-3 text-sm font-semibold text-ink shadow-sm hover:bg-stone-100 dark:bg-zinc-800 dark:border-zinc-600 dark:text-white dark:hover:bg-zinc-700"
+    >
+      Canon Notes<br />
+      <span class="text-xs font-normal text-zinc-500 dark:text-zinc-400">
+        Devotionals with Scripture + practice
+      </span>
+    </a>
+    <a
+      href="/foundations/compass-points"
+      class="inline-block rounded-lg border border-stone-300 bg-white px-5 py-3 text-sm font-semibold text-ink shadow-sm hover:bg-stone-100 dark:bg-zinc-800 dark:border-zinc-600 dark:text-white dark:hover:bg-zinc-700"
+    >
+      Compass Points<br />
+      <span class="text-xs font-normal text-zinc-500 dark:text-zinc-400">
+        Cultural commentary with counter-steps
+      </span>
+    </a>
+    <a
+      href="/foundations/pillars"
+      class="inline-block rounded-lg border border-stone-300 bg-white px-5 py-3 text-sm font-semibold text-ink shadow-sm hover:bg-stone-100 dark:bg-zinc-800 dark:border-zinc-600 dark:text-white dark:hover:bg-zinc-700"
+    >
+      Pillars<br />
+      <span class="text-xs font-normal text-zinc-500 dark:text-zinc-400">
+        Longform theology + worldview essays
+      </span>
+    </a>
+  </div>
+</div>
+    </div>
+  </div>
+</section>
+
+
 
       <!-- Tree Preview Section -->
       <section class="animate">
