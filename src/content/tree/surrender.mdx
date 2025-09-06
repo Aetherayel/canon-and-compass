@@ -6,7 +6,7 @@ tags: [Surrender, Trust, Peace]
 pathwayId: control-surrender
 ---
 
-import CTA from '../../components/CTA.astro'
+import PathwayCTAs from '../../components/PathwayCTAs.astro'
 import Scripture from '../../components/Scripture.astro'
 import TreeCallout from '../../components/TreeCallout.astro'
 
@@ -58,24 +58,4 @@ Surrender is not giving up — it is handing over. It is living as though God’
 ---
 
 ## Foundations: Keep Growing
-
-<CTA
-  variant="canon"
-  title="Canon Note: Letting Go in Prayer"
-  href="/canon_notes/letting-go-in-prayer"
-  buttonText="Read Canon Note"
-/>
-
-<CTA
-  variant="compass"
-  title="Compass Point: The Illusion of Safety"
-  href="/compass_points/illusion-of-safety"
-  buttonText="Read Compass Point"
-/>
-
-<CTA
-  variant="pillar"
-  title="Pillar: The Idol of Control"
-  href="/pillars/idol-of-control"
-  buttonText="Read Pillar"
-/>
+<PathwayCTAs id={frontmatter.pathwayId} />

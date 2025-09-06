@@ -1,0 +1,28 @@
+{
+  "label": "Cynicism ↔ Hope Based Identity",
+  "tree": {
+    "title": "Hope Based Identity",
+    "slug": "hope",
+    "href": "/tree/hope"
+  },
+  "shift": {
+    "title": "Cynicism",
+    "slug": "cynicism",
+    "href": "/tree-shifts/cynicism"
+  },
+  "canonNote": {
+    "title": "Hope that Does Not Disappoint",
+    "slug": "hope-that-does-not-disappoint",
+    "href": "/canon_notes/hope-that-does-not-disappoint"
+  },
+  "compassPoint": {
+    "title": "The Age of Irony",
+    "slug": "age-of-irony",
+    "href": "/compass_points/age-of-irony"
+  },
+  "pillar": {
+    "title": "The Theology of Hope",
+    "slug": "theology-of-hope",
+    "href": "/pillars/theology-of-hope"
+  }
+}

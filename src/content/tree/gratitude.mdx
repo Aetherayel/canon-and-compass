@@ -6,9 +6,10 @@ tags:
 - Gratitude
 - Abundance
 - Envy
+pathwayId: envy-gratitude
 ---
 
-import CTA from '../../components/CTA.astro'
+import PathwayCTAs from '../../components/PathwayCTAs.astro'
 import Scripture from '../../components/Scripture.astro'
 import TreeCallout from '../../components/TreeCallout.astro'
 
@@ -53,23 +54,4 @@ Gratitude reopens it to abundance.
 ---
 
 ## Foundations: Keep Growing
-<CTA
-  variant="canon"
-  title="Canon Note: Gratitude Is Abundance Remembered"
-  href="/foundations/canon-notes/gratitude-is-abundance"
-  buttonText="Read Canon Note"
-/>
-
-<CTA
-  variant="compass"
-  title="Compass Point: The Comparison Trap in a Social Media Age"
-  href="/foundations/compass-points/comparison-trap"
-  buttonText="Read Compass Point"
-/>
-
-<CTA
-  variant="pillar"
-  title="Pillar: The Theology of Enough"
-  href="/foundations/pillars/theology-of-enough"
-  buttonText="Read Pillar"
-/>
+<PathwayCTAs id={frontmatter.pathwayId} />

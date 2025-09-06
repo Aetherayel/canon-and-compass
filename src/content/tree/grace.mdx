@@ -6,9 +6,10 @@ tags:
   - Grace
   - Rest
   - Burnout
+pathwayId: burnout_grace
 ---
 
-import CTA from '../../components/CTA.astro'
+import PathwayCTAs from '../../components/PathwayCTAs.astro'
 import Scripture from '../../components/Scripture.astro'
 import TreeCallout from '../../components/TreeCallout.astro'
 
@@ -54,21 +55,4 @@ Grace tells you that worth is given.
 ---
 
 ## Foundations: Keep Growing
-  <CTA
-    variant="canon"
-    title="Canon Note: Rest That Can’t Be Earned"
-    href="/canon_notes/rest-that-cant-be-earned"
-    buttonText="Read Canon Note"
-  />
-  <CTA
-    variant="compass"
-    title="Compass Point: Hustle Culture Is a Prosperity Gospel for Atheists"
-    href="/compass_points/hustle-culture-prosperity"
-    buttonText="Read Compass Point"
-  />
-  <CTA
-    variant="pillar"
-    title="Pillar: The Roots of Performance"
-    href="/pillars/roots-of-performance"
-    buttonText="Read Pillar"
-  />
+<PathwayCTAs id={frontmatter.pathwayId} />

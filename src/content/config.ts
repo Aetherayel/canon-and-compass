@@ -7,6 +7,7 @@ const tree = defineCollection({
     summary: z.string(),
     date: z.coerce.date(),
     tags: z.array(z.string()),
+    pathwayId: z.string().optional(),
     prevHref: z.string().optional(),
     prevLabel: z.string().optional(),
     nextHref: z.string().optional(),

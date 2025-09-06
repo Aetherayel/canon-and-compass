@@ -6,9 +6,10 @@ tags:
 - Emotions
 - Identity
 - Spirit
+pathwayId: emotional-reactivity_spirit-led-identity
 ---
 
-import CTA from '../../components/CTA.astro'
+import PathwayCTAs from '../../components/PathwayCTAs.astro'
 import Scripture from '../../components/Scripture.astro'
 import TreeCallout from '../../components/TreeCallout.astro'
 
@@ -66,23 +67,4 @@ They are signals, not definitions. The Spirit leads us to name them, but not be 
 ---
 
 ## Foundations: Keep Growing
-<CTA
-  variant="canon"
-  title="Canon Note: Emotions Are Messengers, Not Masters"
-  href="/canon_notes/emotions-messengers"
-  buttonText="Read Canon Note"
-/>
-
-<CTA
-  variant="compass"
-  title="Compass Point: The Cult of Authenticity"
-  href="/compass_points/cult-of-authenticity"
-  buttonText="Read Compass Point"
-/>
-
-<CTA
-  variant="pillar"
-  title="Pillar: The Self Beyond Feeling"
-  href="/pillars/self-beyond-feeling"
-  buttonText="Read Pillar"
-/>
+<PathwayCTAs id={frontmatter.pathwayId} />

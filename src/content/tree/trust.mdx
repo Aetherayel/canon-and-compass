@@ -6,7 +6,7 @@ tags: [Trust, Peace, Anxiety]
 pathwayId: anxiety-trust
 ---
 
-import CTA from '../../components/CTA.astro'
+import PathwayCTAs from '../../components/PathwayCTAs.astro'
 import Scripture from '../../components/Scripture.astro'
 import TreeCallout from '../../components/TreeCallout.astro'
 
@@ -59,24 +59,4 @@ When your root is God’s faithfulness, not your vigilance, the fruit is peace.
 ---
 
 ## Foundations: Keep Growing
-
-<CTA
-  variant="canon"
-  title="Canon Note: Casting Cares Daily"
-  href="/canon_notes/casting-cares-daily"
-  buttonText="Read Canon Note"
-/>
-
-<CTA
-  variant="compass"
-  title="Compass Point: The Anxiety Economy"
-  href="/compass_points/anxiety-economy"
-  buttonText="Read Compass Point"
-/>
-
-<CTA
-  variant="pillar"
-  title="Pillar: The Sovereignty of Peace"
-  href="/pillars/sovereignty-of-peace"
-  buttonText="Read Pillar"
-/>
+<PathwayCTAs id={frontmatter.pathwayId} />

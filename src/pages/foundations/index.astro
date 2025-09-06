@@ -1,8 +1,26 @@
 ---
+import { getCollection } from "astro:content";
 import PageLayout from "@layouts/PageLayout.astro";
 import TopLayout from "@layouts/TopLayout.astro";
 import BottomLayout from "@layouts/BottomLayout.astro";
+import StackCard from "@components/StackCard.astro";
 import { FOUNDATIONS, CANONNOTES, COMPASSPOINTS, PILLARS } from "@consts";
+
+const canonNotes = (await getCollection("canon_notes")).sort(
+  (a, b) => b.data.date.getTime() - a.data.date.getTime(),
+);
+
+const compassPoints = (await getCollection("compass_points")).sort(
+  (a, b) => b.data.date.getTime() - a.data.date.getTime(),
+);
+
+const pillars = (await getCollection("pillars")).sort(
+  (a, b) => b.data.date.getTime() - a.data.date.getTime(),
+);
+
+const recentFoundations = [...canonNotes, ...compassPoints, ...pillars]
+  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
+  .slice(0, 6);
 ---
 
 <PageLayout title={FOUNDATIONS.TITLE} description={FOUNDATIONS.DESCRIPTION}>
@@ -127,5 +145,32 @@ import { FOUNDATIONS, CANONNOTES, COMPASSPOINTS, PILLARS } from "@consts";
         </svg>
       </a>
     </div>
+
+    <!-- Recent Foundations -->
+    {recentFoundations.length > 0 && (
+      <section class="animate mt-10">
+        <div class="space-y-4">
+          <div class="flex justify-between">
+            <p class="font-semibold text-black dark:text-white">
+              Recent Foundations
+            </p>
+          </div>
+          <ul class="space-y-4">
+            {recentFoundations.map((foundation) => (
+              <li>
+                <StackCard
+                  title={foundation.data.title}
+                  summary={foundation.data.summary}
+                  href={`/${foundation.collection}/${foundation.slug}`}
+                  collection={foundation.collection}
+                  date={foundation.data.date}
+                  tags={foundation.data.tags}
+                />
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+    )}
   </BottomLayout>
 </PageLayout>

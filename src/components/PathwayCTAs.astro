@@ -1,0 +1,85 @@
+---
+import CTA from './CTA.astro';
+import { getCollection } from 'astro:content';
+
+export interface Props {
+  id?: string; // pathway id (e.g., cynicism_hope)
+  showCanonNote?: boolean;
+  showCompassPoint?: boolean;
+  showPillar?: boolean;
+}
+
+const {
+  id,
+  showCanonNote = true,
+  showCompassPoint = true,
+  showPillar = true,
+} = Astro.props as Props;
+
+const pathways = await getCollection('pathways');
+
+let entry = id ? pathways.find((p) => p.id === id) : undefined;
+
+// Fallback: infer by current URL matching tree href or slug
+if (!entry) {
+  try {
+    const path = Astro.url?.pathname ?? '';
+    const normalized = path.endsWith('/') ? path : path + '/';
+    entry = pathways.find((x) => {
+      const data: any = x.data;
+      const href = data?.tree?.href ?? (data?.tree?.slug ? `/tree/${data.tree.slug}` : undefined);
+      const normalizedHref = href ? (href.endsWith('/') ? href : href + '/') : undefined;
+      return normalizedHref === normalized;
+    });
+  } catch {}
+}
+
+const data: any = entry?.data ?? {};
+
+function hrefOr(base: string, item: any) {
+  if (!item) return undefined;
+  if (item.href) return item.href;
+  if (item.slug) return `${base}/${item.slug}`;
+  return undefined;
+}
+
+const canon = data?.canonNote;
+const compass = data?.compassPoint;
+const pillar = data?.pillar;
+---
+
+{entry ? (
+  <div class="mt-4 flex flex-col gap-3">
+    {showCanonNote && canon && (
+      <CTA
+        variant="canon"
+        title={`Canon Note: ${canon.title ?? (canon.slug ? canon.slug.replace(/-/g, ' ') : 'Canon Note')}`}
+        href={hrefOr('/canon_notes', canon) ?? '#'}
+        buttonText="Read Canon Note"
+      />
+    )}
+
+    {showCompassPoint && compass && (
+      <CTA
+        variant="compass"
+        title={`Compass Point: ${compass.title ?? (compass.slug ? compass.slug.replace(/-/g, ' ') : 'Compass Point')}`}
+        href={hrefOr('/compass_points', compass) ?? '#'}
+        buttonText="Read Compass Point"
+      />
+    )}
+
+    {showPillar && pillar && (
+      <CTA
+        variant="pillar"
+        title={`Pillar: ${pillar.title ?? (pillar.slug ? pillar.slug.replace(/-/g, ' ') : 'Pillar')}`}
+        href={hrefOr('/pillars', pillar) ?? '#'}
+        buttonText="Read Pillar"
+      />
+    )}
+  </div>
+) : (
+  <div class="mt-4">
+    <p class="text-xs text-amber-600 dark:text-amber-400">Pathway not found. Provide an id prop or add pathwayId to front matter.</p>
+  </div>
+)}
+
