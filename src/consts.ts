@@ -58,13 +58,13 @@ export const PILLARS: Page = {
 // The Clearing Page
 export const CLEARING: Page = {
   TITLE: "The Clearing",
-  DESCRIPTION: "A shared space gathering Trees and Pillars for integrated exploration.",
+  DESCRIPTION: "Reflections outside of the Tree Pathways. A quiet space for slow truth, open questions, and reorientation.",
 }
 
 // Search Page
 export const SEARCH: Page = {
   TITLE: "Search",
-  DESCRIPTION: "Search trees, The Clearing, canon notes, compass points, and pillars by keyword.",
+  DESCRIPTION: "Search content by keyword.",
 }
 
 // Links
