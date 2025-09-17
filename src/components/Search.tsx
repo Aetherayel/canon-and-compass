@@ -6,6 +6,7 @@ import SearchBar from "@components/SearchBar"
 
 type Entry =
   | CollectionEntry<"tree">
+  | CollectionEntry<"the-clearing">
   | CollectionEntry<"canon_notes">
   | CollectionEntry<"foundations-of-discernment">
   | CollectionEntry<"compass_points">

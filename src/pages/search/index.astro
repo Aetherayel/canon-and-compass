@@ -8,6 +8,10 @@ import { SEARCH } from "@consts";
 
 const posts = (await getCollection("tree")).filter((post) => !post.data.draft);
 
+const clearing = (await getCollection("the-clearing")).filter(
+  (entry) => !entry.data.draft,
+);
+
 const canonNotes = (await getCollection("canon_notes")).filter(
   (post) => !post.data.draft,
 );
@@ -24,8 +28,9 @@ const pillars = (await getCollection("pillars")).filter(
   (post) => !post.data.draft,
 );
 
-const data = [...posts, ...canonNotes, ...foundations, ...compassPoints, ...pillars] as CollectionEntry<
+const data = [...posts, ...clearing, ...canonNotes, ...foundations, ...compassPoints, ...pillars] as CollectionEntry<
   | "tree"
+  | "the-clearing"
   | "canon_notes"
   | "foundations-of-discernment"
   | "compass_points"

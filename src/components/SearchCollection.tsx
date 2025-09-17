@@ -10,6 +10,7 @@ type Props = {
   tags: string[]
   data: (
     | CollectionEntry<'tree'>
+    | CollectionEntry<'the-clearing'>
     | CollectionEntry<'canon_notes'>
     | CollectionEntry<'compass_points'>
     | CollectionEntry<'pillars'>

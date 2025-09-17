@@ -55,10 +55,16 @@ export const PILLARS: Page = {
   DESCRIPTION: "Longform essays digging into the philosophical and theological truth of Scripture.",
 }
 
+// The Clearing Page
+export const CLEARING: Page = {
+  TITLE: "The Clearing",
+  DESCRIPTION: "A shared space gathering Trees and Pillars for integrated exploration.",
+}
+
 // Search Page
 export const SEARCH: Page = {
   TITLE: "Search",
-  DESCRIPTION: "Search all trees, canon notes, compass points, and pillars by keyword.",
+  DESCRIPTION: "Search trees, The Clearing, canon notes, compass points, and pillars by keyword.",
 }
 
 // Links
@@ -80,6 +86,26 @@ export const LINKS: Links = [
     HREF: "/foundations",
   },
 ]
+
+export const FOUNDATIONS_LINKS: Links = [
+  {
+    TEXT: "Canon Notes",
+    HREF: "/canon_notes",
+  },
+  {
+    TEXT: "Compass Points",
+    HREF: "/compass_points",
+  },
+  {
+    TEXT: "Pillars",
+    HREF: "/pillars",
+  },
+  {
+    TEXT: "The Clearing",
+    HREF: "/the-clearing",
+  },
+]
+
 
 // Socials
 export const SOCIALS: Socials = [

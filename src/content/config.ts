@@ -78,6 +78,21 @@ const pillars = defineCollection({
   }),
 })
 
+const theClearing = defineCollection({
+  type: "content",
+  schema: z.object({
+    title: z.string(),
+    summary: z.string(),
+    date: z.coerce.date(),
+    tags: z.array(z.string()),
+    pathwayId: z.string().optional(),
+    prevHref: z.string().optional(),
+    prevLabel: z.string().optional(),
+    nextHref: z.string().optional(),
+    nextLabel: z.string().optional(),
+  }),
+})
+
 const treeShifts = defineCollection({
   type: "content",
   schema: z.object({
@@ -165,6 +180,7 @@ export const collections = {
   canon_notes: canonNotes,
   compass_points: compassPoints,
   pillars,
+  'the-clearing': theClearing,
   "tree-shifts": treeShifts,
   "foundations-of-discernment": foundationsOfDiscernment,
   pathways,

@@ -3,6 +3,7 @@ import type { CollectionEntry } from "astro:content"
 
 type Entry =
   | CollectionEntry<"tree">
+  | CollectionEntry<"the-clearing">
   | CollectionEntry<"canon_notes">
   | CollectionEntry<"compass_points">
   | CollectionEntry<"pillars">

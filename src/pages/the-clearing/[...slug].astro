@@ -1,0 +1,33 @@
+---
+import { type CollectionEntry, getCollection } from "astro:content";
+import PageLayout from "@layouts/PageLayout.astro";
+import TopLayout from "@layouts/TopLayout.astro";
+import BottomLayout from "@layouts/BottomLayout.astro";
+import ArticleTopLayout from "@layouts/ArticleTopLayout.astro";
+import ArticleBottomLayout from "@layouts/ArticleBottomLayout.astro";
+
+export async function getStaticPaths() {
+  const entries = await getCollection("the-clearing");
+  return entries.map((entry) => ({
+    params: { slug: entry.slug },
+    props: entry,
+  }));
+}
+
+type Props = CollectionEntry<"the-clearing">;
+const clearing = Astro.props as Props;
+const { title, summary } = clearing.data;
+---
+
+<PageLayout title={title} description={summary}>
+  <TopLayout>
+    <div class="animate">
+      <ArticleTopLayout entry={clearing} />
+    </div>
+  </TopLayout>
+  <BottomLayout>
+    <div class="animate">
+      <ArticleBottomLayout entry={clearing} />
+    </div>
+  </BottomLayout>
+</PageLayout>
