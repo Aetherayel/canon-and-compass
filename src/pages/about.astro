@@ -1,0 +1,127 @@
+---
+import PageLayout from "@layouts/PageLayout.astro"
+import Container from "@components/Container.astro"
+import { SITE } from "@consts"
+
+const pageTitle = "About"
+const pageDescription = "The story, convictions, and discipleship vision behind Canon & Compass."
+---
+
+<PageLayout title={pageTitle} description={pageDescription}>
+  <section class="bg-white dark:bg-black py-24 text-ink dark:text-white">
+    <Container size="md">
+      <div class="mx-auto max-w-3xl">
+        <p class="text-xs font-semibold uppercase tracking-[0.2em] text-zinc-500 dark:text-zinc-400">Our story</p>
+        <h1 class="mt-4 text-3xl md:text-4xl font-serif font-bold tracking-tight">About Canon & Compass</h1>
+        <p class="mt-6 text-base md:text-lg text-zinc-700 dark:text-zinc-300">
+          Most people feel something is off—but struggle to name what, or why.
+        </p>
+        <p class="mt-4 text-base text-zinc-700 dark:text-zinc-300">
+          Canon & Compass exists to help believers trace their lived experience back to the truth of Scripture. We believe discipleship should be both <em>beautiful</em> and <em>concrete</em>—not abstract theology or behavior management, but a whole-life formation grounded in God’s reality.
+        </p>
+        <p class="mt-4 text-base text-zinc-700 dark:text-zinc-300">
+          This project began from a simple desire: to pair theological depth with everyday clarity. To offer a map for people navigating tension, exhaustion, and uncertainty—not with shallow fixes, but with a way of seeing that reshapes how we walk through the world.
+        </p>
+        <p class="mt-4 text-base text-zinc-700 dark:text-zinc-300">
+          Every essay, pathway, and practice here is built around a core conviction: <strong>Faithfulness is not formulaic. But it is possible—when rooted in truth.</strong>
+        </p>
+      </div>
+    </Container>
+  </section>
+
+  <section class="bg-stone-50 dark:bg-zinc-900 py-20 text-ink dark:text-white">
+    <Container size="md">
+      <div class="mx-auto max-w-3xl">
+        <h2 class="text-2xl md:text-3xl font-serif font-bold tracking-tight">How we guide you</h2>
+        <ol class="mt-8 space-y-6 text-base text-zinc-700 dark:text-zinc-300">
+          <li class="flex gap-4">
+            <span class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-black text-white dark:bg-white dark:text-black font-semibold">1</span>
+            <div>
+              <h3 class="text-lg font-semibold text-ink dark:text-white">Start with what you feel</h3>
+              <p class="mt-1">
+                The Symptoms catalog helps you name the fruit you are noticing in daily life, from anxiety to numbness.
+              </p>
+            </div>
+          </li>
+          <li class="flex gap-4">
+            <span class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-black text-white dark:bg-white dark:text-black font-semibold">2</span>
+            <div>
+              <h3 class="text-lg font-semibold text-ink dark:text-white">Trace the roots</h3>
+              <p class="mt-1">
+                Truth Trees expose the counterfeit beliefs driving our habits while revealing the gospel alternative that leads to new fruit.
+              </p>
+            </div>
+          </li>
+          <li class="flex gap-4">
+            <span class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-black text-white dark:bg-white dark:text-black font-semibold">3</span>
+            <div>
+              <h3 class="text-lg font-semibold text-ink dark:text-white">Rebuild your foundations</h3>
+              <p class="mt-1">
+                Foundations' Canon Notes, Compass Points, and Pillars give you deeper theological and philosophical scaffolding for lasting change.
+              </p>
+            </div>
+          </li>
+          <li class="flex gap-4">
+            <span class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-black text-white dark:bg-white dark:text-black font-semibold">4</span>
+            <div>
+              <h3 class="text-lg font-semibold text-ink dark:text-white">Keep walking it out</h3>
+              <p class="mt-1">
+                Practices, liturgies, and guided reflections turn insight into a discipleship rhythm that can withstand the fog.
+              </p>
+            </div>
+          </li>
+        </ol>
+      </div>
+    </Container>
+  </section>
+
+  <section class="bg-white dark:bg-black py-20 text-ink dark:text-white">
+    <Container size="md">
+      <div class="mx-auto max-w-3xl space-y-6">
+        <h2 class="text-2xl md:text-3xl font-serif font-bold tracking-tight">What anchors our work</h2>
+        <ul class="space-y-4 text-base text-zinc-700 dark:text-zinc-300">
+          <li><strong class="text-ink dark:text-white">Scripture first:</strong> We are committed to orthodox, historic Christianity. Every pathway begins with the canon and submits to it.</li>
+          <li><strong class="text-ink dark:text-white">Whole-person formation:</strong> True change touches our imagination, intellect, relationships, and habits. We design resources that invite all of you.</li>
+          <li><strong class="text-ink dark:text-white">Presence in the present age:</strong> We engage modern questions without panic, trusting that Christ is Lord over every cultural moment.</li>
+          <li><strong class="text-ink dark:text-white">Hopeful realism:</strong> Naming pain and confusion honestly is not cynicism; it is the first step toward redemption.</li>
+        </ul>
+        <p class="text-base text-zinc-700 dark:text-zinc-300">
+          Canon & Compass is curated by {SITE.AUTHOR}, a long-time student of both theology and modern life, who built this space for those tired of shallow discipleship and exhausted by hollow cultural scripts. For now, it’s a solo endeavor—crafted slowly and intentionally—but with a view toward collaboration.
+        </p>
+      </div>
+    </Container>
+  </section>
+
+  <section class="bg-stone-50 dark:bg-zinc-900 py-20 text-ink dark:text-white">
+    <Container size="md">
+      <div class="mx-auto max-w-3xl space-y-6">
+        <h2 class="text-2xl md:text-3xl font-serif font-bold tracking-tight">What about The Clearing?</h2>
+        <p class="text-base text-zinc-700 dark:text-zinc-300">
+          Not every truth begins with a wound. Some begin with wonder.
+        </p>
+        <p class="text-base text-zinc-700 dark:text-zinc-300">
+          <strong>The Clearing</strong> is a space within <em>Foundations</em> for longer, worldview-shaping essays that don't always fit the path-from-symptom structure. These are theological reflections and cultural explorations written to stir deep recognition—not immediate application. They belong to the slow work of formation.
+        </p>
+        <p class="text-base text-zinc-700 dark:text-zinc-300">
+          Think of it as a quiet clearing in the woods—where the trees thin out, the light comes through, and you can see farther.
+        </p>
+      </div>
+    </Container>
+  </section>
+
+  <section class="bg-white dark:bg-black py-20 text-ink dark:text-white">
+    <Container size="md">
+      <div class="mx-auto max-w-3xl text-center space-y-6">
+        <h2 class="text-2xl md:text-3xl font-serif font-bold tracking-tight">Keep exploring</h2>
+        <p class="text-base text-zinc-700 dark:text-zinc-300">
+          Whether you are arriving weary, curious, or ready to disciple others, there is a pathway for you. Start with a symptom, walk a Truth Tree, or sit with the longform foundations that hold it all together.
+        </p>
+        <div class="flex flex-wrap justify-center gap-3">
+          <a href="/symptoms" class="rounded-full border border-black/15 dark:border-white/20 px-4 py-2 text-sm font-semibold hover:bg-black/5 dark:hover:bg-white/15 transition-colors duration-200 ease-in-out">Explore Symptoms</a>
+          <a href="/tree" class="rounded-full border border-black/15 dark:border-white/20 px-4 py-2 text-sm font-semibold hover:bg-black/5 dark:hover:bg-white/15 transition-colors duration-200 ease-in-out">Walk the Trees</a>
+          <a href="/foundations" class="rounded-full border border-black/15 dark:border-white/20 px-4 py-2 text-sm font-semibold hover:bg-black/5 dark:hover:bg-white/15 transition-colors duration-200 ease-in-out">Read Foundations</a>
+        </div>
+      </div>
+    </Container>
+  </section>
+</PageLayout>

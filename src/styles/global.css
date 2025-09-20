@@ -173,6 +173,23 @@ article img {
   @apply w-full aspect-square text-white opacity-70 hover:opacity-90;
 }
 
+@keyframes starPulse {
+  0%, 100% {
+    transform: scale(1) rotate(0deg);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.2) rotate(2deg);
+    opacity: 0.9;
+  }
+}
+
+.animate-star {
+  animation: starPulse 6s ease-in-out infinite;
+  transform-origin: center;
+  transition: all 0.3s ease-in-out;
+}
+
 /* Card transition */
 /* .fade-move-enter-active,
 .fade-move-exit-active {

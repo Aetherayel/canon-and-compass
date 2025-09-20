@@ -1,294 +1,440 @@
 ---
-import { getCollection } from "astro:content"
-import PageLayout from "@layouts/PageLayout.astro"
-import ArrowCard from "@components/ArrowCard"
-import StackCard from "@components/StackCard.astro"
-import { SITE, SOCIALS } from "@consts"
-import TwinklingStars from "@components/TwinklingStars.astro"
-import MeteorShower from "@components/MeteorShower.astro"
+import { getCollection } from "astro:content";
+import PageLayout from "@layouts/PageLayout.astro";
+import ArrowCard from "@components/ArrowCard";
+import StackCard from "@components/StackCard.astro";
+import { SITE, SOCIALS } from "@consts";
+import TwinklingStars from "@components/TwinklingStars.astro";
+import MeteorShower from "@components/MeteorShower.astro";
 
 const posts = (await getCollection("tree"))
   .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
-  .slice(0,3)
+  .slice(0, 3);
 
-const canonNotes = (await getCollection("canon_notes"))
-  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
+const canonNotes = (await getCollection("canon_notes")).sort(
+  (a, b) => b.data.date.getTime() - a.data.date.getTime(),
+);
 
-const compassPoints = (await getCollection("compass_points"))
-  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
+const compassPoints = (await getCollection("compass_points")).sort(
+  (a, b) => b.data.date.getTime() - a.data.date.getTime(),
+);
 
-const pillars = (await getCollection("pillars"))
-  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
+const pillars = (await getCollection("pillars")).sort(
+  (a, b) => b.data.date.getTime() - a.data.date.getTime(),
+);
 
 const foundations = [...canonNotes, ...compassPoints, ...pillars]
   .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
-  .slice(0,3)
+  .slice(0, 3);
 
 const stack = [
-  { 
-    text: "Astro", 
-    icon: "astro", 
-    href: "https://astro.build" 
+  {
+    text: "Astro",
+    icon: "astro",
+    href: "https://astro.build",
   },
-  { 
-    text: "Javascript", 
-    icon: "javascript", 
-    href: "https://www.javascript.com" 
+  {
+    text: "Javascript",
+    icon: "javascript",
+    href: "https://www.javascript.com",
   },
-  { 
-    text: "Typescript", 
-    icon: "typescript", 
-    href: "https://www.typescriptlang.org" 
+  {
+    text: "Typescript",
+    icon: "typescript",
+    href: "https://www.typescriptlang.org",
   },
-  { 
-    text: "Tailwind", 
-    icon: "tailwind", 
-    href: "https://tailwindcss.com" 
+  {
+    text: "Tailwind",
+    icon: "tailwind",
+    href: "https://tailwindcss.com",
   },
-]
+];
 ---
 
 <PageLayout title="Home" description={SITE.DESCRIPTION}>
-
   <!-- Light Mode: Particles -->
-  <div class='absolute inset-0 block dark:hidden'>
-    <div id='particles1' class='fixed inset-0'></div>
-    <div id='particles2' class='fixed inset-0'></div>
-    <div id='particles3' class='fixed inset-0'></div>
+  <div class="absolute inset-0 block dark:hidden">
+    <div id="particles1" class="fixed inset-0"></div>
+    <div id="particles2" class="fixed inset-0"></div>
+    <div id="particles3" class="fixed inset-0"></div>
   </div>
 
   <!-- Dark Theme: Stars -->
-  <div class='absolute inset-0 bg-black hidden dark:block'>
-    <div id='stars1' class='fixed inset-0'></div>
-    <div id='stars2' class='fixed inset-0'></div>
-    <div id='stars3' class='fixed inset-0'></div>
+  <div class="absolute inset-0 bg-black hidden dark:block">
+    <div id="stars1" class="fixed inset-0"></div>
+    <div id="stars2" class="fixed inset-0"></div>
+    <div id="stars3" class="fixed inset-0"></div>
   </div>
 
   <!-- Dark Theme: Twinkling Stars / Metors -->
   <div id="galaxy" class="fixed inset-0">
     <div class="hidden dark:block">
-      <TwinklingStars/>
-      <MeteorShower/>
+      <TwinklingStars />
+      <MeteorShower />
     </div>
   </div>
 
   <script is:inline src="/js/bg.js"></script>
-  
+
   <!-- HERO -->
   <section class="relative h-screen w-full">
-    <div id="planetcont" class='animate absolute inset-0 top-1/4 overflow-hidden'>
-      <div id="crescent" class='absolute top-0 left-1/2 -translate-x-1/2 w-[250vw] min-h-[100vh] aspect-square rounded-full p-[1px] bg-gradient-to-b from-black/25 dark:from-white/75 from-0% to-transparent to-5%'>
-        <div id="planet" class='w-full h-full bg-white dark:bg-black rounded-full p-[1px] overflow-hidden flex justify-center'>
-          <div id="blur" class='w-full h-20 rounded-full bg-neutral-900/25 dark:bg-white/25 blur-3xl'/>
-        </div>
-      </div>
+    <div
+      id="planetcont"
+      class="animate absolute inset-0 top-1/4 overflow-hidden"
+    >
+    <div>
+      <!-- SVG Mountain Footer -->
+<svg
+  class="absolute bottom-0 left-0 w-full h-[600px] md:h-[700px] lg:h-[800px] z-0 pointer-events-none"
+  viewBox="0 0 1440 800"
+  preserveAspectRatio="none"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <defs>
+    <!-- Glow gradients -->
+    <radialGradient id="peakGlowLight" cx="50%" cy="60%" r="70%">
+      <stop offset="0%" stop-color="#d4d4d4" stop-opacity="0.4" />
+      <stop offset="100%" stop-color="white" stop-opacity="0" />
+    </radialGradient>
+    <radialGradient id="peakGlowDark" cx="50%" cy="60%" r="70%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.08" />
+      <stop offset="100%" stop-color="#000000" stop-opacity="0" />
+    </radialGradient>
+
+    <!-- Peak fill gradients -->
+    <linearGradient id="peakFillLight" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#f4f4f4" />
+      <stop offset="100%" stop-color="#ffffff" />
+    </linearGradient>
+    <linearGradient id="peakFillDark" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#2b2b2b" />
+      <stop offset="100%" stop-color="#000000" />
+    </linearGradient>
+    <filter id="softGlow" x="-50%" y="-50%" width="200%" height="200%">
+  <feGaussianBlur stdDeviation="8" result="glow" />
+  <feMerge>
+    <feMergeNode in="glow" />
+    <feMergeNode in="glow" />
+    <feMergeNode in="glow" />
+  </feMerge>
+</filter>
+  </defs>
+
+  <!-- Glow behind -->
+  <rect width="100%" height="100%" fill="url(#peakGlowLight)" class="dark:hidden" />
+  <rect width="100%" height="100%" fill="url(#peakGlowDark)" class="hidden dark:block" />
+<!-- Glowing 4-point star -->
+<g class="pointer-events-none">
+  <g transform="translate(720,100)">
+    <polygon
+      points="0,-30 6,-6 30,0 6,6 0,30 -6,6 -30,0 -6,-6"
+      fill="white"
+      fill-opacity="0.9"
+      class="dark:fill-white"
+    />
+    <circle
+      cx="0"
+      cy="0"
+      r="40"
+      fill="white"
+      fill-opacity="0.06"
+      class="dark:fill-white dark:fill-opacity-10"
+      filter="url(#softGlow)"
+    />
+  </g>
+</g>
+  <!-- Peaks (with thicker stroke and no bottom line) -->
+  <path
+    d="M0,800
+       L360,250
+       L720,650
+       L1080,300
+       L1440,800"
+    fill="url(#peakFillLight)"
+    stroke="#ffffff"
+    stroke-width="4"
+    class="dark:fill-[url(#peakFillDark)] dark:stroke-zinc-800"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    fill-opacity="1"
+  />
+</svg>
     </div>
-    <div class="animate absolute h-full w-full flex items-center justify-center">
-      <div class='relative w-full h-full flex items-center justify-center'>
-        <div class='p-5 text-center'>
-          <p class='animated text-2xl md:text-3xl lg:text-4xl font-bold text-black dark:text-white'>
+    <div
+      class="animate absolute h-full w-full flex items-center justify-center"
+    >
+      <div class="relative w-full h-full flex items-center justify-center">
+        <div class="p-5 text-center">
+          <p
+            class="animated text-2xl md:text-3xl lg:text-4xl font-bold text-black dark:text-white"
+          >
             You feel the fog.
           </p>
-          <p class='animated text-2xl md:text-3xl lg:text-4xl font-bold text-black dark:text-white'>
+          <p
+            class="animated text-2xl md:text-3xl lg:text-4xl font-bold text-black dark:text-white"
+          >
             We help you trace what's true.
           </p>
-          <p class='animated text-sm md:text-xl lg:text-xl opacity-75'>
+          <p class="animated text-sm md:text-xl lg:text-xl opacity-75">
             There's a reason things feel off.
           </p>
-          <p class='animated text-sm md:text-xl md:text-xl opacity-75'>
-            We help you start where you are—by tracing what you’re feeling to what’s underneath.
+          <p class="animated text-sm md:text-xl md:text-xl opacity-75">
+            We help you start where you are—by tracing what you’re feeling to
+            what’s underneath.
           </p>
-          <div id="ctaButtons" class='animated flex flex-wrap gap-4 justify-center mt-5'>
-            
-            <a href='/symptoms' class='py-2 px-4 rounded truncate text-xs md:text-sm lg:text-base bg-black dark:bg-white text-white dark:text-black hover:opacity-75 blend'>
+          <div
+            id="ctaButtons"
+            class="animated flex flex-wrap gap-4 justify-center mt-5"
+          >
+            <a
+              href="/symptoms"
+              class="py-2 px-4 rounded truncate text-xs md:text-sm lg:text-base bg-black dark:bg-white text-white dark:text-black hover:opacity-75 blend"
+            >
               Start with a Symptom
             </a>
-            <a href='/tree' class='py-2 px-4 truncate rounded text-xs md:text-sm lg:text-base border border-black/25 dark:border-white/25 hover:bg-black/5 hover:dark:bg-white/15 blend'>
+            <a
+              href="/tree"
+              class="py-2 px-4 truncate rounded text-xs md:text-sm lg:text-base border border-black/25 dark:border-white/25 hover:bg-black/5 hover:dark:bg-white/15 blend"
+            >
               View the Trees
             </a>
-            <a href='/foundations' class='py-2 px-4 truncate rounded text-xs md:text-sm lg:text-base border border-black/25 dark:border-white/25 hover:bg-black/5 hover:dark:bg-white/15 blend'>
+            <a
+              href="/foundations"
+              class="py-2 px-4 truncate rounded text-xs md:text-sm lg:text-base border border-black/25 dark:border-white/25 hover:bg-black/5 hover:dark:bg-white/15 blend"
+            >
               Explore the Foundations
             </a>
           </div>
-        </div>
-      </div>
-    </div>
+
   </section>
 
   <div class="relative bg-white dark:bg-black">
     <div class="mx-auto max-w-screen-sm p-5 space-y-24 pb-16">
-
       <!-- About Section -->
       <section class="animate">
         <article>
-          <p><b><i>Canon & Compass</i></b> helps you trace the fruit you see in your life back to the root beliefs that shape it — and then re-root in truth.</p>
-          <p>Through Truth Trees and Foundations, we connect the timeless order of Scripture with the real tensions of modern life, showing how faith and reason work together to orient your steps.</p>
-          <p>It’s not about louder rules or heavier burdens — it’s about seeing the world clearly, walking humbly, and growing the kind of fruit you were made for.</p>
-          </article>
+          <p>
+            <b><i>Canon & Compass</i></b> helps you trace the fruit you see in your
+            life back to the root beliefs shaping it — and then re-root in truth.
+          </p>
+          <p>
+            Through <b>Truth Trees</b>, <b>Foundations</b>, and practices for
+            formation, we connect the timeless wisdom of Scripture to the real
+            tensions of modern life, showing how faith and reason work together
+            to orient your steps.
+          </p>
+          <p>
+            This isn’t about louder rules or heavier burdens. It’s about seeing
+            clearly, walking humbly, and growing the kind of fruit you were made
+            for — from the inside out.
+          </p>
+        </article>
       </section>
 
       <!-- How It Works Section -->
       <section class="py-16 bg-stone-50 dark:bg-zinc-900">
-  <div class="mx-auto max-w-3xl px-6 text-center">
-    <h2 class="text-2xl font-serif font-bold text-ink dark:text-white">From Symptoms to Foundations</h2>
-    <p class="mt-3 text-sm text-zinc-600 dark:text-zinc-400">
-      Start with what you notice, trace it back to the root, re-root in truth, then keep growing with simple practices.
-    </p>
+        <div class="mx-auto max-w-3xl px-6 text-center">
+          <h2 class="text-2xl font-serif font-bold text-ink dark:text-white">
+            From Symptoms to Foundations
+          </h2>
+          <p class="mt-3 text-sm text-zinc-600 dark:text-zinc-400">
+            Begin with what you notice. Trace it to the root. Re-root in truth.
+            Then keep growing with practices that train both your habits and
+            your heart.
+          </p>
 
-    <div class="mt-10 space-y-8 text-left">
-<!-- 1 & 2) Fruit + Counterfeit Tree -->
-<div class="p-5 bg-white dark:bg-zinc-800 rounded-xl shadow-sm">
-  <h3 class="font-semibold text-ink dark:text-white">1) Symptom</h3>
-  <p class="mt-2 text-sm text-zinc-600 dark:text-zinc-400">
-    <strong>What it is:</strong> Start with the visible outcomes in your life and trace them down to the habits, patterns, beliefs, and lies
-   that keep producing them.
-  </p>
+          <div class="mt-10 space-y-8 text-left">
+            <!-- 1) Symptom -->
+            <div class="p-5 bg-white dark:bg-zinc-800 rounded-xl shadow-sm">
+              <h3 class="font-semibold text-ink dark:text-white">1) Symptom</h3>
+              <p class="mt-2 text-sm text-zinc-600 dark:text-zinc-400">
+                <strong>What it is:</strong> Start with the visible “fruit” in your
+                life — from envy to anxiety — and trace it down through habits, patterns,
+                beliefs, and the core lie that sustains them.
+              </p>
 
-  <!-- Optional dropdown with example -->
-  <details class="group mt-3">
-    <summary class="flex cursor-pointer items-center gap-2 rounded-md px-2 py-2 text-sm text-zinc-700 dark:text-zinc-300 hover:bg-stone-100 dark:hover:bg-zinc-700">
-      <svg class="h-4 w-4 text-zinc-500 transition-transform group-open:rotate-90" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
-      </svg>
-      Example: Envy → Counterfeit Tree of Comparison
-    </summary>
-    <div class="mt-2 pl-6 space-y-3 text-sm text-zinc-700 dark:text-zinc-300">
-      <div>
-        <strong>Fruit (visible outcomes):</strong>
-        <div class="ml-5 mt-1 text-zinc-600 dark:text-zinc-400">
-          Bitterness, insecurity, strained relationships, restlessness.
-        </div>
-      </div>
-      <div>
-        <strong>Leaves (habits):</strong>
-        <div class="ml-5 mt-1 text-zinc-600 dark:text-zinc-400">
-          Scrolling with bitterness, withholding celebration.
-        </div>
-      </div>
-      <div>
-        <strong>Branches (patterns):</strong>
-        <div class="ml-5 mt-1 text-zinc-600 dark:text-zinc-400">
-          Resentment, competition, self-pity.
-        </div>
-      </div>
-      <div>
-        <strong>Trunk (operating belief):</strong>
-        <div class="ml-5 mt-1 text-zinc-600 dark:text-zinc-400">
-          “Comparison is how I measure my worth.”
-        </div>
-      </div>
-      <div>
-        <strong>Root (core lie):</strong>
-        <div class="ml-5 mt-1 text-zinc-600 dark:text-zinc-400">
-          “God’s goodness is limited — if they win, I lose.”
-        </div>
-      </div>
-    </div>
-  </details>
+              <details class="group mt-3">
+                <summary
+                  class="flex cursor-pointer items-center gap-2 rounded-md px-2 py-2 text-sm text-zinc-700 dark:text-zinc-300 hover:bg-stone-100 dark:hover:bg-zinc-700"
+                >
+                  <svg
+                    class="h-4 w-4 text-zinc-500 transition-transform group-open:rotate-90"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M9 5l7 7-7 7"></path>
+                  </svg>
+                  Example: Envy → The Tree of Comparison
+                </summary>
+                <div
+                  class="mt-2 pl-6 space-y-3 text-sm text-zinc-700 dark:text-zinc-300"
+                >
+                  <div>
+                    <strong>Fruit (visible outcomes):</strong> Bitterness, insecurity,
+                    restlessness.
+                  </div>
+                  <div>
+                    <strong>Leaves (habits):</strong> Withholding celebration, passive
+                    scrolling.
+                  </div>
+                  <div>
+                    <strong>Branches (patterns):</strong> Resentment, comparison,
+                    self-pity.
+                  </div>
+                  <div>
+                    <strong>Trunk (core belief):</strong> “Comparison is how I measure
+                    worth.”
+                  </div>
+                  <div>
+                    <strong>Root (core lie):</strong> “God’s goodness is limited
+                    — if they win, I lose.”
+                  </div>
+                </div>
+              </details>
 
-        <a href="//symptoms" class="mt-4 inline-block rounded-lg border border-stone-300 px-4 py-2 text-sm font-semibold text-ink hover:bg-stone-100 dark:hover:bg-zinc-700">
-          Start with a Symptom
-        </a>
-</div>
-
-      <!-- 3) True Tree -->
-      <div class="p-5 bg-white dark:bg-zinc-800 rounded-xl shadow-sm">
-        <h3 class="font-semibold text-ink dark:text-white">2) Truth Tree</h3>
-        <p class="mt-2 text-sm text-zinc-600 dark:text-zinc-400">
-          <strong>What it is:</strong> the gospel-shaped system that replaces the lie—new root (truth), new trunk (foundation), new branches (practices), new fruit (outcomes).
-        </p>
-
-        <details class="group mt-3">
-          <summary class="flex cursor-pointer items-center gap-2 rounded-md px-2 py-2 text-sm text-zinc-700 dark:text-zinc-300 hover:bg-stone-100 dark:hover:bg-zinc-700">
-            <svg class="h-4 w-4 text-zinc-500 transition-transform group-open:rotate-90" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
-            </svg>
-            Example: Gratitude-Based Identity
-          </summary>
-          <div class="mt-2 pl-6 space-y-3 text-sm text-zinc-700 dark:text-zinc-300">
-            <div>
-              <strong>Root (truth):</strong> God’s goodness is abundant.
+              <a
+                href="/symptoms"
+                class="mt-4 inline-block rounded-lg border border-stone-300 px-4 py-2 text-sm font-semibold text-ink hover:bg-stone-100 dark:hover:bg-zinc-700"
+              >
+                Start with a Symptom
+              </a>
             </div>
-            <div>
-              <strong>Trunk (foundation):</strong> Trust in His provision, not comparison.
+
+            <!-- 2) Truth Tree -->
+            <div class="p-5 bg-white dark:bg-zinc-800 rounded-xl shadow-sm">
+              <h3 class="font-semibold text-ink dark:text-white">
+                2) Truth Tree
+              </h3>
+              <p class="mt-2 text-sm text-zinc-600 dark:text-zinc-400">
+                <strong>What it is:</strong> A gospel-rooted alternative to the lie.
+                Truth Trees help you rebuild with a new root (truth), trunk (foundation),
+                branches (practices), and fruit (outcomes).
+              </p>
+
+              <details class="group mt-3">
+                <summary
+                  class="flex cursor-pointer items-center gap-2 rounded-md px-2 py-2 text-sm text-zinc-700 dark:text-zinc-300 hover:bg-stone-100 dark:hover:bg-zinc-700"
+                >
+                  <svg
+                    class="h-4 w-4 text-zinc-500 transition-transform group-open:rotate-90"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M9 5l7 7-7 7"></path>
+                  </svg>
+                  Example: Gratitude-Based Identity
+                </summary>
+                <div
+                  class="mt-2 pl-6 space-y-3 text-sm text-zinc-700 dark:text-zinc-300"
+                >
+                  <div>
+                    <strong>Root (truth):</strong> God’s goodness is abundant.
+                  </div>
+                  <div>
+                    <strong>Trunk (foundation):</strong> I’m secure in His provision,
+                    not defined by comparison.
+                  </div>
+                  <div>
+                    <strong>Branches (practices):</strong> Celebration, generosity,
+                    contentment.
+                  </div>
+                  <div>
+                    <strong>Fruit (outcomes):</strong> Joy, peace, relational freedom.
+                  </div>
+                </div>
+              </details>
+
+              <a
+                href="/trees"
+                class="mt-4 inline-block rounded-lg border border-stone-300 px-4 py-2 text-sm font-semibold text-ink hover:bg-stone-100 dark:hover:bg-zinc-700"
+              >
+                Browse Truth Trees
+              </a>
             </div>
-            <div>
-              <strong>Branches (practices):</strong> celebration, contentment, generosity.
-            </div>
-            <div>
-              <strong>Fruit (outcomes):</strong> joy, peace, relational freedom.
+
+            <!-- 3) Foundations -->
+            <div class="p-5 bg-white dark:bg-zinc-800 rounded-xl shadow-sm">
+              <h3 class="font-semibold text-ink dark:text-white">
+                3) Foundations
+              </h3>
+              <p class="mt-2 text-sm text-zinc-600 dark:text-zinc-400">
+                <strong>What it is:</strong> The theological and cultural scaffolding
+                behind lasting change—structured in three streams:
+              </p>
+
+              <div
+                class="mt-6 flex flex-col gap-3 sm:flex-row sm:justify-around text-center"
+              >
+                <a
+                  href="/canon_notes"
+                  class="inline-block rounded-lg border border-stone-300 bg-white px-5 py-3 text-sm font-semibold text-ink shadow-sm hover:bg-stone-100 dark:bg-zinc-800 dark:border-zinc-600 dark:text-white dark:hover:bg-zinc-700"
+                >
+                  Canon Notes<br />
+                  <span
+                    class="text-xs font-normal text-zinc-500 dark:text-zinc-400"
+                    >Scripture-rooted devotionals</span
+                  >
+                </a>
+                <a
+                  href="/compass_points"
+                  class="inline-block rounded-lg border border-stone-300 bg-white px-5 py-3 text-sm font-semibold text-ink shadow-sm hover:bg-stone-100 dark:bg-zinc-800 dark:border-zinc-600 dark:text-white dark:hover:bg-zinc-700"
+                >
+                  Compass Points<br />
+                  <span
+                    class="text-xs font-normal text-zinc-500 dark:text-zinc-400"
+                    >Cultural analysis + counter-formation</span
+                  >
+                </a>
+                <a
+                  href="/pillars"
+                  class="inline-block rounded-lg border border-stone-300 bg-white px-5 py-3 text-sm font-semibold text-ink shadow-sm hover:bg-stone-100 dark:bg-zinc-800 dark:border-zinc-600 dark:text-white dark:hover:bg-zinc-700"
+                >
+                  Pillars<br />
+                  <span
+                    class="text-xs font-normal text-zinc-500 dark:text-zinc-400"
+                    >Theological + worldview essays</span
+                  >
+                </a>
+              </div>
             </div>
           </div>
-        </details>
-
-        <a href="/trees" class="mt-4 inline-block rounded-lg border border-stone-300 px-4 py-2 text-sm font-semibold text-ink hover:bg-stone-100 dark:hover:bg-zinc-700">
-          Browse Truth Trees
-        </a>
-      </div>
-
-<!-- 4) Foundations -->
-<div class="p-5 bg-white dark:bg-zinc-800 rounded-xl shadow-sm">
-  <h3 class="font-semibold text-ink dark:text-white">3) Foundations</h3>
-  <p class="mt-2 text-sm text-zinc-600 dark:text-zinc-400">
-    <strong>What it is:</strong> three streams that stabilize growth—devotional, cultural, and theological.
-  </p>
-
-  <!-- Neutral button-style CTAs -->
-  <div class="mt-6 flex flex-col gap-3 sm:flex-row sm:justify-around text-center">
-    <a
-      href="/canon_notes"
-      class="inline-block rounded-lg border border-stone-300 bg-white px-5 py-3 text-sm font-semibold text-ink shadow-sm hover:bg-stone-100 dark:bg-zinc-800 dark:border-zinc-600 dark:text-white dark:hover:bg-zinc-700"
-    >
-      Canon Notes<br />
-      <span class="text-xs font-normal text-zinc-500 dark:text-zinc-400">
-        Devotionals with Scripture + practice
-      </span>
-    </a>
-    <a
-      href="/compass_points"
-      class="inline-block rounded-lg border border-stone-300 bg-white px-5 py-3 text-sm font-semibold text-ink shadow-sm hover:bg-stone-100 dark:bg-zinc-800 dark:border-zinc-600 dark:text-white dark:hover:bg-zinc-700"
-    >
-      Compass Points<br />
-      <span class="text-xs font-normal text-zinc-500 dark:text-zinc-400">
-        Cultural commentary with counter-steps
-      </span>
-    </a>
-    <a
-      href="/pillars"
-      class="inline-block rounded-lg border border-stone-300 bg-white px-5 py-3 text-sm font-semibold text-ink shadow-sm hover:bg-stone-100 dark:bg-zinc-800 dark:border-zinc-600 dark:text-white dark:hover:bg-zinc-700"
-    >
-      Pillars<br />
-      <span class="text-xs font-normal text-zinc-500 dark:text-zinc-400">
-        Longform theology + worldview essays
-      </span>
-    </a>
-  </div>
-</div>
-    </div>
-  </div>
-</section>
-
-
+        </div>
+      </section>
 
       <!-- Tree Preview Section -->
       <section class="animate">
         <div class="space-y-4">
           <div class="flex justify-between">
-            <p class="font-semibold text-black dark:text-white">
-              Recent Trees
-            </p>
-            <a href="/tree" class="w-fit col-span-3 group flex gap-1 items-center underline decoration-[.5px] decoration-black/25 dark:decoration-white/50 hover:decoration-black dark:hover:decoration-white text-black dark:text-white underline-offset-2 blend">
-              <span class="text-black/75 dark:text-white/75 group-hover:text-black group-hover:dark:text-white blend">
+            <p class="font-semibold text-black dark:text-white">Recent Trees</p>
+            <a
+              href="/tree"
+              class="w-fit col-span-3 group flex gap-1 items-center underline decoration-[.5px] decoration-black/25 dark:decoration-white/50 hover:decoration-black dark:hover:decoration-white text-black dark:text-white underline-offset-2 blend"
+            >
+              <span
+                class="text-black/75 dark:text-white/75 group-hover:text-black group-hover:dark:text-white blend"
+              >
                 All Trees
               </span>
             </a>
           </div>
           <ul class="space-y-4">
-            {posts.map((post) => (
-              <li>
-                <ArrowCard entry={post} />
-              </li>
-            ))}
+            {
+              posts.map((post) => (
+                <li>
+                  <ArrowCard entry={post} />
+                </li>
+              ))
+            }
           </ul>
         </div>
       </section>
@@ -300,25 +446,32 @@ const stack = [
             <p class="font-semibold text-black dark:text-white">
               Recent Foundations
             </p>
-            <a href="/foundations" class="w-fit col-span-3 group flex gap-1 items-center underline decoration-[.5px] decoration-black/25 dark:decoration-white/50 hover:decoration-black dark:hover:decoration-white text-black dark:text-white underline-offset-2 blend">
-              <span class="text-black/75 dark:text-white/75 group-hover:text-black group-hover:dark:text-white blend">
+            <a
+              href="/foundations"
+              class="w-fit col-span-3 group flex gap-1 items-center underline decoration-[.5px] decoration-black/25 dark:decoration-white/50 hover:decoration-black dark:hover:decoration-white text-black dark:text-white underline-offset-2 blend"
+            >
+              <span
+                class="text-black/75 dark:text-white/75 group-hover:text-black group-hover:dark:text-white blend"
+              >
                 All Foundations
               </span>
             </a>
           </div>
           <ul class="space-y-4">
-            {foundations.map((foundation) => (
-              <li>
-                      <StackCard
-                        title={foundation.data.title}
-                        summary={foundation.data.summary}
-                        href={`/${foundation.collection}/${foundation.slug}`}
-                        collection={foundation.collection}
-                        date={foundation.data.date}
-                        tags={foundation.data.tags}
-      />
-              </li>
-            ))}
+            {
+              foundations.map((foundation) => (
+                <li>
+                  <StackCard
+                    title={foundation.data.title}
+                    summary={foundation.data.summary}
+                    href={`/${foundation.collection}/${foundation.slug}`}
+                    collection={foundation.collection}
+                    date={foundation.data.date}
+                    tags={foundation.data.tags}
+                  />
+                </li>
+              ))
+            }
           </ul>
         </div>
       </section>
