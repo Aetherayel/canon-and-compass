@@ -4,7 +4,7 @@ import type { Site, Page, Links, Socials } from "@types"
 export const SITE: Site = {
   TITLE: "Canon & Compass",
   DESCRIPTION: "A Christian Philosophical hub combining faith and reason",
-  AUTHOR: "Zach Heil",
+  AUTHOR: "Zach",
 }
 
 // Symptoms Page
