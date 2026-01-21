@@ -1,5 +1,5 @@
 ---
-import { SITE, LINKS, FOUNDATIONS_LINKS } from "@consts"
+import { SITE, LINKS, FOUNDATIONS_LINKS, FRUIT_PATH_LINKS } from "@consts"
 import { cn } from "@lib/utils"
 const { pathname } = Astro.url
 
@@ -8,6 +8,8 @@ const isActivePath = (href: string) => {
   return pathname === href || pathname.startsWith(`${href}/`)
 }
 
+const fruitPathRoutes = FRUIT_PATH_LINKS.map((link) => link.HREF)
+const isFruitPathActive = fruitPathRoutes.some(isActivePath)
 const foundationRoutes = ["/foundations", ...FOUNDATIONS_LINKS.map((link) => link.HREF)]
 const isFoundationsActive = foundationRoutes.some(isActivePath)
 ---
@@ -17,6 +19,44 @@ const isFoundationsActive = foundationRoutes.some(isActivePath)
     {
       LINKS.map((LINK) => {
         const isActive = isActivePath(LINK.HREF)
+        if (LINK.TEXT === "Fruit Paths") {
+          return (
+            <div class="flex w-full flex-col items-center gap-2">
+              <a
+                href={LINK.HREF}
+                class={cn(
+                  "flex w-full items-center justify-center rounded-full px-3 py-1 text-base",
+                  "transition-colors duration-300 ease-in-out",
+                  isFruitPathActive
+                    ? "bg-black dark:bg-white text-white dark:text-black"
+                    : "text-current hover:bg-black/5 dark:hover:bg-white/20 hover:text-black dark:hover:text-white",
+                )}
+                aria-current={isFruitPathActive ? "page" : undefined}
+              >
+                {LINK.TEXT}
+              </a>
+              <div class="flex w-full flex-col items-center gap-1">
+                {FRUIT_PATH_LINKS.map((child) => {
+                  const childActive = isActivePath(child.HREF)
+                  return (
+                    <a
+                      href={child.HREF}
+                      class={cn(
+                        "flex w-full items-center justify-center rounded-full px-3 py-1 text-sm transition-colors duration-200 ease-in-out",
+                        childActive
+                          ? "bg-black dark:bg-white text-white dark:text-black"
+                          : "text-current hover:bg-black/5 dark:hover:bg-white/20 hover:text-black dark:hover:text-white",
+                      )}
+                      aria-current={childActive ? "page" : undefined}
+                    >
+                      {child.TEXT}
+                    </a>
+                  )
+                })}
+              </div>
+            </div>
+          )
+        }
         if (LINK.TEXT === "Foundations") {
           return (
             <div class="flex w-full flex-col items-center gap-2">

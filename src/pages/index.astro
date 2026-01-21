@@ -80,14 +80,14 @@ const stack = [
   <section class="relative h-screen w-full">
     <div
       id="planetcont"
-      class="animate absolute inset-0 top-1/4 overflow-hidden"
+      class="animate absolute inset-0 overflow-hidden"
     >
     <div>
       <!-- SVG Mountain Footer -->
 <svg
-  class="absolute bottom-0 left-0 w-full h-[600px] md:h-[700px] lg:h-[800px] z-0 pointer-events-none"
+  class="absolute bottom-0 left-0 w-full h-[min(100vh,800px)] z-0 pointer-events-none"
   viewBox="0 0 1440 800"
-  preserveAspectRatio="none"
+  preserveAspectRatio="xMidYMax meet"
   xmlns="http://www.w3.org/2000/svg"
 >
   <defs>
@@ -158,6 +158,30 @@ const stack = [
     stroke-linejoin="round"
     fill-opacity="1"
   />
+  <!-- Tree canopy -->
+  <g class="fill-[#e0e0e0] dark:fill-[#111111]" fill-opacity="0.95" transform="translate(0 8)">
+    <path d="M-5 792 L40 732 L85 792 Z M12 772 L40 712 L68 772 Z M23.2 762 L40 702 L56.8 762 Z" />
+    <path d="M55 792 L110 728 L165 792 Z M73 772 L110 702 L147 772 Z M87.8 762 L110 692 L132.2 762 Z" />
+    <path d="M135 792 L165 762 L195 792 Z M145 778 L165 742 L185 778 Z M153 768 L165 732 L177 768 Z" />
+    <path d="M185 792 L240 724 L295 792 Z M203 770 L240 694 L277 770 Z M217.8 760 L240 684 L262.2 760 Z" />
+    <path d="M265 792 L305 762 L345 792 Z M278 778 L305 742 L332 778 Z M288.8 768 L305 732 L321.2 768 Z" />
+    <path d="M320 792 L360 764 L400 792 Z M333 778 L360 744 L387 778 Z M343.8 768 L360 734 L376.2 768 Z" />
+    <path d="M385 792 L450 728 L515 792 Z M406 770 L450 698 L494 770 Z M423.6 760 L450 688 L476.4 760 Z" />
+    <path d="M465 792 L525 722 L585 792 Z M485 770 L525 690 L565 770 Z M501 760 L525 680 L549 760 Z" />
+    <path d="M550 792 L595 762 L640 792 Z M565 778 L595 742 L625 778 Z M577 768 L595 732 L613 768 Z" />
+    <path d="M615 792 L680 726 L745 792 Z M637 770 L680 696 L723 770 Z M654.2 760 L680 686 L705.8 760 Z" />
+    <path d="M695 792 L750 744 L805 792 Z M713 772 L750 716 L787 772 Z M727.8 762 L750 706 L772.2 762 Z" />
+    <path d="M775 792 L820 764 L865 792 Z M789 778 L820 744 L851 778 Z M801.4 768 L820 734 L838.6 768 Z" />
+    <path d="M835 792 L900 720 L965 792 Z M857 770 L900 692 L943 770 Z M874.2 760 L900 682 L925.8 760 Z" />
+    <path d="M930 792 L965 762 L1000 792 Z M941 778 L965 742 L989 778 Z M950.6 768 L965 732 L979.4 768 Z" />
+    <path d="M995 792 L1040 764 L1085 792 Z M1010 778 L1040 744 L1070 778 Z M1022 768 L1040 734 L1058 768 Z" />
+    <path d="M1050 792 L1125 726 L1200 792 Z M1075 770 L1125 696 L1175 770 Z M1095 760 L1125 686 L1155 760 Z" />
+    <path d="M1150 792 L1215 720 L1280 792 Z M1172 770 L1215 690 L1258 770 Z M1189.2 760 L1215 680 L1240.8 760 Z" />
+    <path d="M1230 792 L1285 744 L1340 792 Z M1248 772 L1285 716 L1322 772 Z M1262.8 762 L1285 706 L1307.2 762 Z" />
+    <path d="M1310 792 L1348 764 L1386 792 Z M1322 778 L1348 744 L1374 778 Z M1332.4 768 L1348 734 L1363.6 768 Z" />
+    <path d="M1350 792 L1405 732 L1460 792 Z M1368 770 L1405 704 L1442 770 Z M1382.8 760 L1405 694 L1427.2 760 Z" />
+    <path d="M1390 792 L1440 748 L1490 792 Z M1406 772 L1440 712 L1474 772 Z M1419.6 762 L1440 702 L1460.4 762 Z" />
+  </g>
 </svg>
     </div>
     <div
@@ -190,13 +214,13 @@ const stack = [
               href="/symptoms"
               class="py-2 px-4 rounded truncate text-xs md:text-sm lg:text-base bg-black dark:bg-white text-white dark:text-black hover:opacity-75 blend"
             >
-              Start with a Symptom
+              Walk a Fruit Path
             </a>
             <a
-              href="/tree"
+              href="/worldviews"
               class="py-2 px-4 truncate rounded text-xs md:text-sm lg:text-base border border-black/25 dark:border-white/25 hover:bg-black/5 hover:dark:bg-white/15 blend"
             >
-              View the Trees
+              Enter the Forests
             </a>
             <a
               href="/foundations"
@@ -218,10 +242,15 @@ const stack = [
             life back to the root beliefs shaping it — and then re-root in truth.
           </p>
           <p>
-            Through <b>Truth Trees</b>, <b>Foundations</b>, and practices for
+            Through <b>Fruit Paths</b>, <b>Foundations</b>, and practices for
             formation, we connect the timeless wisdom of Scripture to the real
             tensions of modern life, showing how faith and reason work together
             to orient your steps.
+          </p>
+          <p>
+            <b>The Forests</b> follow big ideas to their conclusions,
+            offering multi-part worldview explorations of competing cultural narratives
+            through a biblical lens. Paths grow from trees. Trees grow in a Forest.
           </p>
           <p>
             This isn’t about louder rules or heavier burdens. It’s about seeing
@@ -241,6 +270,10 @@ const stack = [
             Begin with what you notice. Trace it to the root. Re-root in truth.
             Then keep growing with practices that train both your habits and
             your heart.
+          </p>
+          <p class="mt-3 text-sm text-zinc-600 dark:text-zinc-400">
+            Symptoms are often the fruit of a distorted worldview, so we follow
+            the trail from what you feel to the story you believe.
           </p>
 
           <div class="mt-10 space-y-8 text-left">
@@ -411,6 +444,7 @@ const stack = [
         </div>
       </section>
 
+      {/*
       <!-- Tree Preview Section -->
       <section class="animate">
         <div class="space-y-4">
@@ -475,6 +509,7 @@ const stack = [
           </ul>
         </div>
       </section>
+      */}
     </div>
   </div>
 </PageLayout>

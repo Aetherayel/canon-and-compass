@@ -1,0 +1,275 @@
+---
+import { getCollection } from "astro:content";
+import PageLayout from "@layouts/PageLayout.astro";
+import TopLayout from "@layouts/TopLayout.astro";
+import BottomLayout from "@layouts/BottomLayout.astro";
+import { WORLDVIEWS } from "@consts";
+import { formatDate } from "@lib/utils";
+
+const worldviews = (await getCollection("worldviews"))
+  .filter((entry) => !entry.data.draft)
+  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+
+const foundationsEntry = worldviews.find(
+  (entry) => entry.slug === "worldview-foundations",
+);
+
+type SeriesCard = {
+  name: string;
+  href: string;
+  summary: string;
+  count: number;
+  latestDate: number;
+  order: number;
+};
+
+const seriesMap = new Map<string, SeriesCard>();
+
+for (const entry of worldviews) {
+  const seriesName = entry.data.series?.trim();
+  if (!seriesName || seriesName.toLowerCase() === "standalone") continue;
+
+  const key = seriesName.toLowerCase();
+  const href = `/${entry.collection}/${entry.slug}`;
+  const partNumber =
+    (entry.data as any).part ?? (entry.data as any).day ?? Number.MAX_SAFE_INTEGER;
+  const summary =
+    (entry.data as any).seriesSummary ||
+    entry.data.summary;
+  const latestDate = entry.data.date.getTime();
+
+  const existing = seriesMap.get(key);
+  if (!existing) {
+    seriesMap.set(key, {
+      name: seriesName,
+      href,
+      summary,
+      count: 1,
+      latestDate,
+      order: partNumber,
+    });
+  } else {
+    existing.count += 1;
+    existing.latestDate = Math.max(existing.latestDate, latestDate);
+    if (partNumber < existing.order) {
+      existing.href = href;
+      existing.order = partNumber;
+    }
+    if (!existing.summary && summary) {
+      existing.summary = summary;
+    }
+  }
+}
+
+const seriesCards = Array.from(seriesMap.values())
+  .sort((a, b) => b.latestDate - a.latestDate);
+
+const standaloneWorldviews = worldviews.filter((entry) => {
+  const seriesName = entry.data.series?.trim();
+  return !seriesName || seriesName.toLowerCase() === "standalone";
+});
+---
+
+<PageLayout title={WORLDVIEWS.TITLE} description={WORLDVIEWS.DESCRIPTION}>
+  <TopLayout>
+    <div class="animate">
+      <h1 class="text-3xl font-semibold text-black dark:text-white mt-2">
+        {WORLDVIEWS.TITLE}
+      </h1>
+      <div class="mt-1 max-w-3xl">
+        {WORLDVIEWS.DESCRIPTION}
+      </div>
+      <div class="mt-4 text-sm uppercase text-neutral-600 dark:text-neutral-300">
+        Serial explorations meant to be read in sequence, plus standalone reflections.
+      </div>
+      <div class="mt-3 max-w-3xl text-sm text-neutral-600 dark:text-neutral-400">
+        Forests are worldview journeys: each trail follows a single narrative to its roots,
+        so you can see what it grows and where it leads.
+      </div>
+      <div class="mt-6 max-w-3xl">
+        <div class="rounded-2xl border border-black/10 bg-white/70 p-5 shadow-sm dark:border-white/15 dark:bg-zinc-900/70 sm:p-6">
+          <div class="text-xs uppercase tracking-wide text-neutral-500 dark:text-neutral-400">
+            New to the Forests?
+          </div>
+          <div class="mt-2 text-lg font-semibold text-black dark:text-white">
+            Start with Worldview Foundations
+          </div>
+          <p class="mt-2 text-sm text-neutral-600 dark:text-neutral-400">
+            {foundationsEntry?.data.summary ??
+              "A short primer on identifying, testing, and building a biblical worldview."}
+          </p>
+          <a
+            href="/worldviews/worldview-foundations"
+            class="mt-4 inline-flex items-center justify-center rounded-full border border-black/15 px-4 py-2 text-sm font-semibold text-black transition-colors duration-300 ease-in-out hover:bg-black/5 dark:border-white/25 dark:text-white dark:hover:bg-white/10"
+          >
+            Read Worldview Foundations
+          </a>
+        </div>
+      </div>
+    </div>
+  </TopLayout>
+  <BottomLayout>
+    <div class="animate">
+      <div class="max-w-md">
+        <label class="sr-only" for="worldview-search">Search forests</label>
+        <div class="relative">
+          <svg class="absolute size-6 left-2 top-[0.45rem] stroke-neutral-400 dark:stroke-neutral-500 pointer-events-none">
+            <use href="/ui.svg#search"></use>
+          </svg>
+          <input
+            id="worldview-search"
+            name="search"
+            type="text"
+            autocomplete="off"
+            spellcheck={false}
+            placeholder="Search the Forests"
+            class="w-full px-10 py-1.5 rounded outline-none placeholder-neutral-400 dark:placeholder-neutral-500 text-black dark:text-white bg-black/5 dark:bg-white/10 hover:bg-black/10 hover:dark:bg-white/15 focus:bg-black/10 focus:dark:bg-white/15 border border-black/10 dark:border-white/10 focus:border-black/40 focus:dark:border-white/40"
+          />
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-10 space-y-16">
+      {seriesCards.length > 0 && (
+        <section class="animate">
+          <div class="flex items-end justify-between gap-4">
+            <div>
+              <h2 class="text-xl font-semibold text-black dark:text-white">
+                Forest Series
+              </h2>
+              <p class="mt-2 text-sm text-neutral-600 dark:text-neutral-400">
+                Multi-part explorations that unfold a single worldview in sequence.
+              </p>
+            </div>
+            <div class="text-xs uppercase text-neutral-500 dark:text-neutral-400">
+              {seriesCards.length} series
+            </div>
+          </div>
+          <div class="mt-6 grid grid-cols-1 gap-6 lg:grid-cols-2">
+            {seriesCards.map((series) => {
+              const searchText = `${series.name} ${series.summary ?? ""}`.toLowerCase();
+              return (
+                <a
+                  href={series.href}
+                  data-worldview-item
+                  data-search={searchText}
+                  class="group rounded-2xl border border-black/10 bg-white/70 p-6 shadow-sm transition-colors duration-300 ease-in-out hover:bg-black/5 dark:border-white/15 dark:bg-zinc-900/70 dark:hover:bg-white/10"
+                >
+                  <div class="text-xs uppercase tracking-wide text-neutral-500 dark:text-neutral-400">
+                    {series.count} part{series.count === 1 ? "" : "s"}
+                  </div>
+                  <div class="mt-2 text-lg font-semibold text-black dark:text-white">
+                    {series.name}
+                  </div>
+                  <div class="mt-2 text-sm text-neutral-600 dark:text-neutral-400">
+                    {series.summary || "Begin with part one of this series."}
+                  </div>
+                  <div class="mt-4 flex items-center gap-2 text-sm font-semibold text-black dark:text-white">
+                    Start series
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="16"
+                      height="16"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke-width="2.2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      class="stroke-current transition-transform duration-300 ease-in-out group-hover:translate-x-1"
+                    >
+                      <line x1="5" y1="12" x2="19" y2="12"></line>
+                      <polyline points="12 5 19 12 12 19"></polyline>
+                    </svg>
+                  </div>
+                </a>
+              );
+            })}
+          </div>
+        </section>
+      )}
+
+      {standaloneWorldviews.length > 0 && (
+        <section class="animate">
+          <div class="flex items-end justify-between gap-4">
+            <div>
+              <h2 class="text-xl font-semibold text-black dark:text-white">
+                Standalone Essays
+              </h2>
+              <p class="mt-2 text-sm text-neutral-600 dark:text-neutral-400">
+                Focused reflections that hold a single idea in the light.
+              </p>
+            </div>
+            <div class="text-xs uppercase text-neutral-500 dark:text-neutral-400">
+              {standaloneWorldviews.length} essays
+            </div>
+          </div>
+          <div class="mt-6 grid grid-cols-1 gap-6 lg:grid-cols-2">
+            {standaloneWorldviews.map((entry) => {
+              const searchText = `${entry.data.title} ${entry.data.summary ?? ""}`.toLowerCase();
+              return (
+                <a
+                  href={`/${entry.collection}/${entry.slug}`}
+                  data-worldview-item
+                  data-search={searchText}
+                  class="group rounded-2xl border border-black/10 bg-white/70 p-6 shadow-sm transition-colors duration-300 ease-in-out hover:bg-black/5 dark:border-white/15 dark:bg-zinc-900/70 dark:hover:bg-white/10"
+                >
+                  <div class="text-xs uppercase tracking-wide text-neutral-500 dark:text-neutral-400">
+                    Standalone essay
+                  </div>
+                  <div class="mt-2 text-lg font-semibold text-black dark:text-white">
+                    {entry.data.title}
+                  </div>
+                  <div class="mt-2 text-sm text-neutral-600 dark:text-neutral-400">
+                    {entry.data.summary}
+                  </div>
+                  <div class="mt-4 text-xs uppercase text-neutral-500 dark:text-neutral-400">
+                    {formatDate(entry.data.date)}
+                  </div>
+                </a>
+              );
+            })}
+          </div>
+        </section>
+      )}
+    </div>
+
+    <div
+      id="worldview-empty"
+      class="hidden mt-10 rounded-2xl border border-dashed border-black/10 bg-white/60 p-6 text-sm text-neutral-600 dark:border-white/15 dark:bg-zinc-900/60 dark:text-neutral-400"
+    >
+      No Forests match that search yet. Try a shorter phrase.
+    </div>
+
+    <script is:inline>
+      (() => {
+        const input = document.getElementById("worldview-search");
+        if (!input) return;
+
+        const items = Array.from(
+          document.querySelectorAll("[data-worldview-item]"),
+        );
+        const emptyState = document.getElementById("worldview-empty");
+
+        const normalize = (value) => value.toLowerCase().trim();
+        const update = () => {
+          const query = normalize(input.value);
+          let visibleCount = 0;
+
+          items.forEach((item) => {
+            const haystack = item.getAttribute("data-search") || "";
+            const matches = query.length < 2 || haystack.includes(query);
+            item.classList.toggle("hidden", !matches);
+            if (matches) visibleCount += 1;
+          });
+
+          if (emptyState) {
+            emptyState.classList.toggle("hidden", visibleCount > 0);
+          }
+        };
+
+        input.addEventListener("input", update);
+        update();
+      })();
+    </script>
+  </BottomLayout>
+</PageLayout>

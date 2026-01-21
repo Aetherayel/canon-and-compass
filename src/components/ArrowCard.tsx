@@ -5,6 +5,7 @@ type Entry =
   | CollectionEntry<"tree">
   | CollectionEntry<"the-clearing">
   | CollectionEntry<"canon_notes">
+  | CollectionEntry<"worldviews">
   | CollectionEntry<"compass_points">
   | CollectionEntry<"pillars">
   | CollectionEntry<"foundations-of-discernment">
@@ -31,12 +32,27 @@ export default function ArrowCard({ entry, pill }: Props) {
           </div>
         </div>
 
-        {(entry.collection === "canon_notes" || entry.collection === "foundations-of-discernment") && (
+        {(
+          entry.collection === "canon_notes" ||
+          entry.collection === "foundations-of-discernment" ||
+          entry.collection === "worldviews"
+        ) && (
           <div class="text-sm uppercase mt-1">
             {entry.data.series}
-            {entry.data.series !== "Standalone" && (entry as any).data.day
-              ? ` - Day ${(entry as any).data.day}`
-              : ""}
+            {entry.data.series.toLowerCase() !== "standalone" && (
+              (() => {
+                const part =
+                  (entry as any).data.part ?? (entry as any).data.day;
+                if (!part) return "";
+
+                const label =
+                  entry.collection === "canon_notes" ||
+                  entry.collection === "foundations-of-discernment"
+                    ? "Day"
+                    : "Part";
+                return ` - ${label} ${part}`;
+              })()
+            )}
           </div>
         )}
 

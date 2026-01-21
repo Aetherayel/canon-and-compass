@@ -12,6 +12,7 @@ type Props = {
     | CollectionEntry<'tree'>
     | CollectionEntry<'the-clearing'>
     | CollectionEntry<'canon_notes'>
+    | CollectionEntry<'worldviews'>
     | CollectionEntry<'compass_points'>
     | CollectionEntry<'pillars'>
     | CollectionEntry<'foundations-of-discernment'>

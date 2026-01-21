@@ -31,6 +31,12 @@ export const FOUNDATIONS: Page = {
   DESCRIPTION: "The core writings of Canon & Compass.",
 }
 
+// Worldviews Page
+export const WORLDVIEWS: Page = {
+  TITLE: "The Forests",
+  DESCRIPTION: "Worldview journeys that trace competing cultural narratives through a biblical lens.",
+}
+
 // Canon Notes Page
 export const CANONNOTES: Page = {
   TITLE: "Canon Notes",
@@ -70,12 +76,12 @@ export const SEARCH: Page = {
 // Links
 export const LINKS: Links = [
   {
-    TEXT: "Symptoms",
+    TEXT: "Fruit Paths",
     HREF: "/symptoms",
   },
   {
-    TEXT: "Trees",
-    HREF: "/tree",
+    TEXT: "The Forests",
+    HREF: "/worldviews",
   },
   {
     TEXT: "Foundations",
@@ -84,6 +90,17 @@ export const LINKS: Links = [
   {
     TEXT: "About",
     HREF: "/about",
+  },
+]
+
+export const FRUIT_PATH_LINKS: Links = [
+  {
+    TEXT: "Symptoms",
+    HREF: "/symptoms",
+  },
+  {
+    TEXT: "Truth Trees",
+    HREF: "/tree",
   },
 ]
 

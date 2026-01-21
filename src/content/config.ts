@@ -48,6 +48,25 @@ const foundationsOfDiscernment = defineCollection({
   }),
 })
 
+const worldviews = defineCollection({
+  type: "content",
+  schema: z.object({
+    title: z.string(),
+    summary: z.string(),
+    date: z.coerce.date(),
+    series: z.string(),
+    part: z.number().optional(),
+    seriesSummary: z.string().optional(),
+    tags: z.array(z.string()),
+    pathwayId: z.string().optional(),
+    prevHref: z.string().optional(),
+    prevLabel: z.string().optional(),
+    nextHref: z.string().optional(),
+    nextLabel: z.string().optional(),
+    draft: z.boolean().optional(),
+  }),
+})
+
 const compassPoints = defineCollection({
   type: "content",
   schema: z.object({
@@ -178,6 +197,7 @@ const pathways = defineCollection({
 export const collections = {
   tree,
   canon_notes: canonNotes,
+  worldviews,
   compass_points: compassPoints,
   pillars,
   'the-clearing': theClearing,

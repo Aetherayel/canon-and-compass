@@ -7,13 +7,14 @@ type Context = {
 }
 
 export async function GET(context: Context) {
-        const posts = await getCollection("tree")
-    const clearing = await getCollection("the-clearing")
-    const canonNotes = await getCollection("canon_notes")
-    const compassPoints = await getCollection("compass_points")
-    const pillars = await getCollection("pillars")
+  const posts = (await getCollection("tree")).filter((entry) => !entry.data.draft)
+  const clearing = (await getCollection("the-clearing")).filter((entry) => !entry.data.draft)
+  const canonNotes = (await getCollection("canon_notes")).filter((entry) => !entry.data.draft)
+  const worldviews = (await getCollection("worldviews")).filter((entry) => !entry.data.draft)
+  const compassPoints = (await getCollection("compass_points")).filter((entry) => !entry.data.draft)
+  const pillars = (await getCollection("pillars")).filter((entry) => !entry.data.draft)
 
-    const items = [...posts, ...clearing, ...canonNotes, ...compassPoints, ...pillars]
+  const items = [...posts, ...clearing, ...canonNotes, ...worldviews, ...compassPoints, ...pillars]
 
   items.sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime())
 
