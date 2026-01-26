@@ -4,42 +4,225 @@ import PageLayout from "@layouts/PageLayout.astro";
 import TopLayout from "@layouts/TopLayout.astro";
 import BottomLayout from "@layouts/BottomLayout.astro";
 import SearchCollection from "@components/SearchCollection";
+import ArrowCard from "@components/ArrowCard";
 import { CLEARING } from "@consts";
 
-const entries = (await getCollection("the-clearing"))
+const clearingEntries = (await getCollection("the-clearing"))
   .filter((entry) => !entry.data.draft)
   .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
 
-const tags = [...new Set(entries.flatMap((entry) => entry.data.tags))].sort(
+const forestEntries = (await getCollection("forests"))
+  .filter((entry) => entry.data.type !== "forest" && !entry.data.draft);
+
+type FeaturedEntry =
+  | (typeof clearingEntries)[number]
+  | (typeof forestEntries)[number];
+
+const featuredEntries = [
+  clearingEntries.find((entry) => entry.slug === "worldview-foundations"),
+  clearingEntries.find((entry) => entry.slug === "the-architecture-of-truth"),
+  clearingEntries.find(
+    (entry) => entry.slug === "the-unshakable-bridge-why-the-biblical-worldview-holds",
+  ),
+].filter((entry): entry is FeaturedEntry => Boolean(entry));
+
+const remainingEntries = clearingEntries.filter(
+  (entry) => !featuredEntries.some((f) => f && f.slug === entry.slug),
+);
+
+const tags = [...new Set(remainingEntries.flatMap((entry) => entry.data.tags))].sort(
   (a, b) => a.localeCompare(b),
 );
 
 const estimated_initial_size =
-  28 + entries.length * 158 + (entries.length - 1) * 12;
+  28 +
+  remainingEntries.length * 158 +
+  Math.max(0, remainingEntries.length - 1) * 12;
 ---
 
 <PageLayout title={CLEARING.TITLE} description={CLEARING.DESCRIPTION}>
   <TopLayout>
-    <div class="animate">
-      <h1 class="text-3xl font-semibold text-black dark:text-white mt-2">
-        {CLEARING.TITLE}
-      </h1>
-      <div class="mt-1">
-        {CLEARING.DESCRIPTION}
+    <div class="animate space-y-4">
+      <div>
+        <h1 class="text-3xl font-semibold text-black dark:text-white mt-2">
+          The Clearing
+        </h1>
+        <p class="mt-2 text-lg italic text-neutral-700 dark:text-neutral-300">
+          Where the noise softens<br />
+          and the ground stops shifting.
+        </p>
+      </div>
+      <div class="space-y-3 text-base text-neutral-700 dark:text-neutral-300">
+        <p>The Clearing is not a destination. It is a pause.</p>
+        <p>
+          A place to stand when the categories you’ve been given no longer
+          explain what you’re experiencing — and when rushing to new answers
+          would only deepen the confusion.
+        </p>
       </div>
     </div>
   </TopLayout>
   <BottomLayout>
+    <div class="animate space-y-12">
+      <section class="space-y-4">
+        <h2 class="text-xl font-semibold text-black dark:text-white">
+          What the Clearing Is (and Is Not)
+        </h2>
+        <div class="space-y-3 text-base text-neutral-700 dark:text-neutral-300">
+          <p>
+            The Clearing is <strong>not</strong> a forest. It does not train
+            instincts or reward behaviors. It does not ask you to pick a side.
+          </p>
+          <p>The Clearing is where:</p>
+          <ul class="list-disc pl-6 space-y-1">
+            <li>urgency loosens its grip</li>
+            <li>attention slows down</li>
+            <li>truth is approached without performance</li>
+            <li>Christ is encountered without spectacle</li>
+          </ul>
+          <p>
+            Here, you are not asked to <em>figure things out</em>. You are
+            invited to <strong>see again</strong>.
+          </p>
+        </div>
+      </section>
+
+      <section class="space-y-4">
+        <h2 class="text-xl font-semibold text-black dark:text-white">
+          Why the Clearing Comes First
+        </h2>
+        <div class="space-y-3 text-base text-neutral-700 dark:text-neutral-300">
+          <p>Most people don’t need better answers. They need quieter ground.</p>
+          <p>
+            Worldviews shape us long before we examine them. Fruit shows up long
+            before we understand its roots. And without re-orientation, even
+            good insight becomes another way to strive.
+          </p>
+          <p>
+            The Clearing exists so discernment doesn’t become another form of
+            control.
+          </p>
+        </div>
+      </section>
+
+      <section class="space-y-4">
+        <h2 class="text-xl font-semibold text-black dark:text-white">
+          The Map, Revisited
+        </h2>
+        <div class="space-y-3 text-base text-neutral-700 dark:text-neutral-300">
+          <p>From the Clearing, the terrain becomes legible.</p>
+          <p>
+            Forests can be named without fear. Paths can be chosen without
+            panic. The mountain can be seen without trying to climb it. You
+            don’t stay here forever. But you often need to stop here first.
+          </p>
+        </div>
+      </section>
+
+      <section class="space-y-4">
+        <h2 class="text-xl font-semibold text-black dark:text-white">
+          What You’ll Find Here
+        </h2>
+        <div class="space-y-3 text-base text-neutral-700 dark:text-neutral-300">
+          <p>The pieces in The Clearing are not arguments. They are <strong>orientation texts</strong>.</p>
+          <p>They tend to:</p>
+          <ul class="list-disc pl-6 space-y-1">
+            <li>slow the reader down</li>
+            <li>name hidden pressures without accusation</li>
+            <li>expose false urgency</li>
+            <li>distinguish insight from formation</li>
+            <li>return attention to Christ rather than explanation</li>
+          </ul>
+          <p>
+            Some touch many forests. Some prepare you to recognize one. Others
+            simply help you breathe again.
+          </p>
+        </div>
+      </section>
+
+      <section class="space-y-4">
+        <h2 class="text-xl font-semibold text-black dark:text-white">
+          When to Come to the Clearing
+        </h2>
+        <div class="space-y-3 text-base text-neutral-700 dark:text-neutral-300">
+          <p>You’re in the right place if:</p>
+          <ul class="list-disc pl-6 space-y-1">
+            <li>everything feels important and nothing feels grounded</li>
+            <li>spiritual language feels loud but thin</li>
+            <li>insight keeps increasing while peace does not</li>
+            <li>you’re tired of diagnosing yourself</li>
+            <li>you sense that truth is real, but clarity feels out of reach</li>
+          </ul>
+          <p>
+            The Clearing doesn’t fix these things. It makes room for them to be
+            healed.
+          </p>
+        </div>
+      </section>
+
+      <section class="space-y-4">
+        <h2 class="text-xl font-semibold text-black dark:text-white">
+          Where the Clearing Leads
+        </h2>
+        <div class="space-y-3 text-base text-neutral-700 dark:text-neutral-300">
+          <p>From here, you may:</p>
+          <ul class="list-disc pl-6 space-y-1">
+            <li>enter a Forest with new eyes</li>
+            <li>recognize a Fruit Path you’ve been walking</li>
+            <li>or simply remain for a while</li>
+          </ul>
+          <p>All of those are faithful responses.</p>
+          <p>
+            You don’t leave the Clearing with a plan. You leave with
+            <strong>bearing</strong>.
+          </p>
+        </div>
+      </section>
+
+      <section class="space-y-4">
+        <h2 class="text-xl font-semibold text-black dark:text-white">
+          A Final Word
+        </h2>
+        <div class="space-y-3 text-base text-neutral-700 dark:text-neutral-300">
+          <p>The world trains us to rush toward answers. Scripture trains us to <em>abide</em>.</p>
+          <p>
+            The Clearing is where abiding becomes possible again — where truth
+            stops shouting and starts orienting.
+          </p>
+          <p>
+            When you’re ready, the forests will still be there. And you’ll walk
+            them differently.
+          </p>
+        </div>
+      </section>
+
+      {featuredEntries.length > 0 && (
+        <section class="space-y-4">
+          <h2 class="text-xl font-semibold text-black dark:text-white">
+            Good Places to Start
+          </h2>
+          <ul class="space-y-3">
+            {featuredEntries.map((entry) => (
+              <li>
+                <ArrowCard entry={entry} />
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
+    </div>
+
     <div
       id="search-collection-wrapper"
-      class="animate"
+      class="animate mt-12"
       style={{ minHeight: `${estimated_initial_size}px` }}
     >
       <SearchCollection
         client:load
         entry_name={"The Clearing"}
         tags={tags}
-        data={entries}
+        data={remainingEntries}
+        showTags={false}
       />
     </div>
   </BottomLayout>

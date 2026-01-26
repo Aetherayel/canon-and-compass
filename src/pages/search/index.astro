@@ -16,8 +16,8 @@ const canonNotes = (await getCollection("canon_notes")).filter(
   (post) => !post.data.draft,
 );
 
-const worldviews = (await getCollection("worldviews")).filter(
-  (post) => !post.data.draft,
+const forests = (await getCollection("forests")).filter(
+  (post) => post.data.type !== "forest" && !post.data.draft,
 );
 
 const foundations = (await getCollection("foundations-of-discernment")).filter(
@@ -32,11 +32,11 @@ const pillars = (await getCollection("pillars")).filter(
   (post) => !post.data.draft,
 );
 
-const data = [...posts, ...clearing, ...canonNotes, ...worldviews, ...foundations, ...compassPoints, ...pillars] as CollectionEntry<
+const data = [...posts, ...clearing, ...canonNotes, ...forests, ...foundations, ...compassPoints, ...pillars] as CollectionEntry<
   | "tree"
   | "the-clearing"
   | "canon_notes"
-  | "worldviews"
+  | "forests"
   | "foundations-of-discernment"
   | "compass_points"
   | "pillars"

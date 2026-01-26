@@ -76,16 +76,16 @@ export const SEARCH: Page = {
 // Links
 export const LINKS: Links = [
   {
+    TEXT: "The Clearing",
+    HREF: "/the-clearing",
+  },
+  {
     TEXT: "Fruit Paths",
     HREF: "/symptoms",
   },
   {
     TEXT: "The Forests",
-    HREF: "/worldviews",
-  },
-  {
-    TEXT: "Foundations",
-    HREF: "/foundations",
+    HREF: "/forests",
   },
   {
     TEXT: "About",
@@ -116,10 +116,6 @@ export const FOUNDATIONS_LINKS: Links = [
   {
     TEXT: "Pillars",
     HREF: "/pillars",
-  },
-  {
-    TEXT: "The Clearing",
-    HREF: "/the-clearing",
   },
 ]
 

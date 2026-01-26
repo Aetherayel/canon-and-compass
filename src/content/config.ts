@@ -48,23 +48,48 @@ const foundationsOfDiscernment = defineCollection({
   }),
 })
 
-const worldviews = defineCollection({
+const forests = defineCollection({
   type: "content",
-  schema: z.object({
-    title: z.string(),
-    summary: z.string(),
-    date: z.coerce.date(),
-    series: z.string(),
-    part: z.number().optional(),
-    seriesSummary: z.string().optional(),
-    tags: z.array(z.string()),
-    pathwayId: z.string().optional(),
-    prevHref: z.string().optional(),
-    prevLabel: z.string().optional(),
-    nextHref: z.string().optional(),
-    nextLabel: z.string().optional(),
-    draft: z.boolean().optional(),
-  }),
+  schema: z.union([
+    z.object({
+      type: z.literal("forest"),
+      title: z.string(),
+      subtitle: z.string(),
+      summary: z.string(),
+      series: z.string(),
+      climate: z.string(),
+      canopy: z.array(z.string()),
+      quietGospel: z.string(),
+      fruit: z.array(z.string()),
+      costStaying: z.string(),
+      costLeaving: z.string(),
+      pathIntro: z.string(),
+      orientation: z.string(),
+      orientationLink: z
+        .object({
+          label: z.string(),
+          href: z.string(),
+        })
+        .optional(),
+      draft: z.boolean().optional(),
+    }),
+    z.object({
+      type: z.literal("entry").optional(),
+      title: z.string(),
+      summary: z.string(),
+      date: z.coerce.date(),
+      series: z.string(),
+      part: z.number().optional(),
+      seriesSummary: z.string().optional(),
+      tags: z.array(z.string()),
+      pathwayId: z.string().optional(),
+      prevHref: z.string().optional(),
+      prevLabel: z.string().optional(),
+      nextHref: z.string().optional(),
+      nextLabel: z.string().optional(),
+      draft: z.boolean().optional(),
+    }),
+  ]),
 })
 
 const compassPoints = defineCollection({
@@ -197,7 +222,7 @@ const pathways = defineCollection({
 export const collections = {
   tree,
   canon_notes: canonNotes,
-  worldviews,
+  forests,
   compass_points: compassPoints,
   pillars,
   'the-clearing': theClearing,

@@ -1,0 +1,203 @@
+---
+import PageLayout from "@layouts/PageLayout.astro";
+import TopLayout from "@layouts/TopLayout.astro";
+import BottomLayout from "@layouts/BottomLayout.astro";
+import { WORLDVIEWS } from "@consts";
+
+const forestCards = [
+  {
+    title: "The Stormwood",
+    theme: "Sensationalism",
+    tagline: "Where intensity substitutes for depth.",
+    description:
+      "This forest is alive with movement. God feels near. Everything feels urgent. Stillness, however, feels like absence — and silence like danger.",
+    href: null,
+  },
+  {
+    title: "The Closed Sky",
+    theme: "Naturalism",
+    tagline: "Where meaning must be manufactured.",
+    description:
+      "In this forest, nothing breaks in from above. What cannot be measured must be managed. Control feels responsible. Anxiety feels rational.",
+    href: "/forests/naturalism",
+  },
+  {
+    title: "The Shifting Grove",
+    theme: "Moral Relativism",
+    tagline: "Where truth bends to coherence.",
+    description:
+      "Here, sincerity is sacred. Identity precedes reality. The ground moves with the heart, and disagreement feels like threat.",
+    href: "/forests/moral-relativism",
+  },
+];
+---
+
+<PageLayout title={WORLDVIEWS.TITLE} description={WORLDVIEWS.DESCRIPTION}>
+  <TopLayout>
+    <div class="animate space-y-6">
+      <div>
+        <h1 class="text-3xl font-semibold text-black dark:text-white mt-2">
+          The Forests
+        </h1>
+        <p class="mt-2 text-lg italic text-neutral-700 dark:text-neutral-300">
+          Worldviews are not just ideas. They are environments.
+        </p>
+      </div>
+      <div class="space-y-3 text-base text-neutral-700 dark:text-neutral-300">
+        <p>
+          Long before we choose what we believe, we learn how the world works by
+          breathing its air.
+        </p>
+        <p>
+          Every forest has a climate. Every climate trains instincts. Every
+          instinct shapes fruit.
+        </p>
+        <p>
+          The Forests name the environments that quietly form us — including
+          the ones that feel reasonable, spiritual, or even biblical.
+        </p>
+      </div>
+    </div>
+  </TopLayout>
+  <BottomLayout>
+    <div class="animate space-y-12">
+      <section class="space-y-4">
+        <h2 class="text-xl font-semibold text-black dark:text-white">
+          How to Read the Forests
+        </h2>
+        <div class="space-y-3 text-base text-neutral-700 dark:text-neutral-300">
+          <p>Forests are not villains. They are places people learn to survive.</p>
+          <p>Each forest:</p>
+          <ul class="list-disc pl-6 space-y-1">
+            <li>rewards certain behaviors</li>
+            <li>makes some questions feel dangerous</li>
+            <li>renders some truths invisible</li>
+            <li>and causes certain fruit to feel <em>normal</em></li>
+          </ul>
+          <p>
+            You don’t enter a forest because you’re foolish. You enter because it
+            makes sense from the inside.
+          </p>
+        </div>
+      </section>
+
+      <hr class="border-black/10 dark:border-white/15" />
+
+      <section class="space-y-4">
+        <h2 class="text-xl font-semibold text-black dark:text-white">
+          The Map
+        </h2>
+        <div class="space-y-3 text-base text-neutral-700 dark:text-neutral-300">
+          <p>This map is not about destinations. It’s about <strong>orientation</strong>.</p>
+          <p>
+            Some forests sit low and dense, tangled with urgency and noise. Others
+            thin out as the ground rises. A clearing appears where the air changes
+            and the pace slows. Beyond that, a mountain remains visible — never
+            conquered, always calling.
+          </p>
+          <div class="rounded-2xl border border-dashed border-black/15 bg-white/60 p-5 text-center text-sm uppercase tracking-wide text-neutral-500 dark:border-white/20 dark:bg-zinc-900/60 dark:text-neutral-400">
+            --VISUAL COMING SOON--
+          </div>
+          <p>
+            You don’t need to know the whole map to take your next step. You only
+            need to know where you are.
+          </p>
+        </div>
+      </section>
+
+      <hr class="border-black/10 dark:border-white/15" />
+
+      <section class="space-y-6">
+        <div>
+          <h2 class="text-xl font-semibold text-black dark:text-white">
+            The Forests
+          </h2>
+          <p class="mt-2 text-base text-neutral-700 dark:text-neutral-300">
+            Each forest below names a <strong>way the world trains us to see</strong>,
+            long before we realize we’ve agreed with it.
+          </p>
+          <p class="mt-2 text-base text-neutral-700 dark:text-neutral-300">
+            Enter slowly. Listen to the weather. Notice what feels familiar.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 gap-6 lg:grid-cols-3">
+          {forestCards.map((forest) => (
+            <div class="rounded-2xl border border-black/10 bg-white/70 p-6 shadow-sm dark:border-white/15 dark:bg-zinc-900/70">
+              <div class="text-xs uppercase tracking-wide text-neutral-500 dark:text-neutral-400">
+                {forest.theme}
+              </div>
+              <div class="mt-2 text-lg font-semibold text-black dark:text-white">
+                {forest.title}
+              </div>
+              <div class="mt-2 text-sm italic text-neutral-600 dark:text-neutral-400">
+                {forest.tagline}
+              </div>
+              <p class="mt-3 text-sm text-neutral-700 dark:text-neutral-300">
+                {forest.description}
+              </p>
+              {forest.href ? (
+                <a
+                  href={forest.href}
+                  class="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-black transition-colors duration-300 ease-in-out hover:text-black/70 dark:text-white dark:hover:text-white/70"
+                >
+                  Enter {forest.title} →
+                </a>
+              ) : (
+                <div class="mt-4 text-sm font-semibold text-neutral-500 dark:text-neutral-400">
+                  Enter {forest.title} → <span class="text-xs uppercase">Coming Soon</span>
+                </div>
+              )}
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <hr class="border-black/10 dark:border-white/15" />
+
+      <section class="space-y-4">
+        <h2 class="text-xl font-semibold text-black dark:text-white">
+          Not Sure Where You Are?
+        </h2>
+        <div class="space-y-3 text-base text-neutral-700 dark:text-neutral-300">
+          <p>You don’t need to diagnose yourself to begin.</p>
+          <p>
+            <strong>The Clearing</strong> is a place to slow down, regain
+            bearings, and relearn how to see — without needing to defend a
+            position or reach a conclusion.
+          </p>
+          <p>
+            It’s not an escape from the forest. It’s where you learn how to walk
+            it wisely.
+          </p>
+          <a
+            href="/the-clearing"
+            class="inline-flex items-center gap-2 text-sm font-semibold text-black transition-colors duration-300 ease-in-out hover:text-black/70 dark:text-white dark:hover:text-white/70"
+          >
+            Go to The Clearing →
+          </a>
+        </div>
+      </section>
+
+      <hr class="border-black/10 dark:border-white/15" />
+
+      <section class="space-y-4">
+        <h2 class="text-xl font-semibold text-black dark:text-white">
+          A Gentle Word Before You Enter
+        </h2>
+        <div class="space-y-3 text-base text-neutral-700 dark:text-neutral-300">
+          <p>
+            You can live your entire life inside a forest and never realize it
+            has borders.
+          </p>
+          <p>
+            Leaving doesn’t always feel like freedom. Sometimes it feels like
+            loss. Sometimes it feels like losing God — even when you’re learning
+            to see Him more clearly.
+          </p>
+          <p>Take your time. No forest is left in a single step.</p>
+        </div>
+      </section>
+    </div>
+  </BottomLayout>
+</PageLayout>

@@ -8,7 +8,7 @@ type Props = {
     | CollectionEntry<"the-clearing">
     | CollectionEntry<"tree-shifts">
     | CollectionEntry<"canon_notes">
-    | CollectionEntry<"worldviews">
+    | CollectionEntry<"forests">
     | CollectionEntry<"compass_points">
     | CollectionEntry<"pillars">
     | CollectionEntry<"foundations-of-discernment">
@@ -34,8 +34,18 @@ function toTitleCase(raw: string) {
     .join(" ");
 }
 
-const backHref = collection === "tree-shifts" ? "/symptoms" : `/${collection}`;
-const backLabel = collection === "tree-shifts" ? "Symptoms" : toTitleCase(collection);
+const backHref =
+  collection === "tree-shifts"
+    ? "/symptoms"
+    : collection === "forests"
+      ? "/forests"
+      : `/${collection}`;
+const backLabel =
+  collection === "tree-shifts"
+    ? "Symptoms"
+    : collection === "forests"
+      ? "Forests"
+      : toTitleCase(collection);
 ---
 
 <div>

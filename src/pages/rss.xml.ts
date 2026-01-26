@@ -10,11 +10,13 @@ export async function GET(context: Context) {
   const posts = (await getCollection("tree")).filter((entry) => !entry.data.draft)
   const clearing = (await getCollection("the-clearing")).filter((entry) => !entry.data.draft)
   const canonNotes = (await getCollection("canon_notes")).filter((entry) => !entry.data.draft)
-  const worldviews = (await getCollection("worldviews")).filter((entry) => !entry.data.draft)
+  const forests = (await getCollection("forests")).filter(
+    (entry) => entry.data.type !== "forest" && !entry.data.draft,
+  )
   const compassPoints = (await getCollection("compass_points")).filter((entry) => !entry.data.draft)
   const pillars = (await getCollection("pillars")).filter((entry) => !entry.data.draft)
 
-  const items = [...posts, ...clearing, ...canonNotes, ...worldviews, ...compassPoints, ...pillars]
+  const items = [...posts, ...clearing, ...canonNotes, ...forests, ...compassPoints, ...pillars]
 
   items.sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime())
 
@@ -28,7 +30,9 @@ export async function GET(context: Context) {
       pubDate: item.data.date,
         link: item.collection === "tree"
           ? `/tree/${item.slug}/`
-          : `/${item.collection}/${item.slug}/`,
+          : item.collection === "forests"
+            ? `/forests/${item.slug}/`
+            : `/${item.collection}/${item.slug}/`,
     })),
   })
 }

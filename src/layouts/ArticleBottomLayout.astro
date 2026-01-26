@@ -7,7 +7,7 @@ type Props = {
     | CollectionEntry<"tree">
     | CollectionEntry<"the-clearing">
     | CollectionEntry<"canon_notes">
-    | CollectionEntry<"worldviews">
+    | CollectionEntry<"forests">
     | CollectionEntry<"compass_points">
     | CollectionEntry<"pillars">
     | CollectionEntry<"tree-shifts">
@@ -21,7 +21,11 @@ const { Content } = await entry.render()
 
 // Get the next and prev entries (modulo to wrap index)
 const items = (await getCollection(collection))
-  .filter(post => !post.data.draft)
+  .filter(
+    (post) =>
+      !post.data.draft &&
+      (collection !== "forests" || post.data.type !== "forest"),
+  )
   .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
 const index = items.findIndex(x => x.slug === entry.slug)
 const prev = items[(index - 1 + items.length) % items.length]

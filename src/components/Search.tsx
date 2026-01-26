@@ -9,7 +9,7 @@ type Entry =
   | CollectionEntry<"the-clearing">
   | CollectionEntry<"canon_notes">
   | CollectionEntry<"foundations-of-discernment">
-  | CollectionEntry<"worldviews">
+  | CollectionEntry<"forests">
   | CollectionEntry<"compass_points">
   | CollectionEntry<"pillars">
 

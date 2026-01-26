@@ -12,21 +12,22 @@ type Props = {
     | CollectionEntry<'tree'>
     | CollectionEntry<'the-clearing'>
     | CollectionEntry<'canon_notes'>
-    | CollectionEntry<'worldviews'>
+    | CollectionEntry<'forests'>
     | CollectionEntry<'compass_points'>
     | CollectionEntry<'pillars'>
     | CollectionEntry<'foundations-of-discernment'>
   )[]
+  showTags?: boolean
 }
 
-export default function SearchCollection({ entry_name, data, tags }: Props) {
+export default function SearchCollection({ entry_name, data, tags, showTags = true }: Props) {
   const coerced = data.map((entry) => entry as CollectionEntry<'tree'>);
 
   const [query, setQuery] = createSignal("");
   const [filter, setFilter] = createSignal(new Set<string>())
   const [collection, setCollection] = createSignal<CollectionEntry<'tree'>[]>([])
   const [descending, setDescending] = createSignal(false);
-  const [tagsOpen, setTagsOpen] = createSignal(false);
+  const [tagsOpen, setTagsOpen] = createSignal(showTags);
 
   const fuse = new Fuse(coerced, {
     keys: ["slug", "data.title", "data.summary", "data.tags"],
@@ -39,14 +40,17 @@ export default function SearchCollection({ entry_name, data, tags }: Props) {
     const filtered = (query().length < 2
       ? coerced
       : fuse.search(query()).map((result) => result.item)
-    ).filter((entry) =>
-      Array.from(filter()).every((value) =>
-        entry.data.tags.some((tag: string) =>
-          tag.toLowerCase() === String(value).toLowerCase()
-        )
-      )
     );
-    setCollection(descending() ? filtered.toReversed() : filtered)
+    const tagFiltered = showTags
+      ? filtered.filter((entry) =>
+          Array.from(filter()).every((value) =>
+            entry.data.tags.some((tag: string) =>
+              tag.toLowerCase() === String(value).toLowerCase()
+            )
+          )
+        )
+      : filtered;
+    setCollection(descending() ? tagFiltered.toReversed() : tagFiltered)
   })
 
   function toggleDescending() {
@@ -81,6 +85,11 @@ export default function SearchCollection({ entry_name, data, tags }: Props) {
       wrapper.style.minHeight = "unset";
     }
 
+    if (!showTags) {
+      setTagsOpen(false);
+      return;
+    }
+
     const mediaQuery = window.matchMedia("(min-width: 640px)");
     setTagsOpen(mediaQuery.matches);
 
@@ -97,7 +106,7 @@ export default function SearchCollection({ entry_name, data, tags }: Props) {
     }
   })
 
-  return (
+  return showTags ? (
     <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
       {/* Control Panel*/}
       <div class="col-span-3 sm:col-span-1">
@@ -214,6 +223,37 @@ export default function SearchCollection({ entry_name, data, tags }: Props) {
             ))}
           </ul>
         </div>
+      </div>
+    </div>
+  ) : (
+    <div class="flex flex-col gap-6">
+      <div class="max-w-md">
+        <SearchBar onSearchInput={onSearchInput} query={query} setQuery={setQuery} placeholderText={`Search ${entry_name}`} />
+      </div>
+      <div class="flex flex-col">
+        <div class='flex justify-between flex-row mb-2'>
+          <div class="text-sm uppercase">
+            SHOWING {collection().length} OF {data.length} {entry_name}
+          </div>
+          <button onClick={toggleDescending} class='flex flex-row gap-1 stroke-neutral-400 dark:stroke-neutral-500 hover:stroke-neutral-600 hover:dark:stroke-neutral-300 text-neutral-400 dark:text-neutral-500 hover:text-neutral-600 hover:dark:text-neutral-300'>
+            <div class="text-sm uppercase">
+              {descending() ? "DESCENDING" : "ASCENDING"}
+            </div>
+            <svg
+              class="size-5 left-2 top-[0.45rem]"
+            >
+              <use href={`/ui.svg#sort-descending`} class={descending() ? "block" : "hidden"}></use>
+              <use href={`/ui.svg#sort-ascending`} class={descending() ? "hidden" : "block"}></use>
+            </svg>
+          </button>
+        </div>
+        <ul class="flex flex-col gap-3">
+          {collection().map((entry) => (
+            <li>
+              <ArrowCard entry={entry} />
+            </li>
+          ))}
+        </ul>
       </div>
     </div>
   )
