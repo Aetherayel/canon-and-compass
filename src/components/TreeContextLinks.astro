@@ -14,6 +14,8 @@ export interface Props {
   blurb?: string;         // optional helper text above links
 }
 
+import { getCollection } from "astro:content";
+
 const {
   treeHref,
   treeSlug,
@@ -29,8 +31,30 @@ const {
   blurb = 'If you arrived here directly, explore the Symptom or Truth Tree for more context.'
 } = Astro.props as Props;
 
-const resolvedTreeHref = treeHref ?? (treeSlug ? `/tree/${treeSlug}` : undefined);
-const resolvedShiftHref = shiftHref ?? (shiftSlug ? `/tree-shifts/${shiftSlug}` : undefined);
+const pathways = await getCollection("pathways");
+const pathwayMatch = pathways.find((entry) => {
+  const data: any = entry.data;
+  return (
+    (treeSlug && data?.tree?.slug === treeSlug) ||
+    (shiftSlug && data?.shift?.slug === shiftSlug)
+  );
+});
+const pathwayId = pathwayMatch?.id as string | undefined;
+
+const resolvedTreeHref =
+  treeHref ??
+  (pathwayId
+    ? `/fruit-path/${pathwayId}#truth-tree`
+    : treeSlug
+      ? `/tree/${treeSlug}`
+      : undefined);
+const resolvedShiftHref =
+  shiftHref ??
+  (pathwayId
+    ? `/fruit-path/${pathwayId}#symptom`
+    : shiftSlug
+      ? `/tree-shifts/${shiftSlug}`
+      : undefined);
 ---
 
 <section class="mt-8 border border-black/10 dark:border-white/15 rounded-xl p-4 sm:p-5 bg-white/60 dark:bg-zinc-900/50 backdrop-blur">
@@ -83,4 +107,3 @@ const resolvedShiftHref = shiftHref ?? (shiftSlug ? `/tree-shifts/${shiftSlug}` 
   <div class="mt-2 text-[10px] uppercase tracking-wide text-zinc-400 dark:text-zinc-500">Tree Context</div>
   
 </section>
-

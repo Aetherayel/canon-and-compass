@@ -7,7 +7,9 @@ type Context = {
 }
 
 export async function GET(context: Context) {
-  const posts = (await getCollection("tree")).filter((entry) => !entry.data.draft)
+  const posts = (await getCollection("fruit-path")).filter(
+    (entry) => entry.data.kind === "tree" && !entry.data.draft,
+  )
   const clearing = (await getCollection("the-clearing")).filter((entry) => !entry.data.draft)
   const canonNotes = (await getCollection("canon_notes")).filter((entry) => !entry.data.draft)
   const forests = (await getCollection("forests")).filter(
@@ -28,8 +30,8 @@ export async function GET(context: Context) {
       title: item.data.title,
       description: item.data.summary,
       pubDate: item.data.date,
-        link: item.collection === "tree"
-          ? `/tree/${item.slug}/`
+        link: item.collection === "fruit-path"
+          ? `/fruit-path/${(item.data as any).pathwayId ?? item.slug}/`
           : item.collection === "forests"
             ? `/forests/${item.slug}/`
             : `/${item.collection}/${item.slug}/`,

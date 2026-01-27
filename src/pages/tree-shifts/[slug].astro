@@ -1,43 +1,35 @@
 ---
-import { type CollectionEntry, getCollection } from "astro:content";
-import PageLayout from "@layouts/PageLayout.astro";
-import TopLayout from "@layouts/TopLayout.astro";
-import BottomLayout from "@layouts/BottomLayout.astro";
-import ArticleTopLayout from "@layouts/ArticleTopLayout.astro";
-import ArticleBottomLayout from "@layouts/ArticleBottomLayout.astro";
-import PathwayLinks from "@components/PathwayLinks.astro";
+import { getCollection } from "astro:content";
 
-export async function getStaticPaths() {
-  const treeShifts = await getCollection("tree-shifts");
-  return treeShifts.map((treeShift) => ({
-    params: { slug: treeShift.slug },
-    props: treeShift,
-  }));
+function slugFrom(item: { slug?: string; href?: string } | undefined) {
+  if (!item) return undefined;
+  if (item.slug) return item.slug;
+  if (item.href) return item.href.split("/").filter(Boolean).pop();
+  return undefined;
 }
 
-type Props = CollectionEntry<"tree-shifts">
-const treeShifts = Astro.props
-const { title, description } = treeShifts.data
+export async function getStaticPaths() {
+  const entries = await getCollection("fruit-path");
+  const pathways = await getCollection("pathways");
+  const shifts = entries.filter((entry) => entry.data.kind === "shift");
 
-// Resolve pathway by matching this shift's slug in the pathways map
-const pathways = await getCollection('pathways');
-const shiftPath = pathways.find((p) => (p.data as any)?.shift?.slug === treeShifts.slug)?.id as string | undefined;
+  return shifts.map((shift) => {
+    let pathwayId = (shift.data as any).pathwayId as string | undefined;
+    if (!pathwayId) {
+      const match = pathways.find(
+        (pathway) => slugFrom((pathway.data as any)?.shift) === shift.slug,
+      );
+      pathwayId = match?.id as string | undefined;
+    }
+
+    return {
+      params: { slug: shift.slug },
+      props: { pathwayId },
+    };
+  });
+}
+
+const { pathwayId } = Astro.props as { pathwayId?: string };
+const target = pathwayId ? `/fruit-path/${pathwayId}#symptom` : "/fruit-path";
+return Astro.redirect(target, 301);
 ---
-
-<PageLayout title={title} description={description}>
-  <TopLayout>
-    <div class="animate">
-      <ArticleTopLayout entry={treeShifts} />
-    </div>
-  </TopLayout>
-  <BottomLayout>
-    <div class="animate">
-      <ArticleBottomLayout entry={treeShifts} />
-    </div>
-    {shiftPath && (
-      <div class="mt-8">
-        <PathwayLinks id={shiftPath} currentType="shift" />
-      </div>
-    )}
-  </BottomLayout>
-</PageLayout>

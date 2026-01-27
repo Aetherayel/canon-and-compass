@@ -13,6 +13,12 @@ export const SYMPTOMS: Page = {
   DESCRIPTION: "Trace the fruit you are seeing in your life to it's root.",
 }
 
+// Fruit Paths Page
+export const FRUIT_PATHS: Page = {
+  TITLE: "Fruit Paths",
+  DESCRIPTION: "Trace the fruit you are seeing in your life to its root and re-root in truth.",
+}
+
 // Tree Page
 export const TREE: Page = {
   TITLE: "Tree",
@@ -80,12 +86,12 @@ export const LINKS: Links = [
     HREF: "/the-clearing",
   },
   {
-    TEXT: "Fruit Paths",
-    HREF: "/symptoms",
-  },
-  {
     TEXT: "The Forests",
     HREF: "/forests",
+  },
+  {
+    TEXT: "Fruit Paths",
+    HREF: "/fruit-path",
   },
   {
     TEXT: "About",
@@ -95,12 +101,8 @@ export const LINKS: Links = [
 
 export const FRUIT_PATH_LINKS: Links = [
   {
-    TEXT: "Symptoms",
-    HREF: "/symptoms",
-  },
-  {
-    TEXT: "Truth Trees",
-    HREF: "/tree",
+    TEXT: "Fruit Paths",
+    HREF: "/fruit-path",
   },
 ]
 

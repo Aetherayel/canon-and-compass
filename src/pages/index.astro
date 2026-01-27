@@ -7,7 +7,8 @@ import { SITE, SOCIALS } from "@consts";
 import TwinklingStars from "@components/TwinklingStars.astro";
 import MeteorShower from "@components/MeteorShower.astro";
 
-const posts = (await getCollection("tree"))
+const posts = (await getCollection("fruit-path"))
+  .filter((entry) => entry.data.kind === "tree")
   .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
   .slice(0, 3);
 
@@ -195,7 +196,7 @@ const stack = [
             Things don’t feel off by accident.
           </p>
           <p
-            class="animated text-2xl md:text-3xl lg:text-3xl font-bold text-black dark:text-white"
+            class="animated text-2xl md:text-2xl lg:text-2xl font-bold text-black dark:text-white"
           >
             They grow from where we’re rooted.
           </p>
@@ -212,16 +213,16 @@ and toward what’s true.
               href="/the-clearing"
               class="py-2 px-4 rounded truncate text-xs md:text-sm lg:text-base bg-black dark:bg-white text-white dark:text-black hover:opacity-75 blend"
             >
-              Rest in The Clearing
+              Enter The Clearing
             </a>
             <a
               href="/forests"
               class="py-2 px-4 truncate rounded text-xs md:text-sm lg:text-base border border-black/25 dark:border-white/25 hover:bg-black/5 hover:dark:bg-white/15 blend"
             >
-              Enter the Forests
+              Explore The Forests
             </a>
             <a
-              href="/symptoms"
+              href="/fruit-path"
               class="py-2 px-4 truncate rounded text-xs md:text-sm lg:text-base border border-black/25 dark:border-white/25 hover:bg-black/5 hover:dark:bg-white/15 blend"
             >
               Walk a Fruit Path
@@ -261,256 +262,84 @@ and toward what’s true.
         </article>
       </section>
 
-      <!-- How It Works Section -->
-      <section class="py-16 bg-stone-50 dark:bg-zinc-900">
-        <div class="mx-auto max-w-3xl px-6 text-center">
-          <h2 class="text-2xl font-serif font-bold text-ink dark:text-white">
-            From Symptoms to Foundations
-          </h2>
-          <p class="mt-3 text-sm text-zinc-600 dark:text-zinc-400">
-            Begin with what you notice. Trace it to the root. Re-root in truth.
-            Then keep growing with practices that train both your habits and
-            your heart.
-          </p>
-          <p class="mt-3 text-sm text-zinc-600 dark:text-zinc-400">
-            Symptoms are often the fruit of a distorted worldview, so we follow
-            the trail from what you feel to the story you believe.
-          </p>
+      <!-- Where to Begin Section -->
+<section class="py-16 bg-stone-50 dark:bg-zinc-900">
+  <div class="mx-auto max-w-3xl px-6 text-center">
+    <h2 class="text-2xl font-serif font-bold text-ink dark:text-white">
+      Where to Begin
+    </h2>
+    <p class="mt-3 text-sm text-zinc-600 dark:text-zinc-400">
+      You don’t need to know what’s wrong to begin.
+    </p>
+    <p class="mt-3 text-sm text-zinc-600 dark:text-zinc-400">
+      Some people arrive carrying a specific weight. Others just sense that something isn’t aligned —
+      that faith, life, or the world no longer fits the way it once did. Canon &amp; Compass is built
+      to meet you in different places, without forcing a diagnosis.
+    </p>
 
-          <div class="mt-10 space-y-8 text-left">
-            <!-- 1) Symptom -->
-            <div class="p-5 bg-white dark:bg-zinc-800 rounded-xl shadow-sm">
-              <h3 class="font-semibold text-ink dark:text-white">1) Symptom</h3>
-              <p class="mt-2 text-sm text-zinc-600 dark:text-zinc-400">
-                <strong>What it is:</strong> Start with the visible “fruit” in your
-                life — from envy to anxiety — and trace it down through habits, patterns,
-                beliefs, and the core lie that sustains them.
-              </p>
+    <div class="mt-10 grid gap-6 text-left sm:grid-cols-3">
+      <!-- The Clearing -->
+      <div class="p-5 bg-white dark:bg-zinc-800 rounded-xl shadow-sm">
+        <h3 class="font-semibold text-ink dark:text-white">The Clearing</h3>
+        <p class="mt-2 text-sm text-zinc-600 dark:text-zinc-400">
+          If things feel loud, confusing, or spiritually thin.
+        </p>
+        <p class="mt-3 text-sm text-zinc-600 dark:text-zinc-400">
+          A place to slow down, regain bearings, and learn how to see clearly again —
+          without fixing, defending, or deciding yet.
+        </p>
+        <a
+          href="/the-clearing"
+          class="mt-4 inline-block rounded-lg border border-stone-300 px-4 py-2 text-sm font-semibold text-ink hover:bg-stone-100 dark:border-zinc-600 dark:text-white dark:hover:bg-zinc-700"
+        >
+          Enter The Clearing
+        </a>
+      </div>
 
-              <details class="group mt-3">
-                <summary
-                  class="flex cursor-pointer items-center gap-2 rounded-md px-2 py-2 text-sm text-zinc-700 dark:text-zinc-300 hover:bg-stone-100 dark:hover:bg-zinc-700"
-                >
-                  <svg
-                    class="h-4 w-4 text-zinc-500 transition-transform group-open:rotate-90"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M9 5l7 7-7 7"></path>
-                  </svg>
-                  Example: Envy → The Tree of Comparison
-                </summary>
-                <div
-                  class="mt-2 pl-6 space-y-3 text-sm text-zinc-700 dark:text-zinc-300"
-                >
-                  <div>
-                    <strong>Fruit (visible outcomes):</strong> Bitterness, insecurity,
-                    restlessness.
-                  </div>
-                  <div>
-                    <strong>Leaves (habits):</strong> Withholding celebration, passive
-                    scrolling.
-                  </div>
-                  <div>
-                    <strong>Branches (patterns):</strong> Resentment, comparison,
-                    self-pity.
-                  </div>
-                  <div>
-                    <strong>Trunk (core belief):</strong> “Comparison is how I measure
-                    worth.”
-                  </div>
-                  <div>
-                    <strong>Root (core lie):</strong> “God’s goodness is limited
-                    — if they win, I lose.”
-                  </div>
-                </div>
-              </details>
+      <!-- The Forests -->
+      <div class="p-5 bg-white dark:bg-zinc-800 rounded-xl shadow-sm">
+        <h3 class="font-semibold text-ink dark:text-white">The Forests</h3>
+        <p class="mt-2 text-sm text-zinc-600 dark:text-zinc-400">
+          If you’re trying to understand how the world trained you to see.
+        </p>
+        <p class="mt-3 text-sm text-zinc-600 dark:text-zinc-400">
+          Explore the larger environments — cultural, philosophical, and spiritual —
+          that quietly form our instincts and expectations.
+        </p>
+        <a
+          href="/forests"
+          class="mt-4 inline-block rounded-lg border border-stone-300 px-4 py-2 text-sm font-semibold text-ink hover:bg-stone-100 dark:border-zinc-600 dark:text-white dark:hover:bg-zinc-700"
+        >
+          Explore The Forests
+        </a>
+      </div>
 
-              <a
-                href="/symptoms"
-                class="mt-4 inline-block rounded-lg border border-stone-300 px-4 py-2 text-sm font-semibold text-ink hover:bg-stone-100 dark:hover:bg-zinc-700"
-              >
-                Start with a Symptom
-              </a>
-            </div>
+      <!-- Fruit Paths -->
+      <div class="p-5 bg-white dark:bg-zinc-800 rounded-xl shadow-sm">
+        <h3 class="font-semibold text-ink dark:text-white">Fruit Paths</h3>
+        <p class="mt-2 text-sm text-zinc-600 dark:text-zinc-400">
+          If a specific pattern or struggle has become clear.
+        </p>
+        <p class="mt-3 text-sm text-zinc-600 dark:text-zinc-400">
+          Begin with what’s showing up in your life, trace it to its roots,
+          and encounter the truth that reshapes what grows.
+        </p>
+        <a
+                href="/fruit-path"
+          class="mt-4 inline-block rounded-lg border border-stone-300 px-4 py-2 text-sm font-semibold text-ink hover:bg-stone-100 dark:border-zinc-600 dark:text-white dark:hover:bg-zinc-700"
+        >
+          Walk a Fruit Path
+        </a>
+      </div>
+    </div>
 
-            <!-- 2) Truth Tree -->
-            <div class="p-5 bg-white dark:bg-zinc-800 rounded-xl shadow-sm">
-              <h3 class="font-semibold text-ink dark:text-white">
-                2) Truth Tree
-              </h3>
-              <p class="mt-2 text-sm text-zinc-600 dark:text-zinc-400">
-                <strong>What it is:</strong> A gospel-rooted alternative to the lie.
-                Truth Trees help you rebuild with a new root (truth), trunk (foundation),
-                branches (practices), and fruit (outcomes).
-              </p>
+    <p class="mt-8 text-xs text-zinc-500 dark:text-zinc-400">
+      You don’t have to understand the whole map to take the next faithful step.
+    </p>
+  </div>
+</section>
 
-              <details class="group mt-3">
-                <summary
-                  class="flex cursor-pointer items-center gap-2 rounded-md px-2 py-2 text-sm text-zinc-700 dark:text-zinc-300 hover:bg-stone-100 dark:hover:bg-zinc-700"
-                >
-                  <svg
-                    class="h-4 w-4 text-zinc-500 transition-transform group-open:rotate-90"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M9 5l7 7-7 7"></path>
-                  </svg>
-                  Example: Gratitude-Based Identity
-                </summary>
-                <div
-                  class="mt-2 pl-6 space-y-3 text-sm text-zinc-700 dark:text-zinc-300"
-                >
-                  <div>
-                    <strong>Root (truth):</strong> God’s goodness is abundant.
-                  </div>
-                  <div>
-                    <strong>Trunk (foundation):</strong> I’m secure in His provision,
-                    not defined by comparison.
-                  </div>
-                  <div>
-                    <strong>Branches (practices):</strong> Celebration, generosity,
-                    contentment.
-                  </div>
-                  <div>
-                    <strong>Fruit (outcomes):</strong> Joy, peace, relational freedom.
-                  </div>
-                </div>
-              </details>
 
-              <a
-                href="/trees"
-                class="mt-4 inline-block rounded-lg border border-stone-300 px-4 py-2 text-sm font-semibold text-ink hover:bg-stone-100 dark:hover:bg-zinc-700"
-              >
-                Browse Truth Trees
-              </a>
-            </div>
-
-            <!-- 3) Foundations -->
-            <div class="p-5 bg-white dark:bg-zinc-800 rounded-xl shadow-sm">
-              <h3 class="font-semibold text-ink dark:text-white">
-                3) Foundations
-              </h3>
-              <p class="mt-2 text-sm text-zinc-600 dark:text-zinc-400">
-                <strong>What it is:</strong> The theological and cultural scaffolding
-                behind lasting change—structured in three streams:
-              </p>
-
-              <div
-                class="mt-6 flex flex-col gap-3 sm:flex-row sm:justify-around text-center"
-              >
-                <a
-                  href="/canon_notes"
-                  class="inline-block rounded-lg border border-stone-300 bg-white px-5 py-3 text-sm font-semibold text-ink shadow-sm hover:bg-stone-100 dark:bg-zinc-800 dark:border-zinc-600 dark:text-white dark:hover:bg-zinc-700"
-                >
-                  Canon Notes<br />
-                  <span
-                    class="text-xs font-normal text-zinc-500 dark:text-zinc-400"
-                    >Scripture-rooted devotionals</span
-                  >
-                </a>
-                <a
-                  href="/compass_points"
-                  class="inline-block rounded-lg border border-stone-300 bg-white px-5 py-3 text-sm font-semibold text-ink shadow-sm hover:bg-stone-100 dark:bg-zinc-800 dark:border-zinc-600 dark:text-white dark:hover:bg-zinc-700"
-                >
-                  Compass Points<br />
-                  <span
-                    class="text-xs font-normal text-zinc-500 dark:text-zinc-400"
-                    >Cultural analysis + counter-formation</span
-                  >
-                </a>
-                <a
-                  href="/pillars"
-                  class="inline-block rounded-lg border border-stone-300 bg-white px-5 py-3 text-sm font-semibold text-ink shadow-sm hover:bg-stone-100 dark:bg-zinc-800 dark:border-zinc-600 dark:text-white dark:hover:bg-zinc-700"
-                >
-                  Pillars<br />
-                  <span
-                    class="text-xs font-normal text-zinc-500 dark:text-zinc-400"
-                    >Theological + worldview essays</span
-                  >
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/*
-      <!-- Tree Preview Section -->
-      <section class="animate">
-        <div class="space-y-4">
-          <div class="flex justify-between">
-            <p class="font-semibold text-black dark:text-white">Recent Trees</p>
-            <a
-              href="/tree"
-              class="w-fit col-span-3 group flex gap-1 items-center underline decoration-[.5px] decoration-black/25 dark:decoration-white/50 hover:decoration-black dark:hover:decoration-white text-black dark:text-white underline-offset-2 blend"
-            >
-              <span
-                class="text-black/75 dark:text-white/75 group-hover:text-black group-hover:dark:text-white blend"
-              >
-                All Trees
-              </span>
-            </a>
-          </div>
-          <ul class="space-y-4">
-            {
-              posts.map((post) => (
-                <li>
-                  <ArrowCard entry={post} />
-                </li>
-              ))
-            }
-          </ul>
-        </div>
-      </section>
-
-      <!-- Foundations Preview Section -->
-      <section class="animate">
-        <div class="space-y-4">
-          <div class="flex justify-between">
-            <p class="font-semibold text-black dark:text-white">
-              Recent Foundations
-            </p>
-            <a
-              href="/foundations"
-              class="w-fit col-span-3 group flex gap-1 items-center underline decoration-[.5px] decoration-black/25 dark:decoration-white/50 hover:decoration-black dark:hover:decoration-white text-black dark:text-white underline-offset-2 blend"
-            >
-              <span
-                class="text-black/75 dark:text-white/75 group-hover:text-black group-hover:dark:text-white blend"
-              >
-                All Foundations
-              </span>
-            </a>
-          </div>
-          <ul class="space-y-4">
-            {
-              foundations.map((foundation) => (
-                <li>
-                  <StackCard
-                    title={foundation.data.title}
-                    summary={foundation.data.summary}
-                    href={`/${foundation.collection}/${foundation.slug}`}
-                    collection={foundation.collection}
-                    date={foundation.data.date}
-                    tags={foundation.data.tags}
-                  />
-                </li>
-              ))
-            }
-          </ul>
-        </div>
-      </section>
-      */}
     </div>
   </div>
 </PageLayout>

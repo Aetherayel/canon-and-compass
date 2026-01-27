@@ -1,18 +1,37 @@
 import { defineCollection, z } from "astro:content"
 
-const tree = defineCollection({
+const fruitPath = defineCollection({
   type: "content",
-  schema: z.object({
-    title: z.string(),
-    summary: z.string(),
-    date: z.coerce.date(),
-    tags: z.array(z.string()),
-    pathwayId: z.string().optional(),
-    prevHref: z.string().optional(),
-    prevLabel: z.string().optional(),
-    nextHref: z.string().optional(),
-    nextLabel: z.string().optional(),
-  }),
+  schema: z.discriminatedUnion("kind", [
+    z.object({
+      kind: z.literal("tree"),
+      title: z.string(),
+      summary: z.string(),
+      date: z.coerce.date(),
+      tags: z.array(z.string()),
+      pathwayId: z.string().optional(),
+      prevHref: z.string().optional(),
+      prevLabel: z.string().optional(),
+      nextHref: z.string().optional(),
+      nextLabel: z.string().optional(),
+    }),
+    z.object({
+      kind: z.literal("shift"),
+      title: z.string(),
+      description: z.string(),
+      fruit: z.string(),
+      blurb: z.string(),
+      systemLabel: z.string(),
+      tags: z.array(z.string()),
+      treeSlug: z.string().optional(),
+      pathwayId: z.string().optional(),
+      date: z.coerce.date(),
+      prevHref: z.string().optional(),
+      prevLabel: z.string().optional(),
+      nextHref: z.string().optional(),
+      nextLabel: z.string().optional(),
+    }),
+  ]),
 })
 
 const canonNotes = defineCollection({
@@ -137,25 +156,6 @@ const theClearing = defineCollection({
   }),
 })
 
-const treeShifts = defineCollection({
-  type: "content",
-  schema: z.object({
-    title: z.string(),
-    description: z.string(),
-    fruit: z.string(),
-    blurb: z.string(),
-    systemLabel: z.string(),
-    tags: z.array(z.string()),
-    treeSlug: z.string().optional(),
-    pathwayId: z.string().optional(),
-    date: z.coerce.date(),
-    prevHref: z.string().optional(),
-    prevLabel: z.string().optional(),
-    nextHref: z.string().optional(),
-    nextLabel: z.string().optional(),
-  }),
-})
-
 // Pathway map that ties together related content across systems
 const pathways = defineCollection({
   type: "data",
@@ -220,13 +220,12 @@ const pathways = defineCollection({
 });
 
 export const collections = {
-  tree,
+  "fruit-path": fruitPath,
   canon_notes: canonNotes,
   forests,
   compass_points: compassPoints,
   pillars,
   'the-clearing': theClearing,
-  "tree-shifts": treeShifts,
   "foundations-of-discernment": foundationsOfDiscernment,
   pathways,
 }

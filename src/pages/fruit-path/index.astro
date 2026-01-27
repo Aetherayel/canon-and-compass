@@ -1,0 +1,256 @@
+---
+import { getCollection } from "astro:content";
+import PageLayout from "@layouts/PageLayout.astro";
+import TopLayout from "@layouts/TopLayout.astro";
+import BottomLayout from "@layouts/BottomLayout.astro";
+import SearchCollection from "@components/SearchCollection";
+import SymptomArrowCard from "@components/SymptomArrowCard.astro";
+import { FRUIT_PATHS } from "@consts";
+
+const entries = await getCollection("fruit-path");
+const shifts = entries.filter((entry) => entry.data.kind === "shift");
+const trees = entries.filter((entry) => entry.data.kind === "tree");
+
+const symptoms = shifts
+  .map((entry) => ({ slug: entry.slug, ...entry.data }))
+  .sort((a, b) => a.fruit.localeCompare(b.fruit));
+
+const treePosts = trees
+  .filter((entry) => !(entry.data as any).draft)
+  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+
+const tags = [...new Set(treePosts.flatMap((post) => post.data.tags))].sort(
+  (a, b) => a.localeCompare(b),
+);
+
+const estimated_initial_size =
+  28 + treePosts.length * 158 + (treePosts.length - 1) * 12;
+---
+
+<PageLayout title={FRUIT_PATHS.TITLE} description={FRUIT_PATHS.DESCRIPTION}>
+  <TopLayout>
+    <div class="animate">
+      <div class="text-xs uppercase tracking-[0.2em] text-zinc-500 dark:text-zinc-400">Fruit Paths</div>
+      <h1 class="text-3xl font-semibold text-black dark:text-white mt-3">Fruit Paths</h1>
+      <p class="mt-3 text-balance text-lg text-zinc-600 dark:text-zinc-400 max-w-prose">
+        What is growing in your life is trying to tell the truth.
+      </p>
+      <p class="mt-4 text-zinc-600 dark:text-zinc-400 max-w-prose">
+        Fruit Paths begin with what most people notice first - the anxiety that will not quiet, the
+        exhaustion that lingers, the control that tightens, the hope that thins out.
+      </p>
+      <p class="mt-4 text-zinc-600 dark:text-zinc-400 max-w-prose">
+        These are not random flaws. They are fruit.
+      </p>
+      <p class="mt-4 text-zinc-600 dark:text-zinc-400 max-w-prose">
+        Fruit Paths exist to help you trace what is growing in your life back to its roots - and to
+        re-root in truth that can actually sustain new growth.
+      </p>
+
+      <div class="mt-6 flex flex-wrap gap-3 text-sm">
+        <a href="#fruit-paths" class="rounded-full border border-black/15 dark:border-white/20 px-4 py-2 hover:bg-black/5 hover:dark:bg-white/10 transition-colors">
+          Explore the Paths
+        </a>
+        <a href="#why-symptoms" class="rounded-full border border-black/15 dark:border-white/20 px-4 py-2 hover:bg-black/5 hover:dark:bg-white/10 transition-colors">
+          Why Symptoms
+        </a>
+      </div>
+    </div>
+  </TopLayout>
+
+  <BottomLayout>
+    <section class="animate mt-8">
+      <h2 class="text-2xl font-semibold text-black dark:text-white">What a Fruit Path Does</h2>
+      <p class="mt-3 text-zinc-600 dark:text-zinc-400 max-w-prose">
+        Each Fruit Path follows a single, honest movement:
+      </p>
+      <p class="mt-3 text-zinc-700 dark:text-zinc-300 font-semibold">
+        Unwanted fruit -> hidden root -> healing truth -> renewed fruit
+      </p>
+      <p class="mt-4 text-zinc-600 dark:text-zinc-400 max-w-prose">
+        Rather than jumping straight to solutions, a Fruit Path helps you:
+      </p>
+      <ul class="mt-4 grid gap-2 text-zinc-600 dark:text-zinc-400 max-w-prose">
+        <li>name what is showing up in your life</li>
+        <li>understand why it once made sense</li>
+        <li>uncover the lie beneath it</li>
+        <li>encounter the truth that addresses that lie</li>
+        <li>recognize the fruit you have been longing for - even if you never had words for it</li>
+      </ul>
+      <p class="mt-4 text-zinc-600 dark:text-zinc-400 max-w-prose">
+        This is not behavior management. It is re-rooting.
+      </p>
+    </section>
+
+    <section class="animate mt-12">
+      <h2 class="text-2xl font-semibold text-black dark:text-white">One Path, Two Trees</h2>
+      <p class="mt-3 text-zinc-600 dark:text-zinc-400 max-w-prose">
+        Each Fruit Path walks between two trees - on the same ground.
+      </p>
+
+      <div class="mt-6 grid gap-4 sm:grid-cols-2">
+        <div class="rounded-xl border border-black/10 dark:border-white/15 p-5 bg-white/60 dark:bg-zinc-900/50">
+          <h3 class="text-lg font-semibold text-black dark:text-white">The Counterfeit Tree</h3>
+          <p class="mt-2 text-zinc-600 dark:text-zinc-400">
+            This tree grows from a lie that once helped you survive.
+          </p>
+          <p class="mt-2 text-zinc-600 dark:text-zinc-400">
+            It often looks responsible. Sometimes it even looks spiritual.
+          </p>
+          <p class="mt-2 text-zinc-600 dark:text-zinc-400">
+            But over time, it produces fruit that exhausts rather than nourishes.
+          </p>
+        </div>
+
+        <div class="rounded-xl border border-black/10 dark:border-white/15 p-5 bg-white/60 dark:bg-zinc-900/50">
+          <h3 class="text-lg font-semibold text-black dark:text-white">The Truth Tree</h3>
+          <p class="mt-2 text-zinc-600 dark:text-zinc-400">
+            This tree grows from a biblical truth meant to be abided in, not applied.
+          </p>
+          <p class="mt-2 text-zinc-600 dark:text-zinc-400">
+            Its fruit does not arrive all at once - but it is steadier, deeper, and life-giving.
+          </p>
+          <p class="mt-2 text-zinc-600 dark:text-zinc-400">
+            A Fruit Path does not ask you to jump from one tree to the other. It traces how roots are exchanged.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="why-symptoms" class="animate mt-12 scroll-mt-24">
+      <h2 class="text-2xl font-semibold text-black dark:text-white">Why We Start with Symptoms</h2>
+      <p class="mt-3 text-zinc-600 dark:text-zinc-400 max-w-prose">
+        Most people do not begin by asking about beliefs or formation. They begin by feeling:
+      </p>
+      <ul class="mt-4 grid gap-2 text-zinc-600 dark:text-zinc-400 max-w-prose">
+        <li>tense</li>
+        <li>tired</li>
+        <li>reactive</li>
+        <li>brittle</li>
+        <li>overwhelmed</li>
+        <li>or quietly numb</li>
+      </ul>
+      <p class="mt-4 text-zinc-600 dark:text-zinc-400 max-w-prose">
+        Fruit Paths take those experiences seriously. They begin with what you feel - and honor it enough to ask where it came from.
+      </p>
+    </section>
+
+    <section id="fruit-paths" class="animate mt-14 scroll-mt-24">
+      <h2 class="text-2xl font-semibold text-black dark:text-white">The Fruit Paths</h2>
+      <p class="mt-3 text-zinc-600 dark:text-zinc-400 max-w-prose">
+        Each path below starts with a familiar struggle and leads toward a fruit many people desire - but struggle to name.
+      </p>
+      <p class="mt-2 text-zinc-600 dark:text-zinc-400 max-w-prose">
+        You do not need to walk them all. One is usually enough to begin.
+      </p>
+
+      <div class="mt-6 max-w-xl">
+        <label for="symptom-search" class="sr-only">Filter symptoms</label>
+        <input
+          id="symptom-search"
+          type="search"
+          placeholder="Filter by symptom or tag..."
+          class="w-full rounded-full px-5 py-3 bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 text-base"
+          data-ctrl="filter"
+        />
+      </div>
+
+      <ul id="symptom-grid" class="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        {symptoms.map((it) => (
+          <li
+            data-tags={it.tags.join(" ").toLowerCase()}
+            data-fruit={it.fruit.toLowerCase()}
+          >
+            <SymptomArrowCard
+              fruit={it.fruit}
+              blurb={it.blurb}
+              tags={it.tags}
+              href={`/fruit-path/${it.pathwayId ?? it.slug}#symptom`}
+              pillLabel={it.systemLabel}
+            />
+          </li>
+        ))}
+      </ul>
+    </section>
+
+    <section class="animate mt-14">
+      <h2 class="text-2xl font-semibold text-black dark:text-white">What Comes After the Path</h2>
+      <p class="mt-3 text-zinc-600 dark:text-zinc-400 max-w-prose">
+        Seeing the truth is not the same as being formed by it.
+      </p>
+      <p class="mt-3 text-zinc-600 dark:text-zinc-400 max-w-prose">
+        Each Fruit Path opens into Foundations - Scripture-anchored reflections, cultural discernment, and deeper
+        formation meant to help the truth take root over time.
+      </p>
+      <p class="mt-3 text-zinc-600 dark:text-zinc-400 max-w-prose">
+        Formation is slower than insight. Fruit Paths exist to respect that.
+      </p>
+      <div class="mt-4">
+        <a href="/foundations" class="inline-flex rounded-full border border-black/15 dark:border-white/20 px-4 py-2 text-sm font-semibold hover:bg-black/5 dark:hover:bg-white/10 transition-colors">
+          Explore Foundations
+        </a>
+      </div>
+    </section>
+
+    <section class="animate mt-14">
+      <h2 class="text-2xl font-semibold text-black dark:text-white">If You Are Unsure Where to Begin</h2>
+      <p class="mt-3 text-zinc-600 dark:text-zinc-400 max-w-prose">
+        If one fruit stands out clearly, start there. If everything feels tangled or loud, return to The Clearing first.
+      </p>
+      <p class="mt-3 text-zinc-600 dark:text-zinc-400 max-w-prose">
+        Fruit Paths are not meant to be rushed. They are meant to be walked honestly.
+      </p>
+      <div class="mt-4">
+        <a href="/the-clearing" class="inline-flex rounded-full border border-black/15 dark:border-white/20 px-4 py-2 text-sm font-semibold hover:bg-black/5 dark:hover:bg-white/10 transition-colors">
+          Go to The Clearing
+        </a>
+      </div>
+    </section>
+
+    <section class="animate mt-14">
+      <h2 class="text-2xl font-semibold text-black dark:text-white">A Gentle Word</h2>
+      <p class="mt-3 text-zinc-600 dark:text-zinc-400 max-w-prose">
+        The fruit you are carrying tells a story.
+      </p>
+      <p class="mt-3 text-zinc-600 dark:text-zinc-400 max-w-prose">
+        Not about your failure - but about the soil you have lived in, the pressures you adapted to, and the truths
+        you were taught to survive by.
+      </p>
+      <p class="mt-3 text-zinc-600 dark:text-zinc-400 max-w-prose">
+        Fruit Paths exist to help you hear that story clearly - and to invite a truer one to grow in its place.
+      </p>
+    </section>
+
+    <section id="truth-trees" class="animate mt-16 scroll-mt-24">
+      <div class="flex items-center justify-between gap-4 flex-wrap">
+        <h2 class="text-2xl font-semibold text-black dark:text-white">Truth Trees</h2>
+        <a href="#fruit-paths" class="text-sm text-zinc-500 hover:text-black dark:hover:text-white">Back to Fruit Paths</a>
+      </div>
+      <div
+        id="search-collection-wrapper"
+        class="animate mt-6"
+        style={{ minHeight: `${estimated_initial_size}px` }}
+      >
+        <SearchCollection
+          client:load
+          entry_name={"truth trees"}
+          tags={tags}
+          data={treePosts}
+        />
+      </div>
+    </section>
+  </BottomLayout>
+</PageLayout>
+
+<script is:inline>
+  const q = document.querySelector('[data-ctrl="filter"]');
+  const items = Array.from(document.querySelectorAll('#symptom-grid > li'));
+  function applyFilter() {
+    const v = (q.value || "").toLowerCase().trim();
+    items.forEach((el) => {
+      const hay = (el.dataset.fruit + " " + el.dataset.tags).toLowerCase();
+      el.style.display = v && !hay.includes(v) ? "none" : "";
+    });
+  }
+  q?.addEventListener('input', applyFilter);
+</script>

@@ -1,0 +1,226 @@
+---
+import type { CollectionEntry } from "astro:content";
+import PageLayout from "@layouts/PageLayout.astro";
+import TopLayout from "@layouts/TopLayout.astro";
+import BottomLayout from "@layouts/BottomLayout.astro";
+import PathwayLinks from "@components/PathwayLinks.astro";
+import { formatDate, readingTime } from "@lib/utils";
+
+type Props = {
+  pathway?: CollectionEntry<"pathways">;
+  shiftEntry?: CollectionEntry<"fruit-path">;
+  treeEntry?: CollectionEntry<"fruit-path">;
+  backHref?: string;
+  backLabel?: string;
+};
+
+const {
+  pathway,
+  shiftEntry,
+  treeEntry,
+  backHref = "/fruit-path",
+  backLabel = "Fruit Paths",
+} = Astro.props as Props;
+
+const shiftData = shiftEntry?.data;
+const treeData = treeEntry?.data;
+
+const pathwayLabel = pathway?.data?.label;
+const fallbackLabel = shiftData && treeData
+  ? `${shiftData.fruit ?? shiftData.title} <-> ${treeData.title}`
+  : shiftData?.title ?? treeData?.title ?? "Fruit Path";
+
+const title = pathwayLabel ?? fallbackLabel;
+const description = shiftData?.description ?? treeData?.summary ?? "Trace the fruit to the root and walk into truth.";
+
+const shiftMeta = shiftEntry
+  ? {
+      date: shiftData?.date ? formatDate(shiftData.date) : undefined,
+      read: readingTime(shiftEntry.body),
+    }
+  : undefined;
+
+const treeMeta = treeEntry
+  ? {
+      date: treeData?.date ? formatDate(treeData.date) : undefined,
+      read: readingTime(treeEntry.body),
+    }
+  : undefined;
+
+const { Content: ShiftContent } = shiftEntry ? await shiftEntry.render() : { Content: null };
+const { Content: TreeContent } = treeEntry ? await treeEntry.render() : { Content: null };
+
+const hasSections = Boolean(shiftEntry || treeEntry);
+---
+
+<PageLayout title={title} description={description}>
+  <TopLayout>
+    <div class="animate">
+      <a
+        href={backHref}
+        class="group w-fit p-1.5 gap-1.5 text-sm flex items-center border rounded hover:bg-black/5 hover:dark:bg-white/10 border-black/15 dark:border-white/20 transition-colors duration-300 ease-in-out"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="20"
+          height="20"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke-width="2.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="stroke-current group-hover:stroke-black group-hover:dark:stroke-white"
+        >
+          <line
+            x1="19"
+            y1="12"
+            x2="5"
+            y2="12"
+            class="scale-x-0 group-hover:scale-x-100 translate-x-3 group-hover:translate-x-0 transition-all duration-300 ease-in-out"
+          />
+          <polyline
+            points="12 19 5 12 12 5"
+            class="translate-x-1 group-hover:translate-x-0 transition-all duration-300 ease-in-out"
+          />
+        </svg>
+        <div class="w-full group-hover:text-black group-hover:dark:text-white transition-colors duration-300 ease-in-out">
+          Back to {backLabel}
+        </div>
+      </a>
+
+      <div class="mt-10">
+        <div class="text-xs uppercase tracking-[0.2em] text-zinc-500 dark:text-zinc-400">Fruit Path</div>
+        <h1 class="text-3xl font-semibold text-black dark:text-white mt-3">
+          {title}
+        </h1>
+        {description && (
+          <p class="mt-2 text-balance text-lg text-zinc-600 dark:text-zinc-400 max-w-prose">
+            {description}
+          </p>
+        )}
+
+        {shiftData?.systemLabel && (
+          <div class="mt-4 inline-flex items-center gap-2 text-xs uppercase tracking-wide text-zinc-600 dark:text-zinc-300">
+            <span class="rounded-full border border-black/15 dark:border-white/20 px-2 py-1">System</span>
+            <span>{shiftData.systemLabel}</span>
+          </div>
+        )}
+
+        {hasSections && (
+          <div class="mt-5 flex flex-wrap gap-2">
+            {shiftEntry && (
+              <a
+                href="#symptom"
+                class="rounded-full border border-black/15 dark:border-white/20 px-3 py-1 text-sm font-semibold text-black/80 dark:text-white/80 hover:bg-black/5 hover:dark:bg-white/10 transition-colors"
+              >
+                Jump to Symptom
+              </a>
+            )}
+            {treeEntry && (
+              <a
+                href="#truth-tree"
+                class="rounded-full border border-black/15 dark:border-white/20 px-3 py-1 text-sm font-semibold text-black/80 dark:text-white/80 hover:bg-black/5 hover:dark:bg-white/10 transition-colors"
+              >
+                Jump to Truth Tree
+              </a>
+            )}
+          </div>
+        )}
+      </div>
+    </div>
+  </TopLayout>
+
+  <BottomLayout>
+    <div class="animate">
+      {shiftEntry ? (
+        <section id="symptom" class="scroll-mt-24">
+          <div class="flex flex-wrap text-xs uppercase gap-3 opacity-75">
+            <span class="tracking-wide">Symptom</span>
+            {shiftMeta?.date && (
+              <span class="flex items-center gap-2">
+                <svg class="size-4 stroke-current">
+                  <use href="/ui.svg#calendar" />
+                </svg>
+                {shiftMeta.date}
+              </span>
+            )}
+            {shiftMeta?.read && (
+              <span class="flex items-center gap-2">
+                <svg class="size-4 stroke-current">
+                  <use href="/ui.svg#book-open" />
+                </svg>
+                {shiftMeta.read}
+              </span>
+            )}
+          </div>
+          <h2 class="text-2xl font-semibold text-black dark:text-white mt-3">
+            {shiftData?.title ?? "Symptom"}
+          </h2>
+          {shiftData?.description && (
+            <p class="mt-2 text-zinc-600 dark:text-zinc-400 max-w-prose">
+              {shiftData.description}
+            </p>
+          )}
+          <article class="mt-6">
+            {ShiftContent ? <ShiftContent /> : null}
+          </article>
+        </section>
+      ) : (
+        <section class="rounded-xl border border-amber-300/40 bg-amber-50/70 dark:bg-amber-900/10 dark:border-amber-400/30 p-4">
+          <p class="text-sm text-amber-700 dark:text-amber-200">Symptom content is missing for this fruit path.</p>
+        </section>
+      )}
+
+      {treeEntry ? (
+        <section id="truth-tree" class="scroll-mt-24 mt-12 pt-12 border-t border-black/10 dark:border-white/15">
+          <div class="flex flex-wrap text-xs uppercase gap-3 opacity-75">
+            <span class="tracking-wide">Truth Tree</span>
+            {treeMeta?.date && (
+              <span class="flex items-center gap-2">
+                <svg class="size-4 stroke-current">
+                  <use href="/ui.svg#calendar" />
+                </svg>
+                {treeMeta.date}
+              </span>
+            )}
+            {treeMeta?.read && (
+              <span class="flex items-center gap-2">
+                <svg class="size-4 stroke-current">
+                  <use href="/ui.svg#book-open" />
+                </svg>
+                {treeMeta.read}
+              </span>
+            )}
+          </div>
+          <h2 class="text-2xl font-semibold text-black dark:text-white mt-3">
+            {treeData?.title ?? "Truth Tree"}
+          </h2>
+          {treeData?.summary && (
+            <p class="mt-2 text-zinc-600 dark:text-zinc-400 max-w-prose">
+              {treeData.summary}
+            </p>
+          )}
+          <article class="mt-6">
+            {TreeContent ? <TreeContent /> : null}
+          </article>
+        </section>
+      ) : (
+        <section class="rounded-xl border border-amber-300/40 bg-amber-50/70 dark:bg-amber-900/10 dark:border-amber-400/30 p-4 mt-12">
+          <p class="text-sm text-amber-700 dark:text-amber-200">Truth Tree content is missing for this fruit path.</p>
+        </section>
+      )}
+
+      {pathway && (
+        <div class="mt-10">
+          <PathwayLinks
+            id={pathway.id}
+            showShift={false}
+            showTree={false}
+            heading="Keep Walking This Path"
+            blurb="Continue through related pieces that deepen this fruit path."
+          />
+        </div>
+      )}
+    </div>
+  </BottomLayout>
+</PageLayout>

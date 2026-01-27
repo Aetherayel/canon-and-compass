@@ -9,7 +9,7 @@ type Props = {
   entry_name: string
   tags: string[]
   data: (
-    | CollectionEntry<'tree'>
+    | CollectionEntry<'fruit-path'>
     | CollectionEntry<'the-clearing'>
     | CollectionEntry<'canon_notes'>
     | CollectionEntry<'forests'>
@@ -21,7 +21,7 @@ type Props = {
 }
 
 export default function SearchCollection({ entry_name, data, tags, showTags = true }: Props) {
-  const coerced = data.map((entry) => entry as CollectionEntry<'tree'>);
+  const coerced = data as Props["data"];
 
   const [query, setQuery] = createSignal("");
   const [filter, setFilter] = createSignal(new Set<string>())
@@ -30,7 +30,7 @@ export default function SearchCollection({ entry_name, data, tags, showTags = tr
   const [tagsOpen, setTagsOpen] = createSignal(showTags);
 
   const fuse = new Fuse(coerced, {
-    keys: ["slug", "data.title", "data.summary", "data.tags"],
+    keys: ["slug", "data.title", "data.summary", "data.description", "data.tags"],
     includeMatches: true,
     minMatchCharLength: 2,
     threshold: 0.4,

@@ -20,17 +20,26 @@ const pathways = await getCollection('pathways');
 
 let entry = id ? pathways.find((p) => p.id === id) : undefined;
 
-// Fallback: infer by current URL matching tree href or slug
+// Fallback: infer by current URL matching fruit-path id or tree href/slug
 if (!entry) {
   try {
     const path = Astro.url?.pathname ?? '';
     const normalized = path.endsWith('/') ? path : path + '/';
-    entry = pathways.find((x) => {
-      const data: any = x.data;
-      const href = data?.tree?.href ?? (data?.tree?.slug ? `/tree/${data.tree.slug}` : undefined);
-      const normalizedHref = href ? (href.endsWith('/') ? href : href + '/') : undefined;
-      return normalizedHref === normalized;
-    });
+    if (normalized.startsWith('/fruit-path/')) {
+      const parts = normalized.split('/').filter(Boolean);
+      const maybeId = parts[1];
+      entry = pathways.find((x) => x.id === maybeId);
+    }
+    if (entry) {
+      // ok
+    } else {
+      entry = pathways.find((x) => {
+        const data: any = x.data;
+      const href = data?.tree?.href ?? (data?.tree?.slug ? `/fruit-path/${x.id}#truth-tree` : undefined);
+        const normalizedHref = href ? (href.endsWith('/') ? href : href + '/') : undefined;
+        return normalizedHref === normalized;
+      });
+    }
   } catch {}
 }
 
@@ -82,4 +91,3 @@ const pillar = data?.pillar;
     <p class="text-xs text-amber-600 dark:text-amber-400">Pathway not found. Provide an id prop or add pathwayId to front matter.</p>
   </div>
 )}
-

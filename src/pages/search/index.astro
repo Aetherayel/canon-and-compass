@@ -6,7 +6,9 @@ import BottomLayout from "@layouts/BottomLayout.astro";
 import Search from "@components/Search";
 import { SEARCH } from "@consts";
 
-const posts = (await getCollection("tree")).filter((post) => !post.data.draft);
+const posts = (await getCollection("fruit-path")).filter(
+  (post) => post.data.kind === "tree" && !post.data.draft,
+);
 
 const clearing = (await getCollection("the-clearing")).filter(
   (entry) => !entry.data.draft,
@@ -33,7 +35,7 @@ const pillars = (await getCollection("pillars")).filter(
 );
 
 const data = [...posts, ...clearing, ...canonNotes, ...forests, ...foundations, ...compassPoints, ...pillars] as CollectionEntry<
-  | "tree"
+  | "fruit-path"
   | "the-clearing"
   | "canon_notes"
   | "forests"

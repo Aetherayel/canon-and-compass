@@ -5,7 +5,7 @@ import ArrowCard from "@components/ArrowCard"
 import SearchBar from "@components/SearchBar"
 
 type Entry =
-  | CollectionEntry<"tree">
+  | CollectionEntry<"fruit-path">
   | CollectionEntry<"the-clearing">
   | CollectionEntry<"canon_notes">
   | CollectionEntry<"foundations-of-discernment">
@@ -22,7 +22,7 @@ export default function Search({ data }: Props) {
   const [results, setResults] = createSignal<Entry[]>([])
 
   const fuse = new Fuse(data, {
-    keys: ["slug", "data.title", "data.summary", "data.tags"],
+    keys: ["slug", "data.title", "data.summary", "data.description", "data.tags"],
     includeMatches: true,
     minMatchCharLength: 2,
     threshold: 0.4,

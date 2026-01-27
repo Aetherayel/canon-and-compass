@@ -34,18 +34,19 @@ const pathways = await getCollection('pathways');
 const entry = pathways.find((p) => p.id === id);
 const data: any = entry?.data ?? {};
 
-function hrefOr(base: string, item: any) {
+function hrefOr(base: string, item: any, anchor?: string) {
   if (!item) return undefined;
   if (item.href) return item.href;
+  if (base === "/fruit-path" && id) return `${base}/${id}${anchor ?? ""}`;
   if (item.slug) return `${base}/${item.slug}`;
   return undefined;
 }
 
 type TypeKey = 'shift' | 'tree' | 'counterfeitTree' | 'canonNote' | 'compassPoint' | 'pillar';
 
-const order: Array<{key: TypeKey; label: string; base: string; show: boolean; item: any}> = [
-  { key: 'shift', label: 'Symptom', base: '/tree-shifts', show: showShift, item: data?.shift },
-  { key: 'tree', label: 'Truth Tree', base: '/tree', show: showTree, item: data?.tree },
+const order: Array<{key: TypeKey; label: string; base: string; show: boolean; item: any; anchor?: string}> = [
+  { key: 'shift', label: 'Symptom', base: '/fruit-path', anchor: '#symptom', show: showShift, item: data?.shift },
+  { key: 'tree', label: 'Truth Tree', base: '/fruit-path', anchor: '#truth-tree', show: showTree, item: data?.tree },
   { key: 'counterfeitTree', label: 'Counterfeit Tree', base: '/counterfeit-tree', show: showCounterfeit, item: data?.counterfeitTree },
   { key: 'canonNote', label: 'Canon Note', base: '/canon_notes', show: showCanonNote, item: data?.canonNote },
   { key: 'compassPoint', label: 'Compass Point', base: '/compass_points', show: showCompassPoint, item: data?.compassPoint },
@@ -65,8 +66,9 @@ const entriesList = order
   .filter(e => e.show && e.item)
   .map(e => {
     const title = e.item?.title ?? (e.item?.slug ? e.item.slug.replace(/-/g, ' ') : e.label);
-    const href = hrefOr(e.base, e.item);
-    const normalizedHref = href ? (href.endsWith('/') ? href : href + '/') : undefined;
+    const href = hrefOr(e.base, e.item, e.anchor);
+    const cleanedHref = href ? href.split('#')[0] : undefined;
+    const normalizedHref = cleanedHref ? (cleanedHref.endsWith('/') ? cleanedHref : cleanedHref + '/') : undefined;
     const isCurrent = (currentType && currentType === e.key) || (currentHref && currentHref === href) || (normalizedHref && normalizedHref === currentPath);
     return { key: e.key, typeLabel: e.label, title, href, isCurrent };
   });
