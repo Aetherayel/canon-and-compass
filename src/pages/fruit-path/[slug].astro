@@ -2,14 +2,14 @@
 import { getCollection, type CollectionEntry } from "astro:content";
 import FruitPathPage from "@layouts/FruitPathPage.astro";
 
-function slugFrom(item: { slug?: string; href?: string } | undefined) {
-  if (!item) return undefined;
-  if (item.slug) return item.slug;
-  if (item.href) return item.href.split("/").filter(Boolean).pop();
-  return undefined;
-}
-
 export async function getStaticPaths() {
+  function slugFrom(item: { slug?: string; href?: string } | undefined) {
+    if (!item) return undefined;
+    if (item.slug) return item.slug;
+    if (item.href) return item.href.split("/").filter(Boolean).pop();
+    return undefined;
+  }
+
   const pathways = await getCollection("pathways");
   const entries = await getCollection("fruit-path");
 
