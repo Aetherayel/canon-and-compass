@@ -4,27 +4,21 @@ import PageLayout from "@layouts/PageLayout.astro";
 import TopLayout from "@layouts/TopLayout.astro";
 import BottomLayout from "@layouts/BottomLayout.astro";
 import SearchCollection from "@components/SearchCollection";
-import SymptomArrowCard from "@components/SymptomArrowCard.astro";
 import { FRUIT_PATHS } from "@consts";
 
 const entries = await getCollection("fruit-path");
-const shifts = entries.filter((entry) => entry.data.kind === "shift");
-const trees = entries.filter((entry) => entry.data.kind === "tree");
-
-const symptoms = shifts
-  .map((entry) => ({ slug: entry.slug, ...entry.data }))
-  .sort((a, b) => a.fruit.localeCompare(b.fruit));
-
-const treePosts = trees
+const pathways = entries
   .filter((entry) => !(entry.data as any).draft)
   .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
 
-const tags = [...new Set(treePosts.flatMap((post) => post.data.tags))].sort(
-  (a, b) => a.localeCompare(b),
-);
+const tags = [
+  ...new Set(
+    pathways.flatMap((post) => ((post.data as any)?.shift?.tags ?? [])),
+  ),
+].sort((a, b) => a.localeCompare(b));
 
 const estimated_initial_size =
-  28 + treePosts.length * 158 + (treePosts.length - 1) * 12;
+  28 + pathways.length * 158 + (pathways.length - 1) * 12;
 ---
 
 <PageLayout title={FRUIT_PATHS.TITLE} description={FRUIT_PATHS.DESCRIPTION}>
@@ -46,16 +40,8 @@ const estimated_initial_size =
         Fruit Paths exist to help you trace what is growing in your life back to its roots - and to
         re-root in truth that can actually sustain new growth.
       </p>
-
-      <div class="mt-6 flex flex-wrap gap-3 text-sm">
-        <a href="#fruit-paths" class="rounded-full border border-black/15 dark:border-white/20 px-4 py-2 hover:bg-black/5 hover:dark:bg-white/10 transition-colors">
-          Explore the Paths
-        </a>
-        <a href="#why-symptoms" class="rounded-full border border-black/15 dark:border-white/20 px-4 py-2 hover:bg-black/5 hover:dark:bg-white/10 transition-colors">
-          Why Symptoms
-        </a>
-      </div>
     </div>
+    
   </TopLayout>
 
   <BottomLayout>
@@ -144,33 +130,18 @@ const estimated_initial_size =
         You do not need to walk them all. One is usually enough to begin.
       </p>
 
-      <div class="mt-6 max-w-xl">
-        <label for="symptom-search" class="sr-only">Filter symptoms</label>
-        <input
-          id="symptom-search"
-          type="search"
-          placeholder="Filter by symptom or tag..."
-          class="w-full rounded-full px-5 py-3 bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 text-base"
-          data-ctrl="filter"
+      <div
+        id="search-collection-wrapper"
+        class="animate mt-6"
+        style={{ minHeight: `${estimated_initial_size}px` }}
+      >
+        <SearchCollection
+          client:load
+          entry_name={"fruit paths"}
+          tags={tags}
+          data={pathways}
         />
       </div>
-
-      <ul id="symptom-grid" class="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        {symptoms.map((it) => (
-          <li
-            data-tags={it.tags.join(" ").toLowerCase()}
-            data-fruit={it.fruit.toLowerCase()}
-          >
-            <SymptomArrowCard
-              fruit={it.fruit}
-              blurb={it.blurb}
-              tags={it.tags}
-              href={`/fruit-path/${it.pathwayId ?? it.slug}#symptom`}
-              pillLabel={it.systemLabel}
-            />
-          </li>
-        ))}
-      </ul>
     </section>
 
     <section class="animate mt-14">
@@ -221,36 +192,5 @@ const estimated_initial_size =
       </p>
     </section>
 
-    <section id="truth-trees" class="animate mt-16 scroll-mt-24">
-      <div class="flex items-center justify-between gap-4 flex-wrap">
-        <h2 class="text-2xl font-semibold text-black dark:text-white">Truth Trees</h2>
-        <a href="#fruit-paths" class="text-sm text-zinc-500 hover:text-black dark:hover:text-white">Back to Fruit Paths</a>
-      </div>
-      <div
-        id="search-collection-wrapper"
-        class="animate mt-6"
-        style={{ minHeight: `${estimated_initial_size}px` }}
-      >
-        <SearchCollection
-          client:load
-          entry_name={"truth trees"}
-          tags={tags}
-          data={treePosts}
-        />
-      </div>
-    </section>
   </BottomLayout>
 </PageLayout>
-
-<script is:inline>
-  const q = document.querySelector('[data-ctrl="filter"]');
-  const items = Array.from(document.querySelectorAll('#symptom-grid > li'));
-  function applyFilter() {
-    const v = (q.value || "").toLowerCase().trim();
-    items.forEach((el) => {
-      const hay = (el.dataset.fruit + " " + el.dataset.tags).toLowerCase();
-      el.style.display = v && !hay.includes(v) ? "none" : "";
-    });
-  }
-  q?.addEventListener('input', applyFilter);
-</script>

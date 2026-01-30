@@ -3,56 +3,23 @@ import { getCollection, type CollectionEntry } from "astro:content";
 import FruitPathPage from "@layouts/FruitPathPage.astro";
 
 export async function getStaticPaths() {
-  function slugFrom(item: { slug?: string; href?: string } | undefined) {
-    if (!item) return undefined;
-    if (item.slug) return item.slug;
-    if (item.href) return item.href.split("/").filter(Boolean).pop();
-    return undefined;
-  }
-
-  const pathways = await getCollection("pathways");
   const entries = await getCollection("fruit-path");
 
-  return pathways.map((pathway) => {
-    const data: any = pathway.data;
-    const shiftSlug = slugFrom(data?.shift);
-    const treeSlug = slugFrom(data?.tree);
-
-    const shiftEntry = shiftSlug
-      ? entries.find(
-          (entry) => entry.slug === shiftSlug && entry.data.kind === "shift",
-        )
-      : undefined;
-    const treeEntry = treeSlug
-      ? entries.find(
-          (entry) => entry.slug === treeSlug && entry.data.kind === "tree",
-        )
-      : undefined;
-
-    return {
-      params: { slug: pathway.id },
-      props: {
-        pathway,
-        shiftEntry,
-        treeEntry,
-      },
-    };
-  });
+  return entries.map((entry) => ({
+    params: { slug: entry.slug },
+    props: { entry },
+  }));
 }
 
 type Props = {
-  pathway: CollectionEntry<"pathways">;
-  shiftEntry?: CollectionEntry<"fruit-path">;
-  treeEntry?: CollectionEntry<"fruit-path">;
+  entry: CollectionEntry<"fruit-path">;
 };
 
-const { pathway, shiftEntry, treeEntry } = Astro.props as Props;
+const { entry } = Astro.props as Props;
 ---
 
 <FruitPathPage
-  pathway={pathway}
-  shiftEntry={shiftEntry}
-  treeEntry={treeEntry}
+  entry={entry}
   backHref="/fruit-path"
   backLabel="Fruit Paths"
 />

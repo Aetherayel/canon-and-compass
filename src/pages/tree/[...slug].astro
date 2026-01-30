@@ -1,35 +1,22 @@
 ---
 import { getCollection } from "astro:content";
 
-function slugFrom(item: { slug?: string; href?: string } | undefined) {
-  if (!item) return undefined;
-  if (item.slug) return item.slug;
-  if (item.href) return item.href.split("/").filter(Boolean).pop();
-  return undefined;
-}
-
 export async function getStaticPaths() {
   const entries = await getCollection("fruit-path");
-  const pathways = await getCollection("pathways");
-  const trees = entries.filter((entry) => entry.data.kind === "tree");
+  const trees = entries
+    .map((entry) => ({
+      slug: entry.data?.tree?.slug,
+      pathwayId: entry.data?.pathwayId ?? entry.slug,
+    }))
+    .filter((entry) => Boolean(entry.slug));
 
-  return trees.map((tree) => {
-    let pathwayId = (tree.data as any).pathwayId as string | undefined;
-    if (!pathwayId) {
-      const match = pathways.find(
-        (pathway) => slugFrom((pathway.data as any)?.tree) === tree.slug,
-      );
-      pathwayId = match?.id as string | undefined;
-    }
-
-    return {
-      params: { slug: tree.slug },
-      props: { pathwayId },
-    };
-  });
+  return trees.map((tree) => ({
+    params: { slug: tree.slug as string },
+    props: { pathwayId: tree.pathwayId },
+  }));
 }
 
 const { pathwayId } = Astro.props as { pathwayId?: string };
-const target = pathwayId ? `/fruit-path/${pathwayId}#truth-tree` : "/fruit-path";
+const target = pathwayId ? `/fruit-path/${pathwayId}` : "/fruit-path";
 return Astro.redirect(target, 301);
 ---

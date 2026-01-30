@@ -1,8 +1,9 @@
 ---
 export interface Props {
   id: string;                // pathway id e.g., emotional-reactivity_spirit-led-identity
-  currentType?: 'tree' | 'counterfeitTree' | 'shift' | 'canonNote' | 'compassPoint' | 'pillar';
+  currentType?: 'path' | 'counterfeitTree' | 'canonNote' | 'compassPoint' | 'pillar';
   currentHref?: string;      // optional explicit href to mark as current
+  showPath?: boolean;
   showTree?: boolean;
   showCounterfeit?: boolean;
   showShift?: boolean;
@@ -20,18 +21,19 @@ const {
   id,
   currentType,
   currentHref,
-  showTree = true,
+  showPath = true,
+  showTree = false,
   showCounterfeit = true,
-  showShift = true,
+  showShift = false,
   showCanonNote = true,
   showCompassPoint = true,
   showPillar = true,
   heading = 'Related Pathway Links',
-  blurb = 'Explore connected content across the Truth Tree ecosystem.'
+  blurb = 'Explore connected content across this Fruit Path.'
 } = props;
 
-const pathways = await getCollection('pathways');
-const entry = pathways.find((p) => p.id === id);
+const pathways = await getCollection('fruit-path');
+const entry = pathways.find((p) => (p.data?.pathwayId ?? p.slug) === id);
 const data: any = entry?.data ?? {};
 
 function hrefOr(base: string, item: any, anchor?: string) {
@@ -42,9 +44,13 @@ function hrefOr(base: string, item: any, anchor?: string) {
   return undefined;
 }
 
-type TypeKey = 'shift' | 'tree' | 'counterfeitTree' | 'canonNote' | 'compassPoint' | 'pillar';
+type TypeKey = 'path' | 'shift' | 'tree' | 'counterfeitTree' | 'canonNote' | 'compassPoint' | 'pillar';
+const pathItem = data
+  ? { title: data?.label ?? data?.title ?? 'Fruit Path' }
+  : undefined;
 
 const order: Array<{key: TypeKey; label: string; base: string; show: boolean; item: any; anchor?: string}> = [
+  { key: 'path', label: 'Fruit Path', base: '/fruit-path', show: showPath, item: pathItem },
   { key: 'shift', label: 'Symptom', base: '/fruit-path', anchor: '#symptom', show: showShift, item: data?.shift },
   { key: 'tree', label: 'Truth Tree', base: '/fruit-path', anchor: '#truth-tree', show: showTree, item: data?.tree },
   { key: 'counterfeitTree', label: 'Counterfeit Tree', base: '/counterfeit-tree', show: showCounterfeit, item: data?.counterfeitTree },

@@ -25,12 +25,23 @@ export default function SearchCollection({ entry_name, data, tags, showTags = tr
 
   const [query, setQuery] = createSignal("");
   const [filter, setFilter] = createSignal(new Set<string>())
-  const [collection, setCollection] = createSignal<CollectionEntry<'tree'>[]>([])
+  const [collection, setCollection] = createSignal<Props["data"]>([])
   const [descending, setDescending] = createSignal(false);
   const [tagsOpen, setTagsOpen] = createSignal(showTags);
 
   const fuse = new Fuse(coerced, {
-    keys: ["slug", "data.title", "data.summary", "data.description", "data.tags"],
+    keys: [
+      "slug",
+      "data.title",
+      "data.summary",
+      "data.description",
+      "data.tags",
+      "data.shift.title",
+      "data.shift.description",
+      "data.shift.fruit",
+      "data.shift.blurb",
+      "data.shift.tags",
+    ],
     includeMatches: true,
     minMatchCharLength: 2,
     threshold: 0.4,
@@ -42,13 +53,16 @@ export default function SearchCollection({ entry_name, data, tags, showTags = tr
       : fuse.search(query()).map((result) => result.item)
     );
     const tagFiltered = showTags
-      ? filtered.filter((entry) =>
-          Array.from(filter()).every((value) =>
-            entry.data.tags.some((tag: string) =>
+      ? filtered.filter((entry) => {
+          const tags = entry.collection === "fruit-path"
+            ? ((entry.data as any)?.shift?.tags ?? [])
+            : (entry.data.tags ?? []);
+          return Array.from(filter()).every((value) =>
+            tags.some((tag: string) =>
               tag.toLowerCase() === String(value).toLowerCase()
             )
-          )
-        )
+          );
+        })
       : filtered;
     setCollection(descending() ? tagFiltered.toReversed() : tagFiltered)
   })

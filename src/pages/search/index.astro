@@ -7,7 +7,7 @@ import Search from "@components/Search";
 import { SEARCH } from "@consts";
 
 const posts = (await getCollection("fruit-path")).filter(
-  (post) => post.data.kind === "tree" && !post.data.draft,
+  (post) => !post.data.draft,
 );
 
 const clearing = (await getCollection("the-clearing")).filter(

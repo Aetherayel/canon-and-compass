@@ -38,9 +38,10 @@ if (["compass_points", "pillars"].includes(collection)) {
   resolvedCurrentType = collection === 'compass_points' ? 'compassPoint' : 'pillar';
   resolvedPathwayId = data?.pathwayId;
   if (!resolvedPathwayId) {
-    const p = await getCollection('pathways');
+    const p = await getCollection('fruit-path');
     const match = p.find((x) => (x.data as any)?.[resolvedCurrentType!]?.slug === entry.slug);
-    resolvedPathwayId = match?.id as string | undefined;
+    resolvedPathwayId =
+      (match?.data as any)?.pathwayId ?? (match?.slug as string | undefined);
   }
 }
 ---

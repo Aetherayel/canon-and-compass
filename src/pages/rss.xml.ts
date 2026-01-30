@@ -8,7 +8,7 @@ type Context = {
 
 export async function GET(context: Context) {
   const posts = (await getCollection("fruit-path")).filter(
-    (entry) => entry.data.kind === "tree" && !entry.data.draft,
+    (entry) => !entry.data.draft,
   )
   const clearing = (await getCollection("the-clearing")).filter((entry) => !entry.data.draft)
   const canonNotes = (await getCollection("canon_notes")).filter((entry) => !entry.data.draft)

@@ -31,7 +31,7 @@ const {
   blurb = 'If you arrived here directly, explore the Symptom or Truth Tree for more context.'
 } = Astro.props as Props;
 
-const pathways = await getCollection("pathways");
+const pathways = await getCollection("fruit-path");
 const pathwayMatch = pathways.find((entry) => {
   const data: any = entry.data;
   return (
@@ -39,7 +39,8 @@ const pathwayMatch = pathways.find((entry) => {
     (shiftSlug && data?.shift?.slug === shiftSlug)
   );
 });
-const pathwayId = pathwayMatch?.id as string | undefined;
+const pathwayId =
+  (pathwayMatch?.data as any)?.pathwayId ?? (pathwayMatch?.slug as string | undefined);
 
 const resolvedTreeHref =
   treeHref ??

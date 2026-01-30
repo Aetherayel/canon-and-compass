@@ -16,9 +16,9 @@ const {
   showPillar = true,
 } = Astro.props as Props;
 
-const pathways = await getCollection('pathways');
+const pathways = await getCollection('fruit-path');
 
-let entry = id ? pathways.find((p) => p.id === id) : undefined;
+let entry = id ? pathways.find((p) => (p.data?.pathwayId ?? p.slug) === id) : undefined;
 
 // Fallback: infer by current URL matching fruit-path id or tree href/slug
 if (!entry) {
@@ -28,14 +28,17 @@ if (!entry) {
     if (normalized.startsWith('/fruit-path/')) {
       const parts = normalized.split('/').filter(Boolean);
       const maybeId = parts[1];
-      entry = pathways.find((x) => x.id === maybeId);
+      entry = pathways.find((x) => (x.data?.pathwayId ?? x.slug) === maybeId);
     }
     if (entry) {
       // ok
     } else {
       entry = pathways.find((x) => {
         const data: any = x.data;
-      const href = data?.tree?.href ?? (data?.tree?.slug ? `/fruit-path/${x.id}#truth-tree` : undefined);
+        const entryId = data?.pathwayId ?? x.slug;
+        const href =
+          data?.tree?.href ??
+          (data?.tree?.slug ? `/fruit-path/${entryId}#truth-tree` : undefined);
         const normalizedHref = href ? (href.endsWith('/') ? href : href + '/') : undefined;
         return normalizedHref === normalized;
       });

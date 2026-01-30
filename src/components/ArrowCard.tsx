@@ -23,13 +23,22 @@ export default function ArrowCard({ entry, pill }: Props) {
         ? `/fruit-path/${(entry.data as any).pathwayId ?? entry.slug}`
         : `/${entry.collection}/${entry.slug}`
   const date = "date" in entry.data ? entry.data.date : null
-  const tags = "tags" in entry.data ? entry.data.tags : []
+  const tags =
+    entry.collection === "fruit-path"
+      ? ((entry.data as any)?.shift?.tags ?? [])
+      : ("tags" in entry.data ? entry.data.tags : [])
+  const displayTitle =
+    entry.collection === "fruit-path"
+      ? (entry.data as any)?.shift?.title ?? entry.data.title
+      : entry.data.title
   const summary =
-    "summary" in entry.data
-      ? entry.data.summary
-      : "description" in entry.data
-        ? entry.data.description
-        : ""
+    entry.collection === "fruit-path"
+      ? (entry.data as any)?.shift?.blurb ?? entry.data.summary
+      : "summary" in entry.data
+        ? entry.data.summary
+        : "description" in entry.data
+          ? entry.data.description
+          : ""
 
   return (
     <a href={entryHref} class="group p-4 gap-3 flex items-center border rounded-lg hover:bg-black/5 hover:dark:bg-white/10 border-black/15 dark:border-white/20 transition-colors duration-300 ease-in-out">
@@ -76,7 +85,7 @@ export default function ArrowCard({ entry, pill }: Props) {
         )}
 
         <div class="font-semibold mt-3 text-black dark:text-white line-clamp-2">
-          {entry.data.title}
+          {displayTitle}
         </div>
 
         <div class="text-sm line-clamp-2">

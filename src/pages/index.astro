@@ -8,7 +8,7 @@ import TwinklingStars from "@components/TwinklingStars.astro";
 import MeteorShower from "@components/MeteorShower.astro";
 
 const posts = (await getCollection("fruit-path"))
-  .filter((entry) => entry.data.kind === "tree")
+  .filter((entry) => !(entry.data as any).draft)
   .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
   .slice(0, 3);
 
