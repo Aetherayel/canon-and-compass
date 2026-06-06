@@ -1,16 +1,10 @@
 ---
-import { type CollectionEntry, getCollection } from "astro:content"
+import { getCollection } from "astro:content"
 import PathwayLinks from "@components/PathwayLinks.astro";
+import type { ArticleEntry } from "@lib/content";
 
 type Props = {
-  entry:
-    | CollectionEntry<"fruit-path">
-    | CollectionEntry<"the-clearing">
-    | CollectionEntry<"canon_notes">
-    | CollectionEntry<"forests">
-    | CollectionEntry<"compass_points">
-    | CollectionEntry<"pillars">
-    | CollectionEntry<"foundations-of-discernment">
+  entry: ArticleEntry
 }
 
 // Get the requested entry
@@ -18,30 +12,24 @@ const { entry } = Astro.props
 const { collection } = entry
 const { Content } = await entry.render()
 
-// Get the next and prev entries (modulo to wrap index)
-const items = (await getCollection(collection))
-  .filter(
-    (post) =>
-      !post.data.draft &&
-      (collection !== "forests" || post.data.type !== "forest"),
-  )
-  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
-const index = items.findIndex(x => x.slug === entry.slug)
-const prev = items[(index - 1 + items.length) % items.length]
-const next = items[(index + 1) % items.length]
-
 // No prev/next buttons for pathway content; instead show PathwayLinks below
 let resolvedPathwayId: string | undefined;
 let resolvedCurrentType: 'compassPoint' | 'pillar' | undefined;
-if (["compass_points", "pillars"].includes(collection)) {
-  const data: any = entry.data;
-  resolvedCurrentType = collection === 'compass_points' ? 'compassPoint' : 'pillar';
-  resolvedPathwayId = data?.pathwayId;
+if (collection === "compass_points") {
+  resolvedCurrentType = "compassPoint";
+  resolvedPathwayId = entry.data.pathwayId;
   if (!resolvedPathwayId) {
     const p = await getCollection('fruit-path');
-    const match = p.find((x) => (x.data as any)?.[resolvedCurrentType!]?.slug === entry.slug);
-    resolvedPathwayId =
-      (match?.data as any)?.pathwayId ?? (match?.slug as string | undefined);
+    const match = p.find((x) => x.data.compassPoint?.slug === entry.slug);
+    resolvedPathwayId = match?.data.pathwayId ?? match?.slug;
+  }
+} else if (collection === "pillars") {
+  resolvedCurrentType = "pillar";
+  resolvedPathwayId = entry.data.pathwayId;
+  if (!resolvedPathwayId) {
+    const p = await getCollection('fruit-path');
+    const match = p.find((x) => x.data.pillar?.slug === entry.slug);
+    resolvedPathwayId = match?.data.pathwayId ?? match?.slug;
   }
 }
 ---

@@ -1,28 +1,16 @@
 ---
-import type { CollectionEntry } from "astro:content"
 import { formatDate, readingTime } from "@lib/utils"
+import type { ArticleEntry } from "@lib/content"
 
 type Props = {
-  entry:
-    | CollectionEntry<"fruit-path">
-    | CollectionEntry<"the-clearing">
-    | CollectionEntry<"canon_notes">
-    | CollectionEntry<"forests">
-    | CollectionEntry<"compass_points">
-    | CollectionEntry<"pillars">
-    | CollectionEntry<"foundations-of-discernment">
+  entry: ArticleEntry
 }
 
 const { entry } = Astro.props
 const { collection, data, body } = entry
 const { title } = data
-const summary = "summary" in data ? data.summary : data.description
-const date = "date" in data ? data.date : undefined
-
-const demoUrl =
-  collection !== "fruit-path" ? data.demoUrl : null
-const repoUrl =
-  collection !== "fruit-path" ? data.repoUrl : null
+const summary = data.summary
+const date = data.date
 // Back link: pretty label + special-case collection routing
 function toTitleCase(raw: string) {
   return raw
@@ -34,17 +22,9 @@ function toTitleCase(raw: string) {
 }
 
 const backHref =
-  collection === "fruit-path"
-    ? "/fruit-path"
-    : collection === "forests"
-      ? "/forests"
-      : `/${collection}`;
+  collection === "forests" ? "/forests" : `/${collection}`;
 const backLabel =
-  collection === "fruit-path"
-    ? "Fruit Paths"
-    : collection === "forests"
-      ? "Forests"
-      : toTitleCase(collection);
+  collection === "forests" ? "Forests" : toTitleCase(collection);
 ---
 
 <div>
@@ -79,28 +59,4 @@ const backLabel =
   <div class="mt-1">
     {summary}
   </div>
-  {(demoUrl || repoUrl) && 
-  <div class="mt-4 flex flex-wrap gap-2">
-    {demoUrl && 
-      <a href={demoUrl} target="_blank" class="group flex gap-2 items-center px-3 py-1.5 truncate rounded text-xs md:text-sm lg:text-base border border-black/25 dark:border-white/25 hover:bg-black/5 hover:dark:bg-white/15 blend">
-        <svg class="size-4">
-          <use href="/ui.svg#globe" class="fill-current group-hover:fill-black group-hover:dark:fill-white blend"/>
-        </svg>
-        <span class="text-current group-hover:text-black group-hover:dark:text-white blend">
-          See Demo
-        </span>
-      </a>
-    }
-    {repoUrl && 
-      <a href={repoUrl} target="_blank" class="group flex gap-2 items-center px-3 py-1.5 truncate rounded text-xs md:text-sm lg:text-base border border-black/25 dark:border-white/25 hover:bg-black/5 hover:dark:bg-white/15 blend">
-        <svg class="size-4">
-          <use href="/ui.svg#link" class="fill-current group-hover:fill-black group-hover:dark:fill-white blend"/>
-        </svg>
-        <span class="text-current group-hover:text-black group-hover:dark:text-white blend">
-          See Repository
-        </span>
-      </a>
-    }
-  </div> 
-  }
 </div>

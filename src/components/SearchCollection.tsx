@@ -1,5 +1,5 @@
 import type { CollectionEntry } from "astro:content"
-import { Show, createEffect, createSignal, For, onCleanup, onMount } from "solid-js"
+import { Show, createEffect, createSignal, For, onMount } from "solid-js"
 import Fuse from "fuse.js"
 import ArrowCard from "@components/ArrowCard"
 import { cn } from "@lib/utils"
@@ -25,9 +25,9 @@ export default function SearchCollection({ entry_name, data, tags, showTags = tr
 
   const [query, setQuery] = createSignal("");
   const [filter, setFilter] = createSignal(new Set<string>())
-  const [collection, setCollection] = createSignal<Props["data"]>([])
+  const [collection, setCollection] = createSignal<Props["data"]>(coerced)
   const [descending, setDescending] = createSignal(false);
-  const [tagsOpen, setTagsOpen] = createSignal(showTags);
+  const [tagsOpen, setTagsOpen] = createSignal(false);
 
   const fuse = new Fuse(coerced, {
     keys: [
@@ -55,8 +55,8 @@ export default function SearchCollection({ entry_name, data, tags, showTags = tr
     const tagFiltered = showTags
       ? filtered.filter((entry) => {
           const tags = entry.collection === "fruit-path"
-            ? ((entry.data as any)?.shift?.tags ?? [])
-            : (entry.data.tags ?? []);
+            ? entry.data.shift.tags
+            : ("tags" in entry.data ? entry.data.tags : []);
           return Array.from(filter()).every((value) =>
             tags.some((tag: string) =>
               tag.toLowerCase() === String(value).toLowerCase()
@@ -101,22 +101,6 @@ export default function SearchCollection({ entry_name, data, tags, showTags = tr
 
     if (!showTags) {
       setTagsOpen(false);
-      return;
-    }
-
-    const mediaQuery = window.matchMedia("(min-width: 640px)");
-    setTagsOpen(mediaQuery.matches);
-
-    const handleMediaChange = (event: MediaQueryListEvent) => {
-      setTagsOpen(event.matches);
-    };
-
-    if (typeof mediaQuery.addEventListener === "function") {
-      mediaQuery.addEventListener("change", handleMediaChange);
-      onCleanup(() => mediaQuery.removeEventListener("change", handleMediaChange));
-    } else {
-      mediaQuery.addListener(handleMediaChange);
-      onCleanup(() => mediaQuery.removeListener(handleMediaChange));
     }
   })
 

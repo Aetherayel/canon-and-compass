@@ -7,7 +7,7 @@ import { fileURLToPath } from "node:url"
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://astro-sphere-demo.vercel.app",
+  site: "https://canonandcompass.com",
   integrations: [mdx(), sitemap(), solidJs(), tailwind({ applyBaseStyles: false })],
     vite: {
     resolve: {

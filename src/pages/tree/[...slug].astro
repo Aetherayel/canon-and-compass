@@ -16,7 +16,10 @@ export async function getStaticPaths() {
   }));
 }
 
-const { pathwayId } = Astro.props as { pathwayId?: string };
-const target = pathwayId ? `/fruit-path/${pathwayId}` : "/fruit-path";
-return Astro.redirect(target, 301);
+return Astro.redirect(
+  (Astro.props as { pathwayId?: string }).pathwayId
+    ? `/fruit-path/${(Astro.props as { pathwayId?: string }).pathwayId}`
+    : "/fruit-path",
+  301,
+);
 ---

@@ -1,5 +1,6 @@
 import { formatDate, truncateText } from "@lib/utils"
 import type { CollectionEntry } from "astro:content"
+import { isForestOverview, type ForestPathEntry } from "@lib/content"
 
 type Entry =
   | CollectionEntry<"fruit-path">
@@ -16,29 +17,39 @@ type Props = {
 }
 
 export default function ArrowCard({ entry, pill }: Props) {
+  let seriesPart: number | undefined
+  if (
+    entry.collection === "canon_notes" ||
+    entry.collection === "foundations-of-discernment"
+  ) {
+    seriesPart = entry.data.day
+  } else if (entry.collection === "forests") {
+    const forestEntry = entry as CollectionEntry<"forests">
+    if (!isForestOverview(forestEntry)) {
+      const forestPathEntry = forestEntry as ForestPathEntry
+      seriesPart = forestPathEntry.data.part
+    }
+  }
+
   const entryHref =
     entry.collection === "forests"
       ? `/forests/${entry.slug}`
       : entry.collection === "fruit-path"
-        ? `/fruit-path/${(entry.data as any).pathwayId ?? entry.slug}`
+        ? `/fruit-path/${entry.data.pathwayId ?? entry.slug}`
         : `/${entry.collection}/${entry.slug}`
   const date = "date" in entry.data ? entry.data.date : null
   const tags =
     entry.collection === "fruit-path"
-      ? ((entry.data as any)?.shift?.tags ?? [])
+      ? entry.data.shift.tags
       : ("tags" in entry.data ? entry.data.tags : [])
   const displayTitle =
     entry.collection === "fruit-path"
-      ? (entry.data as any)?.shift?.title ?? entry.data.title
+      ? entry.data.shift.title
       : entry.data.title
   const summary =
     entry.collection === "fruit-path"
-      ? (entry.data as any)?.shift?.blurb ?? entry.data.summary
-      : "summary" in entry.data
-        ? entry.data.summary
-        : "description" in entry.data
-          ? entry.data.description
-          : ""
+      ? entry.data.shift.blurb
+      : entry.data.summary
 
   return (
     <a href={entryHref} class="group p-4 gap-3 flex items-center border rounded-lg hover:bg-black/5 hover:dark:bg-white/10 border-black/15 dark:border-white/20 transition-colors duration-300 ease-in-out">
@@ -47,7 +58,7 @@ export default function ArrowCard({ entry, pill }: Props) {
           {pill && (
             <div class="text-sm capitalize px-2 py-0.5 rounded-full border border-black/15 dark:border-white/25">
               {entry.collection === "fruit-path"
-                ? (entry.data as any).kind ?? "fruit path"
+                ? "fruit path"
                 : entry.collection === "forests"
                   ? "forests"
                   : entry.collection.replace(/[_-]/g, " ")}
@@ -69,16 +80,14 @@ export default function ArrowCard({ entry, pill }: Props) {
             {entry.data.series}
             {entry.data.series.toLowerCase() !== "standalone" && (
               (() => {
-                const part =
-                  (entry as any).data.part ?? (entry as any).data.day;
-                if (!part) return "";
+                if (!seriesPart) return "";
 
                 const label =
                   entry.collection === "canon_notes" ||
                   entry.collection === "foundations-of-discernment"
                     ? "Day"
                     : "Part";
-                return ` - ${label} ${part}`;
+                return ` - ${label} ${seriesPart}`;
               })()
             )}
           </div>

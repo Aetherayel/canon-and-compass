@@ -1,5 +1,5 @@
 ---
-import { type CollectionEntry, getCollection } from "astro:content";
+import { getCollection } from "astro:content";
 import PageLayout from "@layouts/PageLayout.astro";
 import TopLayout from "@layouts/TopLayout.astro";
 import BottomLayout from "@layouts/BottomLayout.astro";
@@ -17,25 +17,11 @@ export async function getStaticPaths() {
   }));
 }
 
-type Props = CollectionEntry<"canon_notes">;
 const canonNote = Astro.props;
 const { title, summary } = canonNote.data;
 
-// Build a list of multi-part Canon Notes series to surface below the article.
-// Currently sourced from the dedicated `foundations-of-discernment` collection.
-const fodEntries = await getCollection("foundations-of-discernment");
-const seriesMeta = fodEntries.length
-  ? [
-      {
-        prefix: "foundations-of-discernment",
-        title:
-          fodEntries[0].data.series || "Foundations of Discernment",
-        count: fodEntries.length,
-      },
-    ]
-  : [];
 // Pathway configuration for this note (if any)
-const pathwayId = (canonNote.data as any).pathwayId as string | undefined;
+const pathwayId = canonNote.data.pathwayId;
 ---
 
 <PageLayout title={title} description={summary}>

@@ -11,20 +11,13 @@ const clearingEntries = (await getCollection("the-clearing"))
   .filter((entry) => !entry.data.draft)
   .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
 
-const forestEntries = (await getCollection("forests"))
-  .filter((entry) => entry.data.type !== "forest" && !entry.data.draft);
-
-type FeaturedEntry =
-  | (typeof clearingEntries)[number]
-  | (typeof forestEntries)[number];
-
 const featuredEntries = [
   clearingEntries.find((entry) => entry.slug === "worldview-foundations"),
   clearingEntries.find((entry) => entry.slug === "the-architecture-of-truth"),
   clearingEntries.find(
     (entry) => entry.slug === "the-unshakable-bridge-why-the-biblical-worldview-holds",
   ),
-].filter((entry): entry is FeaturedEntry => Boolean(entry));
+].filter(Boolean) as (typeof clearingEntries)[number][];
 
 const remainingEntries = clearingEntries.filter(
   (entry) => !featuredEntries.some((f) => f && f.slug === entry.slug),

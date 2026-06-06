@@ -5,6 +5,7 @@ import TopLayout from "@layouts/TopLayout.astro";
 import BottomLayout from "@layouts/BottomLayout.astro";
 import Search from "@components/Search";
 import { SEARCH } from "@consts";
+import { isForestPathEntry } from "@lib/content";
 
 const posts = (await getCollection("fruit-path")).filter(
   (post) => !post.data.draft,
@@ -19,7 +20,7 @@ const canonNotes = (await getCollection("canon_notes")).filter(
 );
 
 const forests = (await getCollection("forests")).filter(
-  (post) => post.data.type !== "forest" && !post.data.draft,
+  (post) => isForestPathEntry(post) && !post.data.draft,
 );
 
 const foundations = (await getCollection("foundations-of-discernment")).filter(

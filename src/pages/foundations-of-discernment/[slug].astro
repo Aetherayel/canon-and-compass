@@ -1,5 +1,5 @@
 ---
-import { type CollectionEntry, getCollection } from "astro:content";
+import { getCollection } from "astro:content";
 import PageLayout from "@layouts/PageLayout.astro";
 import TopLayout from "@layouts/TopLayout.astro";
 import BottomLayout from "@layouts/BottomLayout.astro";
@@ -15,16 +15,15 @@ export async function getStaticPaths() {
   }));
 }
 
-type Props = CollectionEntry<"foundations-of-discernment">;
 const foundation = Astro.props;
 const { title, summary } = foundation.data;
 
 // Compute prev/next by day within the collection
 const all = (await getCollection("foundations-of-discernment"))
-  .filter((x) => !(x.data as any)?.draft)
+  .filter((x) => !x.data.draft)
   .sort((a, b) => {
-    const da = Number((a.data as any)?.day ?? 0);
-    const db = Number((b.data as any)?.day ?? 0);
+    const da = Number(a.data.day ?? 0);
+    const db = Number(b.data.day ?? 0);
     return da - db;
   });
 const currentIndex = all.findIndex((x) => x.slug === foundation.slug);
@@ -45,10 +44,10 @@ const next = currentIndex >= 0 && currentIndex < all.length - 1 ? all[currentInd
     <ManualButtons
       prevHref={prev ? `/${prev.collection}/${prev.slug}` : undefined}
       prevLabel={prev?.data.title}
-      prevType={prev && (prev.data as any)?.day ? `Day ${(prev.data as any).day}` : undefined}
+      prevType={prev?.data.day ? `Day ${prev.data.day}` : undefined}
       nextHref={next ? `/${next.collection}/${next.slug}` : undefined}
       nextLabel={next?.data.title}
-      nextType={next && (next.data as any)?.day ? `Day ${(next.data as any).day}` : undefined}
+      nextType={next?.data.day ? `Day ${next.data.day}` : undefined}
     />
   </BottomLayout>
 </PageLayout>

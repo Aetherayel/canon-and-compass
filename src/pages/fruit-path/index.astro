@@ -10,15 +10,6 @@ const entries = await getCollection("fruit-path");
 const pathways = entries
   .filter((entry) => !(entry.data as any).draft)
   .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
-
-const tags = [
-  ...new Set(
-    pathways.flatMap((post) => ((post.data as any)?.shift?.tags ?? [])),
-  ),
-].sort((a, b) => a.localeCompare(b));
-
-const estimated_initial_size =
-  28 + pathways.length * 158 + (pathways.length - 1) * 12;
 ---
 
 <PageLayout title={FRUIT_PATHS.TITLE} description={FRUIT_PATHS.DESCRIPTION}>
@@ -130,16 +121,13 @@ const estimated_initial_size =
         You do not need to walk them all. One is usually enough to begin.
       </p>
 
-      <div
-        id="search-collection-wrapper"
-        class="animate mt-6"
-        style={{ minHeight: `${estimated_initial_size}px` }}
-      >
+      <div class="animate mt-6">
         <SearchCollection
           client:load
           entry_name={"fruit paths"}
-          tags={tags}
+          tags={[]}
           data={pathways}
+          showTags={false}
         />
       </div>
     </section>
