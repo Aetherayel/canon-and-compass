@@ -16,10 +16,8 @@ const isFruitPathActive = isActivePath("/fruit-path")
   <Container size="md">
     <div class="relative h-full w-full">
       <div class="absolute left-0 top-1/2 -translate-y-1/2 flex gap-1 font-semibold">
-        <a href="/" class="flex gap-1 text-current hover:text-black dark:hover:text-white transition-colors duration-300 ease-in-out">
-          <svg class="size-6 fill-current">
-            <use href="/brand.svg#brand"></use>
-          </svg>
+        <a href="/" class="flex items-center gap-1 text-current hover:text-black dark:hover:text-white transition-colors duration-300 ease-in-out">
+          <img src="/brand.svg" alt="" aria-hidden="true" class="size-6 shrink-0" />
           <div>
             {SITE.TITLE}
           </div>

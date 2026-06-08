@@ -1,0 +1,114 @@
+---
+import PageLayout from "@layouts/PageLayout.astro"
+import Container from "@components/Container.astro"
+
+const pageTitle = "Rights and Permissions"
+const pageDescription =
+  "How Canon & Compass handles copyright, reuse permissions, software licensing, and brand protection."
+---
+
+<PageLayout title={pageTitle} description={pageDescription}>
+  <section class="bg-white py-24 text-ink dark:bg-black dark:text-white">
+    <Container size="md">
+      <div class="mx-auto max-w-3xl space-y-6">
+        <p class="text-xs font-semibold uppercase tracking-[0.2em] text-zinc-500 dark:text-zinc-400">
+          Rights
+        </p>
+        <h1 class="text-3xl font-serif font-bold tracking-tight md:text-4xl">
+          Rights and permissions
+        </h1>
+        <p class="text-base text-zinc-700 dark:text-zinc-300">
+          Canon &amp; Compass is a public website and a public code repository, but those are not the same
+          thing as a blanket permission to reuse everything in it.
+        </p>
+        <p class="text-base text-zinc-700 dark:text-zinc-300">
+          This page clarifies what may be reused, what remains reserved, and how to ask permission when you
+          want to quote, republish, adapt, or share material from this project.
+        </p>
+      </div>
+    </Container>
+  </section>
+
+  <section class="bg-stone-50 py-20 text-ink dark:bg-zinc-900 dark:text-white">
+    <Container size="md">
+      <div class="mx-auto max-w-3xl space-y-6">
+        <h2 class="text-2xl font-serif font-bold tracking-tight md:text-3xl">Software and code</h2>
+        <p class="text-base text-zinc-700 dark:text-zinc-300">
+          Unless otherwise noted, the software and site infrastructure in this repository are licensed under
+          the MIT License. That applies to the code used to build and run the site, not automatically to the
+          editorial content published through it.
+        </p>
+        <p class="text-base text-zinc-700 dark:text-zinc-300">
+          The software terms are described in the repository&apos;s <code>LICENSE</code> file.
+        </p>
+      </div>
+    </Container>
+  </section>
+
+  <section class="bg-white py-20 text-ink dark:bg-black dark:text-white">
+    <Container size="md">
+      <div class="mx-auto max-w-3xl space-y-6">
+        <h2 class="text-2xl font-serif font-bold tracking-tight md:text-3xl">Path-level rights map</h2>
+        <p class="text-base text-zinc-700 dark:text-zinc-300">
+          Canon &amp; Compass uses a mixed-rights structure because the repository contains both software and
+          original editorial work.
+        </p>
+        <ul class="space-y-4 text-base text-zinc-700 dark:text-zinc-300">
+          <li><strong class="text-ink dark:text-white">Reserved content:</strong> all MDX and frontmatter in <code>src/content/**</code>.</li>
+          <li><strong class="text-ink dark:text-white">Reserved brand assets:</strong> <code>public/brand.svg</code>, <code>public/canonandcompass.jpg</code>, <code>public/favicon.svg</code>, and <code>public/favicon_black.svg</code>.</li>
+          <li><strong class="text-ink dark:text-white">Mixed files:</strong> some source files contain both MIT-covered implementation code and reserved Canon &amp; Compass prose such as headings, descriptions, and calls to action.</li>
+          <li><strong class="text-ink dark:text-white">Separately noticed assets:</strong> some files may carry their own upstream or embedded notices, which continue to apply.</li>
+        </ul>
+      </div>
+    </Container>
+  </section>
+
+  <section class="bg-white py-20 text-ink dark:bg-black dark:text-white">
+    <Container size="md">
+      <div class="mx-auto max-w-3xl space-y-6">
+        <h2 class="text-2xl font-serif font-bold tracking-tight md:text-3xl">Editorial content and assets</h2>
+        <p class="text-base text-zinc-700 dark:text-zinc-300">
+          Unless otherwise noted, the written content, MDX entries, original site copy, graphics, and brand
+          assets on Canon &amp; Compass are all rights reserved.
+        </p>
+        <ul class="space-y-4 text-base text-zinc-700 dark:text-zinc-300">
+          <li><strong class="text-ink dark:text-white">You may not</strong> republish full articles, mirror the site, create derivative versions for distribution, sell the content, or use it for model training without prior written permission, except where applicable law allows otherwise.</li>
+          <li><strong class="text-ink dark:text-white">You may quote limited excerpts</strong> for review, commentary, teaching, or similar lawful uses when the quotation is properly attributed and not misleadingly edited.</li>
+          <li><strong class="text-ink dark:text-white">You may not use the name or branding</strong> in a way that suggests affiliation, endorsement, or official partnership without permission.</li>
+        </ul>
+      </div>
+    </Container>
+  </section>
+
+  <section class="bg-stone-50 py-20 text-ink dark:bg-zinc-900 dark:text-white">
+    <Container size="md">
+      <div class="mx-auto max-w-3xl space-y-6">
+        <h2 class="text-2xl font-serif font-bold tracking-tight md:text-3xl">Permissions</h2>
+        <p class="text-base text-zinc-700 dark:text-zinc-300">
+          For republication, curriculum use, translation, adaptation, licensing, or any broader reuse request,
+          email <a href="mailto:contact@canonandcompass.com" class="underline underline-offset-4 decoration-black/30 hover:decoration-current dark:decoration-white/30">contact@canonandcompass.com</a>.
+        </p>
+        <p class="text-base text-zinc-700 dark:text-zinc-300">
+          Include the material you want to use, where you plan to use it, whether the use is commercial or
+          noncommercial, and whether you want an excerpt, full text, or adaptation.
+        </p>
+      </div>
+    </Container>
+  </section>
+
+  <section class="bg-white py-20 text-ink dark:bg-black dark:text-white">
+    <Container size="md">
+      <div class="mx-auto max-w-3xl space-y-6">
+        <h2 class="text-2xl font-serif font-bold tracking-tight md:text-3xl">Reporting unauthorized copies</h2>
+        <p class="text-base text-zinc-700 dark:text-zinc-300">
+          If Canon &amp; Compass content is reposted without permission, preserve the URL, screenshots, and
+          publication dates first. Then use the hosting platform&apos;s copyright or DMCA reporting process and
+          point back to the original Canon &amp; Compass publication where possible.
+        </p>
+        <p class="text-base text-zinc-700 dark:text-zinc-300">
+          This page is a practical rights notice, not legal advice.
+        </p>
+      </div>
+    </Container>
+  </section>
+</PageLayout>

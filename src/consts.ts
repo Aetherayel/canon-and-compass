@@ -3,80 +3,82 @@ import type { Site, Page, Links, Socials } from "@types"
 // Global
 export const SITE: Site = {
   TITLE: "Canon & Compass",
-  DESCRIPTION: "A Christian Philosophical hub combining faith and reason",
+  DESCRIPTION:
+    "Canon & Compass helps believers name the fruit, trace the root, and return to Christ as the true center of reality.",
   AUTHOR: "Zach",
 }
 
 // Symptoms Page
 export const SYMPTOMS: Page = {
   TITLE: "Symptoms",
-  DESCRIPTION: "Trace the fruit you are seeing in your life to it's root.",
+  DESCRIPTION: "Name what is showing up, trace what formed it, and return to truth in Christ.",
 }
 
 // Fruit Paths Page
 export const FRUIT_PATHS: Page = {
   TITLE: "Fruit Paths",
-  DESCRIPTION: "Trace the fruit you are seeing in your life to its root and re-root in truth.",
+  DESCRIPTION: "Name the fruit, trace the root, expose the false center, and return to Christ.",
 }
 
 // Tree Page
 export const TREE: Page = {
   TITLE: "Tree",
-  DESCRIPTION: "Scriptural frameworks showing how a biblical principle leads to good fruit.",
+  DESCRIPTION: "Scriptural truth that re-roots the life Christ is reforming.",
 }
 
 // Tree Shifts Page
 export const TREESHIFTS: Page = {
   TITLE: "Tree Shifts",
-  DESCRIPTION: "Journey down the path of a cultural fruit into the true biblical alternative",
+  DESCRIPTION: "Trace counterfeit formation toward the truth that restores right fruit.",
 }
 
 // Foundations Page
 export const FOUNDATIONS: Page = {
   TITLE: "Foundations",
-  DESCRIPTION: "The core writings of Canon & Compass.",
+  DESCRIPTION: "Supportive writings that help truth take root slowly and hold under pressure.",
 }
 
 // Worldviews Page
 export const WORLDVIEWS: Page = {
   TITLE: "The Forests",
-  DESCRIPTION: "Worldview journeys that trace competing cultural narratives through a biblical lens.",
+  DESCRIPTION: "Habitats of formation that teach people what to notice, ignore, fear, and love.",
 }
 
 // Canon Notes Page
 export const CANONNOTES: Page = {
   TITLE: "Canon Notes",
-  DESCRIPTION: "Devotional series or standalone reflections.",
+  DESCRIPTION: "Scripture-anchored reflections for slow return, prayer, and steady remembrance.",
 }
 
 // Foundations of Discernment Page
 export const FOUNDATIONSOFDISCERNMENT: Page = {
   TITLE: "Foundations of Discernment",
-  DESCRIPTION: "A 28-day devotional journey designed to cultivate a heart and mind shaped by God’s truth. Over four weeks, you’ll learn to bow before the Lord in awe, wrestle honestly with reality, test every spirit in action, and, finally, frame all your questions within the grand biblical narrative. Each day combines Scripture, story, reflection, guided exercises, and a simple visual aid to move from head-knowledge into Spirit-empowered living.",
+  DESCRIPTION:
+    "A 28-day devotional sequence that trains reverence, truthful witness, discernment, and Christ-centered obedience.",
 }
 
 // Compass Points Page
 export const COMPASSPOINTS: Page = {
   TITLE: "Compass Points",
-  DESCRIPTION: "Cultural commentaries backed by a biblical worldview.",
+  DESCRIPTION: "Cultural witness pieces that name the pressures quietly training our instincts.",
 }
 
 // Pillars Page
 export const PILLARS: Page = {
   TITLE: "Pillars",
-  DESCRIPTION: "Longform essays digging into the philosophical and theological truth of Scripture.",
+  DESCRIPTION: "Load-bearing essays that restore truth to its proper weight under Christ.",
 }
 
 // The Clearing Page
 export const CLEARING: Page = {
   TITLE: "The Clearing",
-  DESCRIPTION: "Reflections outside of the Tree Pathways. A quiet space for slow truth, open questions, and reorientation.",
+  DESCRIPTION: "A quiet place to stop managing appearances, tell the truth, and return attention to Christ.",
 }
 
 // Search Page
 export const SEARCH: Page = {
   TITLE: "Search",
-  DESCRIPTION: "Search content by keyword.",
+  DESCRIPTION: "Search pathways, reflections, and essays across Canon & Compass.",
 }
 
 // Links

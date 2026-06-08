@@ -23,21 +23,12 @@ import Container from "@components/Container.astro"
   
     <section class=" py-5 overflow-hidden whitespace-nowrap border-t border-black/10 dark:border-white/25">
       <Container size="md">
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+        <div class="flex justify-center sm:justify-start">
           <div class="flex flex-col items-center sm:items-start">
-            <a href="/" class="flex gap-1 w-fit font-semibold text-current hover:text-black dark:hover:text-white transition-colors duration-300 ease-in-out">
-              <svg class="size-6 fill-current">
-                <use href="/brand.svg#brand"/>
-              </svg>
+            <a href="/" class="flex items-center gap-1 w-fit font-semibold text-current hover:text-black dark:hover:text-white transition-colors duration-300 ease-in-out">
+              <img src="/brand.svg" alt="" aria-hidden="true" class="size-6 shrink-0" />
               {SITE.TITLE}
             </a>
-          </div>
-          <div class="flex gap-2 justify-center sm:justify-end items-center">
-            <span class="relative flex h-3 w-3">
-              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-300"></span>
-              <span class="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
-            </span>
-            All systems normal
           </div>
         </div>
       </Container>
@@ -47,8 +38,14 @@ import Container from "@components/Container.astro"
       <Container size="md">
         <div class="h-full grid grid-cols-1 sm:grid-cols-2 gap-3">
           <div class="order-2 sm:order-1 flex flex-col items-center justify-center sm:items-start">
-            <div class="text-sm mt-2">
-              &copy; 2026 | All rights reserved
+            <div class="mt-2 max-w-xl whitespace-normal text-center text-sm sm:text-left">
+              &copy; 2026 Canon &amp; Compass. Editorial content and brand assets all rights reserved.
+              <a
+                href="/rights"
+                class="mt-1 block underline underline-offset-4 decoration-black/30 hover:decoration-current dark:decoration-white/30 sm:mt-0 sm:inline sm:ml-1"
+              >
+                Rights and permissions
+              </a>
             </div>
             <div class="mt-2 max-w-xl whitespace-normal text-xs text-black/60 dark:text-white/60">
               Canon & Compass offers discipleship resources, not crisis response, psychotherapy, or medical care.

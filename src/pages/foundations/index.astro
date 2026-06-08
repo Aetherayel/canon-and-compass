@@ -1,26 +1,8 @@
 ---
-import { getCollection } from "astro:content";
 import PageLayout from "@layouts/PageLayout.astro";
 import TopLayout from "@layouts/TopLayout.astro";
 import BottomLayout from "@layouts/BottomLayout.astro";
-import StackCard from "@components/StackCard.astro";
 import { FOUNDATIONS, CANONNOTES, COMPASSPOINTS, PILLARS } from "@consts";
-
-const canonNotes = (await getCollection("canon_notes")).sort(
-  (a, b) => b.data.date.getTime() - a.data.date.getTime(),
-);
-
-const compassPoints = (await getCollection("compass_points")).sort(
-  (a, b) => b.data.date.getTime() - a.data.date.getTime(),
-);
-
-const pillars = (await getCollection("pillars")).sort(
-  (a, b) => b.data.date.getTime() - a.data.date.getTime(),
-);
-
-const recentFoundations = [...canonNotes, ...compassPoints, ...pillars]
-  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
-  .slice(0, 6);
 ---
 
 <PageLayout title={FOUNDATIONS.TITLE} description={FOUNDATIONS.DESCRIPTION}>
@@ -31,7 +13,7 @@ const recentFoundations = [...canonNotes, ...compassPoints, ...pillars]
           {FOUNDATIONS.TITLE}
         </h1>
         <p class="mt-2 text-lg italic text-neutral-700 dark:text-neutral-300">
-          Formation is slower than insight.<br />
+          Formation is slower than recognition.<br />
           And that is not a flaw.
         </p>
       </div>
@@ -66,7 +48,7 @@ const recentFoundations = [...canonNotes, ...compassPoints, ...pillars]
           </ul>
           <p>They do not diagnose what's wrong.</p>
           <p>They do not chart the terrain.</p>
-          <p>They reinforce what has already been named.</p>
+          <p>They reinforce what has already been witnessed and named.</p>
         </div>
       </section>
 
@@ -84,7 +66,7 @@ const recentFoundations = [...canonNotes, ...compassPoints, ...pillars]
           </ul>
           <p>
             Reading deeply without orientation can feel productive &mdash; but it often
-            strengthens the very habits formation is meant to undo.
+            strengthens the very habits truthful witness is meant to expose.
           </p>
           <p>Foundations are meant to be <strong>entered slowly</strong>, with context.</p>
         </div>
@@ -96,17 +78,17 @@ const recentFoundations = [...canonNotes, ...compassPoints, ...pillars]
         </h2>
         <div class="space-y-3 text-base text-neutral-700 dark:text-neutral-300">
           <p>This site is designed as a <strong>movement</strong>, not a catalog.</p>
-          <p>Most journeys follow a rhythm like this:</p>
+          <p>Most readers move through a rhythm like this:</p>
           <ul class="list-disc pl-6 space-y-1">
-            <li><strong>The Clearing</strong> &mdash; regaining bearings</li>
+            <li><strong>The Clearing</strong> &mdash; slowing down enough to tell the truth</li>
             <li><strong>The Forests</strong> &mdash; naming the environments that formed you</li>
-            <li><strong>Fruit Paths</strong> &mdash; recognizing what is growing in your life</li>
-            <li><strong>Foundations</strong> &mdash; letting truth reshape you over time</li>
+            <li><strong>Fruit Paths</strong> &mdash; tracing visible fruit back to hidden roots</li>
+            <li><strong>Foundations</strong> &mdash; letting reordering truth abide in you over time</li>
           </ul>
           <p>
             Foundations come <em>after</em> something has been named &mdash; not before.
           </p>
-          <p>They exist so insight doesn't collapse into striving.</p>
+          <p>They exist so truthful naming does not collapse back into striving.</p>
         </div>
       </section>
 
@@ -130,7 +112,7 @@ const recentFoundations = [...canonNotes, ...compassPoints, ...pillars]
             <div class="mt-2 space-y-2 text-sm text-neutral-700 dark:text-neutral-300">
               <p>Short, Scripture-anchored reflections.</p>
               <p>These are meant to be returned to &mdash; not consumed.</p>
-              <p>They slow the soul and retrain attention toward what is true.</p>
+              <p>They slow the soul and retrain attention toward what must not be ignored.</p>
             </div>
             <div class="mt-4 text-sm font-semibold text-black transition-colors duration-300 ease-in-out group-hover:text-black/70 dark:text-white dark:group-hover:text-white/70">
               Enter {CANONNOTES.TITLE} &rarr;
@@ -149,7 +131,7 @@ const recentFoundations = [...canonNotes, ...compassPoints, ...pillars]
                 These help you recognize when the world is quietly re-forming you
                 back into old patterns.
               </p>
-              <p>They train discernment without panic.</p>
+              <p>They train discernment without panic and witness without spectacle.</p>
             </div>
             <div class="mt-4 text-sm font-semibold text-black transition-colors duration-300 ease-in-out group-hover:text-black/70 dark:text-white dark:group-hover:text-white/70">
               Enter {COMPASSPOINTS.TITLE} &rarr;
@@ -164,7 +146,7 @@ const recentFoundations = [...canonNotes, ...compassPoints, ...pillars]
             </h3>
             <div class="mt-2 space-y-2 text-sm text-neutral-700 dark:text-neutral-300">
               <p>Longform theological and philosophical essays.</p>
-              <p>These are load-bearing truths &mdash; meant to hold when pressure increases.</p>
+              <p>These are load-bearing truths &mdash; meant to hold when old roots are exposed and pressure increases.</p>
               <p>They are not meant to be rushed.</p>
             </div>
             <div class="mt-4 text-sm font-semibold text-black transition-colors duration-300 ease-in-out group-hover:text-black/70 dark:text-white dark:group-hover:text-white/70">
@@ -194,13 +176,13 @@ const recentFoundations = [...canonNotes, ...compassPoints, ...pillars]
               <a href="/forests" class="font-semibold text-black hover:underline dark:text-white">
                 The Forests
               </a>
-              &mdash; if you're trying to understand how the world trained you to see
+              &mdash; if you need to name how the world has been training you to see
             </li>
             <li>
               <a href="/fruit-path" class="font-semibold text-black hover:underline dark:text-white">
                 Fruit Paths
               </a>
-              &mdash; if a specific pattern or struggle has become clear
+              &mdash; if a specific pattern or struggle keeps surfacing
             </li>
           </ul>
           <p>Foundations will still be here when they're needed.</p>
@@ -218,7 +200,7 @@ const recentFoundations = [...canonNotes, ...compassPoints, ...pillars]
             It happens when truth is given time, attention, and room to work &mdash; often
             beneath awareness, and rarely on command.
           </p>
-          <p>Foundations exist to protect that process.</p>
+          <p>Foundations exist to protect that slow reordering.</p>
           <p>
             If you're ready, return to the path that brought you here.<br />
             If you're not, that's not failure.
@@ -226,31 +208,6 @@ const recentFoundations = [...canonNotes, ...compassPoints, ...pillars]
           <p>It may be wisdom.</p>
         </div>
       </section>
-
-      {recentFoundations.length > 0 && (
-        <section class="space-y-4">
-          <hr class="border-black/10 dark:border-white/15" />
-          <div class="flex justify-between">
-            <p class="font-semibold text-black dark:text-white">
-              Recent Foundations
-            </p>
-          </div>
-          <ul class="space-y-4">
-            {recentFoundations.map((foundation) => (
-              <li>
-                <StackCard
-                  title={foundation.data.title}
-                  summary={foundation.data.summary}
-                  href={`/${foundation.collection}/${foundation.slug}`}
-                  collection={foundation.collection}
-                  date={foundation.data.date}
-                  tags={foundation.data.tags}
-                />
-              </li>
-            ))}
-          </ul>
-        </section>
-      )}
     </div>
   </BottomLayout>
 </PageLayout>

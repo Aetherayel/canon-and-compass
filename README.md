@@ -2,6 +2,8 @@
 
 Canon & Compass is a discipleship-oriented writing project built as a content-rich Astro site. Its aim is to help believers regain bearings in a loud age: to trace what is showing up in life back to what is forming it, and to re-root in the truth of Scripture.
 
+Mixed rights notice: the repository's software is MIT-licensed, but the Canon & Compass editorial content and brand assets are not automatically released under MIT. See `NOTICE.md` and `COPYRIGHT.md`.
+
 ## Purpose
 
 Canon & Compass is not designed as a generic blog. It is a structured formation map.
@@ -13,7 +15,7 @@ The project is built around a few core convictions:
 - modern cultural pressures should be named honestly, without panic
 - Scripture remains the governing authority for the whole project
 
-The content is organized to help a reader move from confusion toward clarity:
+The content is organized to help a reader move from confusion toward truthful witness:
 
 - `The Clearing`: a quiet place for orientation, slowing down, and learning to see again
 - `The Forests`: worldview diagnosis that names the climates shaping instincts and assumptions
@@ -130,16 +132,27 @@ npm run preview
 npm run typecheck
 ```
 
+## Licensing and Content Rights
+
+This repository is intentionally split between software and editorial content.
+
+- The software and site infrastructure are licensed under the MIT License in `LICENSE`.
+- The written content, MDX entries, original site copy, and creative assets are not released under MIT unless a file says otherwise.
+- Editorial content and brand assets are reserved under the terms described in `COPYRIGHT.md`.
+- `NOTICE.md` provides the clearest path-level map of what is MIT-covered, what is reserved, and where mixed files exist.
+
+If you want to reuse essays, devotionals, graphics, or other Canon & Compass content, request permission first at `contact@canonandcompass.com`.
+
 ## Notes for Future Maintenance
 
-- The site URL in `astro.config.mjs` still points to `https://astro-sphere-demo.vercel.app`. That should be updated to the real production domain when deployment is finalized.
+- The site URL in `astro.config.mjs` is set to `https://canonandcompass.com`. Keep metadata, sitemap, and feed behavior aligned with that production domain.
 - Content integrity depends on the schemas in `src/content/config.ts`. When adding new frontmatter fields, update the schema first.
 - Search and listing behavior depend on consistent metadata such as `title`, `summary`, `date`, `tags`, and optional `pathwayId`.
 - `README.md` is intended to explain both the ministry vision and the engineering structure, so future changes should preserve both perspectives.
 
 ## Why This Exists
 
-A lot of Christian writing either stays abstract or becomes purely reactive. Canon & Compass is an attempt to do something harder: create a thoughtful, navigable discipleship framework that helps people interpret their lives, name the pressures shaping them, and return to truth with clarity.
+A lot of Christian writing either stays abstract or becomes purely reactive. Canon & Compass is an attempt to do something harder: create a thoughtful, navigable formation map that helps people interpret their lives, name the pressures shaping them, and return to truth with honesty and obedience.
 
 From a technical standpoint, this repository is the delivery system.
 

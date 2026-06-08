@@ -1,0 +1,12 @@
+Content Rights Notice
+
+Everything under src/content/** is Canon & Compass editorial content unless a specific file says otherwise.
+
+That includes:
+- MDX body content
+- frontmatter fields
+- summaries, titles, and pathway metadata
+
+This material is all rights reserved and is not released under the repository's MIT software license.
+
+See ../../COPYRIGHT.md and ../../NOTICE.md for the repository-wide policy.
