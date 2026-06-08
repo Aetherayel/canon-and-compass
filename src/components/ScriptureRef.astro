@@ -1,0 +1,11 @@
+---
+interface Props {
+  refText: string;
+  version?: string;
+}
+
+const { refText, version = 'ESV' } = Astro.props as Props;
+const versionPattern = new RegExp(`\\b${version}\\b`);
+const displayRefText = versionPattern.test(refText) ? refText : `${refText} ${version}`;
+---
+<span class="whitespace-nowrap text-stone-500 dark:text-zinc-400">({displayRefText})</span>
