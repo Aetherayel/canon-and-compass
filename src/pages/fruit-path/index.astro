@@ -14,7 +14,12 @@ const pathways = entries
 const pathwayCards = pathways.map((entry) => toCardEntry(entry));
 ---
 
-<PageLayout title={FRUIT_PATHS.TITLE} description={FRUIT_PATHS.DESCRIPTION}>
+<PageLayout
+  title={FRUIT_PATHS.TITLE}
+  description={FRUIT_PATHS.DESCRIPTION}
+  schemaType="CollectionPage"
+  section="Fruit Paths"
+>
   <TopLayout>
     <div class="animate">
       <div class="text-xs uppercase tracking-[0.2em] text-zinc-500 dark:text-zinc-400">Fruit Paths</div>

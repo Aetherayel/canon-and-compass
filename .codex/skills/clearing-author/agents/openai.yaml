@@ -1,0 +1,4 @@
+interface:
+  display_name: "Clearing Author"
+  short_description: "Write witness-first essays for The Clearing."
+  default_prompt: "Use $clearing-author to draft or revise a Canon & Compass clearing essay that matches the newer witness-first voice, the site flow, and the existing The Clearing structure."

@@ -24,7 +24,15 @@ const { title, summary } = canonNote.data;
 const pathwayId = canonNote.data.pathwayId;
 ---
 
-<PageLayout title={title} description={summary}>
+<PageLayout
+  title={title}
+  description={summary}
+  pageType="article"
+  schemaType="Article"
+  publishedTime={canonNote.data.date}
+  section="Canon Notes"
+  tags={canonNote.data.tags}
+>
   <TopLayout>
     <div class="animate">
       <ArticleTopLayout entry={canonNote} />

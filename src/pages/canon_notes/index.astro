@@ -25,7 +25,12 @@ const fodEntries = (await getCollection("foundations-of-discernment")).filter(
 );
 ---
 
-<PageLayout title={CANONNOTES.TITLE} description={CANONNOTES.DESCRIPTION}>
+<PageLayout
+  title={CANONNOTES.TITLE}
+  description={CANONNOTES.DESCRIPTION}
+  schemaType="CollectionPage"
+  section="Canon Notes"
+>
   <TopLayout>
     <div class="animate">
       <h1 class="text-3xl font-semibold text-black dark:text-white mt-2">

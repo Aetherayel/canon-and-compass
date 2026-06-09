@@ -49,7 +49,12 @@ const data = [...posts, ...clearing, ...canonNotes, ...forests, ...foundations, 
 const cardData = data.map((entry) => toCardEntry(entry));
 ---
 
-<PageLayout title={SEARCH.TITLE} description={SEARCH.DESCRIPTION}>
+<PageLayout
+  title={SEARCH.TITLE}
+  description={SEARCH.DESCRIPTION}
+  schemaType="SearchResultsPage"
+  section="Search"
+>
   <TopLayout>
     <div class="animate page-heading">
       {SEARCH.TITLE}

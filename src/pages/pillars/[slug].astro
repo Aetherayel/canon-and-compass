@@ -20,7 +20,15 @@ const pillar = Astro.props;
 const { title, summary } = pillar.data;
 ---
 
-<PageLayout title={title} description={summary}>
+<PageLayout
+  title={title}
+  description={summary}
+  pageType="article"
+  schemaType="Article"
+  publishedTime={pillar.data.date}
+  section="Pillars"
+  tags={pillar.data.tags}
+>
   <TopLayout>
     <div class="animate">
       <ArticleTopLayout entry={pillar} />

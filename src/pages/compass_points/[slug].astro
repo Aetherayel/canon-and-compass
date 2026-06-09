@@ -19,7 +19,15 @@ const compassPoint = Astro.props;
 const { title, summary } = compassPoint.data;
 ---
 
-<PageLayout title={title} description={summary}>
+<PageLayout
+  title={title}
+  description={summary}
+  pageType="article"
+  schemaType="Article"
+  publishedTime={compassPoint.data.date}
+  section="Compass Points"
+  tags={compassPoint.data.tags}
+>
   <TopLayout>
     <div class="animate">
       <ArticleTopLayout entry={compassPoint} />

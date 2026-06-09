@@ -35,12 +35,23 @@ const description =
   shiftData?.description ??
   treeSummary ??
   "Name the fruit, trace the root, and return to Christ in truthful obedience.";
+const articleTags = Array.from(
+  new Set([...(data?.tags ?? []), ...(shiftData?.tags ?? [])]),
+);
 
 const { Content } = await entry.render();
 const pathwayId = data?.pathwayId ?? entry.slug;
 ---
 
-<PageLayout title={title} description={description}>
+<PageLayout
+  title={title}
+  description={description}
+  pageType="article"
+  schemaType="Article"
+  publishedTime={data?.date}
+  section="Fruit Paths"
+  tags={articleTags}
+>
   <TopLayout>
     <div class="animate">
       <a

@@ -31,7 +31,15 @@ const prev = currentIndex > 0 ? all[currentIndex - 1] : undefined;
 const next = currentIndex >= 0 && currentIndex < all.length - 1 ? all[currentIndex + 1] : undefined;
 ---
 
-<PageLayout title={title} description={summary}>
+<PageLayout
+  title={title}
+  description={summary}
+  pageType="article"
+  schemaType="Article"
+  publishedTime={foundation.data.date}
+  section="Foundations of Discernment"
+  tags={foundation.data.tags}
+>
   <TopLayout>
     <div class="animate">
       <ArticleTopLayout entry={foundation} />

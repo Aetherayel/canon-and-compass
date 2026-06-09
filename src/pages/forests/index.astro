@@ -10,7 +10,7 @@ const forestCards = [
     theme: "Sensationalism",
     tagline: "Where intensity substitutes for depth.",
     description:
-      "This forest is alive with movement. God feels near. Everything feels urgent. Stillness, however, feels like absence — and silence like danger.",
+      "This forest is alive with movement. God feels near. Everything feels urgent. Stillness, however, can begin to feel like absence, and silence like danger.",
     href: "/forests/sensationalism",
   },
   {
@@ -18,29 +18,34 @@ const forestCards = [
     theme: "Naturalism",
     tagline: "Where meaning must be manufactured.",
     description:
-      "In this forest, nothing breaks in from above. What cannot be measured must be managed. Control feels responsible. Anxiety feels rational.",
+      "In this forest, nothing seems to break in from above. What cannot be measured starts to feel difficult to trust. Control feels responsible. Anxiety feels rational.",
     href: "/forests/naturalism",
   },
   {
     title: "The Shifting Grove",
     theme: "Moral Relativism",
-    tagline: "Where truth bends to safety.",
+    tagline: "Where safety starts to outrun truth.",
     description:
-      "Here, sincerity is sacred. Identity precedes reality. The ground moves with the heart, and disagreement feels like threat.",
+      "Here, sincerity carries moral weight. Harmony feels merciful. The ground shifts with the emotional weather, and disagreement can start to feel like threat.",
     href: "/forests/moral-relativism",
   },
   {
     title: "The Ironwood",
     theme: "Religion",
-    tagline: "Where rules replace discernment.",
+    tagline: "Where rules begin to crowd out discernment.",
     description:
-      "In this forest, holiness is measured by compliance. The system feels safe, questions feel suspect, and control begins to sound like faithfulness.",
+      "In this forest, holiness is often measured by compliance. The system feels safe, questions can feel suspect, and control begins to sound like faithfulness.",
     href: "/forests/religion",
   },
 ];
 ---
 
-<PageLayout title={WORLDVIEWS.TITLE} description={WORLDVIEWS.DESCRIPTION}>
+<PageLayout
+  title={WORLDVIEWS.TITLE}
+  description={WORLDVIEWS.DESCRIPTION}
+  schemaType="CollectionPage"
+  section="The Forests"
+>
   <TopLayout>
     <div class="animate space-y-6">
       <div>
@@ -61,8 +66,8 @@ const forestCards = [
           instinct shapes fruit.
         </p>
         <p>
-          The Forests name the environments that quietly form us — including
-          the ones that feel reasonable, spiritual, or even biblical.
+          The Forests try to name the environments that quietly form us,
+          including the ones that feel reasonable, spiritual, or protective.
         </p>
       </div>
     </div>
@@ -74,7 +79,7 @@ const forestCards = [
           How to Read the Forests
         </h2>
         <div class="space-y-3 text-base text-neutral-700 dark:text-neutral-300">
-          <p>Forests are not just wrong ideas. They are places people learn to survive.</p>
+          <p>Forests are not merely sets of ideas. They are places people learn to survive.</p>
           <p>Each forest:</p>
           <ul class="list-disc pl-6 space-y-1">
             <li>rewards certain behaviors</li>
@@ -86,6 +91,11 @@ const forestCards = [
             You don’t enter a forest because you’re foolish. You enter because it
             makes sense from the inside, especially when it has already trained your loves and fears.
           </p>
+          <p>
+            Most people will recognize more than one forest here. The point is not
+            to pin yourself to a label, but to notice which climate has been shaping
+            your instincts most deeply.
+          </p>
         </div>
       </section>
 
@@ -96,15 +106,15 @@ const forestCards = [
           What the Forests Reveal
         </h2>
         <div class="space-y-3 text-base text-neutral-700 dark:text-neutral-300">
-          <p>The Forests are not mainly about having categories. They are about truthful witness.</p>
+          <p>The Forests are not mainly about having categories. They are about learning to witness truthfully.</p>
           <p>
-            Each forest asks concrete questions. What does this world teach people to notice? What does it teach them to ignore? What fruit does it normalize? What quiet gospel does it preach? How does Christ expose and reorder it?
+            Each forest asks concrete questions. What does this world teach people to notice? What does it teach them to ignore? What fruit does it normalize? What quiet gospel does it preach? How might Christ expose and reorder it?
           </p>
           <div class="rounded-2xl border border-black/10 bg-white/60 p-5 text-sm text-neutral-700 dark:border-white/15 dark:bg-zinc-900/60 dark:text-neutral-300">
             Think of each forest as a formation climate: what it rewards, what it hides, and what kind of fruit starts to feel normal inside it.
           </div>
           <p>
-            You do not need to master every forest. You need enough honesty to notice which one has been teaching you how to live.
+            You do not need to master every forest. You need enough honesty to notice which one has been teaching you how to live, and enough patience to tell the truth without panic.
           </p>
         </div>
       </section>
@@ -118,7 +128,7 @@ const forestCards = [
           </h2>
           <p class="mt-2 text-base text-neutral-700 dark:text-neutral-300">
             Each forest below names a <strong>way the world trains us to see</strong>,
-            long before we realize we’ve agreed with it.
+            often long before we realize how deeply we have started to trust it.
           </p>
           <p class="mt-2 text-base text-neutral-700 dark:text-neutral-300">
             Enter slowly. Listen to the weather. Notice what feels familiar, persuasive, or strangely safe.
@@ -197,9 +207,9 @@ const forestCards = [
           <p>
             Leaving doesn’t always feel like freedom. Sometimes it feels like
             loss. Sometimes it feels like losing God — even when you’re learning
-            to witness the false gospel more truthfully.
+            to name the false gospel more truthfully.
           </p>
-          <p>Take your time. No forest is left in a single step.</p>
+          <p>Take your time. No forest is left in a single step, and no person is reduced to a single forest.</p>
         </div>
       </section>
     </div>

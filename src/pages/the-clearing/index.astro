@@ -13,6 +13,22 @@ const clearingEntries = (await getCollection("the-clearing"))
   .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
 
 const featuredEntries = [
+  clearingEntries.find(
+    (entry) => entry.slug === "when-everything-feels-spiritually-important-at-once",
+  ),
+  clearingEntries.find(
+    (entry) => entry.slug === "when-discernment-becomes-a-form-of-control",
+  ),
+  clearingEntries.find(
+    (entry) => entry.slug === "how-to-tell-the-truth-before-god-without-performing",
+  ),
+  clearingEntries.find((entry) => entry.slug === "why-noise-can-feel-like-clarity"),
+  clearingEntries.find(
+    (entry) => entry.slug === "christ-does-not-need-your-panic-to-reach-you",
+  ),
+].filter(Boolean) as (typeof clearingEntries)[number][];
+
+const worldviewBearingEntries = [
   clearingEntries.find((entry) => entry.slug === "worldview-foundations"),
   clearingEntries.find((entry) => entry.slug === "the-architecture-of-truth"),
   clearingEntries.find(
@@ -21,7 +37,9 @@ const featuredEntries = [
 ].filter(Boolean) as (typeof clearingEntries)[number][];
 
 const remainingEntries = clearingEntries.filter(
-  (entry) => !featuredEntries.some((f) => f && f.slug === entry.slug),
+  (entry) =>
+    !featuredEntries.some((f) => f && f.slug === entry.slug) &&
+    !worldviewBearingEntries.some((f) => f && f.slug === entry.slug),
 );
 const featuredCards = featuredEntries.map((entry) => toCardEntry(entry));
 const remainingCards = remainingEntries.map((entry) => toCardEntry(entry));
@@ -36,7 +54,12 @@ const estimated_initial_size =
   Math.max(0, remainingEntries.length - 1) * 12;
 ---
 
-<PageLayout title={CLEARING.TITLE} description={CLEARING.DESCRIPTION}>
+<PageLayout
+  title={CLEARING.TITLE}
+  description={CLEARING.DESCRIPTION}
+  schemaType="CollectionPage"
+  section="The Clearing"
+>
   <TopLayout>
     <div class="animate space-y-4">
       <div>
@@ -204,6 +227,34 @@ const estimated_initial_size =
               </li>
             ))}
           </ul>
+        </section>
+      )}
+
+      {worldviewBearingEntries.length > 0 && (
+        <section class="space-y-4">
+          <h2 class="text-xl font-semibold text-black dark:text-white">
+            Need a Sturdier Frame?
+          </h2>
+          <div class="space-y-3 text-base text-neutral-700 dark:text-neutral-300">
+            <p>
+              Some readers need quieter ground first. Others also need a more
+              conceptual frame for what truth, reality, and the biblical story
+              are holding together.
+            </p>
+            <p>
+              Those pieces now live in <strong>Worldview Bearings</strong>:
+              a smaller shelf inside The Clearing for readers who need deeper
+              orientation without entering the forests yet.
+            </p>
+            <p>
+              <a
+                href="/the-clearing/worldview-bearings"
+                class="font-semibold text-black hover:underline dark:text-white"
+              >
+                Go to Worldview Bearings &rarr;
+              </a>
+            </p>
+          </div>
         </section>
       )}
     </div>

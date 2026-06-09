@@ -19,7 +19,15 @@ const clearing = Astro.props as Props;
 const { title, summary } = clearing.data;
 ---
 
-<PageLayout title={title} description={summary}>
+<PageLayout
+  title={title}
+  description={summary}
+  pageType="article"
+  schemaType="Article"
+  publishedTime={clearing.data.date}
+  section="The Clearing"
+  tags={clearing.data.tags}
+>
   <TopLayout>
     <div class="animate">
       <ArticleTopLayout entry={clearing} />

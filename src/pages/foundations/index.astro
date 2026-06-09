@@ -5,7 +5,12 @@ import BottomLayout from "@layouts/BottomLayout.astro";
 import { FOUNDATIONS, CANONNOTES, COMPASSPOINTS, PILLARS } from "@consts";
 ---
 
-<PageLayout title={FOUNDATIONS.TITLE} description={FOUNDATIONS.DESCRIPTION}>
+<PageLayout
+  title={FOUNDATIONS.TITLE}
+  description={FOUNDATIONS.DESCRIPTION}
+  schemaType="CollectionPage"
+  section="Foundations"
+>
   <TopLayout>
     <div class="animate space-y-4">
       <div>

@@ -1,0 +1,116 @@
+---
+import { getCollection } from "astro:content";
+import PageLayout from "@layouts/PageLayout.astro";
+import TopLayout from "@layouts/TopLayout.astro";
+import BottomLayout from "@layouts/BottomLayout.astro";
+import ArrowCard from "@components/ArrowCard";
+import { toCardEntry } from "@lib/cardEntries";
+
+const clearingEntries = (await getCollection("the-clearing"))
+  .filter((entry) => !entry.data.draft)
+  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+
+const worldviewBearingEntries = [
+  clearingEntries.find((entry) => entry.slug === "worldview-foundations"),
+  clearingEntries.find((entry) => entry.slug === "the-architecture-of-truth"),
+  clearingEntries.find(
+    (entry) => entry.slug === "the-unshakable-bridge-why-the-biblical-worldview-holds",
+  ),
+].filter(Boolean) as (typeof clearingEntries)[number][];
+
+const worldviewBearingCards = worldviewBearingEntries.map((entry) => toCardEntry(entry));
+---
+
+<PageLayout
+  title="Worldview Bearings"
+  description="A smaller shelf inside The Clearing for readers who need a sturdier conceptual frame for truth, reality, and the biblical story."
+  schemaType="CollectionPage"
+  section="The Clearing"
+>
+  <TopLayout>
+    <div class="animate space-y-4">
+      <div>
+        <p class="text-xs font-semibold uppercase tracking-[0.2em] text-neutral-500 dark:text-neutral-400">
+          The Clearing
+        </p>
+        <h1 class="text-3xl font-semibold text-black dark:text-white mt-2">
+          Worldview Bearings
+        </h1>
+        <p class="mt-2 text-lg italic text-neutral-700 dark:text-neutral-300">
+          For when quieter ground is not enough,<br />
+          and you also need a sturdier frame.
+        </p>
+      </div>
+      <div class="space-y-3 text-base text-neutral-700 dark:text-neutral-300">
+        <p>
+          These pieces are more conceptual than the main clearing sequence.
+        </p>
+        <p>
+          They are here for readers who need help naming the deeper structure:
+          what reality is, how truth can be known, and why the biblical story
+          can bear the weight of a lived life.
+        </p>
+        <p>
+          They are still part of The Clearing. But they are not the best first
+          stop for everyone.
+        </p>
+      </div>
+    </div>
+  </TopLayout>
+  <BottomLayout>
+    <div class="animate space-y-12">
+      <section class="space-y-4">
+        <h2 class="text-xl font-semibold text-black dark:text-white">
+          When This Helps
+        </h2>
+        <div class="space-y-3 text-base text-neutral-700 dark:text-neutral-300">
+          <p>This shelf is useful if:</p>
+          <ul class="list-disc pl-6 space-y-1">
+            <li>you need more than de-pressurizing and want a deeper conceptual map</li>
+            <li>you keep asking what truth, morality, meaning, and reality finally rest on</li>
+            <li>you want a sturdier frame before entering a forest or fruit path</li>
+          </ul>
+          <p>
+            If everything still feels loud or spiritually thin, return first to
+            the main clearing sequence.
+          </p>
+        </div>
+      </section>
+
+      {worldviewBearingCards.length > 0 && (
+        <section class="space-y-4">
+          <h2 class="text-xl font-semibold text-black dark:text-white">
+            Essays
+          </h2>
+          <ul class="space-y-3">
+            {worldviewBearingCards.map((entry) => (
+              <li>
+                <ArrowCard entry={entry} />
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
+
+      <section class="space-y-4">
+        <h2 class="text-xl font-semibold text-black dark:text-white">
+          Return to The Clearing
+        </h2>
+        <div class="space-y-3 text-base text-neutral-700 dark:text-neutral-300">
+          <p>
+            If you need quieter ground rather than a sturdier frame, the main
+            clearing sequence remains the better place to begin.
+          </p>
+          <p>
+            <a
+              href="/the-clearing"
+              class="font-semibold text-black hover:underline dark:text-white"
+            >
+              Back to The Clearing &rarr;
+            </a>
+          </p>
+        </div>
+      </section>
+    </div>
+  </BottomLayout>
+</PageLayout>

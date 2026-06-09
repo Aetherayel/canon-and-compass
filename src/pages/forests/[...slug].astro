@@ -79,7 +79,15 @@ const splitParagraphs = (text: string) =>
     .filter(Boolean);
 ---
 
-<PageLayout title={pageTitle} description={pageDescription}>
+<PageLayout
+  title={pageTitle}
+  description={pageDescription}
+  pageType={isForest ? "website" : "article"}
+  schemaType={isForest ? "CollectionPage" : "Article"}
+  publishedTime={worldview?.data.date}
+  section={isForest ? "The Forests" : worldview?.data.series}
+  tags={worldview?.data.tags ?? []}
+>
   {isForest ? (
     <>
       <TopLayout>
