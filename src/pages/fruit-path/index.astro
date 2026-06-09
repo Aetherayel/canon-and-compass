@@ -5,11 +5,13 @@ import TopLayout from "@layouts/TopLayout.astro";
 import BottomLayout from "@layouts/BottomLayout.astro";
 import SearchCollection from "@components/SearchCollection";
 import { FRUIT_PATHS } from "@consts";
+import { toCardEntry } from "@lib/cardEntries";
 
 const entries = await getCollection("fruit-path");
 const pathways = entries
   .filter((entry) => !(entry.data as any).draft)
   .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+const pathwayCards = pathways.map((entry) => toCardEntry(entry));
 ---
 
 <PageLayout title={FRUIT_PATHS.TITLE} description={FRUIT_PATHS.DESCRIPTION}>
@@ -127,7 +129,7 @@ const pathways = entries
           client:load
           entry_name={"fruit paths"}
           tags={[]}
-          data={pathways}
+          data={pathwayCards}
           showTags={false}
         />
       </div>

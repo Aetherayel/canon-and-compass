@@ -37,8 +37,14 @@
 </svg>
 
 <script is:inline>
+  function prefersReducedMotion() {
+    return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  }
+
   // Generate a twinkle star and append it to the galaxy, remove it after animation.
   function generateTwinkleStar() {
+    if (prefersReducedMotion()) { return; }
+
     const twinkleStarTemplate = document.getElementById("twinkle-star")
     if (!twinkleStarTemplate) { return; }
     // Clone the twinkle star template and set its attributes.
@@ -57,6 +63,8 @@
     }, 2500);
   }
 
-  setInterval(generateTwinkleStar, 5000);
+  if (!prefersReducedMotion()) {
+    setInterval(generateTwinkleStar, 5000);
+  }
 </script>
   

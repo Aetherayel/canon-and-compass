@@ -1,3 +1,6 @@
+  function prefersReducedMotion() {
+    return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  }
 
   function generateParticles(n) {
     let value = `${getRandom(2560)}px ${getRandom(2560)}px #000`;
@@ -20,6 +23,17 @@
   }
 
   function initBG() {
+    if (prefersReducedMotion()) {
+      const staticIds = ['particles1', 'particles2', 'particles3', 'stars1', 'stars2', 'stars3'];
+      staticIds.forEach((id) => {
+        const el = document.getElementById(id);
+        if (el) {
+          el.style.cssText = '';
+        }
+      });
+      return;
+    }
+
     const particlesSmall = generateParticles(1000);
     const particlesMedium = generateParticles(500);
     const particlesLarge = generateParticles(250);

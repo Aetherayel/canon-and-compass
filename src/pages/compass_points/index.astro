@@ -5,6 +5,7 @@ import TopLayout from "@layouts/TopLayout.astro";
 import BottomLayout from "@layouts/BottomLayout.astro";
 import SearchCollection from "@components/SearchCollection";
 import { COMPASSPOINTS } from "@consts";
+import { toCardEntry } from "@lib/cardEntries";
 
 const compassPoints = (await getCollection("compass_points"))
   .filter((point) => !point.data.draft)
@@ -13,6 +14,7 @@ const compassPoints = (await getCollection("compass_points"))
 const tags = [
   ...new Set(compassPoints.flatMap((point) => point.data.tags)),
 ].sort((a, b) => a.localeCompare(b));
+const compassPointCards = compassPoints.map((point) => toCardEntry(point));
 
 const estimated_initial_size =
   28 + compassPoints.length * 158 + (compassPoints.length - 1) * 12;
@@ -39,7 +41,7 @@ const estimated_initial_size =
         client:load
         entry_name={"points"}
         tags={tags}
-        data={compassPoints}
+        data={compassPointCards}
       />
     </div>
   </BottomLayout>

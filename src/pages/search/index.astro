@@ -6,6 +6,7 @@ import BottomLayout from "@layouts/BottomLayout.astro";
 import Search from "@components/Search";
 import { SEARCH } from "@consts";
 import { isForestPathEntry } from "@lib/content";
+import { toCardEntry } from "@lib/cardEntries";
 
 const posts = (await getCollection("fruit-path")).filter(
   (post) => !post.data.draft,
@@ -44,6 +45,8 @@ const data = [...posts, ...clearing, ...canonNotes, ...forests, ...foundations, 
   | "compass_points"
   | "pillars"
 >[];
+
+const cardData = data.map((entry) => toCardEntry(entry));
 ---
 
 <PageLayout title={SEARCH.TITLE} description={SEARCH.DESCRIPTION}>
@@ -54,7 +57,7 @@ const data = [...posts, ...clearing, ...canonNotes, ...forests, ...foundations, 
   </TopLayout>
   <BottomLayout>
     <div class="animate">
-      <Search client:load data={data} />
+      <Search client:load data={cardData} />
     </div>
   </BottomLayout>
 </PageLayout>

@@ -1,22 +1,14 @@
-import type { CollectionEntry } from "astro:content"
 import { Show, createEffect, createSignal, For, onMount } from "solid-js"
 import Fuse from "fuse.js"
 import ArrowCard from "@components/ArrowCard"
 import { cn } from "@lib/utils"
 import SearchBar from "@components/SearchBar"
+import type { CardEntry } from "@lib/cardEntries"
 
 type Props = {
   entry_name: string
   tags: string[]
-  data: (
-    | CollectionEntry<'fruit-path'>
-    | CollectionEntry<'the-clearing'>
-    | CollectionEntry<'canon_notes'>
-    | CollectionEntry<'forests'>
-    | CollectionEntry<'compass_points'>
-    | CollectionEntry<'pillars'>
-    | CollectionEntry<'foundations-of-discernment'>
-  )[]
+  data: CardEntry[]
   showTags?: boolean
 }
 
@@ -32,15 +24,11 @@ export default function SearchCollection({ entry_name, data, tags, showTags = tr
   const fuse = new Fuse(coerced, {
     keys: [
       "slug",
-      "data.title",
-      "data.summary",
-      "data.description",
-      "data.tags",
-      "data.shift.title",
-      "data.shift.description",
-      "data.shift.fruit",
-      "data.shift.blurb",
-      "data.shift.tags",
+      "title",
+      "summary",
+      "tags",
+      "series",
+      "searchText",
     ],
     includeMatches: true,
     minMatchCharLength: 2,
@@ -54,11 +42,8 @@ export default function SearchCollection({ entry_name, data, tags, showTags = tr
     );
     const tagFiltered = showTags
       ? filtered.filter((entry) => {
-          const tags = entry.collection === "fruit-path"
-            ? entry.data.shift.tags
-            : ("tags" in entry.data ? entry.data.tags : []);
           return Array.from(filter()).every((value) =>
-            tags.some((tag: string) =>
+            entry.tags.some((tag: string) =>
               tag.toLowerCase() === String(value).toLowerCase()
             )
           );

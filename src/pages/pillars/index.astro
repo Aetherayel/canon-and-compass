@@ -5,6 +5,7 @@ import TopLayout from "@layouts/TopLayout.astro";
 import BottomLayout from "@layouts/BottomLayout.astro";
 import SearchCollection from "@components/SearchCollection";
 import { PILLARS } from "@consts";
+import { toCardEntry } from "@lib/cardEntries";
 
 const pillars = (await getCollection("pillars"))
   .filter((pillar) => !pillar.data.draft)
@@ -13,6 +14,7 @@ const pillars = (await getCollection("pillars"))
 const tags = [
   ...new Set(pillars.flatMap((pillar) => pillar.data.tags)),
 ].sort((a, b) => a.localeCompare(b));
+const pillarCards = pillars.map((pillar) => toCardEntry(pillar));
 
 const estimated_initial_size =
   28 + pillars.length * 158 + (pillars.length - 1) * 12;
@@ -39,7 +41,7 @@ const estimated_initial_size =
         client:load
         entry_name={"pillars"}
         tags={tags}
-        data={pillars}
+        data={pillarCards}
       />
     </div>
   </BottomLayout>

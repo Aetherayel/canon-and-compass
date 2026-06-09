@@ -1,4 +1,4 @@
-import { getCollection, type CollectionEntry } from "astro:content";
+import type { CollectionEntry } from "astro:content";
 
 export type ForestEntry = CollectionEntry<"forests">;
 export type ForestOverviewEntry = ForestEntry & {
@@ -30,6 +30,7 @@ export function getPathwayId(entry: FruitPathEntry) {
 }
 
 export async function getPublishedForestOverviews() {
+  const { getCollection } = await import("astro:content");
   const forests = await getCollection("forests");
   return forests.filter(
     (entry): entry is ForestOverviewEntry =>
@@ -38,6 +39,7 @@ export async function getPublishedForestOverviews() {
 }
 
 export async function getPublishedFruitPaths() {
+  const { getCollection } = await import("astro:content");
   const pathways = await getCollection("fruit-path");
   return pathways.filter((entry) => !entry.data.draft);
 }

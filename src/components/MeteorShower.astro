@@ -16,7 +16,12 @@
 </div>
 
 <script>
+  function prefersReducedMotion () {
+    return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  }
+
   function createMeteor () {
+  if (prefersReducedMotion()) { return; }
   // create a meteor
   let meteor = document.createElement("div");
   meteor.setAttribute("class", "meteor");
@@ -38,5 +43,7 @@
 }
 
 // Create meteors on interval on two (2) seconds
-setInterval(createMeteor, 1500);
+if (!prefersReducedMotion()) {
+  setInterval(createMeteor, 1500);
+}
 </script>

@@ -1,58 +1,19 @@
 import { formatDate, truncateText } from "@lib/utils"
-import type { CollectionEntry } from "astro:content"
-import { isForestOverview, type ForestPathEntry } from "@lib/content"
-
-type Entry =
-  | CollectionEntry<"fruit-path">
-  | CollectionEntry<"the-clearing">
-  | CollectionEntry<"canon_notes">
-  | CollectionEntry<"forests">
-  | CollectionEntry<"compass_points">
-  | CollectionEntry<"pillars">
-  | CollectionEntry<"foundations-of-discernment">
+import type { CardEntry } from "@lib/cardEntries"
 
 type Props = {
-  entry: Entry
+  entry: CardEntry
   pill?: boolean
 }
 
 export default function ArrowCard({ entry, pill }: Props) {
-  let seriesPart: number | undefined
-  if (
-    entry.collection === "canon_notes" ||
-    entry.collection === "foundations-of-discernment"
-  ) {
-    seriesPart = entry.data.day
-  } else if (entry.collection === "forests") {
-    const forestEntry = entry as CollectionEntry<"forests">
-    if (!isForestOverview(forestEntry)) {
-      const forestPathEntry = forestEntry as ForestPathEntry
-      seriesPart = forestPathEntry.data.part
-    }
-  }
-
-  const entryHref =
-    entry.collection === "forests"
-      ? `/forests/${entry.slug}`
-      : entry.collection === "fruit-path"
-        ? `/fruit-path/${entry.data.pathwayId ?? entry.slug}`
-        : `/${entry.collection}/${entry.slug}`
-  const date = "date" in entry.data ? entry.data.date : null
-  const tags =
-    entry.collection === "fruit-path"
-      ? entry.data.shift.tags
-      : ("tags" in entry.data ? entry.data.tags : [])
-  const displayTitle =
-    entry.collection === "fruit-path"
-      ? entry.data.shift.title
-      : entry.data.title
-  const summary =
-    entry.collection === "fruit-path"
-      ? entry.data.shift.blurb
-      : entry.data.summary
+  const date = entry.date ?? null
+  const tags = entry.tags
+  const displayTitle = entry.title
+  const summary = entry.summary
 
   return (
-    <a href={entryHref} class="group p-4 gap-3 flex items-center border rounded-lg hover:bg-black/5 hover:dark:bg-white/10 border-black/15 dark:border-white/20 transition-colors duration-300 ease-in-out">
+    <a href={entry.href} class="group p-4 gap-3 flex items-center border rounded-lg hover:bg-black/5 hover:dark:bg-white/10 border-black/15 dark:border-white/20 transition-colors duration-300 ease-in-out">
       <div class="w-full group-hover:text-black group-hover:dark:text-white blend">
         <div class="flex flex-wrap items-center gap-2">
           {pill && (
@@ -77,17 +38,17 @@ export default function ArrowCard({ entry, pill }: Props) {
           entry.collection === "forests"
         ) && (
           <div class="text-sm uppercase mt-1">
-            {entry.data.series}
-            {entry.data.series.toLowerCase() !== "standalone" && (
+            {entry.series}
+            {entry.series && entry.series.toLowerCase() !== "standalone" && (
               (() => {
-                if (!seriesPart) return "";
+                if (!entry.seriesPart) return "";
 
                 const label =
                   entry.collection === "canon_notes" ||
                   entry.collection === "foundations-of-discernment"
                     ? "Day"
                     : "Part";
-                return ` - ${label} ${seriesPart}`;
+                return ` - ${label} ${entry.seriesPart}`;
               })()
             )}
           </div>

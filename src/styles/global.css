@@ -102,6 +102,30 @@ article {
   transform: translateY(0);
 }
 
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .animate,
+  .animate.show,
+  .blend,
+  .animate-star,
+  #meteors .meteor,
+  #twinkle-star.twinkle,
+  #particles1,
+  #particles2,
+  #particles3 {
+    animation: none !important;
+    transition: none !important;
+    transform: none !important;
+  }
+
+  .animate {
+    opacity: 1;
+  }
+}
+
 article img {
   padding-top: 20px;
   padding-bottom: 20px;

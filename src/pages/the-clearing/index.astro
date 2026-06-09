@@ -6,6 +6,7 @@ import BottomLayout from "@layouts/BottomLayout.astro";
 import SearchCollection from "@components/SearchCollection";
 import ArrowCard from "@components/ArrowCard";
 import { CLEARING } from "@consts";
+import { toCardEntry } from "@lib/cardEntries";
 
 const clearingEntries = (await getCollection("the-clearing"))
   .filter((entry) => !entry.data.draft)
@@ -22,8 +23,10 @@ const featuredEntries = [
 const remainingEntries = clearingEntries.filter(
   (entry) => !featuredEntries.some((f) => f && f.slug === entry.slug),
 );
+const featuredCards = featuredEntries.map((entry) => toCardEntry(entry));
+const remainingCards = remainingEntries.map((entry) => toCardEntry(entry));
 
-const tags = [...new Set(remainingEntries.flatMap((entry) => entry.data.tags))].sort(
+const tags = [...new Set(remainingCards.flatMap((entry) => entry.tags))].sort(
   (a, b) => a.localeCompare(b),
 );
 
@@ -195,7 +198,7 @@ const estimated_initial_size =
             Good Places to Start
           </h2>
           <ul class="space-y-3">
-            {featuredEntries.map((entry) => (
+            {featuredCards.map((entry) => (
               <li>
                 <ArrowCard entry={entry} />
               </li>
@@ -214,7 +217,7 @@ const estimated_initial_size =
         client:load
         entry_name={"The Clearing"}
         tags={tags}
-        data={remainingEntries}
+        data={remainingCards}
         showTags={false}
       />
     </div>

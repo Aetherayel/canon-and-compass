@@ -5,6 +5,7 @@ import TopLayout from "@layouts/TopLayout.astro";
 import BottomLayout from "@layouts/BottomLayout.astro";
 import SearchCollection from "@components/SearchCollection";
 import { CANONNOTES } from "@consts";
+import { toCardEntry } from "@lib/cardEntries";
 
 const canonNotes = (await getCollection("canon_notes"))
   .filter((note) => !note.data.draft)
@@ -13,6 +14,7 @@ const canonNotes = (await getCollection("canon_notes"))
 const tags = [
   ...new Set(canonNotes.flatMap((note) => note.data.tags)),
 ].sort((a, b) => a.localeCompare(b));
+const noteCards = canonNotes.map((note) => toCardEntry(note));
 
 const estimated_initial_size =
   28 + canonNotes.length * 158 + (canonNotes.length - 1) * 12;
@@ -73,7 +75,7 @@ const fodEntries = (await getCollection("foundations-of-discernment")).filter(
         client:load
         entry_name={"notes"}
         tags={tags}
-        data={canonNotes}
+        data={noteCards}
       />
     </div>
   </BottomLayout>
