@@ -44,6 +44,21 @@ export const WORLDVIEWS: Page = {
   DESCRIPTION: "Habitats of formation that teach people what to notice, ignore, fear, and love.",
 }
 
+export const FOREST_FRUIT_CROSS_LINKS = {
+  FOREST_TO_FRUIT: {
+    EYEBROW: "Fruit Paths",
+    HEADING: "Start With the Fruit This Forest Normalizes",
+    BLURB:
+      "If this forest feels familiar, these Fruit Paths help name patterns its climate can make feel ordinary, wise, or even faithful.",
+  },
+  FRUIT_TO_FORESTS: {
+    EYEBROW: "The Forests",
+    HEADING: "Notice the Forest Around This Fruit",
+    BLURB:
+      "Fruit rarely grows in isolation. These forests describe wider climates that can make this pattern feel normal long before you realize you are being trained by it.",
+  },
+}
+
 // Canon Notes Page
 export const CANONNOTES: Page = {
   TITLE: "Canon Notes",

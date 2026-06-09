@@ -11,7 +11,7 @@ const forestCards = [
     tagline: "Where intensity substitutes for depth.",
     description:
       "This forest is alive with movement. God feels near. Everything feels urgent. Stillness, however, feels like absence — and silence like danger.",
-    href: null,
+    href: "/forests/sensationalism",
   },
   {
     title: "The Closed Sky",
@@ -28,6 +28,14 @@ const forestCards = [
     description:
       "Here, sincerity is sacred. Identity precedes reality. The ground moves with the heart, and disagreement feels like threat.",
     href: "/forests/moral-relativism",
+  },
+  {
+    title: "The Ironwood",
+    theme: "Religion",
+    tagline: "Where rules replace discernment.",
+    description:
+      "In this forest, holiness is measured by compliance. The system feels safe, questions feel suspect, and control begins to sound like faithfulness.",
+    href: "/forests/religion",
   },
 ];
 ---
@@ -117,7 +125,7 @@ const forestCards = [
           </p>
         </div>
 
-        <div class="grid grid-cols-1 gap-6 lg:grid-cols-3">
+        <div class="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-4">
           {forestCards.map((forest) => (
             <div class="rounded-2xl border border-black/10 bg-white/70 p-6 shadow-sm dark:border-white/15 dark:bg-zinc-900/70">
               <div class="text-xs uppercase tracking-wide text-neutral-500 dark:text-neutral-400">

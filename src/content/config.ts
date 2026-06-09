@@ -125,6 +125,7 @@ const forests = defineCollection({
       subtitle: z.string(),
       summary: z.string(),
       series: z.string(),
+      relatedPathways: z.array(z.string()).optional(),
       climate: z.string(),
       canopy: z.array(z.string()),
       quietGospel: z.string(),

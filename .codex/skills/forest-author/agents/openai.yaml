@@ -1,0 +1,4 @@
+interface:
+  display_name: "Forest Author"
+  short_description: "Write new forests in the Canon & Compass house form."
+  default_prompt: "Use $forest-author to draft a new Canon & Compass forest with an overview and seven trail entries that match the existing flow, formatting, and tone."

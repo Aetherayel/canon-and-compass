@@ -3,6 +3,7 @@ import type { CollectionEntry } from "astro:content";
 import PageLayout from "@layouts/PageLayout.astro";
 import TopLayout from "@layouts/TopLayout.astro";
 import BottomLayout from "@layouts/BottomLayout.astro";
+import FruitPathForestLinks from "@components/FruitPathForestLinks.astro";
 import PathwayLinks from "@components/PathwayLinks.astro";
 
 type Props = {
@@ -102,7 +103,8 @@ const pathwayId = data?.pathwayId ?? entry.slug;
       </article>
 
       {pathwayId && (
-        <div class="mt-10">
+        <div class="mt-10 space-y-6">
+          <FruitPathForestLinks pathwayId={pathwayId} />
           <PathwayLinks
             id={pathwayId}
             showPath={false}

@@ -5,6 +5,8 @@ import TopLayout from "@layouts/TopLayout.astro";
 import BottomLayout from "@layouts/BottomLayout.astro";
 import ArticleTopLayout from "@layouts/ArticleTopLayout.astro";
 import ArticleBottomLayout from "@layouts/ArticleBottomLayout.astro";
+import ForestFruitPathLinks from "@components/ForestFruitPathLinks.astro";
+import ManualButtons from "@components/ManualButtons.astro";
 import {
   isForestOverview,
   isForestPathEntry,
@@ -62,6 +64,13 @@ const seriesEntries = seriesName
   : [];
 
 const activePart = worldview?.data.part;
+const currentSeriesIndex = worldview
+  ? seriesEntries.findIndex((entry) => entry.slug === worldview.slug)
+  : -1;
+const nextSeriesEntry =
+  currentSeriesIndex >= 0 && currentSeriesIndex < seriesEntries.length - 1
+    ? seriesEntries[currentSeriesIndex + 1]
+    : undefined;
 
 const splitParagraphs = (text: string) =>
   text
@@ -150,6 +159,8 @@ const splitParagraphs = (text: string) =>
               ))}
             </ul>
           </section>
+
+          <ForestFruitPathLinks forestSlug={forest?.slug} />
 
           <section>
             <h2 class="text-xl font-semibold text-black dark:text-white">
@@ -264,9 +275,27 @@ const splitParagraphs = (text: string) =>
           <ArticleBottomLayout entry={worldview!} />
         </div>
 
+        {nextSeriesEntry && (
+          <section class="animate mt-10">
+            <ManualButtons
+              nextHref={`/forests/${nextSeriesEntry.slug}`}
+              nextLabel={nextSeriesEntry.data.title}
+              nextType={
+                nextSeriesEntry.data.part
+                  ? `Part ${nextSeriesEntry.data.part} of ${seriesEntries.length}`
+                  : "Next entry"
+              }
+            />
+          </section>
+        )}
+
+        <section class="animate mt-10">
+          <ForestFruitPathLinks series={worldview?.data.series} />
+        </section>
+
         {seriesEntries.length > 1 && (
           <section class="animate mt-10">
-            <h2 class="text-lg font-semibold text-black dark:text-white mb-3">
+            <h2 class="mb-3 text-base font-normal text-black dark:text-white">
               {worldview?.data.series} Series
             </h2>
             <ol class="grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -288,7 +317,7 @@ const splitParagraphs = (text: string) =>
                       <div class="text-xs uppercase text-neutral-600 dark:text-neutral-300">
                         {partNumber ? `Part ${partNumber}` : "Entry"}
                       </div>
-                      <div class="font-semibold text-black dark:text-white mt-1 line-clamp-2">
+                      <div class="mt-1 text-sm text-black dark:text-white line-clamp-2">
                         {entry.data.title}
                       </div>
                       <div class="text-sm mt-1 line-clamp-2 text-neutral-700 dark:text-neutral-300">
