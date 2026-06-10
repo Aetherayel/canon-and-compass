@@ -6,10 +6,6 @@ const pageTitle = "Contact"
 const pageDescription =
   "Reach Canon & Compass with questions, corrections, or thoughtful feedback."
 const contactEmail = "contact@canonandcompass.com"
-const formAction = `https://formsubmit.co/${contactEmail}`
-const pageOrigin = Astro.url.origin
-const formUrl = new URL("/contact/", pageOrigin).toString()
-const successUrl = new URL("/contact/thanks/", pageOrigin).toString()
 ---
 
 <PageLayout title={pageTitle} description={pageDescription} schemaType="WebPage">
@@ -65,12 +61,8 @@ const successUrl = new URL("/contact/thanks/", pageOrigin).toString()
         </div>
 
         <div class="rounded-[2rem] border border-ash/15 bg-paper p-6 shadow-sm dark:border-white/10 dark:bg-night/60 md:p-8">
-          <form action={formAction} method="POST" class="space-y-5">
-            <input type="hidden" name="_subject" value="New Canon & Compass contact form submission" />
-            <input type="hidden" name="_template" value="table" />
-            <input type="hidden" name="_next" value={successUrl} />
-            <input type="hidden" name="_url" value={formUrl} />
-            <input type="text" name="_honey" class="hidden" tabindex="-1" autocomplete="off" />
+          <form action="/api/contact" method="POST" class="space-y-5">
+            <input type="text" name="company" class="hidden" tabindex="-1" autocomplete="off" />
 
             <div class="grid gap-5 md:grid-cols-2">
               <label class="block">

@@ -3,11 +3,14 @@ import mdx from "@astrojs/mdx"
 import sitemap from "@astrojs/sitemap"
 import tailwind from "@astrojs/tailwind"
 import solidJs from "@astrojs/solid-js"
+import vercel from "@astrojs/vercel/serverless"
 import { fileURLToPath } from "node:url"
 
 // https://astro.build/config
 export default defineConfig({
   site: "https://canonandcompass.com",
+  output: "hybrid",
+  adapter: vercel(),
   integrations: [mdx(), sitemap(), solidJs(), tailwind({ applyBaseStyles: false })],
     vite: {
     resolve: {
