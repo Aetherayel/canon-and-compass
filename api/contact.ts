@@ -136,8 +136,13 @@ export async function POST(request: Request) {
         ],
       },
     })
+  } catch (error) {
+    console.error("Primary contact email delivery failed.", error)
+    return htmlResponse("Message delivery failed. Please try again later.", 502)
+  }
 
-    if (email) {
+  if (email) {
+    try {
       await sendEmail({
         apiKey,
         payload: {
@@ -156,10 +161,9 @@ export async function POST(request: Request) {
           ],
         },
       })
+    } catch (error) {
+      console.warn("Contact form acknowledgement email failed.", error)
     }
-  } catch (error) {
-    console.error("Contact form delivery failed.", error)
-    return htmlResponse("Message delivery failed. Please try again later.", 502)
   }
 
   return Response.redirect(buildAbsoluteUrl(request, CONTACT_SUCCESS_PATH), 303)
