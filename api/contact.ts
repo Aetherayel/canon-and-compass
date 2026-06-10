@@ -23,6 +23,18 @@ const normalizeMessage = (value: FormDataEntryValue | null) => {
   return value.trim().slice(0, OWNER_MESSAGE_LIMIT)
 }
 
+const normalizeEnvValue = (value?: string) => {
+  if (!value) return ""
+  const trimmed = value.trim()
+  if (
+    (trimmed.startsWith('"') && trimmed.endsWith('"')) ||
+    (trimmed.startsWith("'") && trimmed.endsWith("'"))
+  ) {
+    return trimmed.slice(1, -1).trim()
+  }
+  return trimmed
+}
+
 const buildAbsoluteUrl = (request: Request, path: string) => new URL(path, request.url).toString()
 
 const htmlResponse = (message: string, status: number) =>
@@ -92,9 +104,10 @@ export async function POST(request: Request) {
     return htmlResponse("Return email must be a valid email address.", 400)
   }
 
-  const apiKey = process.env.RESEND_API_KEY
-  const fromEmail = process.env.CONTACT_FROM_EMAIL
-  const toEmail = process.env.CONTACT_TO_EMAIL ?? "contact@canonandcompass.com"
+  const apiKey = normalizeEnvValue(process.env.RESEND_API_KEY)
+  const fromEmail = normalizeEnvValue(process.env.CONTACT_FROM_EMAIL)
+  const toEmail =
+    normalizeEnvValue(process.env.CONTACT_TO_EMAIL) || "contact@canonandcompass.com"
 
   if (!apiKey || !fromEmail) {
     console.error("Missing contact form email configuration.")
