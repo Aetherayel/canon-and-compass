@@ -1,7 +1,3 @@
-import type { APIRoute } from "astro"
-
-export const prerender = false
-
 const CONTACT_SUCCESS_PATH = "/contact/thanks/"
 const OWNER_SUBJECT = "New Canon & Compass contact form submission"
 const OWNER_MESSAGE_LIMIT = 10000
@@ -62,7 +58,7 @@ const sendEmail = async ({
   }
 }
 
-export const POST: APIRoute = async ({ request }) => {
+export async function POST(request: Request) {
   const contentType = request.headers.get("content-type") ?? ""
   if (
     !contentType.includes("application/x-www-form-urlencoded") &&
@@ -96,9 +92,9 @@ export const POST: APIRoute = async ({ request }) => {
     return htmlResponse("Return email must be a valid email address.", 400)
   }
 
-  const apiKey = import.meta.env.RESEND_API_KEY
-  const fromEmail = import.meta.env.CONTACT_FROM_EMAIL
-  const toEmail = import.meta.env.CONTACT_TO_EMAIL ?? "contact@canonandcompass.com"
+  const apiKey = process.env.RESEND_API_KEY
+  const fromEmail = process.env.CONTACT_FROM_EMAIL
+  const toEmail = process.env.CONTACT_TO_EMAIL ?? "contact@canonandcompass.com"
 
   if (!apiKey || !fromEmail) {
     console.error("Missing contact form email configuration.")
