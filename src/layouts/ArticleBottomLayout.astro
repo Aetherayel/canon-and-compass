@@ -15,8 +15,10 @@ const { Content } = await entry.render()
 // No prev/next buttons for pathway content; instead show PathwayLinks below
 let resolvedPathwayId: string | undefined;
 let resolvedCurrentType: 'compassPoint' | 'pillar' | undefined;
+let resolvedAccent: "starlight" | "fig" | "moss" = "starlight";
 if (collection === "compass_points") {
   resolvedCurrentType = "compassPoint";
+  resolvedAccent = "fig";
   resolvedPathwayId = entry.data.pathwayId;
   if (!resolvedPathwayId) {
     const p = await getCollection('fruit-path');
@@ -25,6 +27,7 @@ if (collection === "compass_points") {
   }
 } else if (collection === "pillars") {
   resolvedCurrentType = "pillar";
+  resolvedAccent = "moss";
   resolvedPathwayId = entry.data.pathwayId;
   if (!resolvedPathwayId) {
     const p = await getCollection('fruit-path');
@@ -40,7 +43,7 @@ if (collection === "compass_points") {
   </article>
   {resolvedPathwayId && resolvedCurrentType && (
     <div class="mt-8">
-      <PathwayLinks id={resolvedPathwayId} currentType={resolvedCurrentType} />
+      <PathwayLinks id={resolvedPathwayId} currentType={resolvedCurrentType} accent={resolvedAccent} />
     </div>
   )}
   <!-- <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">

@@ -12,23 +12,60 @@ export interface Props {
   heading: string;
   blurb: string;
   items: CrossLinkItem[];
+  accent?: "starlight" | "pine" | "ember" | "moss" | "fig";
 }
 
-const { eyebrow, heading, blurb, items } = Astro.props as Props;
+const { eyebrow, heading, blurb, items, accent = "starlight" } = Astro.props as Props;
+
+const accentStyles =
+  accent === "pine"
+    ? {
+        section: "border-pine/20 dark:border-pine/20",
+        eyebrow: "text-pine dark:text-moss",
+        card: "hover:border-pine/35 dark:hover:border-pine/30",
+        arrow: "group-hover:text-pine dark:group-hover:text-pine",
+      }
+    : accent === "ember"
+      ? {
+          section: "border-ember/20 dark:border-ember/20",
+          eyebrow: "text-ember dark:text-ember",
+          card: "hover:border-ember/35 dark:hover:border-ember/30",
+          arrow: "group-hover:text-ember dark:group-hover:text-ember",
+        }
+      : accent === "moss"
+        ? {
+            section: "border-moss/20 dark:border-moss/20",
+            eyebrow: "text-moss dark:text-moss",
+            card: "hover:border-moss/35 dark:hover:border-moss/30",
+            arrow: "group-hover:text-moss dark:group-hover:text-moss",
+          }
+        : accent === "fig"
+          ? {
+              section: "border-fig/20 dark:border-fig/20",
+              eyebrow: "text-fig dark:text-fig",
+              card: "hover:border-fig/35 dark:hover:border-fig/30",
+              arrow: "group-hover:text-fig dark:group-hover:text-fig",
+            }
+          : {
+              section: "border-starlight/20 dark:border-starlight/20",
+              eyebrow: "text-starlight dark:text-starlight",
+              card: "hover:border-starlight/35 dark:hover:border-starlight/30",
+              arrow: "group-hover:text-starlight dark:group-hover:text-starlight",
+            };
 ---
 
 {
   items.length > 0 && (
-    <section class="rounded-2xl border border-black/10 bg-white/70 p-6 shadow-sm dark:border-white/15 dark:bg-zinc-900/70">
+    <section class={`rounded-2xl border bg-paper/80 p-6 shadow-sm dark:bg-zinc-900/70 ${accentStyles.section}`}>
       {eyebrow && (
-        <div class="text-xs uppercase tracking-[0.2em] text-zinc-500 dark:text-zinc-400">
+        <div class={`text-xs uppercase tracking-[0.2em] ${accentStyles.eyebrow}`}>
           {eyebrow}
         </div>
       )}
-      <h2 class="mt-3 text-base font-normal text-black dark:text-white">
+      <h2 class="mt-3 text-base font-normal text-ink dark:text-bone">
         {heading}
       </h2>
-      <p class="mt-3 max-w-prose text-sm text-zinc-600 dark:text-zinc-400">
+      <p class="mt-3 max-w-prose text-sm text-ash dark:text-zinc-400">
         {blurb}
       </p>
 
@@ -36,18 +73,18 @@ const { eyebrow, heading, blurb, items } = Astro.props as Props;
         {items.map((item) => (
           <a
             href={item.href}
-            class="group rounded-xl border border-black/10 bg-white/75 p-4 transition-colors duration-200 ease-in-out hover:bg-black/5 dark:border-white/15 dark:bg-zinc-950/40 dark:hover:bg-white/10"
+            class={`group rounded-xl border border-ash/15 bg-paper p-4 transition-colors duration-200 ease-in-out hover:bg-bone/70 dark:border-bone/15 dark:bg-zinc-950/40 dark:hover:bg-white/10 ${accentStyles.card}`}
           >
-            <div class="text-xs uppercase tracking-wide text-zinc-500 dark:text-zinc-400">
+            <div class="text-xs uppercase tracking-wide text-ash dark:text-zinc-400">
               {item.label}
             </div>
             <div class="mt-2 flex items-start justify-between gap-3">
               <div class="min-w-0">
-                <h3 class="text-sm font-normal text-black dark:text-white">
+                <h3 class="text-sm font-normal text-ink dark:text-bone">
                   {item.title}
                 </h3>
                 {item.meta && (
-                  <p class="mt-1 text-sm text-zinc-600 dark:text-zinc-400">
+                  <p class="mt-1 text-sm text-ash dark:text-zinc-400">
                     {item.meta}
                   </p>
                 )}
@@ -61,7 +98,7 @@ const { eyebrow, heading, blurb, items } = Astro.props as Props;
                 stroke-width="2.5"
                 stroke-linecap="round"
                 stroke-linejoin="round"
-                class="mt-0.5 shrink-0 stroke-current text-zinc-500 transition-colors duration-200 ease-in-out group-hover:text-black dark:group-hover:text-white"
+                class={`mt-0.5 shrink-0 stroke-current text-ash transition-colors duration-200 ease-in-out ${accentStyles.arrow}`}
               >
                 <line
                   x1="5"
@@ -76,7 +113,7 @@ const { eyebrow, heading, blurb, items } = Astro.props as Props;
                 />
               </svg>
             </div>
-            <p class="mt-3 text-sm text-zinc-700 dark:text-zinc-300">
+            <p class="mt-3 text-sm text-ash dark:text-zinc-300">
               {item.description}
             </p>
           </a>

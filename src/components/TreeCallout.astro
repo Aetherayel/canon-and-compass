@@ -41,11 +41,11 @@ const {
   details[open] .ttw-content { opacity: 1; transform: translateY(0) scale(1); height: auto; }
 </style>
 
-<div class="bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 rounded-2xl p-6 space-y-4 shadow-sm">
+<div class="rounded-2xl border border-moss/20 bg-paper p-6 space-y-4 shadow-sm dark:border-moss/25 dark:bg-zinc-900">
   <div class="flex items-start justify-between gap-4">
     <div>
-      <h3 class="text-lg font-serif font-semibold text-slate-800 dark:text-zinc-100">{title}</h3>
-      <p class="mt-1 text-sm text-zinc-500 dark:text-zinc-400 max-w-prose">
+      <h3 class="text-lg font-serif font-semibold text-ink dark:text-bone">{title}</h3>
+      <p class="mt-1 max-w-prose text-sm text-ash dark:text-zinc-400">
         Walk through the core parts of this tree, starting with the root of truth and tracing it to the fruit it produces. Expand each section for reflection prompts and Scripture to anchor the truth.
       </p>
     </div>
@@ -54,13 +54,13 @@ const {
   <div class="mt-4 space-y-3">
     <!-- Root -->
     <details class="rounded-lg" role="group">
-      <summary class="ttw-summary flex items-center gap-3 p-3 rounded-md hover:bg-zinc-50 dark:hover:bg-zinc-700">
-        <svg class="ttw-arrow w-4 h-4 text-zinc-500" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-        <div class="text-sm font-medium text-slate-800 dark:text-zinc-100"> Root — Core biblical truth</div>
+      <summary class="ttw-summary flex items-center gap-3 rounded-md p-3 hover:bg-moss/10 dark:hover:bg-moss/10">
+        <svg class="ttw-arrow h-4 w-4 text-moss" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+        <div class="text-sm font-medium text-ink dark:text-bone"> Root — Core biblical truth</div>
       </summary>
-      <div class="ttw-content p-4 bg-zinc-50 dark:bg-zinc-900 rounded-b-md">
-        <p class="text-sm text-zinc-700 dark:text-zinc-300">{root}</p>
-        <div class="mt-3 text-xs text-zinc-500 dark:text-zinc-400">
+      <div class="ttw-content rounded-b-md bg-bone/50 p-4 dark:bg-zinc-950">
+        <p class="text-sm text-ash dark:text-zinc-300">{root}</p>
+        <div class="mt-3 text-xs text-ash dark:text-zinc-400">
           <strong>Reflect:</strong> {rootReflection}
         </div>
       </div>
@@ -68,13 +68,13 @@ const {
 
     <!-- Trunk -->
     <details class="rounded-lg" role="group">
-      <summary class="ttw-summary flex items-center gap-3 p-3 rounded-md hover:bg-zinc-50 dark:hover:bg-zinc-700">
-        <svg class="ttw-arrow w-4 h-4 text-zinc-500" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-        <div class="text-sm font-medium text-slate-800 dark:text-zinc-100"> Trunk — Foundational belief</div>
+      <summary class="ttw-summary flex items-center gap-3 rounded-md p-3 hover:bg-moss/10 dark:hover:bg-moss/10">
+        <svg class="ttw-arrow h-4 w-4 text-moss" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+        <div class="text-sm font-medium text-ink dark:text-bone"> Trunk — Foundational belief</div>
       </summary>
-      <div class="ttw-content p-4 bg-zinc-50 dark:bg-zinc-900 rounded-b-md">
-        <p class="text-sm text-zinc-700 dark:text-zinc-300">{trunk}</p>
-        <div class="mt-3 text-xs text-zinc-500 dark:text-zinc-400">
+      <div class="ttw-content rounded-b-md bg-bone/50 p-4 dark:bg-zinc-950">
+        <p class="text-sm text-ash dark:text-zinc-300">{trunk}</p>
+        <div class="mt-3 text-xs text-ash dark:text-zinc-400">
           <strong>Reflect:</strong> {trunkReflection}
         </div>
       </div>
@@ -82,15 +82,15 @@ const {
 
     <!-- Branches -->
     <details class="rounded-lg" role="group">
-      <summary class="ttw-summary flex items-center gap-3 p-3 rounded-md hover:bg-zinc-50 dark:hover:bg-zinc-700">
-        <svg class="ttw-arrow w-4 h-4 text-zinc-500" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-        <div class="text-sm font-medium text-slate-800 dark:text-zinc-100"> Branches — Reinforcing patterns</div>
+      <summary class="ttw-summary flex items-center gap-3 rounded-md p-3 hover:bg-moss/10 dark:hover:bg-moss/10">
+        <svg class="ttw-arrow h-4 w-4 text-moss" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+        <div class="text-sm font-medium text-ink dark:text-bone"> Branches — Reinforcing patterns</div>
       </summary>
-      <div class="ttw-content p-4 bg-zinc-50 dark:bg-zinc-900 rounded-b-md">
-        <ul class="list-disc list-inside text-sm text-zinc-700 dark:text-zinc-300 space-y-1">
-          {branches.length ? branches.map((b: string) => (<li>{b}</li>)) : (<li class="text-zinc-500">No branches specified.</li>)}
+      <div class="ttw-content rounded-b-md bg-bone/50 p-4 dark:bg-zinc-950">
+        <ul class="list-disc list-inside space-y-1 text-sm text-ash dark:text-zinc-300">
+          {branches.length ? branches.map((b: string) => (<li>{b}</li>)) : (<li class="text-ash">No branches specified.</li>)}
         </ul>
-        <div class="mt-3 text-xs text-zinc-500 dark:text-zinc-400">
+        <div class="mt-3 text-xs text-ash dark:text-zinc-400">
           <strong>Reflect:</strong> {branchesReflection}
         </div>
       </div>
@@ -98,15 +98,15 @@ const {
 
     <!-- Leaves -->
     <details class="rounded-lg" role="group">
-      <summary class="ttw-summary flex items-center gap-3 p-3 rounded-md hover:bg-zinc-50 dark:hover:bg-zinc-700">
-        <svg class="ttw-arrow w-4 h-4 text-zinc-500" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-        <div class="text-sm font-medium text-slate-800 dark:text-zinc-100"> Leaves — Everyday actions</div>
+      <summary class="ttw-summary flex items-center gap-3 rounded-md p-3 hover:bg-moss/10 dark:hover:bg-moss/10">
+        <svg class="ttw-arrow h-4 w-4 text-moss" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+        <div class="text-sm font-medium text-ink dark:text-bone"> Leaves — Everyday actions</div>
       </summary>
-      <div class="ttw-content p-4 bg-zinc-50 dark:bg-zinc-900 rounded-b-md">
-        <ul class="list-disc list-inside text-sm text-zinc-700 dark:text-zinc-300 space-y-1">
-          {leaves.length ? leaves.map((l: string) => (<li>{l}</li>)) : (<li class="text-zinc-500">No leaves specified.</li>)}
+      <div class="ttw-content rounded-b-md bg-bone/50 p-4 dark:bg-zinc-950">
+        <ul class="list-disc list-inside space-y-1 text-sm text-ash dark:text-zinc-300">
+          {leaves.length ? leaves.map((l: string) => (<li>{l}</li>)) : (<li class="text-ash">No leaves specified.</li>)}
         </ul>
-        <div class="mt-3 text-xs text-zinc-500 dark:text-zinc-400">
+        <div class="mt-3 text-xs text-ash dark:text-zinc-400">
           <strong>Prompt:</strong> {leavesReflection}
         </div>
       </div>
@@ -114,15 +114,15 @@ const {
 
     <!-- Fruit -->
     <details class="rounded-lg" role="group">
-      <summary class="ttw-summary flex items-center gap-3 p-3 rounded-md hover:bg-zinc-50 dark:hover:bg-zinc-700">
-        <svg class="ttw-arrow w-4 h-4 text-zinc-500" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-        <div class="text-sm font-medium text-slate-800 dark:text-zinc-100"> Fruit — Visible outcomes</div>
+      <summary class="ttw-summary flex items-center gap-3 rounded-md p-3 hover:bg-moss/10 dark:hover:bg-moss/10">
+        <svg class="ttw-arrow h-4 w-4 text-moss" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+        <div class="text-sm font-medium text-ink dark:text-bone"> Fruit — Visible outcomes</div>
       </summary>
-      <div class="ttw-content p-4 bg-zinc-50 dark:bg-zinc-900 rounded-b-md">
-        <ul class="list-disc list-inside text-sm text-zinc-700 dark:text-zinc-300 space-y-1">
-          {fruit.length ? fruit.map((f: string) => (<li>{f}</li>)) : (<li class="text-zinc-500">No fruit specified.</li>)}
+      <div class="ttw-content rounded-b-md bg-bone/50 p-4 dark:bg-zinc-950">
+        <ul class="list-disc list-inside space-y-1 text-sm text-ash dark:text-zinc-300">
+          {fruit.length ? fruit.map((f: string) => (<li>{f}</li>)) : (<li class="text-ash">No fruit specified.</li>)}
         </ul>
-        <div class="mt-3 text-xs text-zinc-500 dark:text-zinc-400">
+        <div class="mt-3 text-xs text-ash dark:text-zinc-400">
           <strong>Reflection:</strong> {fruitReflection}
         </div>
       </div>

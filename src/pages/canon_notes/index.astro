@@ -33,10 +33,10 @@ const fodEntries = (await getCollection("foundations-of-discernment")).filter(
 >
   <TopLayout>
     <div class="animate">
-      <h1 class="text-3xl font-semibold text-black dark:text-white mt-2">
+      <h1 class="mt-2 text-3xl font-semibold text-ink dark:text-bone">
         {CANONNOTES.TITLE}
       </h1>
-      <div class="mt-1">
+      <div class="mt-1 text-ash dark:text-zinc-300">
         {CANONNOTES.DESCRIPTION}
       </div>
     </div>
@@ -44,26 +44,26 @@ const fodEntries = (await getCollection("foundations-of-discernment")).filter(
   <BottomLayout>
     {fodEntries.length > 0 && (
       <section class="animate">
-        <h2 class="text-xl font-semibold text-black dark:text-white">
+        <h2 class="text-xl font-semibold text-ink dark:text-bone">
           Explore Canon Notes Series
         </h2>
         <div class="mt-4">
           <a
             href="/foundations-of-discernment"
-            class="group p-4 gap-3 flex items-center border rounded-lg hover:bg-black/5 hover:dark:bg-white/10 border-black/15 dark:border-white/20 transition-colors duration-300 ease-in-out"
+            class="group flex items-center gap-3 rounded-lg border border-ash/20 bg-paper/70 p-4 transition-colors duration-300 ease-in-out hover:border-moss/35 hover:bg-bone/70 dark:border-bone/15 dark:bg-zinc-900/70 dark:hover:bg-white/10"
           >
-            <div class="w-full group-hover:text-black group-hover:dark:text-white blend">
-              <div class="text-sm uppercase">
+            <div class="blend w-full text-ash dark:text-zinc-300">
+              <div class="text-sm uppercase text-ash dark:text-zinc-400">
                 {fodEntries.length} part{fodEntries.length === 1 ? "" : "s"}
               </div>
-              <div class="font-semibold mt-2 text-black dark:text-white">
+              <div class="mt-2 font-semibold text-ink dark:text-bone">
                 Foundations of Discernment
               </div>
               <div class="text-sm mt-1 opacity-80">
                 A 28-day devotional sequence training reverence, truthful witness, discernment, and Christ-centered obedience
               </div>
             </div>
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="stroke-current group-hover:stroke-black group-hover:dark:stroke-white">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="stroke-current text-ash transition-colors duration-300 ease-in-out group-hover:text-moss">
               <line x1="5" y1="12" x2="19" y2="12" class="scale-x-0 group-hover:scale-x-100 translate-x-4 group-hover:translate-x-1 transition-all duration-300 ease-in-out" />
               <polyline points="12 5 19 12 12 19" class="translate-x-0 group-hover:translate-x-1 transition-all duration-300 ease-in-out" />
             </svg>

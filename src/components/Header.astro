@@ -12,11 +12,11 @@ const isActivePath = (href: string) => {
 const isFruitPathActive = isActivePath("/fruit-path")
 ---
 
-<header id="header" class="fixed top-0 w-full h-16 z-50 ">
+<header id="header" class="fixed top-0 z-50 h-16 w-full text-ink/85 dark:text-bone">
   <Container size="md">
     <div class="relative h-full w-full">
       <div class="absolute left-0 top-1/2 -translate-y-1/2 flex gap-1 font-semibold">
-        <a href="/" class="flex items-center gap-1 text-current hover:text-black dark:hover:text-white transition-colors duration-300 ease-in-out">
+        <a href="/" class="flex items-center gap-1 text-current transition-colors duration-300 ease-in-out hover:text-starlight dark:hover:text-starlight">
           <img src="/brand.svg" alt="" aria-hidden="true" class="size-6 shrink-0" />
           <div>
             {SITE.TITLE}
@@ -38,8 +38,8 @@ const isFruitPathActive = isActivePath("/fruit-path")
                 "flex items-center justify-center",
                 "transition-colors duration-300 ease-in-out",
                 isActive
-                  ? "bg-black dark:bg-white text-white dark:text-black"
-                  : "hover:bg-black/5 dark:hover:bg-white/20 hover:text-black dark:hover:text-white",
+                  ? "bg-ink text-bone dark:bg-bone dark:text-ink"
+                  : "hover:bg-bone/70 dark:hover:bg-white/10 hover:text-ink dark:hover:text-bone",
               )} aria-current={isActive ? "page" : undefined}>
                 {LINK.TEXT}
               </a>
@@ -50,19 +50,19 @@ const isFruitPathActive = isActivePath("/fruit-path")
     </div>
 
     <div class="buttons absolute right-0 top-1/2 -translate-y-1/2 flex gap-1">
-        <a href="/search" aria-label={`Search the site on ${SITE.TITLE}`} class={cn("hidden md:flex", "size-9 rounded-full p-2 items-center justify-center", "bg-transparent hover:bg-black/5 dark:hover:bg-white/20", "stroke-current hover:stroke-black hover:dark:stroke-white", "border border-black/10 dark:border-white/25", "transition-colors duration-300 ease-in-out", isActivePath("/search") ? "pointer-events-none bg-black dark:bg-white text-white dark:text-black" : "")}>
+      <a href="/search" aria-label={`Search the site on ${SITE.TITLE}`} class={cn("hidden md:flex", "size-9 rounded-full p-2 items-center justify-center", "bg-transparent hover:bg-bone/60 dark:hover:bg-white/10", "stroke-current", "border border-ash/20 dark:border-bone/15", "transition-colors duration-300 ease-in-out", isActivePath("/search") ? "pointer-events-none border-starlight bg-starlight text-ink" : "hover:border-starlight/50 hover:text-ink dark:hover:text-bone")}>
         <svg class="size-full">
           <use href="/ui.svg#search"></use>
         </svg>
       </a>
 
-      <a href="/rss.xml" target="_blank" aria-label={`Rss feed for ${SITE.TITLE}`} class={cn("hidden md:flex", "size-9 rounded-full p-2 items-center justify-center", "bg-transparent hover:bg-black/5 dark:hover:bg-white/20", "stroke-current hover:stroke-black hover:dark:stroke-white", "border border-black/10 dark:border-white/25", "transition-colors duration-300 ease-in-out")}>
+      <a href="/rss.xml" target="_blank" aria-label={`Rss feed for ${SITE.TITLE}`} class={cn("hidden md:flex", "size-9 rounded-full p-2 items-center justify-center", "bg-transparent hover:bg-bone/60 dark:hover:bg-white/10", "stroke-current border border-ash/20 dark:border-bone/15", "transition-colors duration-300 ease-in-out hover:border-starlight/50 hover:text-ink dark:hover:text-bone")}>
         <svg class="size-full">
           <use href="/ui.svg#rss"></use>
         </svg>
       </a>
 
-      <button id="header-theme-button" aria-label={`Toggle light and dark theme`} class={cn("hidden md:flex", "size-9 rounded-full p-2 items-center justify-center", "bg-transparent hover:bg-black/5 dark:hover:bg-white/20", "stroke-current hover:stroke-black hover:dark:stroke-white", "border border-black/10 dark:border-white/25", "transition-colors duration-300 ease-in-out")}>
+      <button id="header-theme-button" aria-label={`Toggle light and dark theme`} class={cn("hidden md:flex", "size-9 rounded-full p-2 items-center justify-center", "bg-transparent hover:bg-bone/60 dark:hover:bg-white/10", "stroke-current border border-ash/20 dark:border-bone/15", "transition-colors duration-300 ease-in-out hover:border-starlight/50 hover:text-ink dark:hover:text-bone")}>
         <svg class="size-full block dark:hidden">
           <use href="/ui.svg#sun"></use>
         </svg>
@@ -71,7 +71,7 @@ const isFruitPathActive = isActivePath("/fruit-path")
         </svg>
       </button>
 
-      <button id="header-drawer-button" aria-label={`Toggle drawer open and closed`} class={cn("flex md:hidden", "size-9 rounded-full p-2 items-center justify-center", "bg-transparent hover:bg-black/5 dark:hover:bg-white/20", "stroke-current hover:stroke-black hover:dark:stroke-white", "border border-black/10 dark:border-white/25", "transition-colors duration-300 ease-in-out")}>
+      <button id="header-drawer-button" aria-label={`Toggle drawer open and closed`} class={cn("flex md:hidden", "size-9 rounded-full p-2 items-center justify-center", "bg-transparent hover:bg-bone/60 dark:hover:bg-white/10", "stroke-current border border-ash/20 dark:border-bone/15", "transition-colors duration-300 ease-in-out hover:border-starlight/50 hover:text-ink dark:hover:text-bone")}>
         <svg id="drawer-open" class="size-full">
           <use href="/ui.svg#menu"></use>
         </svg>

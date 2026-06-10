@@ -30,18 +30,18 @@ const worldviewBearingCards = worldviewBearingEntries.map((entry) => toCardEntry
   <TopLayout>
     <div class="animate space-y-4">
       <div>
-        <p class="text-xs font-semibold uppercase tracking-[0.2em] text-neutral-500 dark:text-neutral-400">
+        <p class="text-xs font-semibold uppercase tracking-[0.2em] text-starlight">
           The Clearing
         </p>
-        <h1 class="text-3xl font-semibold text-black dark:text-white mt-2">
+        <h1 class="mt-2 text-3xl font-semibold text-ink dark:text-bone">
           Worldview Bearings
         </h1>
-        <p class="mt-2 text-lg italic text-neutral-700 dark:text-neutral-300">
+        <p class="mt-2 text-lg italic text-ash dark:text-zinc-300">
           For when quieter ground is not enough,<br />
           and you also need a sturdier frame.
         </p>
       </div>
-      <div class="space-y-3 text-base text-neutral-700 dark:text-neutral-300">
+      <div class="space-y-3 text-base text-ash dark:text-zinc-300">
         <p>
           These pieces are more conceptual than the main clearing sequence.
         </p>
@@ -55,15 +55,23 @@ const worldviewBearingCards = worldviewBearingEntries.map((entry) => toCardEntry
           stop for everyone.
         </p>
       </div>
+      <div class="rounded-2xl border border-starlight/20 bg-starlight/5 p-5 text-sm text-ash dark:border-starlight/20 dark:bg-starlight/10 dark:text-zinc-300">
+        <div class="text-xs uppercase tracking-[0.2em] text-starlight">
+          Why This Shelf Exists
+        </div>
+        <p class="mt-3 max-w-prose">
+          Some readers need a quieter pace first. Others also need a sturdier account of reality before they can keep walking truthfully.
+        </p>
+      </div>
     </div>
   </TopLayout>
   <BottomLayout>
     <div class="animate space-y-12">
       <section class="space-y-4">
-        <h2 class="text-xl font-semibold text-black dark:text-white">
+        <h2 class="text-xl font-semibold text-ink dark:text-bone">
           When This Helps
         </h2>
-        <div class="space-y-3 text-base text-neutral-700 dark:text-neutral-300">
+        <div class="space-y-3 text-base text-ash dark:text-zinc-300">
           <p>This shelf is useful if:</p>
           <ul class="list-disc pl-6 space-y-1">
             <li>you need more than de-pressurizing and want a deeper conceptual map</li>
@@ -79,7 +87,7 @@ const worldviewBearingCards = worldviewBearingEntries.map((entry) => toCardEntry
 
       {worldviewBearingCards.length > 0 && (
         <section class="space-y-4">
-          <h2 class="text-xl font-semibold text-black dark:text-white">
+          <h2 class="text-xl font-semibold text-ink dark:text-bone">
             Essays
           </h2>
           <ul class="space-y-3">
@@ -93,10 +101,10 @@ const worldviewBearingCards = worldviewBearingEntries.map((entry) => toCardEntry
       )}
 
       <section class="space-y-4">
-        <h2 class="text-xl font-semibold text-black dark:text-white">
+        <h2 class="text-xl font-semibold text-ink dark:text-bone">
           Return to The Clearing
         </h2>
-        <div class="space-y-3 text-base text-neutral-700 dark:text-neutral-300">
+        <div class="space-y-3 text-base text-ash dark:text-zinc-300">
           <p>
             If you need quieter ground rather than a sturdier frame, the main
             clearing sequence remains the better place to begin.
@@ -104,7 +112,7 @@ const worldviewBearingCards = worldviewBearingEntries.map((entry) => toCardEntry
           <p>
             <a
               href="/the-clearing"
-              class="font-semibold text-black hover:underline dark:text-white"
+              class="font-semibold text-ink decoration-starlight/50 underline-offset-4 transition-colors duration-300 ease-in-out hover:text-starlight hover:underline dark:text-bone dark:hover:text-starlight"
             >
               Back to The Clearing &rarr;
             </a>

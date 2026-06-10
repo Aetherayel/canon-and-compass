@@ -14,7 +14,7 @@ import MeteorShower from "@components/MeteorShower.astro";
   </div>
 
   <!-- Dark Theme: Stars -->
-  <div class="absolute inset-0 bg-black hidden dark:block">
+  <div class="absolute inset-0 bg-night hidden dark:block">
     <div id="stars1" class="fixed inset-0"></div>
     <div id="stars2" class="fixed inset-0"></div>
     <div id="stars3" class="fixed inset-0"></div>
@@ -47,22 +47,22 @@ import MeteorShower from "@components/MeteorShower.astro";
   <defs>
     <!-- Glow gradients -->
     <radialGradient id="peakGlowLight" cx="50%" cy="60%" r="70%">
-      <stop offset="0%" stop-color="#d4d4d4" stop-opacity="0.4" />
+      <stop offset="0%" stop-color="#c3ab72" stop-opacity="0.18" />
       <stop offset="100%" stop-color="white" stop-opacity="0" />
     </radialGradient>
     <radialGradient id="peakGlowDark" cx="50%" cy="60%" r="70%">
-      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.08" />
+      <stop offset="0%" stop-color="#c3ab72" stop-opacity="0.12" />
       <stop offset="100%" stop-color="#000000" stop-opacity="0" />
     </radialGradient>
 
     <!-- Peak fill gradients -->
     <linearGradient id="peakFillLight" x1="0%" y1="0%" x2="0%" y2="100%">
-      <stop offset="0%" stop-color="#f4f4f4" />
-      <stop offset="100%" stop-color="#ffffff" />
+      <stop offset="0%" stop-color="#fcfaf5" />
+      <stop offset="100%" stop-color="#f1ecdf" />
     </linearGradient>
     <linearGradient id="peakFillDark" x1="0%" y1="0%" x2="0%" y2="100%">
-      <stop offset="0%" stop-color="#2b2b2b" />
-      <stop offset="100%" stop-color="#000000" />
+      <stop offset="0%" stop-color="#161313" />
+      <stop offset="100%" stop-color="#050505" />
     </linearGradient>
     <filter id="softGlow" x="-50%" y="-50%" width="200%" height="200%">
   <feGaussianBlur stdDeviation="8" result="glow" />
@@ -82,17 +82,17 @@ import MeteorShower from "@components/MeteorShower.astro";
   <g transform="translate(720,100)">
     <polygon
       points="0,-30 6,-6 30,0 6,6 0,30 -6,6 -30,0 -6,-6"
-      fill="white"
+      fill="#c3ab72"
       fill-opacity="0.9"
-      class="dark:fill-white"
+      class="dark:fill-starlight"
     />
     <circle
       cx="0"
       cy="0"
       r="40"
-      fill="white"
-      fill-opacity="0.06"
-      class="dark:fill-white dark:fill-opacity-10"
+      fill="#c3ab72"
+      fill-opacity="0.09"
+      class="dark:fill-starlight dark:fill-opacity-15"
       filter="url(#softGlow)"
     />
   </g>
@@ -105,15 +105,15 @@ import MeteorShower from "@components/MeteorShower.astro";
        L1080,300
        L1440,800"
     fill="url(#peakFillLight)"
-    stroke="#ffffff"
+    stroke="#f1ecdf"
     stroke-width="4"
-    class="dark:fill-[url(#peakFillDark)] dark:stroke-zinc-800"
+    class="dark:fill-[url(#peakFillDark)] dark:stroke-zinc-900"
     stroke-linecap="round"
     stroke-linejoin="round"
     fill-opacity="1"
   />
   <!-- Tree canopy -->
-  <g class="fill-[#e0e0e0] dark:fill-[#111111]" fill-opacity="0.95" transform="translate(0 8)">
+  <g class="fill-[#e8dfca] dark:fill-[#111111]" fill-opacity="0.95" transform="translate(0 8)">
     <path d="M-5 792 L40 732 L85 792 Z M12 772 L40 712 L68 772 Z M23.2 762 L40 702 L56.8 762 Z" />
     <path d="M55 792 L110 728 L165 792 Z M73 772 L110 702 L147 772 Z M87.8 762 L110 692 L132.2 762 Z" />
     <path d="M135 792 L165 762 L195 792 Z M145 778 L165 742 L185 778 Z M153 768 L165 732 L177 768 Z" />
@@ -144,16 +144,16 @@ import MeteorShower from "@components/MeteorShower.astro";
       <div class="relative w-full h-full flex items-center justify-center">
         <div class="p-5 text-center">
           <p
-            class="animated text-2xl md:text-3xl lg:text-4xl font-bold text-black dark:text-white"
+            class="animated text-2xl font-bold text-ink md:text-3xl lg:text-4xl dark:text-bone"
           >
             What keeps showing up in your life is not random.
           </p>
           <p
-            class="animated text-2xl md:text-2xl lg:text-2xl font-bold text-black dark:text-white"
+            class="animated text-2xl font-bold text-ink md:text-2xl lg:text-2xl dark:text-bone"
           >
             Fruit tells the truth about roots.
           </p>
-          <p class="animated text-sm md:text-xl md:text-xl opacity-75">
+          <p class="animated text-sm text-ash md:text-xl opacity-90 dark:text-bone/75">
             Canon & Compass helps you start where you are. <br />
 Name what is forming you, trace the false root,
 and return to Christ as the true center.
@@ -164,19 +164,19 @@ and return to Christ as the true center.
           >
             <a
               href="/the-clearing"
-              class="py-2 px-4 rounded truncate text-xs md:text-sm lg:text-base bg-black dark:bg-white text-white dark:text-black hover:opacity-75 blend"
+              class="blend rounded border border-ink/10 bg-ink px-4 py-2 text-xs text-bone hover:bg-pine md:text-sm lg:text-base dark:border-bone/20 dark:bg-bone dark:text-ink dark:hover:bg-starlight"
             >
               Enter The Clearing
             </a>
             <a
               href="/forests"
-              class="py-2 px-4 truncate rounded text-xs md:text-sm lg:text-base border border-black/25 dark:border-white/25 hover:bg-black/5 hover:dark:bg-white/15 blend"
+              class="blend rounded border border-ash/30 px-4 py-2 text-xs text-ink hover:border-pine/40 hover:bg-bone/70 md:text-sm lg:text-base dark:border-bone/20 dark:text-bone dark:hover:border-pine/50 dark:hover:bg-white/10"
             >
               Explore The Forests
             </a>
             <a
               href="/fruit-path"
-              class="py-2 px-4 truncate rounded text-xs md:text-sm lg:text-base border border-black/25 dark:border-white/25 hover:bg-black/5 hover:dark:bg-white/15 blend"
+              class="blend rounded border border-ash/30 px-4 py-2 text-xs text-ink hover:border-ember/40 hover:bg-bone/70 md:text-sm lg:text-base dark:border-bone/20 dark:text-bone dark:hover:border-ember/50 dark:hover:bg-white/10"
             >
               Walk a Fruit Path
             </a>
@@ -184,8 +184,8 @@ and return to Christ as the true center.
 
   </section>
 
-  <div class="relative bg-white dark:bg-black">
-    <div class="mx-auto max-w-screen-sm p-5 space-y-24 pb-16">
+  <div class="relative bg-paper dark:bg-night">
+    <div class="mx-auto max-w-screen-lg p-5 space-y-24 pb-16">
       <!-- About Section -->
       <section class="animate">
         <article>
@@ -217,8 +217,8 @@ and return to Christ as the true center.
       </section>
 
       <!-- Where to Begin Section -->
-<section class="py-16 bg-stone-50 dark:bg-zinc-900">
-  <div class="mx-auto max-w-3xl px-6 text-center">
+<section class="bg-bone/50 py-16 dark:bg-zinc-950">
+  <div class="mx-auto max-w-5xl px-6 text-center">
     <h2 class="text-2xl font-serif font-bold text-ink dark:text-white">
       Where to Begin
     </h2>
@@ -231,9 +231,9 @@ and return to Christ as the true center.
       to meet you in different places, without forcing a quick diagnosis or a premature solution.
     </p>
 
-    <div class="mt-10 grid gap-6 text-left sm:grid-cols-3">
+    <div class="mt-10 grid gap-6 text-left lg:grid-cols-3">
       <!-- The Clearing -->
-      <div class="p-5 bg-white dark:bg-zinc-800 rounded-xl shadow-sm">
+      <div class="rounded-xl border border-ash/15 border-t-4 border-t-starlight bg-paper p-5 shadow-sm dark:border-white/10 dark:border-t-starlight dark:bg-zinc-900/80">
         <h3 class="font-semibold text-ink dark:text-white">The Clearing</h3>
         <p class="mt-2 text-sm text-zinc-600 dark:text-zinc-400">
           If things feel loud, confusing, or spiritually thin.
@@ -244,14 +244,14 @@ and return to Christ as the true center.
         </p>
         <a
           href="/the-clearing"
-          class="mt-4 inline-block rounded-lg border border-stone-300 px-4 py-2 text-sm font-semibold text-ink hover:bg-stone-100 dark:border-zinc-600 dark:text-white dark:hover:bg-zinc-700"
+          class="mt-4 inline-block rounded-lg border border-starlight/50 px-4 py-2 text-sm font-semibold text-ink transition-colors duration-300 ease-in-out hover:bg-starlight/15 dark:border-starlight/40 dark:text-bone dark:hover:bg-starlight/15"
         >
           Enter The Clearing
         </a>
       </div>
 
       <!-- The Forests -->
-      <div class="p-5 bg-white dark:bg-zinc-800 rounded-xl shadow-sm">
+      <div class="rounded-xl border border-ash/15 border-t-4 border-t-pine bg-paper p-5 shadow-sm dark:border-white/10 dark:border-t-pine dark:bg-zinc-900/80">
         <h3 class="font-semibold text-ink dark:text-white">The Forests</h3>
         <p class="mt-2 text-sm text-zinc-600 dark:text-zinc-400">
           If you are trying to name the air you have been breathing.
@@ -262,14 +262,14 @@ and return to Christ as the true center.
         </p>
         <a
           href="/forests"
-          class="mt-4 inline-block rounded-lg border border-stone-300 px-4 py-2 text-sm font-semibold text-ink hover:bg-stone-100 dark:border-zinc-600 dark:text-white dark:hover:bg-zinc-700"
+          class="mt-4 inline-block rounded-lg border border-pine/40 px-4 py-2 text-sm font-semibold text-ink transition-colors duration-300 ease-in-out hover:bg-pine/10 dark:border-pine/40 dark:text-bone dark:hover:bg-pine/15"
         >
           Explore The Forests
         </a>
       </div>
 
       <!-- Fruit Paths -->
-      <div class="p-5 bg-white dark:bg-zinc-800 rounded-xl shadow-sm">
+      <div class="rounded-xl border border-ash/15 border-t-4 border-t-ember bg-paper p-5 shadow-sm dark:border-white/10 dark:border-t-ember dark:bg-zinc-900/80">
         <h3 class="font-semibold text-ink dark:text-white">Fruit Paths</h3>
         <p class="mt-2 text-sm text-zinc-600 dark:text-zinc-400">
           If a specific pattern or struggle has become clear.
@@ -280,7 +280,7 @@ and return to Christ as the true center.
         </p>
         <a
                 href="/fruit-path"
-          class="mt-4 inline-block rounded-lg border border-stone-300 px-4 py-2 text-sm font-semibold text-ink hover:bg-stone-100 dark:border-zinc-600 dark:text-white dark:hover:bg-zinc-700"
+          class="mt-4 inline-block rounded-lg border border-ember/45 px-4 py-2 text-sm font-semibold text-ink transition-colors duration-300 ease-in-out hover:bg-ember/10 dark:border-ember/45 dark:text-bone dark:hover:bg-ember/15"
         >
           Walk a Fruit Path
         </a>

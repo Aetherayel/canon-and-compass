@@ -148,6 +148,7 @@ If you want to reuse essays, devotionals, graphics, or other Canon & Compass con
 - The site URL in `astro.config.mjs` is set to `https://canonandcompass.com`. Keep metadata, sitemap, and feed behavior aligned with that production domain.
 - Content integrity depends on the schemas in `src/content/config.ts`. When adding new frontmatter fields, update the schema first.
 - Search and listing behavior depend on consistent metadata such as `title`, `summary`, `date`, `tags`, and optional `pathwayId`.
+- Brand palette and usage guidance live in `BRAND_SYSTEM.md`. Preserve the monochrome-first direction and use accent colors sparingly.
 - `README.md` is intended to explain both the ministry vision and the engineering structure, so future changes should preserve both perspectives.
 
 ## Why This Exists

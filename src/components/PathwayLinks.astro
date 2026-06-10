@@ -12,6 +12,7 @@ export interface Props {
   showPillar?: boolean;
   heading?: string;
   blurb?: string;
+  accent?: "starlight" | "pine" | "ember" | "moss" | "fig";
 }
 
 import { getCollection } from 'astro:content';
@@ -29,7 +30,8 @@ const {
   showCompassPoint = true,
   showPillar = true,
   heading = 'Related Pathway Links',
-  blurb = 'Follow the connected witness around this Fruit Path.'
+  blurb = 'Follow the connected witness around this Fruit Path.',
+  accent = 'starlight',
 } = props;
 
 const pathways = await getCollection('fruit-path');
@@ -78,9 +80,65 @@ const entriesList = order
     const isCurrent = (currentType && currentType === e.key) || (currentHref && currentHref === href) || (normalizedHref && normalizedHref === currentPath);
     return { key: e.key, typeLabel: e.label, title, href, isCurrent };
   });
+
+const accentStyles =
+  accent === "pine"
+    ? {
+        section: "border-pine/20 dark:border-pine/20",
+        summaryHover: "hover:bg-pine/10 dark:hover:bg-pine/10",
+        arrow: "text-pine dark:text-moss",
+        badge: "border-pine/20 bg-pine/10 dark:border-pine/20 dark:bg-pine/10",
+        current: "border-pine/45 bg-pine/10 dark:border-pine/35 dark:bg-pine/10",
+        currentText: "text-pine dark:text-moss",
+        link: "hover:border-pine/35 hover:bg-bone/70 dark:hover:border-pine/30 dark:hover:bg-white/10",
+        linkArrow: "group-hover:text-pine dark:group-hover:text-pine",
+      }
+    : accent === "ember"
+      ? {
+          section: "border-ember/20 dark:border-ember/20",
+          summaryHover: "hover:bg-ember/10 dark:hover:bg-ember/10",
+          arrow: "text-ember dark:text-ember",
+          badge: "border-ember/20 bg-ember/10 dark:border-ember/20 dark:bg-ember/10",
+          current: "border-ember/45 bg-ember/10 dark:border-ember/35 dark:bg-ember/10",
+          currentText: "text-ember dark:text-ember",
+          link: "hover:border-ember/35 hover:bg-bone/70 dark:hover:border-ember/30 dark:hover:bg-white/10",
+          linkArrow: "group-hover:text-ember dark:group-hover:text-ember",
+        }
+      : accent === "moss"
+        ? {
+            section: "border-moss/20 dark:border-moss/20",
+            summaryHover: "hover:bg-moss/10 dark:hover:bg-moss/10",
+            arrow: "text-moss dark:text-moss",
+            badge: "border-moss/20 bg-moss/10 dark:border-moss/20 dark:bg-moss/10",
+            current: "border-moss/45 bg-moss/10 dark:border-moss/35 dark:bg-moss/10",
+            currentText: "text-moss dark:text-moss",
+            link: "hover:border-moss/35 hover:bg-bone/70 dark:hover:border-moss/30 dark:hover:bg-white/10",
+            linkArrow: "group-hover:text-moss dark:group-hover:text-moss",
+          }
+        : accent === "fig"
+          ? {
+              section: "border-fig/20 dark:border-fig/20",
+              summaryHover: "hover:bg-fig/10 dark:hover:bg-fig/10",
+              arrow: "text-fig dark:text-fig",
+              badge: "border-fig/20 bg-fig/10 dark:border-fig/20 dark:bg-fig/10",
+              current: "border-fig/45 bg-fig/10 dark:border-fig/35 dark:bg-fig/10",
+              currentText: "text-fig dark:text-fig",
+              link: "hover:border-fig/35 hover:bg-bone/70 dark:hover:border-fig/30 dark:hover:bg-white/10",
+              linkArrow: "group-hover:text-fig dark:group-hover:text-fig",
+            }
+          : {
+              section: "border-starlight/20 dark:border-starlight/20",
+              summaryHover: "hover:bg-starlight/10 dark:hover:bg-starlight/10",
+              arrow: "text-starlight dark:text-starlight",
+              badge: "border-starlight/20 bg-starlight/10 dark:border-starlight/20 dark:bg-starlight/10",
+              current: "border-starlight/45 bg-starlight/10 dark:border-starlight/35 dark:bg-starlight/10",
+              currentText: "text-starlight dark:text-starlight",
+              link: "hover:border-starlight/35 hover:bg-bone/70 dark:hover:border-starlight/30 dark:hover:bg-white/10",
+              linkArrow: "group-hover:text-starlight dark:group-hover:text-starlight",
+            };
 ---
 
-<section class="mt-8 border border-black/10 dark:border-white/15 rounded-xl bg-white/60 dark:bg-zinc-900/50 backdrop-blur">
+<section class={`mt-8 rounded-xl border bg-paper/70 backdrop-blur dark:bg-zinc-900/50 ${accentStyles.section}`}>
   <style>
     .pw-summary { cursor: pointer; list-style: none; }
     .pw-summary::-webkit-details-marker { display: none; }
@@ -91,37 +149,37 @@ const entriesList = order
     details[open] .pw-content { opacity: 1; transform: translateY(0) scale(1); height: auto; }
   </style>
   <details>
-    <summary class="pw-summary flex items-center justify-between gap-3 p-4 rounded-md hover:bg-black/5 hover:dark:bg-white/10">
+    <summary class={`pw-summary flex items-center justify-between gap-3 rounded-md p-4 ${accentStyles.summaryHover}`}>
       <div class="flex items-center gap-3 min-w-0">
-        <svg aria-hidden="true" class="pw-arrow w-4 h-4 text-zinc-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <svg aria-hidden="true" class={`pw-arrow h-4 w-4 ${accentStyles.arrow}`} viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
           <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
         </svg>
-        <h3 class="text-base font-semibold text-slate-800 dark:text-zinc-100 truncate">{heading}</h3>
+        <h3 class="truncate text-base font-semibold text-ink dark:text-bone">{heading}</h3>
       </div>
-      <div class="text-xs px-2 py-0.5 rounded-full bg-black/5 dark:bg-white/10 text-zinc-600 dark:text-zinc-400">{entriesList.length}</div>
+      <div class={`rounded-full border px-2 py-0.5 text-xs text-ash dark:text-zinc-400 ${accentStyles.badge}`}>{entriesList.length}</div>
     </summary>
 
     <div class="pw-content px-4 pb-4">
-      {blurb && <p class="text-sm text-zinc-600 dark:text-zinc-400 mb-3">{blurb}</p>}
+      {blurb && <p class="mb-3 text-sm text-ash dark:text-zinc-400">{blurb}</p>}
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
         {entriesList.map((e) => (
           e.isCurrent ? (
-            <div class="p-3.5 flex items-center justify-between gap-3 border rounded-lg bg-indigo-50/70 dark:bg-indigo-900/30 border-indigo-300/60 dark:border-indigo-500/40 cursor-default select-none">
+            <div class={`cursor-default select-none rounded-lg border p-3.5 flex items-center justify-between gap-3 ${accentStyles.current}`}>
               <div class="min-w-0">
-                <div class="text-xs font-semibold uppercase tracking-wide text-indigo-700 dark:text-indigo-300">{e.typeLabel}</div>
-                <div class="text-sm font-medium text-indigo-900 dark:text-indigo-100 truncate">{e.title}</div>
+                <div class={`text-xs font-semibold uppercase tracking-wide ${accentStyles.currentText}`}>{e.typeLabel}</div>
+                <div class="truncate text-sm font-medium text-ink dark:text-bone">{e.title}</div>
               </div>
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="stroke-indigo-400/60">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class={`stroke-current ${accentStyles.currentText}`}>
                 <circle cx="12" cy="12" r="2" />
               </svg>
             </div>
           ) : (
-            <a href={e.href} class="group p-3.5 flex items-center justify-between gap-3 border rounded-lg hover:bg-black/5 hover:dark:bg-white/10 border-black/15 dark:border-white/20 transition-colors">
+            <a href={e.href} class={`group flex items-center justify-between gap-3 rounded-lg border border-ash/20 p-3.5 transition-colors dark:border-bone/15 ${accentStyles.link}`}>
               <div class="min-w-0">
-                <div class="text-xs font-semibold uppercase tracking-wide text-zinc-600 dark:text-zinc-400">{e.typeLabel}</div>
-                <div class="text-sm font-medium text-slate-800 dark:text-zinc-100 truncate">{e.title}</div>
+                <div class="text-xs font-semibold uppercase tracking-wide text-ash dark:text-zinc-400">{e.typeLabel}</div>
+                <div class="truncate text-sm font-medium text-ink dark:text-bone">{e.title}</div>
               </div>
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="stroke-current text-zinc-500 group-hover:text-black group-hover:dark:text-white">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class={`stroke-current text-ash transition-colors duration-300 ease-in-out ${accentStyles.linkArrow}`}>
                 <line x1="5" y1="12" x2="19" y2="12" class="scale-x-0 group-hover:scale-x-100 translate-x-4 group-hover:translate-x-1 transition-all duration-300 ease-in-out" />
                 <polyline points="12 5 19 12 12 19" class="translate-x-0 group-hover:translate-x-1 transition-all duration-300 ease-in-out" />
               </svg>
@@ -134,7 +192,7 @@ const entriesList = order
         <p class="mt-2 text-xs text-amber-600 dark:text-amber-400">Unknown pathway id: {id}</p>
       )}
 
-      <div class="mt-2 text-[10px] uppercase tracking-wide text-zinc-400 dark:text-zinc-500">Pathway Context</div>
+      <div class="mt-2 text-[10px] uppercase tracking-wide text-ash/70 dark:text-zinc-500">Pathway Context</div>
     </div>
   </details>
 </section>

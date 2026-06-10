@@ -25,19 +25,52 @@ const backHref =
   collection === "forests" ? "/forests" : `/${collection}`;
 const backLabel =
   collection === "forests" ? "Forests" : toTitleCase(collection);
+const accentStyles =
+  collection === "forests"
+    ? {
+        hover: "hover:border-pine/50 hover:bg-pine/10 dark:hover:bg-pine/10",
+        eyebrow: "text-pine dark:text-moss",
+        meta: "text-pine/90 dark:text-moss",
+        summary: "border-pine/25 dark:border-pine/25",
+      }
+    : collection === "compass_points"
+      ? {
+          hover: "hover:border-fig/50 hover:bg-fig/10 dark:hover:bg-fig/10",
+          eyebrow: "text-fig dark:text-fig",
+          meta: "text-fig/90 dark:text-fig",
+          summary: "border-fig/25 dark:border-fig/25",
+        }
+      : collection === "pillars" || collection === "foundations-of-discernment"
+        ? {
+            hover: "hover:border-moss/50 hover:bg-moss/10 dark:hover:bg-moss/10",
+            eyebrow: "text-moss dark:text-moss",
+            meta: "text-moss/90 dark:text-moss",
+            summary: "border-moss/25 dark:border-moss/25",
+          }
+        : {
+            hover: "hover:border-starlight/50 hover:bg-starlight/10 dark:hover:bg-starlight/10",
+            eyebrow: "text-starlight dark:text-starlight",
+            meta: "text-starlight/90 dark:text-starlight",
+            summary: "border-starlight/25 dark:border-starlight/25",
+          };
+const eyebrowLabel =
+  collection === "forests" ? data.series ?? "Forest Trail" : backLabel;
 ---
 
 <div>
-  <a href={backHref} class="group w-fit p-1.5 gap-1.5 text-sm flex items-center border rounded hover:bg-black/5 hover:dark:bg-white/10 border-black/15 dark:border-white/20 transition-colors duration-300 ease-in-out">
-    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="stroke-current group-hover:stroke-black group-hover:dark:stroke-white">
+  <a href={backHref} class={`group flex w-fit items-center gap-1.5 rounded border border-ash/20 p-1.5 text-sm transition-colors duration-300 ease-in-out hover:text-ink dark:border-bone/15 dark:hover:text-bone ${accentStyles.hover}`}>
+    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="stroke-current">
       <line x1="19" y1="12" x2="5" y2="12" class="scale-x-0 group-hover:scale-x-100 translate-x-3 group-hover:translate-x-0 transition-all duration-300 ease-in-out" />
       <polyline points="12 19 5 12 12 5" class="translate-x-1 group-hover:translate-x-0 transition-all duration-300 ease-in-out" />
     </svg>
-    <div class="w-full group-hover:text-black group-hover:dark:text-white transition-colors duration-300 ease-in-out">
+    <div class="w-full transition-colors duration-300 ease-in-out">
       Back to {backLabel}
     </div>
   </a>
-  <div class="flex flex-wrap text-sm uppercase mt-12 gap-3 opacity-75">
+  <div class={`mt-10 text-xs uppercase tracking-[0.2em] ${accentStyles.eyebrow}`}>
+    {eyebrowLabel}
+  </div>
+  <div class={`mt-4 flex flex-wrap gap-3 text-sm uppercase ${accentStyles.meta}`}>
     {date && (
     <div class="flex items-center gap-2">
       <svg class="size-5 stroke-current">
@@ -53,10 +86,10 @@ const backLabel =
       {readingTime(body)}
     </div>
   </div>
-  <h1 class="text-3xl font-semibold text-black dark:text-white mt-2">
+  <h1 class="mt-2 text-3xl font-semibold text-ink dark:text-bone">
     {title}
   </h1>
-  <div class="mt-1">
+  <div class={`mt-3 max-w-prose border-l-2 pl-4 text-ash dark:text-zinc-300 ${accentStyles.summary}`}>
     {summary}
   </div>
 </div>

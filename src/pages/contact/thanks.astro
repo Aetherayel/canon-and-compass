@@ -1,0 +1,38 @@
+---
+import PageLayout from "@layouts/PageLayout.astro"
+import Container from "@components/Container.astro"
+
+const pageTitle = "Message Sent"
+const pageDescription = "Confirmation that your message to Canon & Compass was sent."
+---
+
+<PageLayout title={pageTitle} description={pageDescription} schemaType="WebPage">
+  <section class="bg-paper py-24 text-ink dark:bg-night dark:text-bone">
+    <Container size="md">
+      <div class="mx-auto max-w-3xl text-center">
+        <p class="text-xs font-semibold uppercase tracking-[0.2em] text-starlight">Message sent</p>
+        <h1 class="mt-4 text-3xl font-serif font-bold tracking-tight md:text-4xl">
+          Your note has been received
+        </h1>
+        <p class="mt-6 text-base text-ash dark:text-zinc-300 md:text-lg">
+          Thank you for writing. Every message is read with care, though response times may vary and
+          not every note will receive a personal reply.
+        </p>
+        <div class="mt-8 flex flex-wrap justify-center gap-3">
+          <a
+            href="/"
+            class="rounded-full border border-ash/20 px-4 py-2 text-sm font-semibold transition-colors duration-200 ease-in-out hover:border-starlight/40 hover:bg-bone/60 hover:text-ink dark:border-bone/15 dark:hover:bg-white/10 dark:hover:text-bone"
+          >
+            Return home
+          </a>
+          <a
+            href="/about"
+            class="rounded-full border border-starlight/35 px-4 py-2 text-sm font-semibold transition-colors duration-200 ease-in-out hover:bg-starlight/15 hover:text-ink dark:hover:text-bone"
+          >
+            Read about the project
+          </a>
+        </div>
+      </div>
+    </Container>
+  </section>
+</PageLayout>

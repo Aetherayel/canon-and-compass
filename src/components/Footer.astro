@@ -1,19 +1,19 @@
 ---
-import { SITE, SOCIALS } from "@consts"
+import { SITE } from "@consts"
 import Container from "@components/Container.astro"
 ---
 
-<footer class="relative bg-white dark:bg-black">
+<footer class="relative bg-paper dark:bg-night">
   <div class="animate">
     <section class="py-5">
       <Container size="md">
         <div class="flex items-center justify-center sm:justify-end">
-          <button id="back-to-top" aria-label="Back to top of page" class="group flex w-fit p-1.5 gap-1.5 text-sm items-center border rounded hover:bg-black/5 hover:dark:bg-white/10 border-black/15 dark:border-white/20 transition-colors duration-300 ease-in-out">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="stroke-current group-hover:stroke-black group-hover:dark:stroke-white rotate-90">
+          <button id="back-to-top" aria-label="Back to top of page" class="group flex w-fit items-center gap-1.5 rounded border border-ash/20 p-1.5 text-sm transition-colors duration-300 ease-in-out hover:border-starlight/50 hover:bg-bone/60 hover:text-ink dark:border-bone/15 dark:hover:bg-white/10 dark:hover:text-bone">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="rotate-90 stroke-current">
               <line x1="19" y1="12" x2="5" y2="12" class="scale-x-0 group-hover:scale-x-100 translate-x-3 group-hover:translate-x-0 transition-all duration-300 ease-in-out" />
               <polyline points="12 19 5 12 12 5" class="translate-x-1 group-hover:translate-x-0 transition-all duration-300 ease-in-out" />
             </svg>
-            <div class="w-full group-hover:text-black group-hover:dark:text-white transition-colors duration-300 ease-in-out">
+            <div class="w-full transition-colors duration-300 ease-in-out">
               Back to top
             </div>
           </button>
@@ -21,11 +21,11 @@ import Container from "@components/Container.astro"
       </Container>
     </section>
   
-    <section class=" py-5 overflow-hidden whitespace-nowrap border-t border-black/10 dark:border-white/25">
+    <section class="overflow-hidden whitespace-nowrap border-t border-ash/15 py-5 dark:border-bone/10">
       <Container size="md">
         <div class="flex justify-center sm:justify-start">
           <div class="flex flex-col items-center sm:items-start">
-            <a href="/" class="flex items-center gap-1 w-fit font-semibold text-current hover:text-black dark:hover:text-white transition-colors duration-300 ease-in-out">
+            <a href="/" class="flex w-fit items-center gap-1 font-semibold text-current transition-colors duration-300 ease-in-out hover:text-starlight dark:hover:text-starlight">
               <img src="/brand.svg" alt="" aria-hidden="true" class="size-6 shrink-0" />
               {SITE.TITLE}
             </a>
@@ -34,46 +34,35 @@ import Container from "@components/Container.astro"
       </Container>
     </section>
   
-    <section class=" py-5 overflow-hidden whitespace-nowrap border-t border-black/10 dark:border-white/25">
+    <section class="overflow-hidden whitespace-nowrap border-t border-ash/15 py-5 dark:border-bone/10">
       <Container size="md">
-        <div class="h-full grid grid-cols-1 sm:grid-cols-2 gap-3">
-          <div class="order-2 sm:order-1 flex flex-col items-center justify-center sm:items-start">
+        <div class="flex flex-col items-center justify-center sm:items-start">
+          <div class="flex flex-col items-center justify-center sm:items-start">
             <div class="mt-2 max-w-xl whitespace-normal text-center text-sm sm:text-left">
               &copy; 2026 Canon &amp; Compass. Editorial content and brand assets all rights reserved.
               <a
                 href="/rights"
-                class="mt-1 block underline underline-offset-4 decoration-black/30 hover:decoration-current dark:decoration-white/30 sm:mt-0 sm:inline sm:ml-1"
+                class="mt-1 block underline underline-offset-4 decoration-starlight/50 transition-colors duration-300 ease-in-out hover:text-starlight hover:decoration-starlight sm:mt-0 sm:ml-1 sm:inline"
               >
                 Rights and permissions
               </a>
             </div>
-            <div class="mt-2 max-w-xl whitespace-normal text-xs text-black/60 dark:text-white/60">
+            <div class="mt-2 max-w-xl whitespace-normal text-center text-sm sm:text-left">
+              <a
+                href="/contact"
+                class="underline underline-offset-4 decoration-starlight/50 transition-colors duration-300 ease-in-out hover:text-starlight hover:decoration-starlight"
+              >
+                Contact Canon &amp; Compass
+              </a>
+            </div>
+            <div class="mt-2 max-w-xl whitespace-normal text-xs text-ash dark:text-white/60">
               Canon & Compass offers discipleship resources, not crisis response, psychotherapy, or medical care.
               These materials are meant to complement local church life, wise counsel, and appropriate professional support.
             </div>
-            <div class="mt-2 max-w-xl whitespace-normal text-xs text-black/50 dark:text-white/50">
+            <div class="mt-2 max-w-xl whitespace-normal text-xs text-ash/80 dark:text-white/50">
               Scripture quotations marked ESV are from The ESV&reg; Bible (The Holy Bible, English Standard Version&reg;),
               copyright &copy; 2001 by Crossway, a publishing ministry of Good News Publishers. Used by permission. All rights reserved.
             </div>
-          </div>
-  
-          <div class="order-1 sm:order-2 flex justify-center sm:justify-end">
-            <div class="flex flex-wrap gap-1 items-center justify-center">
-              {
-                SOCIALS.map((SOCIAL) => (
-                  <a 
-                    href={SOCIAL.HREF} 
-                    target="_blank" 
-                    aria-label={`${SITE.TITLE} on ${SOCIAL.NAME}`} 
-                    class="group size-10 rounded-full p-2 items-center justify-center hover:bg-black/5 dark:hover:bg-white/20  blend"
-                  >
-                    <svg class="size-full fill-current group-hover:fill-black group-hover:dark:fill-white blend">
-                      <use href={`/social.svg#${SOCIAL.ICON}`} />
-                    </svg>
-                  </a>
-                ))
-              }
-              </div>
           </div>
         </div>
       </Container>

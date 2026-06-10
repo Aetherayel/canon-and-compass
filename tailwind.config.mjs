@@ -6,6 +6,18 @@ export default {
   content: ["./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}"],
   theme: {
     extend: {
+      colors: {
+        ink: "#14110F",
+        night: "#050505",
+        paper: "#FCFAF5",
+        bone: "#F1ECDF",
+        ash: "#6F695F",
+        starlight: "#C3AB72",
+        moss: "#60735C",
+        fig: "#6D5964",
+        pine: "#31463E",
+        ember: "#9B6B43",
+      },
       fontFamily: {
         "sans": ["Atkinson", ...defaultTheme.fontFamily.sans],
       },

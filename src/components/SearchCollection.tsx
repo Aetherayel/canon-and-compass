@@ -10,10 +10,47 @@ type Props = {
   tags: string[]
   data: CardEntry[]
   showTags?: boolean
+  accent?: "starlight" | "pine" | "ember" | "fig" | "moss"
 }
 
-export default function SearchCollection({ entry_name, data, tags, showTags = true }: Props) {
+function getAccentClasses(accent: NonNullable<Props["accent"]> = "starlight") {
+  switch (accent) {
+    case "pine":
+      return {
+        iconActive: "fill-pine dark:fill-pine",
+        hoverText: "hover:text-pine dark:hover:text-pine",
+        hoverStroke: "hover:stroke-pine dark:hover:stroke-pine",
+      };
+    case "ember":
+      return {
+        iconActive: "fill-ember dark:fill-ember",
+        hoverText: "hover:text-ember dark:hover:text-ember",
+        hoverStroke: "hover:stroke-ember dark:hover:stroke-ember",
+      };
+    case "fig":
+      return {
+        iconActive: "fill-fig dark:fill-fig",
+        hoverText: "hover:text-fig dark:hover:text-fig",
+        hoverStroke: "hover:stroke-fig dark:hover:stroke-fig",
+      };
+    case "moss":
+      return {
+        iconActive: "fill-moss dark:fill-moss",
+        hoverText: "hover:text-moss dark:hover:text-moss",
+        hoverStroke: "hover:stroke-moss dark:hover:stroke-moss",
+      };
+    default:
+      return {
+        iconActive: "fill-starlight dark:fill-starlight",
+        hoverText: "hover:text-starlight dark:hover:text-starlight",
+        hoverStroke: "hover:stroke-starlight dark:hover:stroke-starlight",
+      };
+  }
+}
+
+export default function SearchCollection({ entry_name, data, tags, showTags = true, accent = "starlight" }: Props) {
   const coerced = data as Props["data"];
+  const accentClasses = getAccentClasses(accent);
 
   const [query, setQuery] = createSignal("");
   const [filter, setFilter] = createSignal(new Set<string>())
@@ -95,14 +132,14 @@ export default function SearchCollection({ entry_name, data, tags, showTags = tr
       <div class="col-span-3 sm:col-span-1">
         <div class="sticky top-24 mt-7">
           {/* Search Bar */}
-          <SearchBar onSearchInput={onSearchInput} query={query} setQuery={setQuery} placeholderText={`Search ${entry_name}`} />
+          <SearchBar onSearchInput={onSearchInput} query={query} setQuery={setQuery} placeholderText={`Search ${entry_name}`} accent={accent} />
           {/* Tag Filters */}
           <div class="mt-4">
             <div class="flex items-center justify-between gap-2">
               <button
                 type="button"
                 onClick={toggleTags}
-                class="flex items-center gap-2 text-sm font-semibold uppercase text-black dark:text-white"
+                class="flex items-center gap-2 text-sm font-semibold uppercase text-ink dark:text-bone"
                 aria-expanded={tagsOpen() ? "true" : "false"}
                 aria-controls="tag-filter-list"
               >
@@ -124,7 +161,7 @@ export default function SearchCollection({ entry_name, data, tags, showTags = tr
               {filter().size > 0 && (
                 <button
                   onClick={clearFilters}
-                  class="flex items-center justify-center rounded-full p-2 text-neutral-400 hover:text-neutral-600 dark:text-neutral-500 dark:hover:text-neutral-300"
+                  class={`flex items-center justify-center rounded-full p-2 text-ash dark:text-neutral-500 ${accentClasses.hoverText}`}
                   aria-label="Clear tag filters"
                 >
                   <svg class="size-4">
@@ -143,17 +180,17 @@ export default function SearchCollection({ entry_name, data, tags, showTags = tr
                         class={cn(
                           "w-full px-2 py-1 rounded",
                           "flex gap-2 items-center",
-                          "bg-black/5 dark:bg-white/10",
-                          "hover:bg-black/10 hover:dark:bg-white/15",
+                          "bg-bone/60 dark:bg-white/10",
+                          "hover:bg-bone dark:hover:bg-white/15",
                           "transition-colors duration-300 ease-in-out",
-                          filter().has(tag) && "text-black dark:text-white"
+                          filter().has(tag) && "text-ink dark:text-bone"
                         )}
                       >
                         <svg
                           class={cn(
-                            "shrink-0 size-5 fill-black/50 dark:fill-white/50",
+                            "shrink-0 size-5 fill-ash/80 dark:fill-white/50",
                             "transition-colors duration-300 ease-in-out",
-                            filter().has(tag) && "fill-black dark:fill-white"
+                            filter().has(tag) && accentClasses.iconActive
                           )}
                         >
                           <use
@@ -183,10 +220,10 @@ export default function SearchCollection({ entry_name, data, tags, showTags = tr
         <div class="flex flex-col">
           {/* Info Bar */}
           <div class='flex justify-between flex-row mb-2'>
-            <div class="text-sm uppercase">
+            <div class="text-sm uppercase text-ash dark:text-zinc-400">
               SHOWING {collection().length} OF {data.length} {entry_name}
             </div>
-            <button onClick={toggleDescending} class='flex flex-row gap-1 stroke-neutral-400 dark:stroke-neutral-500 hover:stroke-neutral-600 hover:dark:stroke-neutral-300 text-neutral-400 dark:text-neutral-500 hover:text-neutral-600 hover:dark:text-neutral-300'>
+            <button onClick={toggleDescending} class={`flex flex-row gap-1 stroke-ash text-ash dark:stroke-neutral-500 dark:text-neutral-500 ${accentClasses.hoverStroke} ${accentClasses.hoverText}`}>
               <div class="text-sm uppercase">
                 {descending() ? "DESCENDING" : "ASCENDING"}
               </div>
@@ -211,14 +248,14 @@ export default function SearchCollection({ entry_name, data, tags, showTags = tr
   ) : (
     <div class="flex flex-col gap-6">
       <div class="max-w-md">
-        <SearchBar onSearchInput={onSearchInput} query={query} setQuery={setQuery} placeholderText={`Search ${entry_name}`} />
+        <SearchBar onSearchInput={onSearchInput} query={query} setQuery={setQuery} placeholderText={`Search ${entry_name}`} accent={accent} />
       </div>
       <div class="flex flex-col">
         <div class='flex justify-between flex-row mb-2'>
-          <div class="text-sm uppercase">
+          <div class="text-sm uppercase text-ash dark:text-zinc-400">
             SHOWING {collection().length} OF {data.length} {entry_name}
           </div>
-          <button onClick={toggleDescending} class='flex flex-row gap-1 stroke-neutral-400 dark:stroke-neutral-500 hover:stroke-neutral-600 hover:dark:stroke-neutral-300 text-neutral-400 dark:text-neutral-500 hover:text-neutral-600 hover:dark:text-neutral-300'>
+          <button onClick={toggleDescending} class={`flex flex-row gap-1 stroke-ash text-ash dark:stroke-neutral-500 dark:text-neutral-500 ${accentClasses.hoverStroke} ${accentClasses.hoverText}`}>
             <div class="text-sm uppercase">
               {descending() ? "DESCENDING" : "ASCENDING"}
             </div>

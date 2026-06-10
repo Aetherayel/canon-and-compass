@@ -12,18 +12,18 @@ interface Props {
 const { title, description = '', buttonText, href, variant = 'primary' } = Astro.props as Props;
 
 const shells = {
-  primary: 'bg-ink text-white dark:bg-zinc-900 dark:text-white',
-  canon: 'bg-white border-l-4 border-moss text-ink dark:bg-zinc-900 dark:text-white dark:border-moss',
-  compass: 'bg-white border-l-4 border-fig text-ink dark:bg-zinc-900 dark:text-white dark:border-fig',
-  pillar: 'bg-white border-l-4 border-stone-700 text-ink dark:bg-zinc-900 dark:text-white dark:border-stone-700',
+  primary: 'border border-ink/5 bg-ink text-bone shadow-sm dark:bg-zinc-900 dark:text-bone',
+  canon: 'bg-paper border-l-4 border-moss text-ink shadow-sm dark:bg-zinc-900 dark:text-bone dark:border-moss',
+  compass: 'bg-paper border-l-4 border-fig text-ink shadow-sm dark:bg-zinc-900 dark:text-bone dark:border-fig',
+  pillar: 'bg-paper border-l-4 border-starlight text-ink shadow-sm dark:bg-zinc-900 dark:text-bone dark:border-starlight',
 } satisfies Record<Variant, string>;
 
 const btn = variant === 'primary'
-  ? 'bg-white text-ink hover:bg-stone-200 dark:bg-zinc-800 dark:text-white dark:hover:bg-zinc-700'
-  : 'bg-ink text-white hover:bg-stone-800 dark:bg-zinc-800 dark:text-white dark:hover:bg-zinc-700';
+  ? 'bg-starlight text-ink hover:bg-ember hover:text-bone dark:bg-starlight dark:text-ink dark:hover:bg-bone'
+  : 'bg-ink text-bone hover:bg-pine dark:bg-bone dark:text-ink dark:hover:bg-starlight';
 ---
 <div class={`my-8 rounded-2xl p-5 shadow-sm ${shells[variant]}`}>
   <h3 class="m-0 text-lg font-semibold">{title}</h3>
-  {description && <p class="mt-2 mb-4 text-sm text-stone-700 dark:text-zinc-300">{description}</p>}
+  {description && <p class="mt-2 mb-4 text-sm text-ash dark:text-zinc-300">{description}</p>}
   <a href={href} class={`inline-block rounded-lg px-4 py-2 text-sm ${btn}`}>{buttonText}</a>
 </div>

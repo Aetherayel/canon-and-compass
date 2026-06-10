@@ -4,6 +4,16 @@
 
 :root {
   --copy-btn-margin: 10px;
+  --cc-ink: #14110f;
+  --cc-night: #050505;
+  --cc-paper: #fcfaf5;
+  --cc-bone: #f1ecdf;
+  --cc-ash: #6f695f;
+  --cc-starlight: #c3ab72;
+  --cc-moss: #60735c;
+  --cc-fig: #6d5964;
+  --cc-pine: #31463e;
+  --cc-ember: #9b6b43;
 }
 
 @layer base {
@@ -27,21 +37,21 @@
 html {
   overflow-y: scroll;
   color-scheme: light;
-  background-color: white;
+  background-color: var(--cc-paper);
   font-family: "Atkinson", sans-serif;
 
 }
 
 html.dark {
   color-scheme: dark;
-  background-color: black;
+  background-color: var(--cc-night);
 }
 
 html,
 body {
   @apply h-full w-full antialiased;
-  @apply bg-white dark:bg-black;
-  @apply text-black/75 dark:text-white/75;
+  @apply bg-paper dark:bg-night;
+  @apply text-ink/80 dark:text-white/75;
 }
 
 body {
@@ -49,7 +59,7 @@ body {
 }
 
 main {
-  @apply flex flex-col flex-1 bg-white dark:bg-black;
+  @apply flex flex-col flex-1 bg-paper dark:bg-night;
 }
 
 header {
@@ -62,9 +72,9 @@ header:not(.scrolled) {
 }
 
 header.scrolled {
-  @apply bg-white/75 dark:bg-black/50;
-  @apply border-black/10 dark:border-white/25;
-  @apply backdrop-blur-sm saturate-200;
+  @apply bg-paper/80 dark:bg-night/80;
+  @apply border-ash/15 dark:border-bone/10;
+  @apply backdrop-blur-md saturate-150;
 }
 
 article {

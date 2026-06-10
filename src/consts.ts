@@ -1,4 +1,4 @@
-import type { Site, Page, Links, Socials } from "@types"
+import type { Site, Page, Links } from "@types"
 
 // Global
 export const SITE: Site = {
@@ -136,22 +136,5 @@ export const FOUNDATIONS_LINKS: Links = [
     TEXT: "Pillars",
     HREF: "/pillars",
   },
-]
-
-
-// Socials
-export const SOCIALS: Socials = [
-  {
-    NAME: "Email",
-    ICON: "email",
-    TEXT: "contact@canonandcompass.com",
-    HREF: "mailto:contact@canonandcompass.com",
-  },
-  // {
-  //   NAME: "Twitter",
-  //   ICON: "twitter-x",
-  //   TEXT: "markhorn_dev",
-  //   HREF: "https://twitter.com/markhorn_dev",
-  // },
 ]
 
