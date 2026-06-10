@@ -6,6 +6,10 @@ Reserved Canon & Compass brand assets
 
 - `brand.svg`
 - `canonandcompass.jpg`
+- `canonandcompass-og.png`
+- `the-clearing-og.png`
+- `the-forests-og.png`
+- `fruit-paths-og.png`
 - `favicon.svg`
 - `favicon_black.svg`
 

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Fruit Path Author"
+  short_description: "Write new Fruit Paths in the Canon & Compass house form."
+  default_prompt: "Use $fruit-path-author to draft or revise a Canon & Compass fruit path that starts with visible fruit, traces the counterfeit root beneath it, and re-roots the reader in truth using the existing callout and pathway-linking structure."
