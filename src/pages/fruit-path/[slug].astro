@@ -15,7 +15,17 @@ type Props = {
   entry: CollectionEntry<"fruit-path">;
 };
 
-const { entry } = Astro.props as Props;
+const slug = Astro.params.slug;
+let entry = (Astro.props as Partial<Props>)?.entry;
+
+if (!entry && slug) {
+  const entries = await getCollection("fruit-path");
+  entry = entries.find((candidate) => candidate.slug === slug);
+}
+
+if (!entry) {
+  return Astro.redirect("/fruit-path");
+}
 ---
 
 <FruitPathPage

@@ -20,7 +20,7 @@ The content is organized to help a reader move from confusion toward truthful wi
 - `The Clearing`: a quiet place for orientation, slowing down, and learning to see again
 - `The Forests`: worldview diagnosis that names the climates shaping instincts and assumptions
 - `Fruit Paths`: formation pathways that trace unwanted fruit back to hidden roots and toward healing truth
-- `Foundations`: supporting depth through Canon Notes, Foundations of Discernment, Compass Points, and Pillars
+- `Worldview Bearings`: a smaller shelf inside The Clearing for readers who need a sturdier conceptual frame
 
 ## Technical Overview
 
@@ -70,11 +70,11 @@ Important route groups:
 - `src/pages/the-clearing`
 - `src/pages/forests`
 - `src/pages/fruit-path`
-- `src/pages/foundations`
+- `src/pages/the-clearing/worldview-bearings`
 - `src/pages/canon_notes`
 - `src/pages/compass_points`
 - `src/pages/pillars`
-- `src/pages/foundations-of-discernment`
+- `src/pages/the-clearing/worldview-bearings/foundations-of-discernment`
 
 ## Content Model
 
@@ -88,7 +88,7 @@ The main collections are defined in `src/content/config.ts`.
 - `pillars`: longer theological or philosophical essays
 - `the-clearing`: reflective orientation pieces
 
-This structure matters because the site is not just chronological. It is relational. Content is intentionally linked across pathways, worldviews, and foundations.
+This structure matters because the site is not just chronological. It is relational. Content is intentionally linked across pathways, worldviews, and bearings.
 
 ## Local Development
 

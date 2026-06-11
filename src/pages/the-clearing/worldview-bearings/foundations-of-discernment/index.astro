@@ -1,0 +1,74 @@
+---
+import { getCollection } from "astro:content";
+import PageLayout from "@layouts/PageLayout.astro";
+import TopLayout from "@layouts/TopLayout.astro";
+import BottomLayout from "@layouts/BottomLayout.astro";
+import SearchCollection from "@components/SearchCollection";
+import { FOUNDATIONSOFDISCERNMENT } from "@consts";
+import { toCardEntry } from "@lib/cardEntries";
+
+const discernmentEntries = (await getCollection("foundations-of-discernment"))
+  .filter((note) => !note.data.draft)
+  .sort((a, b) => {
+    const da = Number(a.data.day ?? Number.POSITIVE_INFINITY);
+    const db = Number(b.data.day ?? Number.POSITIVE_INFINITY);
+    if (da !== db) return da - db;
+    return b.data.date.getTime() - a.data.date.getTime();
+  });
+
+const tags = [
+  ...new Set(discernmentEntries.flatMap((note) => note.data.tags)),
+].sort((a, b) => a.localeCompare(b));
+const foundationCards = discernmentEntries.map((note) => toCardEntry(note));
+
+const estimated_initial_size =
+  28 + discernmentEntries.length * 158 + (discernmentEntries.length - 1) * 12;
+---
+
+<PageLayout
+  title={FOUNDATIONSOFDISCERNMENT.TITLE}
+  description={FOUNDATIONSOFDISCERNMENT.DESCRIPTION}
+  schemaType="CollectionPage"
+  section="The Clearing"
+>
+  <TopLayout>
+    <div class="animate space-y-4">
+      <div>
+        <p class="text-xs font-semibold uppercase tracking-[0.2em] text-starlight">
+          Worldview Bearings
+        </p>
+        <h1 class="mt-2 text-3xl font-semibold text-ink dark:text-bone">
+          {FOUNDATIONSOFDISCERNMENT.TITLE}
+        </h1>
+        <p class="mt-2 text-lg italic text-ash dark:text-zinc-300">
+          A slower sequence for letting truth become habitable.
+        </p>
+      </div>
+      <div class="space-y-3 text-base text-ash dark:text-zinc-300">
+        <p>
+          This is not a first stop for most readers.
+        </p>
+        <p>
+          It belongs inside Worldview Bearings because it helps conceptual truth become prayer, repentance, reverence, and lived obedience over time.
+        </p>
+        <p>
+          If you still need quieter ground or a simpler first orientation, return to The Clearing or the main Bearings shelf first.
+        </p>
+      </div>
+    </div>
+  </TopLayout>
+  <BottomLayout>
+    <div
+      id="search-collection-wrapper"
+      class="animate"
+      style={{ minHeight: `${estimated_initial_size}px` }}
+    >
+      <SearchCollection
+        client:load
+        entry_name={"bearings sequence"}
+        tags={tags}
+        data={foundationCards}
+      />
+    </div>
+  </BottomLayout>
+</PageLayout>

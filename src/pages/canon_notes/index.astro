@@ -19,8 +19,8 @@ const noteCards = canonNotes.map((note) => toCardEntry(note));
 const estimated_initial_size =
   28 + canonNotes.length * 158 + (canonNotes.length - 1) * 12;
 
-// Series: Foundations of Discernment (multi-part Canon Notes)
-const fodEntries = (await getCollection("foundations-of-discernment")).filter(
+// Bearings sequence: Foundations of Discernment
+const discernmentEntries = (await getCollection("foundations-of-discernment")).filter(
   (e) => !e.data.draft,
 );
 ---
@@ -42,25 +42,25 @@ const fodEntries = (await getCollection("foundations-of-discernment")).filter(
     </div>
   </TopLayout>
   <BottomLayout>
-    {fodEntries.length > 0 && (
+    {discernmentEntries.length > 0 && (
       <section class="animate">
         <h2 class="text-xl font-semibold text-ink dark:text-bone">
-          Explore Canon Notes Series
+          Bearings Sequence
         </h2>
         <div class="mt-4">
           <a
-            href="/foundations-of-discernment"
+            href="/the-clearing/worldview-bearings/foundations-of-discernment"
             class="group flex items-center gap-3 rounded-lg border border-ash/20 bg-paper/70 p-4 transition-colors duration-300 ease-in-out hover:border-moss/35 hover:bg-bone/70 dark:border-bone/15 dark:bg-zinc-900/70 dark:hover:bg-white/10"
           >
             <div class="blend w-full text-ash dark:text-zinc-300">
               <div class="text-sm uppercase text-ash dark:text-zinc-400">
-                {fodEntries.length} part{fodEntries.length === 1 ? "" : "s"}
+                {discernmentEntries.length} part{discernmentEntries.length === 1 ? "" : "s"}
               </div>
               <div class="mt-2 font-semibold text-ink dark:text-bone">
                 Foundations of Discernment
               </div>
               <div class="text-sm mt-1 opacity-80">
-                A 28-day devotional sequence training reverence, truthful witness, discernment, and Christ-centered obedience
+                Now housed in Worldview Bearings: a 28-day devotional sequence for slower conceptual and spiritual formation
               </div>
             </div>
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="stroke-current text-ash transition-colors duration-300 ease-in-out group-hover:text-moss">

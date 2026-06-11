@@ -1,0 +1,63 @@
+---
+import { getCollection, type CollectionEntry } from "astro:content";
+import PageLayout from "@layouts/PageLayout.astro";
+import TopLayout from "@layouts/TopLayout.astro";
+import BottomLayout from "@layouts/BottomLayout.astro";
+import ArticleTopLayout from "@layouts/ArticleTopLayout.astro";
+import ArticleBottomLayout from "@layouts/ArticleBottomLayout.astro";
+import ManualButtons from "@components/ManualButtons.astro";
+
+const slug = Astro.params.slug;
+let foundation = (Astro.props as { foundation?: CollectionEntry<"foundations-of-discernment"> }).foundation;
+
+if (!foundation && slug) {
+  const foundations = await getCollection("foundations-of-discernment");
+  foundation = foundations.find((entry) => entry.slug === slug);
+}
+
+if (!foundation) {
+  return Astro.redirect("/the-clearing/worldview-bearings/foundations-of-discernment", 301);
+}
+
+const { title, summary } = foundation.data;
+
+const all = (await getCollection("foundations-of-discernment"))
+  .filter((x) => !x.data.draft)
+  .sort((a, b) => {
+    const da = Number(a.data.day ?? 0);
+    const db = Number(b.data.day ?? 0);
+    return da - db;
+  });
+const currentIndex = all.findIndex((x) => x.slug === foundation.slug);
+const prev = currentIndex > 0 ? all[currentIndex - 1] : undefined;
+const next = currentIndex >= 0 && currentIndex < all.length - 1 ? all[currentIndex + 1] : undefined;
+---
+
+<PageLayout
+  title={title}
+  description={summary}
+  pageType="article"
+  schemaType="Article"
+  publishedTime={foundation.data.date}
+  section="The Clearing"
+  tags={foundation.data.tags}
+>
+  <TopLayout>
+    <div class="animate">
+      <ArticleTopLayout entry={foundation} />
+    </div>
+  </TopLayout>
+  <BottomLayout>
+    <div class="animate">
+      <ArticleBottomLayout entry={foundation} />
+    </div>
+    <ManualButtons
+      prevHref={prev ? `/the-clearing/worldview-bearings/foundations-of-discernment/${prev.slug}` : undefined}
+      prevLabel={prev?.data.title}
+      prevType={prev?.data.day ? `Day ${prev.data.day}` : undefined}
+      nextHref={next ? `/the-clearing/worldview-bearings/foundations-of-discernment/${next.slug}` : undefined}
+      nextLabel={next?.data.title}
+      nextType={next?.data.day ? `Day ${next.data.day}` : undefined}
+    />
+  </BottomLayout>
+</PageLayout>

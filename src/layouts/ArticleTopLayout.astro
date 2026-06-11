@@ -22,9 +22,17 @@ function toTitleCase(raw: string) {
 }
 
 const backHref =
-  collection === "forests" ? "/forests" : `/${collection}`;
+  collection === "forests"
+    ? "/forests"
+    : collection === "foundations-of-discernment"
+      ? "/the-clearing/worldview-bearings/foundations-of-discernment"
+      : `/${collection}`;
 const backLabel =
-  collection === "forests" ? "Forests" : toTitleCase(collection);
+  collection === "forests"
+    ? "Forests"
+    : collection === "foundations-of-discernment"
+      ? "Foundations of Discernment"
+      : toTitleCase(collection);
 const accentStyles =
   collection === "forests"
     ? {
@@ -54,7 +62,11 @@ const accentStyles =
             summary: "border-starlight/25 dark:border-starlight/25",
           };
 const eyebrowLabel =
-  collection === "forests" ? data.series ?? "Forest Trail" : backLabel;
+  collection === "forests"
+    ? data.series ?? "Forest Trail"
+    : collection === "foundations-of-discernment"
+      ? "Worldview Bearings"
+      : backLabel;
 ---
 
 <div>

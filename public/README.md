@@ -15,6 +15,10 @@ Reserved Canon & Compass brand assets
 
 Those files are project-identifying brand or creative assets and are all rights reserved unless a specific file says otherwise.
 
+Current source of truth for the social raster exports:
+
+- `../scripts/generate_social_images.py`
+
 Other assets
 
 - Some public assets are generic implementation files used by the site.

@@ -32,12 +32,6 @@ export const TREESHIFTS: Page = {
   DESCRIPTION: "Trace counterfeit formation toward the truth that restores right fruit.",
 }
 
-// Foundations Page
-export const FOUNDATIONS: Page = {
-  TITLE: "Foundations",
-  DESCRIPTION: "Supportive writings that help truth take root slowly and hold under pressure.",
-}
-
 // Worldviews Page
 export const WORLDVIEWS: Page = {
   TITLE: "The Forests",
@@ -120,21 +114,6 @@ export const FRUIT_PATH_LINKS: Links = [
   {
     TEXT: "Fruit Paths",
     HREF: "/fruit-path",
-  },
-]
-
-export const FOUNDATIONS_LINKS: Links = [
-  {
-    TEXT: "Canon Notes",
-    HREF: "/canon_notes",
-  },
-  {
-    TEXT: "Compass Points",
-    HREF: "/compass_points",
-  },
-  {
-    TEXT: "Pillars",
-    HREF: "/pillars",
   },
 ]
 

@@ -65,7 +65,6 @@ draft: false
 import CTA from '../../components/CTA.astro'
 import Scripture from '../../components/Scripture.astro'
 import FalseTreeCallout from '../../components/FalseTreeCallout.astro'
-import PathwayCTAs from '../../components/PathwayCTAs.astro'
 import TreeCallout from '../../components/TreeCallout.astro'
 import PastoralNote from '../../components/PastoralNote.astro'
 
@@ -121,6 +120,14 @@ Explain why this pattern can feel wise, protective, mature, loving, or necessary
 
 ---
 
+## Why Bad Fruit Feels Normal Now
+
+Explain briefly why this pattern gets rewarded, reinforced, or misnamed in lived experience.
+
+Keep it concrete and short. This section should import the strongest cultural/systemic insight without turning into a standalone essay.
+
+---
+
 ## Invitation
 
 Name how Christ meets the reader here without minimizing the burden or flattering the pattern.
@@ -171,27 +178,27 @@ State the reordering truth. Keep it concrete, Christ-centered, and formation-awa
 
 ---
 
-## New Fruit
+## Practice of Truth-Tree Title
 
-| Old Fruit | New Fruit |
-|-----------|-----------|
-| Old pattern | New growth |
-| Old pattern | New growth |
-| Old pattern | New growth |
-| Old pattern | New growth |
+Give one short embodied practice, prayer pattern, or faithful experiment.
+
+Optional scripture can appear here if it sharpens the practice.
 
 ---
 
-## Next Steps
+## Under the Surface
 
-- **Confess plainly:** Name the false center without dressing it up.
-- **Practice one act:** Choose one embodied response that agrees with truth.
-- **Return to Christ:** Keep the step relational, not merely tactical.
+Add a short deeper clarification that integrates the strongest theological material.
+
+Keep it grounded in lived experience. Do not let this section turn into a long pillar-style argument.
 
 ---
 
-## Foundations: Keep Growing
-<PathwayCTAs id={frontmatter.pathwayId} />
+## Keep Walking
+
+- point toward the related forest when wider climate naming would help
+- point toward `Worldview Bearings` only when a sturdier conceptual frame would genuinely help
+- avoid sending the reader to side libraries just to finish the path
 
 </section>
 ```
@@ -206,14 +213,14 @@ Use these conventions:
 - `pathwayId` must be stable; once linked from related content, do not change it casually
 - `shift.date` and `tree.date` should stay aligned with the entry date unless there is a deliberate reason not to
 - `shift.slug` and `tree.slug` are short identifiers, not full entry slugs
-- omit `canonNote`, `compassPoint`, or `pillar` entirely when no real companion content exists
+- omit `canonNote`, `compassPoint`, or `pillar` entirely unless there is a real repo reason to preserve them
 - omit `PastoralNote` import when it is not used
 
 ## Section map
 
 The fruit-path index explains the intended movement:
 
-`Fruit -> misnaming -> root -> false center -> reordering truth -> faithful step`
+`Fruit -> misnaming -> root -> false center -> reordering truth -> practice -> deeper clarification -> faithful next step`
 
 Make that movement visible in the body:
 
@@ -221,8 +228,9 @@ Make that movement visible in the body:
 - misnaming: "what it may be calling itself"
 - root: counterfeit tree root
 - false center: trunk and organizing lie
+- why it feels normal now: short cultural/systemic explanation
 - reordering truth: truth-tree opening and scripture
-- faithful step: redirection lines, `Next Steps`, and `PathwayCTAs`
+- faithful step: redirection lines, `Practice`, `Under the Surface`, and `Keep Walking`
 
 ## Cross-linking rules
 
@@ -233,7 +241,7 @@ These fields drive repo behavior:
 - `tree.href`: should resolve to `#truth-tree`
 - `canonNote.href`, `compassPoint.href`, `pillar.href`: should resolve to real routes
 
-Before writing linked metadata, check that the companion files exist or are being created in the same task.
+Before writing linked metadata, check that the companion files exist and that the metadata is still worth keeping. The public fruit-path pattern should not depend on those links.
 
 ## Tone rules
 
@@ -251,6 +259,7 @@ Avoid:
 - abstract theological language detached from experience
 - tidy endings that skip repentance, grief, or retraining
 - generic self-help phrasing
+- stuffing every possible companion idea into one path page
 
 ## Completion checklist
 

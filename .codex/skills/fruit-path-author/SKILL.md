@@ -1,6 +1,6 @@
 ---
 name: fruit-path-author
-description: Create or revise Canon & Compass fruit-path content in `src/content/fruit-path`, especially when drafting a new pathway that starts with visible fruit, names the counterfeit root beneath it, and re-roots the reader in truth with the existing callout and pathway-linking components.
+description: Create or revise Canon & Compass fruit-path content in `src/content/fruit-path`, especially when drafting a new pathway that starts with visible fruit, names the counterfeit root beneath it, and re-roots the reader in truth with the existing callout pattern and integrated fruit-path structure.
 ---
 
 # Fruit Path Author
@@ -8,6 +8,8 @@ description: Create or revise Canon & Compass fruit-path content in `src/content
 Use this skill to write `Fruit Paths` as diagnostic-and-reordering guides inside the Canon & Compass formation map.
 
 `Fruit Paths` are not generic devotionals, not clearing essays, and not worldview overviews. They begin with the fruit a reader already notices, trace that fruit to a counterfeit center, then walk toward a truer root under Christ.
+
+The current fruit-path pattern is **integrated**. Do not treat `Canon Notes`, `Compass Points`, or `Pillars` as required public follow-on destinations. Instead, fold the strongest prayer, cultural, and theological material into the path itself while keeping the page slim and grounded.
 
 ## Build Context First
 
@@ -19,7 +21,6 @@ Read these files before drafting:
 - `src/pages/fruit-path/[slug].astro`
 - `src/layouts/FruitPathPage.astro`
 - `src/components/PathwayLinks.astro`
-- `src/components/PathwayCTAs.astro`
 
 Then read at least four existing fruit paths, including:
 
@@ -41,7 +42,7 @@ Do not force content into this collection if its real center of gravity is:
 - reorientation before diagnosis: `The Clearing`
 - worldview climate or environment: `Forests`
 - longer argument or doctrinal reinforcement: `Pillars`
-- slower follow-on formation: `Foundations`
+- slower conceptual formation: `Worldview Bearings`
 
 If the reader first needs gentler orientation, point them toward `The Clearing` rather than drafting a more aggressive diagnosis.
 
@@ -57,7 +58,7 @@ Decide these items up front:
 - the false system or counterfeit gospel named by `shift.systemLabel`
 - the core lie under the symptom
 - the reordering truth under Christ
-- whether linked `canonNote`, `compassPoint`, and `pillar` already exist
+- whether any legacy companion metadata needs to remain for backward compatibility
 
 Keep the path relational. A fruit path should show how the symptom once felt protective, responsible, or necessary before exposing what it is doing now.
 
@@ -86,7 +87,7 @@ Use the fields this way:
 - `pathwayId` is the main cross-link key; keep it stable once chosen
 - `shift` names the visible fruit and its counterfeit system
 - `tree` points to the truth-tree section in the same document
-- `canonNote`, `compassPoint`, and `pillar` should only be present when real linked content exists or is being created in the same task
+- `canonNote`, `compassPoint`, and `pillar` are legacy optional fields; only keep or add them when there is a real repo reason to preserve that metadata
 - leave `counterfeitTree` unset unless there is an actual separate counterfeit-tree route to link
 
 ### 4. Keep the body shape in family
@@ -101,6 +102,7 @@ Inside `#symptom`, usually include:
 - a `# Bad Fruit: ...` opening
 - a section naming what the fruit may be calling itself
 - a `FalseTreeCallout`
+- a short section explaining why this fruit feels normal, wise, or responsible now
 - an invitation paragraph
 - a primary `CTA` leading to `#truth-tree`
 
@@ -109,9 +111,9 @@ Inside `#truth-tree`, usually include:
 - a `# The True Tree: ...` opening
 - a `Scripture` block
 - a `TreeCallout`
-- a `New Fruit` comparison table
-- optional `Next Steps`
-- `PathwayCTAs`
+- a short `Practice of ...` section
+- a short `Under the Surface` section that integrates the strongest deeper theological clarification
+- a `Keep Walking` close that points outward to related forests or bearings only when genuinely helpful
 
 Keep the section ids exactly `symptom` and `truth-tree`. Existing `href` values and CTA buttons depend on those anchors.
 
@@ -123,7 +125,6 @@ Prefer the current pattern:
 - `Scripture`
 - `FalseTreeCallout`
 - `TreeCallout`
-- `PathwayCTAs`
 - `PastoralNote` when the fruit overlaps mental health, trauma, or safety-sensitive material
 
 Do not recreate these patterns inline unless there is a real structural reason.
@@ -146,6 +147,7 @@ Useful habits:
 - one central lie stated plainly
 - concrete fruit in body, schedule, prayer, and relationships
 - truthful but pastoral language
+- integrated support rather than a handoff to side libraries
 
 Avoid:
 
@@ -155,19 +157,22 @@ Avoid:
 - treating the bad fruit as merely a moral failure
 - turning the piece into a long pillar-style argument
 
-### 7. Wire links carefully
+### 7. Keep the path integrated
 
-`PathwayLinks` and `PathwayCTAs` are only helpful when metadata is real.
+Do not write fruit paths as if their real work happens in separate companion pages.
 
 When adding or revising a fruit path:
 
 - keep `pathwayId` aligned with all related content that uses it
 - set `shift.href` to `/fruit-path/<slug>#symptom`
 - set `tree.href` to `/fruit-path/<slug>#truth-tree`
-- keep `canonNote.href`, `compassPoint.href`, and `pillar.href` pointed at real routes
-- do not add placeholder slugs or dead-end links
+- integrate the strongest prayer/practice material directly into the path
+- integrate the strongest cultural/systemic lens directly into the path
+- integrate the strongest deeper theological material directly into the path
+- do not add placeholder `canonNote`, `compassPoint`, or `pillar` metadata just because those fields exist
+- when pointing outward, prefer related forests or `Worldview Bearings`, not an assumed `Foundations` layer
 
-If the user wants a brand-new path plus companion pieces, create them deliberately and wire them together by the same `pathwayId`.
+Companion collections may still exist in the repo, but fruit paths should stand on their own without sending the reader into side shelves to finish the formation arc.
 
 ### 8. Verify
 
@@ -189,5 +194,6 @@ A finished fruit path should do all of this:
 - show why that fruit felt necessary or protective before critiquing it
 - identify one counterfeit root or false center clearly
 - offer a truer root that is concretely Christ-centered
+- integrate practice, cultural pressure, and theological clarification without turning into a mini-pillar
 - make the callout sections and metadata consistent enough for repo linking to work
-- fit the site flow from clearing, to diagnosis, to re-rooting, to longer formation
+- fit the site flow from clearing, to diagnosis, to re-rooting, to forests or bearings when deeper context is needed

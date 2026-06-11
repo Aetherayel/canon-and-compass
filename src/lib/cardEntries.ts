@@ -90,7 +90,10 @@ export function toCardEntry(entry: SupportedEntry): CardEntry {
   return {
     collection: standardEntry.collection,
     slug: standardEntry.slug,
-    href: `/${standardEntry.collection}/${standardEntry.slug}`,
+    href:
+      standardEntry.collection === "foundations-of-discernment"
+        ? `/the-clearing/worldview-bearings/foundations-of-discernment/${standardEntry.slug}`
+        : `/${standardEntry.collection}/${standardEntry.slug}`,
     title: standardEntry.data.title,
     summary: standardEntry.data.summary,
     tags: standardEntry.data.tags,

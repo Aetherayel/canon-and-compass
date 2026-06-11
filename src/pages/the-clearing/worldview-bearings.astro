@@ -5,6 +5,7 @@ import TopLayout from "@layouts/TopLayout.astro";
 import BottomLayout from "@layouts/BottomLayout.astro";
 import ArrowCard from "@components/ArrowCard";
 import { toCardEntry } from "@lib/cardEntries";
+import { FOUNDATIONSOFDISCERNMENT } from "@consts";
 
 const clearingEntries = (await getCollection("the-clearing"))
   .filter((entry) => !entry.data.draft)
@@ -19,6 +20,14 @@ const worldviewBearingEntries = [
 ].filter(Boolean) as (typeof clearingEntries)[number][];
 
 const worldviewBearingCards = worldviewBearingEntries.map((entry) => toCardEntry(entry));
+const discernmentEntries = (await getCollection("foundations-of-discernment"))
+  .filter((entry) => !entry.data.draft)
+  .sort((a, b) => {
+    const da = Number(a.data.day ?? Number.POSITIVE_INFINITY);
+    const db = Number(b.data.day ?? Number.POSITIVE_INFINITY);
+    if (da !== db) return da - db;
+    return b.data.date.getTime() - a.data.date.getTime();
+  });
 ---
 
 <PageLayout
@@ -88,8 +97,11 @@ const worldviewBearingCards = worldviewBearingEntries.map((entry) => toCardEntry
       {worldviewBearingCards.length > 0 && (
         <section class="space-y-4">
           <h2 class="text-xl font-semibold text-ink dark:text-bone">
-            Essays
+            The Bearings
           </h2>
+          <p class="text-base text-ash dark:text-zinc-300">
+            Read these as a progression: the hidden story you are already living in, the kind of truth a life can actually stand in, and why the biblical account remains the sturdier frame.
+          </p>
           <ul class="space-y-3">
             {worldviewBearingCards.map((entry) => (
               <li>
@@ -97,6 +109,42 @@ const worldviewBearingCards = worldviewBearingEntries.map((entry) => toCardEntry
               </li>
             ))}
           </ul>
+        </section>
+      )}
+
+      {discernmentEntries.length > 0 && (
+        <section class="space-y-4">
+          <h2 class="text-xl font-semibold text-ink dark:text-bone">
+            Foundations of Discernment
+          </h2>
+          <div class="space-y-3 text-base text-ash dark:text-zinc-300">
+            <p>
+              Some readers do not only need a few bearings pieces. They need a slower sequence that helps truth become lived attention, repentance, and obedience over time.
+            </p>
+            <p>
+              <strong>Foundations of Discernment</strong> now lives here inside Worldview Bearings as a longer path for readers who want to stay in conceptual and spiritual formation a little longer before moving on.
+            </p>
+          </div>
+          <a
+            href="/the-clearing/worldview-bearings/foundations-of-discernment"
+            class="group flex items-center gap-3 rounded-lg border border-ash/20 bg-paper/70 p-4 transition-colors duration-300 ease-in-out hover:border-moss/35 hover:bg-bone/70 dark:border-bone/15 dark:bg-zinc-900/70 dark:hover:bg-white/10"
+          >
+            <div class="blend w-full text-ash dark:text-zinc-300">
+              <div class="text-sm uppercase text-ash dark:text-zinc-400">
+                {discernmentEntries.length} part{discernmentEntries.length === 1 ? "" : "s"}
+              </div>
+              <div class="mt-2 font-semibold text-ink dark:text-bone">
+                {FOUNDATIONSOFDISCERNMENT.TITLE}
+              </div>
+              <div class="text-sm mt-1 opacity-80">
+                {FOUNDATIONSOFDISCERNMENT.DESCRIPTION}
+              </div>
+            </div>
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="stroke-current text-ash transition-colors duration-300 ease-in-out group-hover:text-moss">
+              <line x1="5" y1="12" x2="19" y2="12" class="scale-x-0 group-hover:scale-x-100 translate-x-4 group-hover:translate-x-1 transition-all duration-300 ease-in-out" />
+              <polyline points="12 5 19 12 12 19" class="translate-x-0 group-hover:translate-x-1 transition-all duration-300 ease-in-out" />
+            </svg>
+          </a>
         </section>
       )}
 

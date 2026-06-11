@@ -4,7 +4,6 @@ import PageLayout from "@layouts/PageLayout.astro";
 import TopLayout from "@layouts/TopLayout.astro";
 import BottomLayout from "@layouts/BottomLayout.astro";
 import FruitPathForestLinks from "@components/FruitPathForestLinks.astro";
-import PathwayLinks from "@components/PathwayLinks.astro";
 
 type Props = {
   entry: CollectionEntry<"fruit-path">;
@@ -125,15 +124,6 @@ const pathwayId = data?.pathwayId ?? entry.slug;
       {pathwayId && (
         <div class="mt-10 space-y-6">
           <FruitPathForestLinks pathwayId={pathwayId} />
-          <PathwayLinks
-            id={pathwayId}
-            showPath={false}
-            showShift={false}
-            showTree={false}
-            heading="Keep Walking This Path"
-            blurb="Continue through related pieces that help this fruit be named, rooted out, and re-ordered in Christ."
-            accent="ember"
-          />
         </div>
       )}
     </div>
